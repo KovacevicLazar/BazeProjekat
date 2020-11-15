@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intervencije_VatrogasnihJedinica", "Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica.csproj", "{A10740CD-F120-44EC-8032-85A10BCCE76E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intervencije_VatrogasnihJedinicaDAO", "Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaDAO.csproj", "{A10740CD-F120-44EC-8032-85A10BCCE76E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intervencije_VatrogasnihJedinicaUI", "Intervencije_VatrogasnihJedinicaUI\Intervencije_VatrogasnihJedinicaUI.csproj", "{354F86B8-3512-45F9-9895-ED30ECE10F8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A10740CD-F120-44EC-8032-85A10BCCE76E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A10740CD-F120-44EC-8032-85A10BCCE76E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A10740CD-F120-44EC-8032-85A10BCCE76E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{354F86B8-3512-45F9-9895-ED30ECE10F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{354F86B8-3512-45F9-9895-ED30ECE10F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{354F86B8-3512-45F9-9895-ED30ECE10F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{354F86B8-3512-45F9-9895-ED30ECE10F8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

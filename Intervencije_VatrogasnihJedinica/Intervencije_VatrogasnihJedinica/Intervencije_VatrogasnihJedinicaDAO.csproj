@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A10740CD-F120-44EC-8032-85A10BCCE76E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Intervencije_VatrogasnihJedinica</RootNamespace>
+    <AssemblyName>Intervencije_VatrogasnihJedinica</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alat.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cisterna.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dao\AlatDAO.cs" />
+    <Compile Include="dao\BaseRepo.cs" />
+    <Compile Include="dao\CisternaDAO.cs" />
+    <Compile Include="dao\InspektorDAO.cs" />
+    <Compile Include="dao\IntervencijaDAO.cs" />
+    <Compile Include="dao\IRepository.cs" />
+    <Compile Include="dao\KomandirDAO.cs" />
+    <Compile Include="dao\NavalnoVoziloDAO.cs" />
+    <Compile Include="dao\OpstinaDAO.cs" />
+    <Compile Include="dao\PozarDAO.cs" />
+    <Compile Include="dao\RadnikDAO.cs" />
+    <Compile Include="dao\SmenaDAO.cs" />
+    <Compile Include="dao\TehnickaIntervencijaDAO.cs" />
+    <Compile Include="dao\TehnickoVoziloDAO.cs" />
+    <Compile Include="dao\UvidjajDAO.cs" />
+    <Compile Include="dao\VatrogasacDAO.cs" />
+    <Compile Include="dao\VatrogasnaJedinicaDAO.cs" />
+    <Compile Include="dao\VozacDAO.cs" />
+    <Compile Include="dao\VoziloDAO.cs" />
+    <Compile Include="dao\ZapisnikDAO.cs" />
+    <Compile Include="Inspektor.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Intervencija.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Komandir.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Intervencije_VatrogasnihJedinica.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Intervencije_VatrogasnihJedinica.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Intervencije_VatrogasnihJedinica.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Navalno_Vozilo.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Opstina.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pozar.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Radnik.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Smena.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tehnicka_Intervencija.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tehnicko_Vozilo.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Uvidjaj.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vatrogasac.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VatrogasnaJedinica.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vozac.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vozilo.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Zapisnik.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model_Intervencije_VatrogasnihJedinica.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model_Intervencije_VatrogasnihJedinica.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Model_Intervencije_VatrogasnihJedinica.edmx.diagram">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model_Intervencije_VatrogasnihJedinica.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model_Intervencije_VatrogasnihJedinica.Context.cs</LastGenOutput>
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model_Intervencije_VatrogasnihJedinica.edmx.sql" />
+    <Content Include="Model_Intervencije_VatrogasnihJedinica.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model_Intervencije_VatrogasnihJedinica.cs</LastGenOutput>
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

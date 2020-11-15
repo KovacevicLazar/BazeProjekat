@@ -1,0 +1,43 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.VatrogasneJediniceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
+        mc:Ignorable="d"
+         FontWeight="Bold"
+        WindowStartupLocation="CenterScreen"
+        Title="VatrogasneJediniceView" Height="450" Width="800">
+    <Grid>
+
+        <DataGrid ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Id_Opstine}"  Header="ID: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Naziv: ">
+
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Opstina: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj vozila: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj radnika: ">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Vatrogasne Jedinice" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="272" Height="54" Margin="260,10,260,0"/>
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,103,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top" Width="180"/>
+
+    </Grid>
+</Window>

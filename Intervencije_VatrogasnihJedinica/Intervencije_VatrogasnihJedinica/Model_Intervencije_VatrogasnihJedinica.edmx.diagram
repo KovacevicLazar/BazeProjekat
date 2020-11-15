@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Width="1.5" PointX="2" PointY="9" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Zapisnik" Width="1.5" PointX="1.875" PointY="12" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" Width="1.5" PointX="4.625" PointY="9.125" />
-        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" Width="1.5" PointX="13.125" PointY="3.75" />
+        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" Width="1.5" PointX="13" PointY="4.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" Width="1.5" PointX="15.625" PointY="0.5" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Pozar" Width="1.5" PointX="5.125" PointY="3.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija" Width="1.5" PointX="3.5" PointY="3.125" />
@@ -26,10 +26,11 @@
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.UvidjajZapisnik" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.125" PointY="6.3244997336756583" />
-          <ConnectorPoint PointX="2.0396341134321463" PointY="6.3244997336756583" />
-          <ConnectorPoint PointX="2.0396341134321463" PointY="0.71389370331988133" />
-          <ConnectorPoint PointX="15.625" PointY="0.71389370331988133" />
+          <ConnectorPoint PointX="4.125" PointY="5.8028045787009015" />
+          <ConnectorPoint PointX="4.125" PointY="5.401285708354604" />
+          <ConnectorPoint PointX="1.9237804271719545" PointY="5.401285708354604" />
+          <ConnectorPoint PointX="1.9237804271719545" PointY="0.51169578089778467" />
+          <ConnectorPoint PointX="15.625" PointY="0.51169578089778467" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo" Width="1.5" PointX="7.625" PointY="3.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo" Width="1.5" PointX="9.25" PointY="3.125" />
@@ -44,7 +45,12 @@
         <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Pozar" />
         <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija" />
         <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Cisterna" />
-        <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo" />
+        <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10" PointY="5.25" />
+          <ConnectorPoint PointX="10" PointY="4.8807961352786773" />
+          <ConnectorPoint PointX="8.375" PointY="4.8807961352786773" />
+          <ConnectorPoint PointX="8.375" PointY="4.3360807291666665" />
+        </InheritanceConnector>
         <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" ManuallyRouted="true" >
           <ConnectorPoint PointX="4.2590829208557377" PointY="3.125" />
