@@ -1,0 +1,42 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.VozilaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
+        mc:Ignorable="d"
+        FontWeight="Bold"
+        WindowStartupLocation="CenterScreen"
+        Title="VozilaView" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding SvaVozila, Mode=OneWay}" SelectedItem="{Binding Path=OznacenoVozilo, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding Id_VSJ}"  Header="ID: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding Naziv}" Header="Naziv: ">
+
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn   Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj vozila: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj radnika: ">
+
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Vozila" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="83" Height="54"  />
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,103,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top" Width="180"/>
+    </Grid>
+</Window>

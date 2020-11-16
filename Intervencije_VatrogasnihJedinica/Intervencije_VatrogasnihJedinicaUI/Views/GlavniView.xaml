@@ -11,6 +11,10 @@
     <Grid>
         <Button x:Name="Opstine" Content="Opštine" HorizontalAlignment="Left" Margin="28,26,0,0" VerticalAlignment="Top" Width="113" Height="67"/>
         <Button x:Name="VatrogasneJedinice" Content="Vatrogasne Jedinice" HorizontalAlignment="Left" Margin="184,26,0,0" VerticalAlignment="Top" Width="128" Height="70"/>
+        <Button  x:Name="Vozila" Content="Vozila" HorizontalAlignment="Left" Margin="372,26,0,0" VerticalAlignment="Top" Width="132" Height="70" RenderTransformOrigin="0.5,0.5">
+
+        </Button>
+        <Button x:Name="Radnici" Content="Radnici" HorizontalAlignment="Left" Margin="532,26,0,0" VerticalAlignment="Top" Width="114" Height="70"/>
 
     </Grid>
 </Window>

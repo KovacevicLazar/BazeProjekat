@@ -36,3 +36,11 @@ C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinic
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeVatrogasneJediniceView.g.cs
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeVatrogasneJediniceView.baml
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\VatrogasneJediniceView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\VozilaView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\VozilaView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeVozilaView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeVozilaView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\RadniciView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\RadniciView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeRadnikaView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeRadnikaView.baml

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/26/2020 21:38:04
--- Generated from EDMX file: C:\Users\HP 650 G2\Desktop\Projekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
+-- Date Created: 11/16/2020 23:29:01
+-- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -61,6 +61,9 @@ IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Pozar]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Navalno_Vozilo]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PozarNavalno_Vozilo] DROP CONSTRAINT [FK_PozarNavalno_Vozilo_Navalno_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SmenaVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Smene] DROP CONSTRAINT [FK_SmenaVatrogasnaJedinica];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Tehnicka_Intervencija_inherits_Intervencija]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Intervencije_Tehnicka_Intervencija] DROP CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija];
@@ -245,7 +248,9 @@ GO
 -- Creating table 'Smene'
 CREATE TABLE [dbo].[Smene] (
     [SmenaId] int IDENTITY(1,1) NOT NULL,
-    [Broj_Radnika] int  NOT NULL
+    [Broj_Radnika] int  NOT NULL,
+    [Broj_Smene] nvarchar(max)  NOT NULL,
+    [VatrogasnaJedinica_Id_VSJ] int  NOT NULL
 );
 GO
 
@@ -657,6 +662,21 @@ GO
 CREATE INDEX [IX_FK_PozarNavalno_Vozilo_Navalno_Vozilo]
 ON [dbo].[PozarNavalno_Vozilo]
     ([Navalno_Vozilo_Id_Vozila]);
+GO
+
+-- Creating foreign key on [VatrogasnaJedinica_Id_VSJ] in table 'Smene'
+ALTER TABLE [dbo].[Smene]
+ADD CONSTRAINT [FK_SmenaVatrogasnaJedinica]
+    FOREIGN KEY ([VatrogasnaJedinica_Id_VSJ])
+    REFERENCES [dbo].[Vatrogasne_Jedinice]
+        ([Id_VSJ])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_SmenaVatrogasnaJedinica'
+CREATE INDEX [IX_FK_SmenaVatrogasnaJedinica]
+ON [dbo].[Smene]
+    ([VatrogasnaJedinica_Id_VSJ]);
 GO
 
 -- Creating foreign key on [Id_Intervencije] in table 'Intervencije_Tehnicka_Intervencija'

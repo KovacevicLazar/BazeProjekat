@@ -78,12 +78,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="ViewModels\DodavanjeRadnikaViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVatrogasneJediniceViewModel.cs" />
+    <Compile Include="ViewModels\DodavanjeVozilaViewModel.cs" />
     <Compile Include="ViewModels\GlavniViewModel.cs" />
     <Compile Include="ViewModels\OpstineViewModel.cs" />
+    <Compile Include="ViewModels\RadniciViewModel.cs" />
     <Compile Include="ViewModels\VatrogasneJediniceViewModel.cs" />
+    <Compile Include="ViewModels\VozilaViewModel.cs" />
+    <Compile Include="Views\DodavanjeRadnikaView.xaml.cs">
+      <DependentUpon>DodavanjeRadnikaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DodavanjeVatrogasneJediniceView.xaml.cs">
       <DependentUpon>DodavanjeVatrogasneJediniceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DodavanjeVozilaView.xaml.cs">
+      <DependentUpon>DodavanjeVozilaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GlavniView.xaml.cs">
       <DependentUpon>GlavniView.xaml</DependentUpon>
@@ -95,10 +105,24 @@
     <Compile Include="Views\OpstineView.xaml.cs">
       <DependentUpon>OpstineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RadniciView.xaml.cs">
+      <DependentUpon>RadniciView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VatrogasneJediniceView.xaml.cs">
       <DependentUpon>VatrogasneJediniceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VozilaView.xaml.cs">
+      <DependentUpon>VozilaView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\DodavanjeRadnikaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DodavanjeVatrogasneJediniceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DodavanjeVozilaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,7 +134,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RadniciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VatrogasneJediniceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VozilaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

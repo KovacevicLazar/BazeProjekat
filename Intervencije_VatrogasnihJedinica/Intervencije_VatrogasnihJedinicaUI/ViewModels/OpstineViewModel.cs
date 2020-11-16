@@ -46,8 +46,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Obrisi()
         {
-            OpstinaDAO.Delete( OznacenaOpstina.Id_Opstine);
-            SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+            if (OznacenaOpstina != null)
+            {
+                OpstinaDAO.Delete(OznacenaOpstina.Id_Opstine);
+                SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+                OznacenaOpstina = null;
+            }
+            else
+            {
+
+            }
         }
 
         public void Izmeni()

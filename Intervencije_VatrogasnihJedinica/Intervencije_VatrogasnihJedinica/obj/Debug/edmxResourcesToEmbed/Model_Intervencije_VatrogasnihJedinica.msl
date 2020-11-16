@@ -136,6 +136,7 @@
         <MappingFragment StoreEntitySet="Smene">
           <ScalarProperty Name="SmenaId" ColumnName="SmenaId" />
           <ScalarProperty Name="Broj_Radnika" ColumnName="Broj_Radnika" />
+          <ScalarProperty Name="Broj_Smene" ColumnName="Broj_Smene" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -177,6 +178,14 @@
       </EndProperty>
       <EndProperty Name="Navalno_Vozilo">
         <ScalarProperty Name="Id_Vozila" ColumnName="Navalno_Vozilo_Id_Vozila" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SmenaVatrogasnaJedinica" TypeName="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" StoreEntitySet="Smene">
+      <EndProperty Name="VatrogasnaJedinica">
+        <ScalarProperty Name="Id_VSJ" ColumnName="VatrogasnaJedinica_Id_VSJ" />
+      </EndProperty>
+      <EndProperty Name="Smena">
+        <ScalarProperty Name="SmenaId" ColumnName="SmenaId" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

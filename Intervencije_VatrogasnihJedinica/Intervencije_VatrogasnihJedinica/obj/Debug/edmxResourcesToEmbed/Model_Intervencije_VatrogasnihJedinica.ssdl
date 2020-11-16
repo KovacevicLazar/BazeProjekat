@@ -82,6 +82,10 @@
       <End Role="Navalno_Vozilo" EntitySet="Vozila_Navalno_Vozilo" />
       <End Role="PozarNavalno_Vozilo" EntitySet="PozarNavalno_Vozilo" />
     </AssociationSet>
+    <AssociationSet Name="SmenaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.Store.SmenaVatrogasnaJedinica">
+      <End Role="Smena" EntitySet="Smene" />
+      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
     <AssociationSet Name="FK_Tehnicka_Intervencija_inherits_Intervencija" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_Tehnicka_Intervencija_inherits_Intervencija">
       <End Role="Intervencija" EntitySet="Intervencije" />
       <End Role="Tehnicka_Intervencija" EntitySet="Intervencije_Tehnicka_Intervencija" />
@@ -204,6 +208,8 @@
     </Key>
     <Property Name="SmenaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Broj_Radnika" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Broj_Smene" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="VatrogasnaJedinica_Id_VSJ" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
     <Key>
@@ -382,6 +388,18 @@
       </Principal>
       <Dependent Role="Alat">
         <PropertyRef Name="Id_Vozila" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SmenaVatrogasnaJedinica">
+    <End Role="Smena" Type="Model_Intervencije_VatrogasnihJedinica.Store.Smene" Multiplicity="*" />
+    <End Role="VatrogasnaJedinica" Type="Model_Intervencije_VatrogasnihJedinica.Store.Vatrogasne_Jedinice" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="VatrogasnaJedinica">
+        <PropertyRef Name="Id_VSJ" />
+      </Principal>
+      <Dependent Role="Smena">
+        <PropertyRef Name="VatrogasnaJedinica_Id_VSJ" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

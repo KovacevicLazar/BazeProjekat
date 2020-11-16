@@ -24,10 +24,12 @@ namespace Intervencije_VatrogasnihJedinica
     
         public int SmenaId { get; set; }
         public int Broj_Radnika { get; set; }
+        public string Broj_Smene { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Radnik> Radnici { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intervencija> Intervencije { get; set; }
+        public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
     }
 }

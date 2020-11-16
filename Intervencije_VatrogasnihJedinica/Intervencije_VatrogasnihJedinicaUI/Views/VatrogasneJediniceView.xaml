@@ -12,16 +12,16 @@
 
         <DataGrid ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_Opstine}"  Header="ID: ">
+                <DataGridTextColumn  Binding="{Binding Id_VSJ}"  Header="ID: ">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Naziv: ">
+                <DataGridTextColumn   Binding="{Binding Naziv}" Header="Naziv: ">
 
                 </DataGridTextColumn>
 
 
-                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Opstina: ">
+                <DataGridTextColumn   Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: ">
 
                 </DataGridTextColumn>
 

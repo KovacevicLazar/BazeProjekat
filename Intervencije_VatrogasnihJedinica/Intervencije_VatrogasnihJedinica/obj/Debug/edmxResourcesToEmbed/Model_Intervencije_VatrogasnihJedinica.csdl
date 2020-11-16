@@ -59,6 +59,10 @@
       <End Role="Pozar" EntitySet="Intervencije" />
       <End Role="Navalno_Vozilo" EntitySet="Vozila" />
     </AssociationSet>
+    <AssociationSet Name="SmenaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica">
+      <End Role="Smena" EntitySet="Smene" />
+      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Opstina">
     <Key>
@@ -80,6 +84,7 @@
     <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Radnik" />
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Vozilo" />
+    <NavigationProperty Name="Smenas" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Smena" />
   </EntityType>
   <Association Name="OpstinaVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
@@ -215,6 +220,8 @@
     <Property Name="Broj_Radnika" Type="Int32" Nullable="false" DefaultValue="0" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
+    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" FromRole="Smena" ToRole="VatrogasnaJedinica" />
+    <Property Name="Broj_Smene" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Navalno_Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
@@ -287,5 +294,9 @@
   <Association Name="PozarNavalno_Vozilo">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Pozar" Role="Pozar" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo" Role="Navalno_Vozilo" Multiplicity="*" />
+  </Association>
+  <Association Name="SmenaVatrogasnaJedinica">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
   </Association>
 </Schema>

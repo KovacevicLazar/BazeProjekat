@@ -27,8 +27,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            var i = Adresa;
-            var j = Naziv;
+          
             VatrogasnaJedinica vatrogasnaJedinica = new VatrogasnaJedinica();
             vatrogasnaJedinica.Naziv = Naziv;
             vatrogasnaJedinica.Adresa = Adresa;
