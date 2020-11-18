@@ -42,17 +42,34 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
+            Radnik radnik = new Radnik();
+
 
             switch (RadnaPozicija)
             {
                 case (PozicijeEnum.VATROGASAC):
-                   
+                    Vatrogasac vatrogasac = new Vatrogasac(Jmbg,Ime,Prezime, (int)RadnaPozicija,RadniStaz);
+                    vatrogasac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
+                    vatrogasac.SmenaSmenaId = IzabranaSmena.SmenaId;
+                    VatrogasacDAO vatrogasacDAO= new VatrogasacDAO();
+                    vatrogasacDAO.Insert(vatrogasac);
+
                     break;
                 case (PozicijeEnum.VOZAC):
-                   
+                    Vozac vozac = new Vozac(Jmbg, Ime, Prezime, (int)RadnaPozicija, RadniStaz);
+                    vozac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
+                    vozac.SmenaSmenaId = IzabranaSmena.SmenaId;
+                    VozacDAO vozacDAO = new VozacDAO();
+                    vozacDAO.Insert(vozac);
+
                     break;
                 case (PozicijeEnum.KOMANDIR):
-                   
+                    Komandir komandir = new Komandir(Jmbg, Ime, Prezime, (int)RadnaPozicija, RadniStaz);
+                    komandir.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
+                    komandir.SmenaSmenaId = IzabranaSmena.SmenaId;
+                    KomandirDAO komandirDAO = new KomandirDAO();
+                    komandirDAO.Insert(komandir);
+
                     break;
 
             }

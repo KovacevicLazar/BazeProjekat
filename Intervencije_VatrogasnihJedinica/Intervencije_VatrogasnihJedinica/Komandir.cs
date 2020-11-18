@@ -11,8 +11,19 @@ namespace Intervencije_VatrogasnihJedinica
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Komandir : Radnik
     {
+        public Komandir()
+        {
+        }
+
+        public Komandir(Radnik radnik) : base(radnik)
+        {
+        }
+
+        public Komandir(int jMBG, string ime, string prezime, int radno_Mesto, int godina_Staza) : base(jMBG, ime, prezime, radno_Mesto, godina_Staza)
+        {
+        }
     }
 }

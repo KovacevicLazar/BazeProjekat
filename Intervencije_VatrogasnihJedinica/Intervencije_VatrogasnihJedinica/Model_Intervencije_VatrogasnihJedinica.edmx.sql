@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/16/2020 23:29:01
+-- Date Created: 11/17/2020 13:19:20
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -183,8 +183,8 @@ CREATE TABLE [dbo].[Radnici] (
     [JMBG] int IDENTITY(1,1) NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
-    [Radno_Mesto] nvarchar(max)  NOT NULL,
-    [Godina_Staza] nvarchar(max)  NOT NULL,
+    [Radno_Mesto] int  NOT NULL,
+    [Godina_Staza] int  NOT NULL,
     [VatrogasnaJedinicaId_VSJ] int  NOT NULL,
     [SmenaSmenaId] int  NOT NULL
 );
@@ -249,7 +249,7 @@ GO
 CREATE TABLE [dbo].[Smene] (
     [SmenaId] int IDENTITY(1,1) NOT NULL,
     [Broj_Radnika] int  NOT NULL,
-    [Broj_Smene] nvarchar(max)  NOT NULL,
+    [Broj_Smene] int  NOT NULL,
     [VatrogasnaJedinica_Id_VSJ] int  NOT NULL
 );
 GO

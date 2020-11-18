@@ -19,8 +19,11 @@ namespace Intervencije_VatrogasnihJedinica
         {
             this.Tehnicka_Intervencija = new HashSet<Tehnicka_Intervencija>();
         }
-    
-    
+
+        public Tehnicko_Vozilo(string marka, string model, int tip, int godiste, double nosivost, int? id_VatrogasneJedinice) : base( marka, model, tip, godiste, nosivost, id_VatrogasneJedinice)
+        {
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tehnicka_Intervencija> Tehnicka_Intervencija { get; set; }
     }

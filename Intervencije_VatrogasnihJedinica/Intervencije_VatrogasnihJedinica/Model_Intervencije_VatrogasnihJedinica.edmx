@@ -147,8 +147,8 @@
     <Property Name="JMBG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Radno_Mesto" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Godina_Staza" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Radno_Mesto" Type="int" Nullable="false" />
+    <Property Name="Godina_Staza" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinicaId_VSJ" Type="int" Nullable="false" />
     <Property Name="SmenaSmenaId" Type="int" Nullable="false" />
   </EntityType>
@@ -213,7 +213,7 @@
     </Key>
     <Property Name="SmenaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Broj_Radnika" Type="int" Nullable="false" DefaultValue="0" />
-    <Property Name="Broj_Smene" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Broj_Smene" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinica_Id_VSJ" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
@@ -701,8 +701,8 @@
           <Property Name="JMBG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ime" Type="String" Nullable="false" />
           <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="Radno_Mesto" Type="String" Nullable="false" />
-          <Property Name="Godina_Staza" Type="String" Nullable="false" />
+          <Property Name="Radno_Mesto" Type="Int32" Nullable="false" />
+          <Property Name="Godina_Staza" Type="Int32" Nullable="false" />
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
           <Property Name="VatrogasnaJedinicaId_VSJ" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
@@ -817,7 +817,7 @@
           <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
           <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" FromRole="Smena" ToRole="VatrogasnaJedinica" />
-          <Property Name="Broj_Smene" Type="String" Nullable="false" />
+          <Property Name="Broj_Smene" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
           <NavigationProperty Name="Navalno_Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />

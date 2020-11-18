@@ -1,0 +1,21 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.SmeneView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        FontWeight="Bold"
+        Title="SmeneView" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding SvaVozila, Mode=OneWay}" SelectedItem="{Binding Path=OznacenoVozilo, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+
+        </DataGrid>
+
+        <Label Content="Smene" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="54" Margin="354,0,321,0"  />
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,103,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top" Width="180"/>
+    </Grid>
+</Window>

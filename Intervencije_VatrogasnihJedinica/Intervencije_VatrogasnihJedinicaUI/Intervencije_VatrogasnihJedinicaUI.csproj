@@ -79,15 +79,20 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="ViewModels\DodavanjeRadnikaViewModel.cs" />
+    <Compile Include="ViewModels\DodavanjeSmeneViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVatrogasneJediniceViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVozilaViewModel.cs" />
     <Compile Include="ViewModels\GlavniViewModel.cs" />
     <Compile Include="ViewModels\OpstineViewModel.cs" />
     <Compile Include="ViewModels\RadniciViewModel.cs" />
+    <Compile Include="ViewModels\SmeneViewModel.cs" />
     <Compile Include="ViewModels\VatrogasneJediniceViewModel.cs" />
     <Compile Include="ViewModels\VozilaViewModel.cs" />
     <Compile Include="Views\DodavanjeRadnikaView.xaml.cs">
       <DependentUpon>DodavanjeRadnikaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DodavanjeSmeneView.xaml.cs">
+      <DependentUpon>DodavanjeSmeneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DodavanjeVatrogasneJediniceView.xaml.cs">
       <DependentUpon>DodavanjeVatrogasneJediniceView.xaml</DependentUpon>
@@ -108,6 +113,9 @@
     <Compile Include="Views\RadniciView.xaml.cs">
       <DependentUpon>RadniciView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SmeneView.xaml.cs">
+      <DependentUpon>SmeneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VatrogasneJediniceView.xaml.cs">
       <DependentUpon>VatrogasneJediniceView.xaml</DependentUpon>
     </Compile>
@@ -115,6 +123,10 @@
       <DependentUpon>VozilaView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\DodavanjeRadnikaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DodavanjeSmeneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RadniciView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SmeneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

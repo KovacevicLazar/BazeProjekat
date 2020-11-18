@@ -142,8 +142,8 @@
     <Property Name="JMBG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Radno_Mesto" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Godina_Staza" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Radno_Mesto" Type="int" Nullable="false" />
+    <Property Name="Godina_Staza" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinicaId_VSJ" Type="int" Nullable="false" />
     <Property Name="SmenaSmenaId" Type="int" Nullable="false" />
   </EntityType>
@@ -208,7 +208,7 @@
     </Key>
     <Property Name="SmenaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Broj_Radnika" Type="int" Nullable="false" DefaultValue="0" />
-    <Property Name="Broj_Smene" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Broj_Smene" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinica_Id_VSJ" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
