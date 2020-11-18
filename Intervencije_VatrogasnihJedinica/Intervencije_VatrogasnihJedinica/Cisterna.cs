@@ -11,15 +11,8 @@ namespace Intervencije_VatrogasnihJedinica
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Cisterna : Vozilo
     {
-        public Cisterna()
-        {
-        }
-
-        public Cisterna( string marka, string model, int tip, int godiste, double nosivost, int? id_VatrogasneJedinice) : base(marka, model, tip, godiste, nosivost, id_VatrogasneJedinice)
-        {
-        }
     }
 }

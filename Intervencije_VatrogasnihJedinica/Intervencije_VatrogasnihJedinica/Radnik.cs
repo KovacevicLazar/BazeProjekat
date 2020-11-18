@@ -18,15 +18,6 @@ namespace Intervencije_VatrogasnihJedinica
         {
         }
 
-        public Radnik(Radnik radnik)
-        {
-            this.Ime = radnik.Ime;
-            this.Prezime = radnik.Prezime;
-            this.JMBG = radnik.JMBG;
-            this.Godina_Staza = radnik.Godina_Staza;
-            this.Radno_Mesto = radnik.Radno_Mesto;
-        }
-
         public Radnik(int jMBG, string ime, string prezime, int radno_Mesto, int godina_Staza)
         {
             JMBG = jMBG;
@@ -34,7 +25,9 @@ namespace Intervencije_VatrogasnihJedinica
             Prezime = prezime;
             Radno_Mesto = radno_Mesto;
             Godina_Staza = godina_Staza;
+          
         }
+       
 
         public int JMBG { get; set; }
         public string Ime { get; set; }

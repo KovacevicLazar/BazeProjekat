@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinica
             this.Pozars = new HashSet<Pozar>();
         }
 
-        public Navalno_Vozilo(string marka, string model, int tip, int godiste, double nosivost, int? id_VatrogasneJedinice) : base( marka, model, tip, godiste, nosivost, id_VatrogasneJedinice)
+        public Navalno_Vozilo(string marka, string model, int tip, int godiste, double nosivost, int ID_VSJ) : base(marka, model, tip, godiste, nosivost, ID_VSJ)
         {
         }
 

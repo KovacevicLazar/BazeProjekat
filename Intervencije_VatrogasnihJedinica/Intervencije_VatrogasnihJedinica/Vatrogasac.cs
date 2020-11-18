@@ -18,10 +18,6 @@ namespace Intervencije_VatrogasnihJedinica
         {
         }
 
-        public Vatrogasac(Radnik radnik) : base(radnik)
-        {
-        }
-
         public Vatrogasac(int jMBG, string ime, string prezime, int radno_Mesto, int godina_Staza) : base(jMBG, ime, prezime, radno_Mesto, godina_Staza)
         {
         }

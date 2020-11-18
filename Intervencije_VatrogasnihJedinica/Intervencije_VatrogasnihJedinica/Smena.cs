@@ -21,7 +21,15 @@ namespace Intervencije_VatrogasnihJedinica
             this.Radnici = new HashSet<Radnik>();
             this.Intervencije = new HashSet<Intervencija>();
         }
-    
+
+        public Smena(int broj_Smene)
+        {
+            Broj_Smene = broj_Smene;
+            this.Broj_Radnika = 0;
+            this.Radnici = new HashSet<Radnik>();
+            this.Intervencije = new HashSet<Intervencija>();
+        }
+
         public int SmenaId { get; set; }
         public int Broj_Radnika { get; set; }
         public int Broj_Smene { get; set; }
