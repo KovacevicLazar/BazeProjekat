@@ -7,16 +7,18 @@
         mc:Ignorable="d"
          FontWeight="Bold"
         WindowStartupLocation="CenterScreen"
-        Title="GlavniView" Height="450" Width="800">
+        Title="GlavniView" Height="434" Width="718">
     <Grid>
-        <Button x:Name="Opstine" Content="Opštine" HorizontalAlignment="Left" Margin="28,26,0,0" VerticalAlignment="Top" Width="113" Height="67"/>
-        <Button x:Name="VatrogasneJedinice" Content="Vatrogasne Jedinice" HorizontalAlignment="Left" Margin="184,26,0,0" VerticalAlignment="Top" Width="128" Height="70"/>
-        <Button  x:Name="Vozila" Content="Vozila" HorizontalAlignment="Left" Margin="372,26,0,0" VerticalAlignment="Top" Width="132" Height="70" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="Opstine" Content="Opštine" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button x:Name="VatrogasneJedinice" Content="Vatrogasne Jedinice" HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button  x:Name="Vozila" Content="Vozila" HorizontalAlignment="Left" Margin="45,159,0,0" VerticalAlignment="Top" Width="120" Height="70">
 
         </Button>
-        <Button x:Name="Radnici" Content="Radnici" HorizontalAlignment="Left" Margin="532,26,0,0" VerticalAlignment="Top" Width="114" Height="70"/>
-        <Button x:Name="Smene" Content="Smene" HorizontalAlignment="Left" Margin="40,127,0,0" VerticalAlignment="Top" Width="101" Height="56"/>
-        <Button x:Name="Alati" Content="Alati" HorizontalAlignment="Left" Margin="184,118,0,0" VerticalAlignment="Top" Width="99" Height="62"/>
+        <Button x:Name="Radnici" Content="Radnici" HorizontalAlignment="Left" Margin="541,45,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button x:Name="Smene" Content="Smene" HorizontalAlignment="Left" Margin="374,45,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button x:Name="Alati" Content="Alati" HorizontalAlignment="Left" Margin="210,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button x:Name="Intervencije" Content="Intervencije" HorizontalAlignment="Left" Margin="374,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
+        <Button x:Name="Inspektori" Content="Inspektori" HorizontalAlignment="Left" Margin="541,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
 
     </Grid>
 </Window>

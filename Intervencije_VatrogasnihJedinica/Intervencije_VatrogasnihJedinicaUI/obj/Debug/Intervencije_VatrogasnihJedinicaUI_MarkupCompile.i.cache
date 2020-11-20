@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\App.xaml
-121972386977
+161223104486
 
-302017997133
-12581806345
-Views\AlatiView.xaml;Views\DodavanjeAlataView.xaml;Views\DodavanjeRadnikaView.xaml;Views\DodavanjeSmeneView.xaml;Views\DodavanjeVatrogasneJediniceView.xaml;Views\DodavanjeVozilaView.xaml;Views\GlavniView.xaml;Views\OpstineView.xaml;Views\RadniciView.xaml;Views\SmeneView.xaml;Views\VatrogasneJediniceView.xaml;Views\VozilaView.xaml;
+38335397083
+130-134463555
+Views\AlatiView.xaml;Views\DodavanjeAlataView.xaml;Views\DodavanjeInspektoraView.xaml;Views\DodavanjeIntervencijeView.xaml;Views\DodavanjeRadnikaView.xaml;Views\DodavanjeSmeneView.xaml;Views\DodavanjeVatrogasneJediniceView.xaml;Views\DodavanjeVozilaView.xaml;Views\GlavniView.xaml;Views\InspektoriView.xaml;Views\IntervencijeView.xaml;Views\OpstineView.xaml;Views\RadniciView.xaml;Views\SmeneView.xaml;Views\VatrogasneJediniceView.xaml;Views\VozilaView.xaml;
 
 True
 

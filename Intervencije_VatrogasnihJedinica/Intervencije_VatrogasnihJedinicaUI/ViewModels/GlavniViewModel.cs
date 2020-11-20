@@ -43,6 +43,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new AlatiViewModel(), null, null);
         }
 
+        public void Intervencije()
+        {
+            manager.ShowDialog(new IntervencijeViewModel(), null, null);
+        }
+
+        
+        public void Inspektori()
+        {
+            manager.ShowDialog(new InspektoriViewModel(), null, null);
+        }
+
 
     }
 }

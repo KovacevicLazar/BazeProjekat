@@ -42,9 +42,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            Radnik radnik = new Radnik();
-
-
+           
             switch (RadnaPozicija)
             {
                 case (PozicijeEnum.VATROGASAC):
