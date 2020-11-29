@@ -49,5 +49,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             var i = OznacenaIntervencija;
         }
 
+        public void DodajInformacijeOUvidjaju( object Intervencija )
+        {
+            manager.ShowDialog(new DodavanjeInformacijaOUvidjajuViewModel(Intervencija  as Intervencija), null, null);
+        }
+
     }
 }

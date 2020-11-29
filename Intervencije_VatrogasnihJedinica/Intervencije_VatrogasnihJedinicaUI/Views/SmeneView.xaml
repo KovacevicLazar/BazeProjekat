@@ -9,8 +9,31 @@
         FontWeight="Bold"
         Title="SmeneView" Height="450" Width="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding SveSmene, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaSmena, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveSmene, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaSmena, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+            
 
+            <DataGrid.Columns> 
+                <DataGridTextColumn  Binding="{Binding SmenaId}"  Header="ID: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding Broj_Smene}" Header="Broj Smene: ">
+
+                </DataGridTextColumn>
+
+
+                <DataGridTextColumn   Binding="{Binding Broj_Radnika}" Header="Broj Radnika: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj vozila: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn  Header="Broj radnika: ">
+
+                </DataGridTextColumn>
+              </DataGrid.Columns>
         </DataGrid>
 
         <Label Content="Smene" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="54" Margin="354,0,321,0"  />

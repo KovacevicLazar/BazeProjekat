@@ -9,8 +9,15 @@
         WindowStartupLocation="CenterScreen"
         Title="InspektoriView" Height="450" Width="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding InspektorId}"  Header="ID: "/>
 
+                <DataGridTextColumn   Binding="{Binding Ime}" Header="Ime: "/>
+
+                <DataGridTextColumn   Binding="{Binding Prezime}" Header="Prezime: "/>
+                <DataGridTextColumn   Binding="{Binding Broj_Telefona}" Header="Telefon: "/>
+            </DataGrid.Columns>
         </DataGrid>
         <Label Content="Inspektori" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="272" Height="54" Margin="260,10,260,0"/>
         <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" />

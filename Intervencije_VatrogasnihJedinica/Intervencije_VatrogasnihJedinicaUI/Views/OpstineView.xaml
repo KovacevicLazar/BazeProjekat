@@ -13,23 +13,15 @@
         <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="379,103,0,0" VerticalAlignment="Top" Width="253" Height="32"/>
         <Label Content="Opstine" FontSize="25" FontWeight="Bold" HorizontalAlignment="Center"  VerticalAlignment="Top" Height="42" Width="112"/>
 
-        <DataGrid ItemsSource="{Binding SveOpstine, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaOpstina, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="443" Margin="35,57,0,0" VerticalAlignment="Top" Width="323" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveOpstine, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaOpstina, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="443" Margin="35,57,0,0" VerticalAlignment="Top" Width="323" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_Opstine}"  Header="ID: ">
-                    
-                </DataGridTextColumn>
+                <DataGridTextColumn  Binding="{Binding Id_Opstine}"  Header="ID: "/>
 
-                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Naziv opstine: ">
-                   
-                </DataGridTextColumn>
+                <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Naziv opstine: "/>
 
-                <DataGridTextColumn  Header="Broj Vatrogasnih &#x0a;        jedinica: ">
+                <DataGridTextColumn  Header="Broj Vatrogasnih &#x0a;        jedinica: "/>
 
-                </DataGridTextColumn>
-
-                <DataGridTextColumn  Header="      Broj &#x0a;Intervencija: ">
-
-                </DataGridTextColumn>
+                <DataGridTextColumn  Header="      Broj &#x0a;Intervencija: "/>
             </DataGrid.Columns>
         </DataGrid>
         

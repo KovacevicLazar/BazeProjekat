@@ -48,14 +48,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             switch (TipVozila)
             {
                 case(TipoviVozilaEnum.TEHNICKO):
-                    Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo(Marka,Model,(int)TipVozila,Godiste, int.Parse(Nosivost), IzabranaVatrogasnaJedinica.Id_VSJ);
-                   
+                    Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo {Marka = Marka, Model = Model, Tip = (int)TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.Id_VSJ };
                     TehnickoVoziloDAO voziloDAO = new TehnickoVoziloDAO();
                     voziloDAO.Insert(vozilo);
                     break;
                 case(TipoviVozilaEnum.NAVALNO):
-                    Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo(Marka, Model,(int)TipVozila,Godiste, int.Parse(Nosivost), IzabranaVatrogasnaJedinica.Id_VSJ);
-                    
+                    Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = (int)TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.Id_VSJ };
                     NavalnoVoziloDAO navalnovoziloDAO = new NavalnoVoziloDAO();
                     navalnovoziloDAO.Insert(navalnoVozilo);
                     break;

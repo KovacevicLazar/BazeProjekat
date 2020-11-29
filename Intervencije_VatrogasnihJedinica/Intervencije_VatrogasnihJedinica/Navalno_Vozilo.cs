@@ -19,11 +19,8 @@ namespace Intervencije_VatrogasnihJedinica
         {
             this.Pozars = new HashSet<Pozar>();
         }
-
-        public Navalno_Vozilo(string marka, string model, int tip, int godiste, double nosivost, int ID_VSJ) : base(marka, model, tip, godiste, nosivost, ID_VSJ)
-        {
-        }
-
+    
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pozar> Pozars { get; set; }
     }

@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace Intervencije_VatrogasnihJedinicaUI.Views
 {
     /// <summary>
-    /// Interaction logic for IntervencijeView.xaml
+    /// Interaction logic for DodavanjeInformacijaOUvidjajuView.xaml
     /// </summary>
-    public partial class IntervencijeView : Window
+    public partial class DodavanjeInformacijaOUvidjajuView : Window
     {
-        public IntervencijeView()
+        public DodavanjeInformacijaOUvidjajuView()
         {
             InitializeComponent();
         }
-
-        
     }
 }

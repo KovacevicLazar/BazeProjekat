@@ -10,7 +10,7 @@
         Title="VatrogasneJediniceView" Height="450" Width="800">
     <Grid>
 
-        <DataGrid ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding="{Binding Id_VSJ}"  Header="ID: ">
 

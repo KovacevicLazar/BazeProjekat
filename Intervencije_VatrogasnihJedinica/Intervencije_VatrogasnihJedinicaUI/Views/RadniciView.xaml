@@ -9,28 +9,30 @@
         WindowStartupLocation="CenterScreen"
         Title="RadniciView" Height="450" Width="800">
     <Grid>
-        <DataGrid ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_VSJ}"  Header="ID: ">
+                <DataGridTextColumn  Binding="{Binding JMBG}"  Header="JMBG: ">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn   Binding="{Binding Naziv}" Header="Naziv: ">
+                <DataGridTextColumn   Binding="{Binding Ime}" Header="Ime: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding Prezime}" Header="Perzime: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding Godina_Staza}" Header="Godine rada: ">
+
+                </DataGridTextColumn>
+                
+                <DataGridTextColumn   Binding="{Binding SmenaSmenaId}" Header="ID Smene: ">
 
                 </DataGridTextColumn>
 
 
-                <DataGridTextColumn   Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: ">
 
-                </DataGridTextColumn>
-
-                <DataGridTextColumn  Header="Broj vozila: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn  Header="Broj radnika: ">
-
-                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

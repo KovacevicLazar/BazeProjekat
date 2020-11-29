@@ -1,0 +1,25 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeInformacijaOUvidjajuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        FontWeight="Bold"
+        WindowStartupLocation="CenterScreen"
+        Title="DodavanjeInformacijaOUvidjajuView" Height="397.286" Width="474.714">
+    <Grid>
+        <Label Content="Informacije o uvidjaju:" FontSize="20" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="241" Margin="123,10,103,0"/>
+        <Label Content="Datum:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top" Width="94"/>
+        <DatePicker x:Name="Datum"  HorizontalAlignment="Left" Margin="123,69,0,0" VerticalAlignment="Top" Width="120" Height="26" RenderTransformOrigin="0.494,0.538"/>
+        <Label x:Name="Vreme" Content="Vreme:" HorizontalAlignment="Left" Margin="29,99,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label Content=":" FontSize="23" VerticalContentAlignment="Top"  HorizontalAlignment="Left"  VerticalAlignment="Top" Width="19" Height="37" Margin="169,89,0,0"/>
+        <xctk:IntegerUpDown x:Name="Sati" Value="{Binding Sati, Mode=TwoWay}"   Minimum="0" Maximum="23" HorizontalAlignment="Left" Margin="123,100,0,0" VerticalAlignment="Top" Height="26" Width="46"/>
+        <xctk:IntegerUpDown x:Name="Minuti" Value="{Binding Minuti, Mode=TwoWay}" Minimum="0" Maximum="59" HorizontalAlignment="Left" Margin="188,100,0,0" VerticalAlignment="Top" Height="26" Width="46"/>
+        <Button x:Name="Dodaj" FontSize="18" Content="Dodaj" HorizontalAlignment="Left" Margin="28,294,0,0" VerticalAlignment="Top" Width="115" Height="37"/>
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="321,294,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37"/>
+        <Label Content="Zapisnik o uvidjaju:" HorizontalAlignment="Left" Margin="29,130,0,0" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="TextZapisnika" HorizontalAlignment="Left" Height="128" Margin="29,161,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="407"/>
+
+    </Grid>
+</Window>

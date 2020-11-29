@@ -76,3 +76,5 @@ C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinic
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\InspektoriView.g.cs
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeInspektoraView.baml
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\InspektoriView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeInformacijaOUvidjajuView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeInformacijaOUvidjajuView.baml

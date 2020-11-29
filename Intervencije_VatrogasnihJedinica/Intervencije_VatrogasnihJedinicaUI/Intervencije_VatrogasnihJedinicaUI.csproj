@@ -94,6 +94,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="ViewModels\AlatiViewModel.cs" />
+    <Compile Include="ViewModels\DodavanjeInformacijaOUvidjajuViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeInspektoraViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeIntervencijeViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeAlataViewModel.cs" />
@@ -114,6 +115,9 @@
     </Compile>
     <Compile Include="Views\DodavanjeAlataView.xaml.cs">
       <DependentUpon>DodavanjeAlataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DodavanjeInformacijaOUvidjajuView.xaml.cs">
+      <DependentUpon>DodavanjeInformacijaOUvidjajuView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DodavanjeInspektoraView.xaml.cs">
       <DependentUpon>DodavanjeInspektoraView.xaml</DependentUpon>
@@ -166,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DodavanjeAlataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DodavanjeInformacijaOUvidjajuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

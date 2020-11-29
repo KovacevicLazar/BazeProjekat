@@ -14,21 +14,6 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Radnik
     {
-        public Radnik()
-        {
-        }
-
-        public Radnik(int jMBG, string ime, string prezime, int radno_Mesto, int godina_Staza)
-        {
-            JMBG = jMBG;
-            Ime = ime;
-            Prezime = prezime;
-            Radno_Mesto = radno_Mesto;
-            Godina_Staza = godina_Staza;
-          
-        }
-       
-
         public int JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }

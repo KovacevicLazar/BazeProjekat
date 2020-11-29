@@ -46,7 +46,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             switch (RadnaPozicija)
             {
                 case (PozicijeEnum.VATROGASAC):
-                    Vatrogasac vatrogasac = new Vatrogasac(Jmbg,Ime,Prezime, (int)RadnaPozicija,RadniStaz);
+                    Vatrogasac vatrogasac = new Vatrogasac { Ime = Ime , Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg , Radno_Mesto = (int)RadnaPozicija };
                     vatrogasac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
                     vatrogasac.SmenaSmenaId = IzabranaSmena.SmenaId;
                     VatrogasacDAO vatrogasacDAO= new VatrogasacDAO();
@@ -54,7 +54,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
                     break;
                 case (PozicijeEnum.VOZAC):
-                    Vozac vozac = new Vozac(Jmbg, Ime, Prezime, (int)RadnaPozicija, RadniStaz);
+                    Vozac vozac = new Vozac { Ime = Ime, Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg, Radno_Mesto = (int)RadnaPozicija };
                     vozac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
                     vozac.SmenaSmenaId = IzabranaSmena.SmenaId;
                     VozacDAO vozacDAO = new VozacDAO();
@@ -62,7 +62,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
                     break;
                 case (PozicijeEnum.KOMANDIR):
-                    Komandir komandir = new Komandir(Jmbg, Ime, Prezime, (int)RadnaPozicija, RadniStaz);
+                    Komandir komandir = new Komandir { Ime = Ime, Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg, Radno_Mesto = (int)RadnaPozicija };
                     komandir.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
                     komandir.SmenaSmenaId = IzabranaSmena.SmenaId;
                     KomandirDAO komandirDAO = new KomandirDAO();

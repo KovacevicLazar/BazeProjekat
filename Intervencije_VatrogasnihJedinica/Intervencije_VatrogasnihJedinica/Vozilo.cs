@@ -19,17 +19,7 @@ namespace Intervencije_VatrogasnihJedinica
         {
             this.Alati = new HashSet<Alat>();
         }
-
-        public Vozilo(string marka, string model, int tip, int godiste, double nosivost, int ID_VSJ)
-        {
-            Marka = marka;
-            Model = model;
-            Tip = tip;
-            Godiste = godiste;
-            Nosivost = nosivost;
-            Id_VatrogasneJedinice = ID_VSJ;
-        }
-
+    
         public int Id_Vozila { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
