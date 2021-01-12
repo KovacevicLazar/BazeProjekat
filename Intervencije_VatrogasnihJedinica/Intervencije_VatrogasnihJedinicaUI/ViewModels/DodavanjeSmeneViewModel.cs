@@ -30,7 +30,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public void Dodaj()
         {
             Smena smena = new Smena { Broj_Smene = BrojSmene };
-            smena.VatrogasnaJedinica = IzabranaVatrogasnaJedinica;
+            smena.VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID;
             SmenaDAO smenaDAO = new SmenaDAO();
             smenaDAO.Insert(smena);
             TryClose();

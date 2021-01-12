@@ -31,15 +31,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0);
 
-            Zapisnik zapisnik = new Zapisnik { Tekst_Zapisnika = TextZapisnika };
-            Uvidjaj uvidjaj = new Uvidjaj { Datum = Datum , Intervencija = Intervencija  , IdInspektora = 2 };
-            zapisnik.Uvidjaj = uvidjaj;
-
-            ZapisnikDAO zapisnikDAO = new ZapisnikDAO();
-            zapisnikDAO.Insert(zapisnik);
-           // Intervencija.Uvidjaj = uvidjaj;
-            //IntervencijaDAO intervencijaDAO = new IntervencijaDAO();
-           // intervencijaDAO.Update(Intervencija);
+            Uvidjaj uvidjaj = new Uvidjaj { Datum = Datum , IdInspektora = 2, Tekst_Zapisnika = TextZapisnika };
+            Intervencija.Uvidjaj = uvidjaj;
+            
+            IntervencijaDAO intervencijaDAO = new IntervencijaDAO();
+            intervencijaDAO.Update(Intervencija);
+          
             
             TryClose();
         }

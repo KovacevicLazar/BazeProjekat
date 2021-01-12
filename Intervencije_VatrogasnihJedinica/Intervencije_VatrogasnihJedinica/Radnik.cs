@@ -14,13 +14,14 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Radnik
     {
+        public int ID { get; set; }
         public int JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public int Radno_Mesto { get; set; }
-        public int Godina_Staza { get; set; }
-        public int VatrogasnaJedinicaId_VSJ { get; set; }
-        public int SmenaSmenaId { get; set; }
+        public RadnoMesto Radno_Mesto { get; set; }
+        public int Godine_Rada { get; set; }
+        public int VatrogasnaJedinicaID { get; set; }
+        public int SmenaID { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public virtual Smena Smena { get; set; }

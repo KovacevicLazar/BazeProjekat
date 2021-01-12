@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public  class VatrogasneJediniceViewModel : PropertyChangedBase
+    public class VatrogasneJediniceViewModel : PropertyChangedBase
     {
         public VatrogasneJediniceViewModel()
         {
@@ -18,7 +18,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
         IWindowManager manager = new WindowManager();
-
         public List<VatrogasnaJedinica> sveJedinice = new List<VatrogasnaJedinica>();
         public List<VatrogasnaJedinica> SveJedinice { get { return sveJedinice; } set { sveJedinice = value; NotifyOfPropertyChange(() => sveJedinice); } }
         public VatrogasnaJedinica OznacenaJedinica { get; set; }
@@ -33,7 +32,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenaJedinica != null)
             {
-                vatrogasnaJedinicaDAO.Delete(OznacenaJedinica.Id_VSJ);
+                vatrogasnaJedinicaDAO.Delete(OznacenaJedinica.ID);
                 SveJedinice = vatrogasnaJedinicaDAO.GetList();
                 OznacenaJedinica = null;
             }
@@ -41,9 +40,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
 
             }
-           
         }
-
         public void Izmeni()
         {
             var i = OznacenaJedinica;

@@ -15,31 +15,20 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public OpstineViewModel()
         {
-            SveOpstine = new  ObservableCollection<Opstina>(OpstinaDAO.GetList());
+            SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
 
-        IWindowManager manager = new WindowManager();
-
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
-
-        public string IdOpstine { get; set; }
-
         public string NazivOpstine { get; set; }
-
         public ObservableCollection<Opstina> sveOpstine = new ObservableCollection<Opstina>();
-
         public ObservableCollection<Opstina> SveOpstine { get { return sveOpstine; } set { sveOpstine = value; NotifyOfPropertyChange(() => SveOpstine); } }
-
         public Opstina OznacenaOpstina { get; set; }
-
         public OpstinaDAO OpstinaDAO { get => opstinaDAO; set => opstinaDAO = value; }
 
         public void Dodaj()
         {
             Opstina opstina = new Opstina();
-            opstina.Id_Opstine = 5;// int.Parse( IdOpstine);
             opstina.Naziv_Opstine = NazivOpstine;
-           
             OpstinaDAO.Insert(opstina);
             SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
@@ -48,13 +37,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenaOpstina != null)
             {
-                OpstinaDAO.Delete(OznacenaOpstina.Id_Opstine);
+                OpstinaDAO.Delete(OznacenaOpstina.ID);
                 SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
                 OznacenaOpstina = null;
             }
             else
             {
-
             }
         }
 
@@ -62,6 +50,5 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             var v = OznacenaOpstina;
         }
-
     }
 }

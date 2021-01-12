@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinica
             this.Uvidjaji = new HashSet<Uvidjaj>();
         }
     
-        public int InspektorId { get; set; }
+        public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public Nullable<int> Broj_Telefona { get; set; }

@@ -71,11 +71,8 @@
     <Compile Include="dao\TehnickaIntervencijaDAO.cs" />
     <Compile Include="dao\TehnickoVoziloDAO.cs" />
     <Compile Include="dao\UvidjajDAO.cs" />
-    <Compile Include="dao\VatrogasacDAO.cs" />
     <Compile Include="dao\VatrogasnaJedinicaDAO.cs" />
-    <Compile Include="dao\VozacDAO.cs" />
     <Compile Include="dao\VoziloDAO.cs" />
-    <Compile Include="dao\ZapisnikDAO.cs" />
     <Compile Include="Inspektor.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
@@ -113,6 +110,12 @@
     <Compile Include="Radnik.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
+    <Compile Include="RadnoMesto.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RadnoMestoEnum.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
     <Compile Include="Smena.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
@@ -122,22 +125,16 @@
     <Compile Include="Tehnicko_Vozilo.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
-    <Compile Include="Uvidjaj.cs">
+    <Compile Include="TipVozila.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vatrogasac.cs">
+    <Compile Include="Uvidjaj.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
     <Compile Include="VatrogasnaJedinica.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
-    <Compile Include="Vozac.cs">
-      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
-    </Compile>
     <Compile Include="Vozilo.cs">
-      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Zapisnik.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
   </ItemGroup>

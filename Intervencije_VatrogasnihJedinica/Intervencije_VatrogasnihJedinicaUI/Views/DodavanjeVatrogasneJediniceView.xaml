@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         FontWeight="Bold"
         WindowStartupLocation="CenterScreen"
-        Title="DodavanjeVatrogasneJediniceView" Height="247.5" Width="375.875">
+        Title="DodavanjeVatrogasneJediniceView" Height="271.387" Width="359.287">
     <Grid>
         <Label Content="Dodavanje nove vatrogasne jedinice:" FontSize="20" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="356" Margin="0,10,0,0"/>
-        <Label Content="Naziv jedinice:" HorizontalAlignment="Left" Margin="28,81,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label Content="Opstina:" HorizontalAlignment="Left" Margin="28,112,0,0" VerticalAlignment="Top" Width="94"/>
-        <Label Content="Adresa:" HorizontalAlignment="Left" Margin="28,143,0,0" VerticalAlignment="Top" Width="94"/>
-        <TextBox x:Name="Naziv"  HorizontalAlignment="Left" Height="23" Margin="127,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="Adresa"   HorizontalAlignment="Left" Height="23" Margin="127,147,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="Opstine" SelectedItem="{Binding Path=IzabranaOpstina , Mode=OneWayToSource}"  DisplayMemberPath="Naziv_Opstine" HorizontalAlignment="Left" Margin="127,116,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="Dodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="28,187,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Vrati se" HorizontalAlignment="Left" Margin="257,187,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
+        <Label Content="Naziv jedinice:" HorizontalAlignment="Left" Margin="54,78,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label Content="Opstina:" HorizontalAlignment="Left" Margin="54,105,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label Content="Adresa:" HorizontalAlignment="Left" Margin="54,133,0,0" VerticalAlignment="Top" Width="94"/>
+        <TextBox x:Name="Naziv" VerticalContentAlignment="Center"  HorizontalAlignment="Left" Height="23" Margin="148,81,0,136" TextWrapping="Wrap" Text=""  Width="120"/>
+        <TextBox  x:Name="Adresa" VerticalContentAlignment="Center"   HorizontalAlignment="Left" Height="23" Margin="148,136,0,81" TextWrapping="Wrap" Text=""  Width="120"/>
+        <ComboBox x:Name="Opstine" SelectedItem="{Binding Path=IzabranaOpstina , Mode=OneWayToSource}"  DisplayMemberPath="Naziv_Opstine" HorizontalAlignment="Left" Margin="148,109,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Dodaj"  Content="Dodaj" HorizontalAlignment="Left" Margin="19,192,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Vrati se" HorizontalAlignment="Left" Margin="259,192,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
 
     </Grid>
 </Window>

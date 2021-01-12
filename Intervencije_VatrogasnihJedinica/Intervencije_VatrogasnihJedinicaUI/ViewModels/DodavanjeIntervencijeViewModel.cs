@@ -46,7 +46,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     Pozar pozar = new Pozar();
                     pozar.Datum_I_Vreme = Datum;
                     pozar.Adresa = Adresa;
-                    pozar.Id_Opstine = IzabranaOpstina.Id_Opstine;
+                    pozar.Id_Opstine = IzabranaOpstina.ID;
                     pozarDAO.Insert(pozar);
                     break;
                 case (TipIntervencijeEnum.TEHNICKA_INTERVENCIJA):
@@ -54,7 +54,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     Tehnicka_Intervencija tehnicka_Intervencija = new Tehnicka_Intervencija();
                     tehnicka_Intervencija.Datum_I_Vreme = Datum;
                     tehnicka_Intervencija.Adresa = Adresa;
-                    tehnicka_Intervencija.Id_Opstine = IzabranaOpstina.Id_Opstine;
+                    tehnicka_Intervencija.Id_Opstine = IzabranaOpstina.ID;
                     tehnickaIntervencijaDAO.Insert(tehnicka_Intervencija);
                     break;
             }

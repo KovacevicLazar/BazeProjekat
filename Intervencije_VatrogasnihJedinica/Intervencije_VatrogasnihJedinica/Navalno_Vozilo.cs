@@ -17,11 +17,11 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Navalno_Vozilo()
         {
-            this.Pozars = new HashSet<Pozar>();
+            this.Pozari = new HashSet<Pozar>();
         }
     
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pozar> Pozars { get; set; }
+        public virtual ICollection<Pozar> Pozari { get; set; }
     }
 }

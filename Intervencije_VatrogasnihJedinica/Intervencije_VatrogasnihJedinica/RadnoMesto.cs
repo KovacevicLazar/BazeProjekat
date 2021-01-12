@@ -10,9 +10,10 @@
 namespace Intervencije_VatrogasnihJedinica
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Vozac : Radnik
+    public enum RadnoMesto : int
     {
+        Vatrogasac = 0,
+        Vozac = 1
     }
 }

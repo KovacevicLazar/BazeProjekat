@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public enum TipoviVozilaEnum { TEHNICKO, NAVALNO, CISTERNA }
+    
     public class DodavanjeVozilaViewModel : Screen
     {
         public DodavanjeVozilaViewModel()
         {
-            TipoviVozila = Enum.GetValues(typeof(TipoviVozilaEnum)).Cast<TipoviVozilaEnum>().ToList();
+            TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
             Godista = new List<int>();
@@ -32,9 +32,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public List<int> Godista { get; set; }
 
-        public TipoviVozilaEnum TipVozila { get; set; }
+        public TipVozila TipVozila { get; set; }
 
-        public IReadOnlyList<TipoviVozilaEnum> TipoviVozila { get; }
+        public IReadOnlyList<TipVozila> TipoviVozila { get; }
 
         public string Nosivost { get; set; }
 
@@ -47,13 +47,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
            
             switch (TipVozila)
             {
-                case(TipoviVozilaEnum.TEHNICKO):
-                    Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo {Marka = Marka, Model = Model, Tip = (int)TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.Id_VSJ };
+                case(TipVozila.TEHNICKO):
+                    Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo {Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                     TehnickoVoziloDAO voziloDAO = new TehnickoVoziloDAO();
                     voziloDAO.Insert(vozilo);
                     break;
-                case(TipoviVozilaEnum.NAVALNO):
-                    Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = (int)TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.Id_VSJ };
+                case(TipVozila.NAVALNO):
+                    Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = int.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                     NavalnoVoziloDAO navalnovoziloDAO = new NavalnoVoziloDAO();
                     navalnovoziloDAO.Insert(navalnoVozilo);
                     break;

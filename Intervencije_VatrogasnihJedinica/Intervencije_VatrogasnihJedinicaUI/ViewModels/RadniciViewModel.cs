@@ -35,7 +35,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenRadnik != null)
             {
-                radnikDAO.Delete(OznacenRadnik.JMBG);
+                radnikDAO.Delete(OznacenRadnik.ID);
                 SviRadnici = radnikDAO.GetList();
                 OznacenRadnik = null;
             }

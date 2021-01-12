@@ -27,13 +27,13 @@ namespace Intervencije_VatrogasnihJedinica
     
         public virtual DbSet<Opstina> Opstine { get; set; }
         public virtual DbSet<VatrogasnaJedinica> Vatrogasne_Jedinice { get; set; }
-        public virtual DbSet<Radnik> Radnici { get; set; }
         public virtual DbSet<Vozilo> Vozila { get; set; }
         public virtual DbSet<Intervencija> Intervencije { get; set; }
-        public virtual DbSet<Uvidjaj> Uvidjaji { get; set; }
-        public virtual DbSet<Zapisnik> Zapisnici { get; set; }
         public virtual DbSet<Inspektor> Inspektori { get; set; }
         public virtual DbSet<Alat> Alati { get; set; }
         public virtual DbSet<Smena> Smene { get; set; }
+        public virtual DbSet<Komandir> Komandiri { get; set; }
+        public virtual DbSet<Radnik> Radnici { get; set; }
+        public virtual DbSet<Uvidjaj> Uvidjaji { get; set; }
     }
 }

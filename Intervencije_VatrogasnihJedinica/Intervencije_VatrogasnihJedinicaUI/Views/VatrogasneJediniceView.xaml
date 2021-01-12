@@ -12,7 +12,7 @@
 
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_VSJ}"  Header="ID: ">
+                <DataGridTextColumn  Binding="{Binding ID}"  Header="ID: ">
 
                 </DataGridTextColumn>
 
@@ -20,16 +20,18 @@
 
                 </DataGridTextColumn>
 
-
                 <DataGridTextColumn   Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: ">
 
                 </DataGridTextColumn>
-
-                <DataGridTextColumn  Header="Broj vozila: ">
+                <DataGridTextColumn   Binding="{Binding Komandir.Ime}" Header="Komandir: ">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn  Header="Broj radnika: ">
+                <DataGridTextColumn Binding="{Binding Vozila.Count}" Header="Broj vozila: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Binding="{Binding Radnici.Count}" Header="Broj radnika: ">
 
                 </DataGridTextColumn>
             </DataGrid.Columns>

@@ -21,7 +21,7 @@ namespace Intervencije_VatrogasnihJedinica
             this.Intervencije = new HashSet<Intervencija>();
         }
     
-        public int Id_Opstine { get; set; }
+        public int ID { get; set; }
         public string Naziv_Opstine { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,21 +17,22 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public VatrogasnaJedinica()
         {
-            this.Radnici = new HashSet<Radnik>();
             this.Vozila = new HashSet<Vozilo>();
+            this.Radnici = new HashSet<Radnik>();
             this.Smenas = new HashSet<Smena>();
         }
     
-        public int Id_VSJ { get; set; }
+        public int ID { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
         public int Id_Opstine { get; set; }
     
         public virtual Opstina Opstina { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Radnik> Radnici { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vozilo> Vozila { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Radnik> Radnici { get; set; }
+        public virtual Komandir Komandir { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Smena> Smenas { get; set; }
     }

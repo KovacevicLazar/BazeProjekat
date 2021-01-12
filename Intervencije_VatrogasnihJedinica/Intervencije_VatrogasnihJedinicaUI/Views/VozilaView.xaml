@@ -11,7 +11,7 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SvaVozila, Mode=OneWay}" SelectedItem="{Binding Path=OznacenoVozilo, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_Vozila}"  Header="ID: ">
+                <DataGridTextColumn  Binding="{Binding ID}"  Header="ID: ">
 
                 </DataGridTextColumn>
 
@@ -30,7 +30,7 @@
                 <DataGridTextColumn   Binding="{Binding Tip}" Header="Tip Vozila: ">
 
                 </DataGridTextColumn>
-                <DataGridTextColumn   Binding="{Binding Id_VatrogasneJedinice}" Header="Id vatrogasne jedinice: ">
+                <DataGridTextColumn   Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna jedinica: ">
 
                 </DataGridTextColumn>
             </DataGrid.Columns>

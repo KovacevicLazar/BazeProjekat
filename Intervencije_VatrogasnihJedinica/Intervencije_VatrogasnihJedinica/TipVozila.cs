@@ -10,9 +10,11 @@
 namespace Intervencije_VatrogasnihJedinica
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Vatrogasac : Radnik
+    public enum TipVozila : int
     {
+        NAVALNO = 0,
+        TEHNICKO = 1,
+        CISTERNA = 2
     }
 }

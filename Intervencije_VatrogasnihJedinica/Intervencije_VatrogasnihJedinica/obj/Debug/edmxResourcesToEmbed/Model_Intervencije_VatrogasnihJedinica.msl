@@ -4,7 +4,7 @@
     <EntitySetMapping Name="Opstine">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Opstina)">
         <MappingFragment StoreEntitySet="Opstine">
-          <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Naziv_Opstine" ColumnName="Naziv_Opstine" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -12,45 +12,17 @@
     <EntitySetMapping Name="Vatrogasne_Jedinice">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica)">
         <MappingFragment StoreEntitySet="Vatrogasne_Jedinice">
-          <ScalarProperty Name="Id_VSJ" ColumnName="Id_VSJ" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Naziv" ColumnName="Naziv" />
           <ScalarProperty Name="Adresa" ColumnName="Adresa" />
           <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Radnici">
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Radnik)">
-        <MappingFragment StoreEntitySet="Radnici">
-          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-          <ScalarProperty Name="Ime" ColumnName="Ime" />
-          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-          <ScalarProperty Name="Radno_Mesto" ColumnName="Radno_Mesto" />
-          <ScalarProperty Name="Godina_Staza" ColumnName="Godina_Staza" />
-          <ScalarProperty Name="VatrogasnaJedinicaId_VSJ" ColumnName="VatrogasnaJedinicaId_VSJ" />
-          <ScalarProperty Name="SmenaSmenaId" ColumnName="SmenaSmenaId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Vozac)">
-        <MappingFragment StoreEntitySet="Radnici_Vozac">
-          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Vatrogasac)">
-        <MappingFragment StoreEntitySet="Radnici_Vatrogasac">
-          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Komandir)">
-        <MappingFragment StoreEntitySet="Radnici_Komandir">
-          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Vozila">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Vozilo)">
         <MappingFragment StoreEntitySet="Vozila">
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Marka" ColumnName="Marka" />
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="Tip" ColumnName="Tip" />
@@ -61,53 +33,47 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo)">
         <MappingFragment StoreEntitySet="Vozila_Tehnicko_Vozilo">
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo)">
         <MappingFragment StoreEntitySet="Vozila_Navalno_Vozilo">
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Cisterna)">
         <MappingFragment StoreEntitySet="Vozila_Cisterna">
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Intervencije">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Intervencija)">
         <MappingFragment StoreEntitySet="Intervencije">
-          <ScalarProperty Name="Id_Intervencije" ColumnName="Id_Intervencije" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Adresa" ColumnName="Adresa" />
           <ScalarProperty Name="Datum_I_Vreme" ColumnName="Datum_I_Vreme" />
           <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
+          <ScalarProperty Name="Obrisana" ColumnName="Obrisana" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija)">
         <MappingFragment StoreEntitySet="Intervencije_Tehnicka_Intervencija">
-          <ScalarProperty Name="Id_Intervencije" ColumnName="Id_Intervencije" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Pozar)">
         <MappingFragment StoreEntitySet="Intervencije_Pozar">
-          <ScalarProperty Name="Id_Intervencije" ColumnName="Id_Intervencije" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Uvidjaji">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Uvidjaj)">
         <MappingFragment StoreEntitySet="Uvidjaji">
-          <ScalarProperty Name="UvidjajId" ColumnName="UvidjajId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Datum" ColumnName="Datum" />
           <ScalarProperty Name="IdInspektora" ColumnName="IdInspektora" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Zapisnici">
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Zapisnik)">
-        <MappingFragment StoreEntitySet="Zapisnici">
-          <ScalarProperty Name="ZapisnikId" ColumnName="ZapisnikId" />
           <ScalarProperty Name="Tekst_Zapisnika" ColumnName="Tekst_Zapisnika" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -115,7 +81,7 @@
     <EntitySetMapping Name="Inspektori">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Inspektor)">
         <MappingFragment StoreEntitySet="Inspektori">
-          <ScalarProperty Name="InspektorId" ColumnName="InspektorId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Ime" ColumnName="Ime" />
           <ScalarProperty Name="Prezime" ColumnName="Prezime" />
           <ScalarProperty Name="Broj_Telefona" ColumnName="Broj_Telefona" />
@@ -125,7 +91,7 @@
     <EntitySetMapping Name="Alati">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Alat)">
         <MappingFragment StoreEntitySet="Alati">
-          <ScalarProperty Name="AlatId" ColumnName="AlatId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Naziv_Alata" ColumnName="Naziv_Alata" />
           <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
         </MappingFragment>
@@ -134,58 +100,75 @@
     <EntitySetMapping Name="Smene">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Smena)">
         <MappingFragment StoreEntitySet="Smene">
-          <ScalarProperty Name="SmenaId" ColumnName="SmenaId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Broj_Radnika" ColumnName="Broj_Radnika" />
           <ScalarProperty Name="Broj_Smene" ColumnName="Broj_Smene" />
+          <ScalarProperty Name="VatrogasnaJedinicaID" ColumnName="VatrogasnaJedinicaID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Uvidjaj_Intervencija" TypeName="Model_Intervencije_VatrogasnihJedinica.Uvidjaj_Intervencija" StoreEntitySet="Uvidjaji">
-      <EndProperty Name="Intervencija">
-        <ScalarProperty Name="Id_Intervencije" ColumnName="Intervencija_Id_Intervencije" />
-      </EndProperty>
-      <EndProperty Name="Uvidjaj">
-        <ScalarProperty Name="UvidjajId" ColumnName="UvidjajId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="UvidjajZapisnik" TypeName="Model_Intervencije_VatrogasnihJedinica.UvidjajZapisnik" StoreEntitySet="Zapisnici">
-      <EndProperty Name="Uvidjaj">
-        <ScalarProperty Name="UvidjajId" ColumnName="Uvidjaj_UvidjajId" />
-      </EndProperty>
-      <EndProperty Name="Zapisnik">
-        <ScalarProperty Name="ZapisnikId" ColumnName="ZapisnikId" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="Komandiri">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Komandir)">
+        <MappingFragment StoreEntitySet="Komandiri">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Radnici">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Radnik)">
+        <MappingFragment StoreEntitySet="Radnici">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JMBG" ColumnName="JMBG" />
+          <ScalarProperty Name="Ime" ColumnName="Ime" />
+          <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+          <ScalarProperty Name="Radno_Mesto" ColumnName="Radno_Mesto" />
+          <ScalarProperty Name="Godine_Rada" ColumnName="Godine_Rada" />
+          <ScalarProperty Name="VatrogasnaJedinicaID" ColumnName="VatrogasnaJedinicaID" />
+          <ScalarProperty Name="SmenaID" ColumnName="SmenaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="Intervencija_Smena" TypeName="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" StoreEntitySet="Intervencija_Smena">
       <EndProperty Name="Intervencija">
-        <ScalarProperty Name="Id_Intervencije" ColumnName="Intervencije_Id_Intervencije" />
+        <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
       </EndProperty>
       <EndProperty Name="Smena">
-        <ScalarProperty Name="SmenaId" ColumnName="Vatrogasne_Smene_SmenaId" />
+        <ScalarProperty Name="ID" ColumnName="Smene_ID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="Tehnicka_IntervencijaTehnicko_Vozilo" TypeName="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" StoreEntitySet="Tehnicka_IntervencijaTehnicko_Vozilo">
       <EndProperty Name="Tehnicka_Intervencija">
-        <ScalarProperty Name="Id_Intervencije" ColumnName="Tehnicka_Intervencija_Id_Intervencije" />
+        <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
       </EndProperty>
       <EndProperty Name="Tehnicko_Vozilo">
-        <ScalarProperty Name="Id_Vozila" ColumnName="Tehnicko_Vozilo_Id_Vozila" />
+        <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="PozarNavalno_Vozilo" TypeName="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" StoreEntitySet="PozarNavalno_Vozilo">
       <EndProperty Name="Pozar">
-        <ScalarProperty Name="Id_Intervencije" ColumnName="Pozars_Id_Intervencije" />
+        <ScalarProperty Name="ID" ColumnName="Pozari_ID" />
       </EndProperty>
       <EndProperty Name="Navalno_Vozilo">
-        <ScalarProperty Name="Id_Vozila" ColumnName="Navalno_Vozilo_Id_Vozila" />
+        <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="SmenaVatrogasnaJedinica" TypeName="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" StoreEntitySet="Smene">
+    <AssociationSetMapping Name="KomandirVatrogasnaJedinica" TypeName="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" StoreEntitySet="Komandiri">
       <EndProperty Name="VatrogasnaJedinica">
-        <ScalarProperty Name="Id_VSJ" ColumnName="VatrogasnaJedinica_Id_VSJ" />
+        <ScalarProperty Name="ID" ColumnName="VatrogasnaJedinica_ID" />
       </EndProperty>
-      <EndProperty Name="Smena">
-        <ScalarProperty Name="SmenaId" ColumnName="SmenaId" />
+      <EndProperty Name="Komandir">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="IntervencijaUvidjaj" TypeName="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" StoreEntitySet="Uvidjaji">
+      <EndProperty Name="Intervencija">
+        <ScalarProperty Name="ID" ColumnName="Intervencija_ID" />
+      </EndProperty>
+      <EndProperty Name="Uvidjaj">
+        <ScalarProperty Name="ID" ColumnName="ID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

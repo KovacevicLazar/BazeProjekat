@@ -35,7 +35,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenoVozilo != null)
             {
-                voziloDAO.Delete(OznacenoVozilo.Id_Vozila);
+                voziloDAO.Delete(OznacenoVozilo.ID);
                 SvaVozila = voziloDAO.GetList();
                 OznacenoVozilo = null;
             }

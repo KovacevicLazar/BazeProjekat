@@ -11,10 +11,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class DodavanjeRadnikaViewModel : Screen
     {
-        public enum PozicijeEnum { VATROGASAC , VOZAC , KOMANDIR}
+        
         public DodavanjeRadnikaViewModel()
         {
-            Pozicije = Enum.GetValues(typeof(PozicijeEnum)).Cast<PozicijeEnum>().ToList();
+            Pozicije = Enum.GetValues(typeof(RadnoMesto)).Cast<RadnoMesto>().ToList();
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
 
@@ -30,8 +30,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
 
 
-        public PozicijeEnum RadnaPozicija { get; set; }
-        public IReadOnlyList<PozicijeEnum> Pozicije { get; }
+        public RadnoMesto RadnaPozicija { get; set; }
+        public IReadOnlyList<RadnoMesto> Pozicije { get; }
 
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
@@ -42,35 +42,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-           
-            switch (RadnaPozicija)
-            {
-                case (PozicijeEnum.VATROGASAC):
-                    Vatrogasac vatrogasac = new Vatrogasac { Ime = Ime , Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg , Radno_Mesto = (int)RadnaPozicija };
-                    vatrogasac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
-                    vatrogasac.SmenaSmenaId = IzabranaSmena.SmenaId;
-                    VatrogasacDAO vatrogasacDAO= new VatrogasacDAO();
-                    vatrogasacDAO.Insert(vatrogasac);
+            Radnik radnik = new Radnik { Ime = Ime, Prezime = Prezime, Godine_Rada = RadniStaz, JMBG = Jmbg, Radno_Mesto = RadnaPozicija };
+            radnik.VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID;
+            radnik.SmenaID = IzabranaSmena.ID;
+            RadnikDAO radnikDAO = new RadnikDAO();
+            radnikDAO.Insert(radnik);
 
-                    break;
-                case (PozicijeEnum.VOZAC):
-                    Vozac vozac = new Vozac { Ime = Ime, Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg, Radno_Mesto = (int)RadnaPozicija };
-                    vozac.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
-                    vozac.SmenaSmenaId = IzabranaSmena.SmenaId;
-                    VozacDAO vozacDAO = new VozacDAO();
-                    vozacDAO.Insert(vozac);
-
-                    break;
-                case (PozicijeEnum.KOMANDIR):
-                    Komandir komandir = new Komandir { Ime = Ime, Prezime = Prezime, Godina_Staza = RadniStaz, JMBG = Jmbg, Radno_Mesto = (int)RadnaPozicija };
-                    komandir.VatrogasnaJedinicaId_VSJ = IzabranaVatrogasnaJedinica.Id_VSJ;
-                    komandir.SmenaSmenaId = IzabranaSmena.SmenaId;
-                    KomandirDAO komandirDAO = new KomandirDAO();
-                    komandirDAO.Insert(komandir);
-
-                    break;
-
-            }
             TryClose();
         }
     }

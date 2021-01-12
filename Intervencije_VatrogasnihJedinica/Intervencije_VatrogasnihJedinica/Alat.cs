@@ -14,7 +14,7 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Alat
     {
-        public int AlatId { get; set; }
+        public int ID { get; set; }
         public string Naziv_Alata { get; set; }
         public Nullable<int> Id_Vozila { get; set; }
     

@@ -8,7 +8,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
 {
     interface IRepository<TEntity> where TEntity : class
     {
-        TEntity FindById(object id);
+        TEntity FindById(params object[] id);
         List<TEntity> GetList();
 
         void Insert(TEntity entity);

@@ -12,7 +12,13 @@ namespace Intervencije_VatrogasnihJedinica
     using System;
     using System.Collections.Generic;
     
-    public partial class Komandir : Radnik
+    public partial class Komandir
     {
+        public int ID { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string JMBG { get; set; }
+    
+        public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
     }
 }

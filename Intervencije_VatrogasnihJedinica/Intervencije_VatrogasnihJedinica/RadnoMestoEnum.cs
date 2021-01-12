@@ -10,13 +10,10 @@
 namespace Intervencije_VatrogasnihJedinica
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Zapisnik
+    public enum RadnoMestoEnum : int
     {
-        public int ZapisnikId { get; set; }
-        public string Tekst_Zapisnika { get; set; }
-    
-        public virtual Uvidjaj Uvidjaj { get; set; }
+        VATROGASAC = 0,
+        VOZAC = 1
     }
 }

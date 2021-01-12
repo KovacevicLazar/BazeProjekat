@@ -35,7 +35,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenInspektor != null)
             {
-                inspektorDAO.Delete(OznacenInspektor.InspektorId);
+                inspektorDAO.Delete(OznacenInspektor.ID);
                 SviInspektori = inspektorDAO.GetList();
                 OznacenInspektor = null;
             }

@@ -10,30 +10,24 @@
         Title="SmeneView" Height="450" Width="800">
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveSmene, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaSmena, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
-            
 
-            <DataGrid.Columns> 
-                <DataGridTextColumn  Binding="{Binding SmenaId}"  Header="ID: ">
-
+            <DataGrid.Columns>
+                <DataGridTextColumn  Binding="{Binding ID}"  Header="ID: ">
                 </DataGridTextColumn>
 
                 <DataGridTextColumn   Binding="{Binding Broj_Smene}" Header="Broj Smene: ">
-
                 </DataGridTextColumn>
-
 
                 <DataGridTextColumn   Binding="{Binding Broj_Radnika}" Header="Broj Radnika: ">
+                </DataGridTextColumn>
+                <DataGridTextColumn   Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna Jedinica: ">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn   Binding="{Binding Intervencije.Count}" Header="Broj Intervencija: ">
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn  Header="Broj vozila: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn  Header="Broj radnika: ">
-
-                </DataGridTextColumn>
-              </DataGrid.Columns>
+            </DataGrid.Columns>
         </DataGrid>
 
         <Label Content="Smene" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="117" Height="54" Margin="354,0,321,0"  />

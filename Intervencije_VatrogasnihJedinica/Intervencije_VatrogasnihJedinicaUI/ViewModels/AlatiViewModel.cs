@@ -34,7 +34,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenAlat != null)
             {
-                AalatDAO.Delete(OznacenAlat.AlatId);
+                AalatDAO.Delete(OznacenAlat.ID);
                 SviAlati = AalatDAO.GetList();
                 OznacenAlat = null;
             }

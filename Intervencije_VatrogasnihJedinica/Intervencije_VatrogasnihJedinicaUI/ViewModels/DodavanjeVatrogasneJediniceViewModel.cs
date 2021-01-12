@@ -18,24 +18,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         
         public List<Opstina> Opstine { get; set; }
-
         public string Naziv { get; set; }
-
         public string Adresa { get; set; }
-
         public Opstina IzabranaOpstina { get; set; }
 
         public void Dodaj()
         {
-          
             VatrogasnaJedinica vatrogasnaJedinica = new VatrogasnaJedinica();
             vatrogasnaJedinica.Naziv = Naziv;
             vatrogasnaJedinica.Adresa = Adresa;
-            vatrogasnaJedinica.Opstina = IzabranaOpstina;
+            vatrogasnaJedinica.Id_Opstine = IzabranaOpstina.ID;
             VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
             vatrogasnaJedinicaDAO.Insert(vatrogasnaJedinica);
             TryClose();
-
         }
     }
 }

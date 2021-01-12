@@ -33,7 +33,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (OznacenaIntervencija != null)
             {
-                IntervencijaDAO.Delete(OznacenaIntervencija.Id_Intervencije);
+                IntervencijaDAO.Delete(OznacenaIntervencija.ID);
                 SveIntervencije = IntervencijaDAO.GetList();
                 OznacenaIntervencija = null;
             }

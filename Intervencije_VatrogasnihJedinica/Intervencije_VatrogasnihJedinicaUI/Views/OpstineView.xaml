@@ -15,28 +15,23 @@
 
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveOpstine, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaOpstina, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="443" Margin="35,57,0,0" VerticalAlignment="Top" Width="323" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding Id_Opstine}"  Header="ID: "/>
+                <DataGridTextColumn  Binding="{Binding ID}"  Header="ID: "/>
 
                 <DataGridTextColumn   Binding="{Binding Naziv_Opstine}" Header="Naziv opstine: "/>
 
-                <DataGridTextColumn  Header="Broj Vatrogasnih &#x0a;        jedinica: "/>
+                <DataGridTextColumn   Binding="{Binding VatrogasneJedinice.Count}" Header="Broj Vatrogasnih &#x0a;        jedinica: "/>
 
-                <DataGridTextColumn  Header="      Broj &#x0a;Intervencija: "/>
+                <DataGridTextColumn   Binding="{Binding Intervencije.Count}" Header="       Broj &#x0a;Intervencija: "/>
             </DataGrid.Columns>
         </DataGrid>
-        
-        
-        <StackPanel HorizontalAlignment="Left" Height="165" Margin="379,197,0,0" Background="LightGray" VerticalAlignment="Top" Width="253">
-            <Label Content="Dodavanje nove opstine:" HorizontalAlignment="Center" Margin="10,0"/>
-            <StackPanel Orientation="Horizontal" Height="38" VerticalAlignment="Top" Margin="5,5,5,5">
-                <Label Content="ID Opstine:"  Height="36" Margin="0,1" Width="113"/>
-                <TextBox x:Name="IdOpstine" TextWrapping="Wrap" Text="" Width="124"/>
-            </StackPanel>
+
+        <StackPanel HorizontalAlignment="Left" Height="127" Margin="379,154,0,0" Background="LightGray" VerticalAlignment="Top" Width="253">
+            <Label Content="Dodavanje nove opstine:" HorizontalAlignment="Center" Margin="10,10,10,0"/>
             <StackPanel Height="36"  Orientation="Horizontal" Margin="5,5,5,10">
-                <Label Content="Naziv Opstine:" Height="36" Width="113"/>
-                <TextBox  x:Name="NazivOpstine" TextWrapping="Wrap" Width="124"/>
+                <Label Content="Naziv Opstine:" FontSize="15" VerticalContentAlignment="Center"  Height="36" Width="113"/>
+                <TextBox  x:Name="NazivOpstine" FontSize="15"  VerticalContentAlignment="Center" TextWrapping="Wrap" Width="124"/>
             </StackPanel>
-            <Button x:Name="Dodaj" HorizontalAlignment="Center" Content="Dodaj"  VerticalAlignment="Top" Width="233" Height="28" Margin="10,0"/>
+            <Button x:Name="Dodaj" HorizontalAlignment="Center"  FontSize="15" Content="Dodaj"  VerticalAlignment="Top" Width="233" Height="28" Margin="10,5,10,0"/>
         </StackPanel>
     </Grid>
 </Window>

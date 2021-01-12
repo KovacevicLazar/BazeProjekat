@@ -14,8 +14,8 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="569" >
           
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="20" MaxWidth="70" Width="50"  Binding="{Binding Id_Intervencije}"  Header="ID: "/>
-                <DataGridTextColumn MinWidth="100"  MaxWidth="150" Width="150" Binding="{Binding Datum_I_Vreme}" Header="Datum: "/>
+                <DataGridTextColumn MinWidth="20" MaxWidth="70" Width="50"  Binding="{Binding ID}"  Header="ID: "/>
+                <DataGridTextColumn MinWidth="100"  MaxWidth="150" Width="150" Binding="{Binding Datum_I_Vreme, StringFormat='HH:mm'}" Header="Datum: "/>
 
                 <DataGridTextColumn MinWidth="100" MaxWidth="170" Width="150"  Binding="{Binding Adresa}" Header="Adresa: "/>
 
@@ -24,7 +24,7 @@
                 <DataGridTemplateColumn MinWidth="100" MaxWidth="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button  Content="Dodaj informacije o uvidjaju" cal:Message.Attach="DodajInformacijeOUvidjaju($dataContext)" />
+                            <Button Visibility="Visible"  Content="Dodaj informacije o uvidjaju" cal:Message.Attach="DodajInformacijeOUvidjaju($dataContext)" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

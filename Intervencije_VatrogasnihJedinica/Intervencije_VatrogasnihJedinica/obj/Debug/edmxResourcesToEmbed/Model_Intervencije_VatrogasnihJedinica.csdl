@@ -7,11 +7,6 @@
       <End Role="Opstina" EntitySet="Opstine" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
     </AssociationSet>
-    <EntitySet Name="Radnici" EntityType="Model_Intervencije_VatrogasnihJedinica.Radnik" />
-    <AssociationSet Name="RadnikVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica">
-      <End Role="Radnik" EntitySet="Radnici" />
-      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
-    </AssociationSet>
     <EntitySet Name="Vozila" EntityType="Model_Intervencije_VatrogasnihJedinica.Vozilo" />
     <AssociationSet Name="VoziloVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica">
       <End Role="Vozilo" EntitySet="Vozila" />
@@ -23,25 +18,12 @@
       <End Role="Intervencija" EntitySet="Intervencije" />
     </AssociationSet>
     <EntitySet Name="Uvidjaji" EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" />
-    <EntitySet Name="Zapisnici" EntityType="Model_Intervencije_VatrogasnihJedinica.Zapisnik" />
     <EntitySet Name="Inspektori" EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" />
     <EntitySet Name="Alati" EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" />
     <EntitySet Name="Smene" EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" />
-    <AssociationSet Name="Uvidjaj_Intervencija" Association="Model_Intervencije_VatrogasnihJedinica.Uvidjaj_Intervencija">
-      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
-      <End Role="Intervencija" EntitySet="Intervencije" />
-    </AssociationSet>
     <AssociationSet Name="UvidjajInspektor" Association="Model_Intervencije_VatrogasnihJedinica.UvidjajInspektor">
       <End Role="Uvidjaj" EntitySet="Uvidjaji" />
       <End Role="Inspektor" EntitySet="Inspektori" />
-    </AssociationSet>
-    <AssociationSet Name="UvidjajZapisnik" Association="Model_Intervencije_VatrogasnihJedinica.UvidjajZapisnik">
-      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
-      <End Role="Zapisnik" EntitySet="Zapisnici" />
-    </AssociationSet>
-    <AssociationSet Name="SmenaRadnik" Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik">
-      <End Role="Smena" EntitySet="Smene" />
-      <End Role="Radnik" EntitySet="Radnici" />
     </AssociationSet>
     <AssociationSet Name="Intervencija_Smena" Association="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena">
       <End Role="Intervencija" EntitySet="Intervencije" />
@@ -59,79 +41,72 @@
       <End Role="Pozar" EntitySet="Intervencije" />
       <End Role="Navalno_Vozilo" EntitySet="Vozila" />
     </AssociationSet>
-    <AssociationSet Name="SmenaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica">
-      <End Role="Smena" EntitySet="Smene" />
+    <EntitySet Name="Komandiri" EntityType="Model_Intervencije_VatrogasnihJedinica.Komandir" />
+    <EntitySet Name="Radnici" EntityType="Model_Intervencije_VatrogasnihJedinica.Radnik" />
+    <AssociationSet Name="RadnikVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica">
+      <End Role="Radnik" EntitySet="Radnici" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
+    <AssociationSet Name="SmenaRadnik" Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik">
+      <End Role="Smena" EntitySet="Smene" />
+      <End Role="Radnik" EntitySet="Radnici" />
+    </AssociationSet>
+    <AssociationSet Name="KomandirVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica">
+      <End Role="Komandir" EntitySet="Komandiri" />
+      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
+    <AssociationSet Name="IntervencijaUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj">
+      <End Role="Intervencija" EntitySet="Intervencije" />
+      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
+    </AssociationSet>
+    <AssociationSet Name="VatrogasnaJedinicaSmena" Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena">
+      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+      <End Role="Smena" EntitySet="Smene" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Opstina">
     <Key>
-      <PropertyRef Name="Id_Opstine" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id_Opstine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv_Opstine" Type="String" Nullable="false" />
     <NavigationProperty Name="VatrogasneJedinice" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" FromRole="Opstina" ToRole="VatrogasnaJedinica" />
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Opstina" ToRole="Intervencija" />
   </EntityType>
   <EntityType Name="VatrogasnaJedinica">
     <Key>
-      <PropertyRef Name="Id_VSJ" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id_VSJ" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv" Type="String" Nullable="false" />
     <Property Name="Adresa" Type="String" Nullable="false" />
     <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Opstina" />
     <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Radnik" />
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Vozilo" />
-    <NavigationProperty Name="Smenas" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Smena" />
+    <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Radnik" />
+    <NavigationProperty Name="Komandir" Relationship="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Komandir" />
+    <NavigationProperty Name="Smenas" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="VatrogasnaJedinica" ToRole="Smena" />
   </EntityType>
   <Association Name="OpstinaVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Opstina">
-        <PropertyRef Name="Id_Opstine" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="VatrogasnaJedinica">
         <PropertyRef Name="Id_Opstine" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Radnik">
-    <Key>
-      <PropertyRef Name="JMBG" />
-    </Key>
-    <Property Name="JMBG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Ime" Type="String" Nullable="false" />
-    <Property Name="Prezime" Type="String" Nullable="false" />
-    <Property Name="Radno_Mesto" Type="Int32" Nullable="false" />
-    <Property Name="Godina_Staza" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
-    <Property Name="VatrogasnaJedinicaId_VSJ" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
-    <Property Name="SmenaSmenaId" Type="Int32" Nullable="false" />
-  </EntityType>
-  <Association Name="RadnikVatrogasnaJedinica">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="VatrogasnaJedinica">
-        <PropertyRef Name="Id_VSJ" />
-      </Principal>
-      <Dependent Role="Radnik">
-        <PropertyRef Name="VatrogasnaJedinicaId_VSJ" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Vozilo">
     <Key>
-      <PropertyRef Name="Id_Vozila" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id_Vozila" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Marka" Type="String" Nullable="false" />
     <Property Name="Model" Type="String" Nullable="false" />
-    <Property Name="Tip" Type="Int32" Nullable="false" />
+    <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipVozila" Nullable="false" />
     <Property Name="Godiste" Type="Int32" Nullable="false" />
     <Property Name="Nosivost" Type="Double" Nullable="false" />
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="Vozilo" ToRole="VatrogasnaJedinica" />
@@ -143,7 +118,7 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="VatrogasnaJedinica">
-        <PropertyRef Name="Id_VSJ" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Vozilo">
         <PropertyRef Name="Id_VatrogasneJedinice" />
@@ -152,22 +127,23 @@
   </Association>
   <EntityType Name="Intervencija">
     <Key>
-      <PropertyRef Name="Id_Intervencije" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id_Intervencije" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Adresa" Type="String" Nullable="false" />
     <Property Name="Datum_I_Vreme" Type="DateTime" Nullable="false" />
     <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Intervencija" ToRole="Opstina" />
     <Property Name="Id_Opstine" Type="Int32" Nullable="true" />
-    <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.Uvidjaj_Intervencija" FromRole="Intervencija" ToRole="Uvidjaj" />
-    <NavigationProperty Name="Vatrogasne_Smene" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Intervencija" ToRole="Smena" />
+    <NavigationProperty Name="Smene" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Intervencija" ToRole="Smena" />
+    <Property Name="Obrisana" Type="Boolean" Nullable="false" DefaultValue="False" />
+    <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Intervencija" ToRole="Uvidjaj" />
   </EntityType>
   <Association Name="OpstinaIntervencija">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="0..1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Opstina">
-        <PropertyRef Name="Id_Opstine" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Intervencija">
         <PropertyRef Name="Id_Opstine" />
@@ -176,28 +152,20 @@
   </Association>
   <EntityType Name="Uvidjaj">
     <Key>
-      <PropertyRef Name="UvidjajId" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="UvidjajId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Datum" Type="DateTime" Nullable="false" />
-    <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.Uvidjaj_Intervencija" FromRole="Uvidjaj" ToRole="Intervencija" />
     <NavigationProperty Name="Inspektor" Relationship="Model_Intervencije_VatrogasnihJedinica.UvidjajInspektor" FromRole="Uvidjaj" ToRole="Inspektor" />
     <Property Name="IdInspektora" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Zapisnik" Relationship="Model_Intervencije_VatrogasnihJedinica.UvidjajZapisnik" FromRole="Uvidjaj" ToRole="Zapisnik" />
-  </EntityType>
-  <EntityType Name="Zapisnik">
-    <Key>
-      <PropertyRef Name="ZapisnikId" />
-    </Key>
-    <Property Name="ZapisnikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Tekst_Zapisnika" Type="String" Nullable="true" />
-    <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.UvidjajZapisnik" FromRole="Zapisnik" ToRole="Uvidjaj" />
+    <Property Name="Tekst_Zapisnika" Type="String" Nullable="false" />
+    <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Uvidjaj" ToRole="Intervencija" />
   </EntityType>
   <EntityType Name="Inspektor">
     <Key>
-      <PropertyRef Name="InspektorId" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="InspektorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
     <Property Name="Broj_Telefona" Type="Int32" Nullable="true" />
@@ -205,59 +173,40 @@
   </EntityType>
   <EntityType Name="Alat">
     <Key>
-      <PropertyRef Name="AlatId" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="AlatId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv_Alata" Type="String" Nullable="false" />
     <NavigationProperty Name="Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
     <Property Name="Id_Vozila" Type="Int32" Nullable="true" />
   </EntityType>
   <EntityType Name="Smena">
     <Key>
-      <PropertyRef Name="SmenaId" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="SmenaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Broj_Radnika" Type="Int32" Nullable="false" DefaultValue="0" />
-    <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
-    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaVatrogasnaJedinica" FromRole="Smena" ToRole="VatrogasnaJedinica" />
     <Property Name="Broj_Smene" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
+    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="Smena" ToRole="VatrogasnaJedinica" />
+    <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
-    <NavigationProperty Name="Navalno_Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
+    <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
   </EntityType>
   <EntityType Name="Tehnicka_Intervencija" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
-    <NavigationProperty Name="Tehnicko_Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicka_Intervencija" ToRole="Tehnicko_Vozilo" />
+    <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicka_Intervencija" ToRole="Tehnicko_Vozilo" />
   </EntityType>
-  <Association Name="Uvidjaj_Intervencija">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
-  </Association>
   <Association Name="UvidjajInspektor">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Inspektor" Role="Inspektor" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Inspektor">
-        <PropertyRef Name="InspektorId" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Uvidjaj">
         <PropertyRef Name="IdInspektora" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UvidjajZapisnik">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="1" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Zapisnik" Role="Zapisnik" Multiplicity="0..1" />
-  </Association>
-  <Association Name="SmenaRadnik">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Smena">
-        <PropertyRef Name="SmenaId" />
-      </Principal>
-      <Dependent Role="Radnik">
-        <PropertyRef Name="SmenaSmenaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -266,10 +215,10 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
   </Association>
   <EntityType Name="Navalno_Vozilo" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo">
-    <NavigationProperty Name="Pozars" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Navalno_Vozilo" ToRole="Pozar" />
+    <NavigationProperty Name="Pozari" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Navalno_Vozilo" ToRole="Pozar" />
   </EntityType>
   <EntityType Name="Tehnicko_Vozilo" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo">
-    <NavigationProperty Name="Tehnicka_Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicko_Vozilo" ToRole="Tehnicka_Intervencija" />
+    <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicko_Vozilo" ToRole="Tehnicka_Intervencija" />
   </EntityType>
   <EntityType Name="Cisterna" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo" />
   <Association Name="AlatVozilo">
@@ -277,16 +226,13 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Vozilo">
-        <PropertyRef Name="Id_Vozila" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Alat">
         <PropertyRef Name="Id_Vozila" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Vozac" BaseType="Model_Intervencije_VatrogasnihJedinica.Radnik" />
-  <EntityType Name="Vatrogasac" BaseType="Model_Intervencije_VatrogasnihJedinica.Radnik" />
-  <EntityType Name="Komandir" BaseType="Model_Intervencije_VatrogasnihJedinica.Radnik" />
   <Association Name="Tehnicka_IntervencijaTehnicko_Vozilo">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija" Role="Tehnicka_Intervencija" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo" Role="Tehnicko_Vozilo" Multiplicity="*" />
@@ -295,8 +241,88 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Pozar" Role="Pozar" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo" Role="Navalno_Vozilo" Multiplicity="*" />
   </Association>
-  <Association Name="SmenaVatrogasnaJedinica">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
+  <EntityType Name="Komandir">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ime" Type="String" Nullable="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" />
+    <Property Name="JMBG" Type="String" Nullable="false" />
+    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" FromRole="Komandir" ToRole="VatrogasnaJedinica" />
+  </EntityType>
+  <EnumType Name="RadnoMesto">
+    <Member Name="Vatrogasac" Value="0" />
+    <Member Name="Vozac" Value="1" />
+  </EnumType>
+  <EntityType Name="Radnik">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="Ime" Type="String" Nullable="false" />
+    <Property Name="Prezime" Type="String" Nullable="false" />
+    <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
+    <Property Name="Godine_Rada" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
+    <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
+    <Property Name="SmenaID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EnumType Name="RadnoMestoEnum">
+    <Member Name="VATROGASAC" Value="0" />
+    <Member Name="VOZAC" Value="1" />
+  </EnumType>
+  <Association Name="RadnikVatrogasnaJedinica">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="VatrogasnaJedinica">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Radnik">
+        <PropertyRef Name="VatrogasnaJedinicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SmenaRadnik">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Smena">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Radnik">
+        <PropertyRef Name="SmenaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KomandirVatrogasnaJedinica">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
+  </Association>
+  <Association Name="IntervencijaUvidjaj">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+  </Association>
+  <EnumType Name="TipVozila">
+    <Member Name="NAVALNO" Value="0" />
+    <Member Name="TEHNICKO" Value="1" />
+    <Member Name="CISTERNA" Value="2" />
+  </EnumType>
+  <Association Name="VatrogasnaJedinicaSmena">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VatrogasnaJedinica">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Smena">
+        <PropertyRef Name="VatrogasnaJedinicaID" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

@@ -23,15 +23,17 @@
 
                 </DataGridTextColumn>
 
-                <DataGridTextColumn   Binding="{Binding Godina_Staza}" Header="Godine rada: ">
+                <DataGridTextColumn   Binding="{Binding Godine_Rada}" Header="Godine rada: ">
+
+                </DataGridTextColumn>
+
+                <DataGridTextColumn   Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna jedinica: ">
+
+                </DataGridTextColumn>
+                <DataGridTextColumn   Binding="{Binding Radno_Mesto}" Header="Radno Mesto: ">
 
                 </DataGridTextColumn>
                 
-                <DataGridTextColumn   Binding="{Binding SmenaSmenaId}" Header="ID Smene: ">
-
-                </DataGridTextColumn>
-
-
 
             </DataGrid.Columns>
         </DataGrid>

@@ -17,11 +17,11 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tehnicka_Intervencija()
         {
-            this.Tehnicko_Vozilo = new HashSet<Tehnicko_Vozilo>();
+            this.Vozila = new HashSet<Tehnicko_Vozilo>();
         }
     
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tehnicko_Vozilo> Tehnicko_Vozilo { get; set; }
+        public virtual ICollection<Tehnicko_Vozilo> Vozila { get; set; }
     }
 }

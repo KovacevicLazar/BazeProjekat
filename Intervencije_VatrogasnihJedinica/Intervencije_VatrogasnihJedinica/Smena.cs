@@ -18,18 +18,19 @@ namespace Intervencije_VatrogasnihJedinica
         public Smena()
         {
             this.Broj_Radnika = 0;
-            this.Radnici = new HashSet<Radnik>();
             this.Intervencije = new HashSet<Intervencija>();
+            this.Radnici = new HashSet<Radnik>();
         }
     
-        public int SmenaId { get; set; }
+        public int ID { get; set; }
         public int Broj_Radnika { get; set; }
         public int Broj_Smene { get; set; }
+        public int VatrogasnaJedinicaID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Radnik> Radnici { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intervencija> Intervencije { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Radnik> Radnici { get; set; }
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
     }
 }

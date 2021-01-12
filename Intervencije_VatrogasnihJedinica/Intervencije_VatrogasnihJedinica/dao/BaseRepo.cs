@@ -13,7 +13,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
         }
 
-        public TEntity FindById(object id)
+        public TEntity FindById(params object[] id)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
@@ -21,7 +21,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public List<TEntity> GetList()
+        public virtual List<TEntity> GetList()
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
@@ -59,5 +59,4 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
     }
-
 }

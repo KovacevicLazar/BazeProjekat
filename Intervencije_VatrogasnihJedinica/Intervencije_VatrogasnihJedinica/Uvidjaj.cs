@@ -14,12 +14,12 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Uvidjaj
     {
-        public int UvidjajId { get; set; }
+        public int ID { get; set; }
         public System.DateTime Datum { get; set; }
-        public int IdInspektora { get; set; }
+        public string Tekst_Zapisnika { get; set; }
+        public int InspektorID { get; set; }
     
-        public virtual Intervencija Intervencija { get; set; }
         public virtual Inspektor Inspektor { get; set; }
-        public virtual Zapisnik Zapisnik { get; set; }
+        public virtual Intervencija Intervencija { get; set; }
     }
 }

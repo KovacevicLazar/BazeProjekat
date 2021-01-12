@@ -11,7 +11,7 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding InspektorId}"  Header="ID: "/>
+                <DataGridTextColumn  Binding="{Binding ID}"  Header="ID: "/>
 
                 <DataGridTextColumn   Binding="{Binding Ime}" Header="Ime: "/>
 
