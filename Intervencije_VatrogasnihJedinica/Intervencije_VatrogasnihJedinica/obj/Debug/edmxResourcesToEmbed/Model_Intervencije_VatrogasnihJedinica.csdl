@@ -17,14 +17,9 @@
       <End Role="Opstina" EntitySet="Opstine" />
       <End Role="Intervencija" EntitySet="Intervencije" />
     </AssociationSet>
-    <EntitySet Name="Uvidjaji" EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" />
     <EntitySet Name="Inspektori" EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" />
     <EntitySet Name="Alati" EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" />
     <EntitySet Name="Smene" EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" />
-    <AssociationSet Name="UvidjajInspektor" Association="Model_Intervencije_VatrogasnihJedinica.UvidjajInspektor">
-      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
-      <End Role="Inspektor" EntitySet="Inspektori" />
-    </AssociationSet>
     <AssociationSet Name="Intervencija_Smena" Association="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena">
       <End Role="Intervencija" EntitySet="Intervencije" />
       <End Role="Smena" EntitySet="Smene" />
@@ -55,13 +50,18 @@
       <End Role="Komandir" EntitySet="Komandiri" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
     </AssociationSet>
+    <AssociationSet Name="VatrogasnaJedinicaSmena" Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena">
+      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+      <End Role="Smena" EntitySet="Smene" />
+    </AssociationSet>
+    <EntitySet Name="Uvidjaji" EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" />
     <AssociationSet Name="IntervencijaUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj">
       <End Role="Intervencija" EntitySet="Intervencije" />
       <End Role="Uvidjaj" EntitySet="Uvidjaji" />
     </AssociationSet>
-    <AssociationSet Name="VatrogasnaJedinicaSmena" Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena">
-      <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
-      <End Role="Smena" EntitySet="Smene" />
+    <AssociationSet Name="InspektorUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj">
+      <End Role="Inspektor" EntitySet="Inspektori" />
+      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Opstina">
@@ -150,17 +150,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Uvidjaj">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Datum" Type="DateTime" Nullable="false" />
-    <NavigationProperty Name="Inspektor" Relationship="Model_Intervencije_VatrogasnihJedinica.UvidjajInspektor" FromRole="Uvidjaj" ToRole="Inspektor" />
-    <Property Name="IdInspektora" Type="Int32" Nullable="false" />
-    <Property Name="Tekst_Zapisnika" Type="String" Nullable="false" />
-    <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Uvidjaj" ToRole="Intervencija" />
-  </EntityType>
   <EntityType Name="Inspektor">
     <Key>
       <PropertyRef Name="ID" />
@@ -169,7 +158,7 @@
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
     <Property Name="Broj_Telefona" Type="Int32" Nullable="true" />
-    <NavigationProperty Name="Uvidjaji" Relationship="Model_Intervencije_VatrogasnihJedinica.UvidjajInspektor" FromRole="Inspektor" ToRole="Uvidjaj" />
+    <NavigationProperty Name="Uvidjaji" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Inspektor" ToRole="Uvidjaj" />
   </EntityType>
   <EntityType Name="Alat">
     <Key>
@@ -198,18 +187,6 @@
   <EntityType Name="Tehnicka_Intervencija" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicka_Intervencija" ToRole="Tehnicko_Vozilo" />
   </EntityType>
-  <Association Name="UvidjajInspektor">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="*" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Inspektor" Role="Inspektor" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Inspektor">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Uvidjaj">
-        <PropertyRef Name="IdInspektora" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="Intervencija_Smena">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
@@ -302,12 +279,6 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
   </Association>
-  <Association Name="IntervencijaUvidjaj">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-  </Association>
   <EnumType Name="TipVozila">
     <Member Name="NAVALNO" Value="0" />
     <Member Name="TEHNICKO" Value="1" />
@@ -322,6 +293,41 @@
       </Principal>
       <Dependent Role="Smena">
         <PropertyRef Name="VatrogasnaJedinicaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Uvidjaj">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Datum" Type="DateTime" Nullable="false" />
+    <Property Name="Tekst_Zapisnika" Type="String" Nullable="false" />
+    <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Uvidjaj" ToRole="Intervencija" />
+    <NavigationProperty Name="Inspektor" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Uvidjaj" ToRole="Inspektor" />
+    <Property Name="InspektorID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="IntervencijaUvidjaj">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Intervencija">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Uvidjaj">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InspektorUvidjaj">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Inspektor" Role="Inspektor" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspektor">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Uvidjaj">
+        <PropertyRef Name="InspektorID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

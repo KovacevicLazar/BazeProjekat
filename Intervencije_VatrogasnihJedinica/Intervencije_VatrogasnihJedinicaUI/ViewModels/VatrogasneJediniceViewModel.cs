@@ -1,11 +1,7 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -15,7 +11,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveJedinice = vatrogasnaJedinicaDAO.GetList();
         }
-
         private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
         IWindowManager manager = new WindowManager();
         public List<VatrogasnaJedinica> sveJedinice = new List<VatrogasnaJedinica>();
@@ -27,7 +22,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(), null, null);
             SveJedinice = vatrogasnaJedinicaDAO.GetList();
         }
-
         public void Obrisi()
         {
             if (OznacenaJedinica != null)
@@ -38,7 +32,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-
             }
         }
         public void Izmeni()

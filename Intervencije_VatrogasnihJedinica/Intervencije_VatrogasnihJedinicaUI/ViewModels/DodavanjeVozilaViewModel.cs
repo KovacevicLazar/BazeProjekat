@@ -4,12 +4,9 @@ using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    
     public class DodavanjeVozilaViewModel : Screen
     {
         public DodavanjeVozilaViewModel()
@@ -29,22 +26,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string Marka { get; set; }
         public string Model { get; set; }
         public int Godiste { get; set; }
-
         public List<int> Godista { get; set; }
-
         public TipVozila TipVozila { get; set; }
-
         public IReadOnlyList<TipVozila> TipoviVozila { get; }
-
         public string Nosivost { get; set; }
-
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
-
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
 
         public void Dodaj()
         {
-           
             switch (TipVozila)
             {
                 case(TipVozila.TEHNICKO):
@@ -61,7 +51,5 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             TryClose();
         }
-
-
     }
 }

@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinica
         public string Tekst_Zapisnika { get; set; }
         public int InspektorID { get; set; }
     
-        public virtual Inspektor Inspektor { get; set; }
         public virtual Intervencija Intervencija { get; set; }
+        public virtual Inspektor Inspektor { get; set; }
     }
 }

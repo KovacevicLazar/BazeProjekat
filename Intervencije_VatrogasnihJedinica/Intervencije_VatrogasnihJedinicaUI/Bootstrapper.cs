@@ -1,10 +1,5 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinicaUI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI
@@ -20,6 +15,5 @@ namespace Intervencije_VatrogasnihJedinicaUI
         {
             DisplayRootViewFor<GlavniViewModel>();
         }
-
     }
 }

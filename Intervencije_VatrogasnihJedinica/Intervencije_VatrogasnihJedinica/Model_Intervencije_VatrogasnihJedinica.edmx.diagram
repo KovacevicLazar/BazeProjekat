@@ -54,9 +54,9 @@
           <ConnectorPoint PointX="16.542901118560849" PointY="6.2951005045572916" />
           <ConnectorPoint PointX="16.542901118560849" PointY="3.114889322916667" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Width="1.5" PointX="2.25" PointY="9.25" />
-        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" />
+        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Width="1.5" PointX="2.5" PointY="9.125" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" />
+        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

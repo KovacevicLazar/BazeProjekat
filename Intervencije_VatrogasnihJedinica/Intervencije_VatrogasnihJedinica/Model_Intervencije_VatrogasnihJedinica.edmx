@@ -80,12 +80,12 @@
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
       <End Role="Smena" EntitySet="Smene" />
     </AssociationSet>
-    <AssociationSet Name="InspektorUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.Store.InspektorUvidjaj">
-      <End Role="Inspektor" EntitySet="Inspektori" />
-      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
-    </AssociationSet>
     <AssociationSet Name="IntervencijaUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.Store.IntervencijaUvidjaj">
       <End Role="Intervencija" EntitySet="Intervencije" />
+      <End Role="Uvidjaj" EntitySet="Uvidjaji" />
+    </AssociationSet>
+    <AssociationSet Name="InspektorUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.Store.InspektorUvidjaj">
+      <End Role="Inspektor" EntitySet="Inspektori" />
       <End Role="Uvidjaj" EntitySet="Uvidjaji" />
     </AssociationSet>
     <AssociationSet Name="FK_Tehnicka_Intervencija_inherits_Intervencija" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_Tehnicka_Intervencija_inherits_Intervencija">
@@ -200,11 +200,10 @@
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Datum" Type="datetime" Nullable="false" />
     <Property Name="Tekst_Zapisnika" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InspektorID" Type="int" Nullable="false" />
-    <Property Name="Intervencija_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
     <Key>
@@ -356,6 +355,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="IntervencijaUvidjaj">
+    <End Role="Intervencija" Type="Model_Intervencije_VatrogasnihJedinica.Store.Intervencije" Multiplicity="1" />
+    <End Role="Uvidjaj" Type="Model_Intervencije_VatrogasnihJedinica.Store.Uvidjaji" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Intervencija">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Uvidjaj">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="InspektorUvidjaj">
     <End Role="Inspektor" Type="Model_Intervencije_VatrogasnihJedinica.Store.Inspektori" Multiplicity="1" />
     <End Role="Uvidjaj" Type="Model_Intervencije_VatrogasnihJedinica.Store.Uvidjaji" Multiplicity="*" />
@@ -365,18 +376,6 @@
       </Principal>
       <Dependent Role="Uvidjaj">
         <PropertyRef Name="InspektorID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="IntervencijaUvidjaj">
-    <End Role="Intervencija" Type="Model_Intervencije_VatrogasnihJedinica.Store.Intervencije" Multiplicity="1" />
-    <End Role="Uvidjaj" Type="Model_Intervencije_VatrogasnihJedinica.Store.Uvidjaji" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Intervencija">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Uvidjaj">
-        <PropertyRef Name="Intervencija_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -581,12 +580,12 @@
             <End Role="Smena" EntitySet="Smene" />
           </AssociationSet>
           <EntitySet Name="Uvidjaji" EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" />
-          <AssociationSet Name="InspektorUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj">
-            <End Role="Inspektor" EntitySet="Inspektori" />
-            <End Role="Uvidjaj" EntitySet="Uvidjaji" />
-          </AssociationSet>
           <AssociationSet Name="IntervencijaUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj">
             <End Role="Intervencija" EntitySet="Intervencije" />
+            <End Role="Uvidjaj" EntitySet="Uvidjaji" />
+          </AssociationSet>
+          <AssociationSet Name="InspektorUvidjaj" Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj">
+            <End Role="Inspektor" EntitySet="Inspektori" />
             <End Role="Uvidjaj" EntitySet="Uvidjaji" />
           </AssociationSet>
           </EntityContainer>
@@ -827,13 +826,25 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Datum" Type="DateTime" Nullable="false" />
           <Property Name="Tekst_Zapisnika" Type="String" Nullable="false" />
+          <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Uvidjaj" ToRole="Intervencija" />
           <NavigationProperty Name="Inspektor" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Uvidjaj" ToRole="Inspektor" />
           <Property Name="InspektorID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Intervencija" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Uvidjaj" ToRole="Intervencija" />
         </EntityType>
+        <Association Name="IntervencijaUvidjaj">
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Intervencija">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Uvidjaj">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="InspektorUvidjaj">
           <End Type="Model_Intervencije_VatrogasnihJedinica.Inspektor" Role="Inspektor" Multiplicity="1" />
           <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="*" />
@@ -845,10 +856,6 @@
               <PropertyRef Name="InspektorID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="IntervencijaUvidjaj">
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="1" />
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Role="Uvidjaj" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1015,14 +1022,6 @@
         <ScalarProperty Name="ID" ColumnName="VatrogasnaJedinica_ID" />
       </EndProperty>
       <EndProperty Name="Komandir">
-        <ScalarProperty Name="ID" ColumnName="ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="IntervencijaUvidjaj" TypeName="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" StoreEntitySet="Uvidjaji">
-      <EndProperty Name="Intervencija">
-        <ScalarProperty Name="ID" ColumnName="Intervencija_ID" />
-      </EndProperty>
-      <EndProperty Name="Uvidjaj">
         <ScalarProperty Name="ID" ColumnName="ID" />
       </EndProperty>
     </AssociationSetMapping>

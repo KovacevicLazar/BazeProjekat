@@ -19,6 +19,5 @@
         <Button x:Name="Alati" Content="Alati" HorizontalAlignment="Left" Margin="210,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
         <Button x:Name="Intervencije" Content="Intervencije" HorizontalAlignment="Left" Margin="374,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
         <Button x:Name="Inspektori" Content="Inspektori" HorizontalAlignment="Left" Margin="541,159,0,0" VerticalAlignment="Top" Width="120" Height="70"/>
-
     </Grid>
 </Window>

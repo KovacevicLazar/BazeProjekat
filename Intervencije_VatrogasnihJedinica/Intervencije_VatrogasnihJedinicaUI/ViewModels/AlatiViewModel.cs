@@ -1,9 +1,5 @@
 ﻿using Intervencije_VatrogasnihJedinica;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica.dao;
 
@@ -15,12 +11,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SviAlati = AalatDAO.GetList();
         }
-
         public List<Alat> sviAlati = new List<Alat>();
-
         public List<Alat> SviAlati { get { return sviAlati; } set { sviAlati = value; NotifyOfPropertyChange(() => sviAlati); } }
         public Alat OznacenAlat { get; set; }
-
         private AlatDAO AalatDAO = new AlatDAO();
         IWindowManager manager = new WindowManager();
 
@@ -29,7 +22,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new DodavanjeAlataViewModel(), null, null);
             SviAlati = AalatDAO.GetList();
         }
-
         public void Obrisi()
         {
             if (OznacenAlat != null)
@@ -40,7 +32,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-
             }
         }
     }

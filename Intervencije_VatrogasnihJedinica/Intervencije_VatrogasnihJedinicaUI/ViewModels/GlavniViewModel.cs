@@ -1,10 +1,4 @@
 ﻿using Caliburn.Micro;
-using Intervencije_VatrogasnihJedinicaUI.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -15,25 +9,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public void Opstine()
         {
            manager.ShowDialog(new OpstineViewModel(), null, null);
-            
         }
-
         public void VatrogasneJedinice()
         {
             manager.ShowDialog(new VatrogasneJediniceViewModel(), null, null);
         }
-
-        
         public void Vozila()
         {
             manager.ShowDialog(new VozilaViewModel(), null, null);
         }
-
         public void Radnici()
         {
             manager.ShowDialog(new RadniciViewModel(), null, null);
         }
-
         public void Smene()
         {
             manager.ShowDialog(new SmeneViewModel(), null, null);
@@ -42,18 +30,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             manager.ShowDialog(new AlatiViewModel(), null, null);
         }
-
         public void Intervencije()
         {
             manager.ShowDialog(new IntervencijeViewModel(), null, null);
         }
-
-        
         public void Inspektori()
         {
             manager.ShowDialog(new InspektoriViewModel(), null, null);
         }
-
-
     }
 }

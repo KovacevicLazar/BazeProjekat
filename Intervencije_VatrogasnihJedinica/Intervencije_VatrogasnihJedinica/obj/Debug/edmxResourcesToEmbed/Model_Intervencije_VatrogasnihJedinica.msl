@@ -68,16 +68,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Uvidjaji">
-      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Uvidjaj)">
-        <MappingFragment StoreEntitySet="Uvidjaji">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Datum" ColumnName="Datum" />
-          <ScalarProperty Name="IdInspektora" ColumnName="IdInspektora" />
-          <ScalarProperty Name="Tekst_Zapisnika" ColumnName="Tekst_Zapisnika" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Inspektori">
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Inspektor)">
         <MappingFragment StoreEntitySet="Inspektori">
@@ -131,6 +121,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Uvidjaji">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Uvidjaj)">
+        <MappingFragment StoreEntitySet="Uvidjaji">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Datum" ColumnName="Datum" />
+          <ScalarProperty Name="Tekst_Zapisnika" ColumnName="Tekst_Zapisnika" />
+          <ScalarProperty Name="InspektorID" ColumnName="InspektorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="Intervencija_Smena" TypeName="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" StoreEntitySet="Intervencija_Smena">
       <EndProperty Name="Intervencija">
         <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
@@ -160,14 +160,6 @@
         <ScalarProperty Name="ID" ColumnName="VatrogasnaJedinica_ID" />
       </EndProperty>
       <EndProperty Name="Komandir">
-        <ScalarProperty Name="ID" ColumnName="ID" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="IntervencijaUvidjaj" TypeName="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" StoreEntitySet="Uvidjaji">
-      <EndProperty Name="Intervencija">
-        <ScalarProperty Name="ID" ColumnName="Intervencija_ID" />
-      </EndProperty>
-      <EndProperty Name="Uvidjaj">
         <ScalarProperty Name="ID" ColumnName="ID" />
       </EndProperty>
     </AssociationSetMapping>

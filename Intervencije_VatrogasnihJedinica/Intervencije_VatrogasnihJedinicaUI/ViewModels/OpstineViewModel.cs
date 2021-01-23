@@ -1,13 +1,7 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
-
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -17,7 +11,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
-
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
         public string NazivOpstine { get; set; }
         public ObservableCollection<Opstina> sveOpstine = new ObservableCollection<Opstina>();
@@ -32,7 +25,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             OpstinaDAO.Insert(opstina);
             SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
-
         public void Obrisi()
         {
             if (OznacenaOpstina != null)
@@ -45,7 +37,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
             }
         }
-
         public void Izmeni()
         {
             var v = OznacenaOpstina;

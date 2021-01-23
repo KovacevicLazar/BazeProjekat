@@ -1,11 +1,6 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -13,9 +8,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeInspektoraViewModel()
         {
-           
         }
-
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public int Telefon { get; set; }
@@ -27,7 +20,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             inspektor.Ime = Ime;
             inspektor.Prezime = Prezime;
             inspektor.Broj_Telefona = Telefon;
-
             inspektorDAO.Insert(inspektor);
             TryClose();
         }

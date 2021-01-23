@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/12/2021 23:17:38
+-- Date Created: 01/23/2021 18:07:06
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -59,11 +59,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_VatrogasnaJedinicaSmena]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Smene] DROP CONSTRAINT [FK_VatrogasnaJedinicaSmena];
 GO
-IF OBJECT_ID(N'[dbo].[FK_InspektorUvidjaj]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_InspektorUvidjaj];
-GO
 IF OBJECT_ID(N'[dbo].[FK_IntervencijaUvidjaj]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_IntervencijaUvidjaj];
+GO
+IF OBJECT_ID(N'[dbo].[FK_InspektorUvidjaj]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_InspektorUvidjaj];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Tehnicka_Intervencija_inherits_Intervencija]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Intervencije_Tehnicka_Intervencija] DROP CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija];
@@ -233,11 +233,10 @@ GO
 
 -- Creating table 'Uvidjaji'
 CREATE TABLE [dbo].[Uvidjaji] (
-    [ID] int IDENTITY(1,1) NOT NULL,
+    [ID] int  NOT NULL,
     [Datum] datetime  NOT NULL,
     [Tekst_Zapisnika] nvarchar(max)  NOT NULL,
-    [InspektorID] int  NOT NULL,
-    [Intervencija_ID] int  NOT NULL
+    [InspektorID] int  NOT NULL
 );
 GO
 
@@ -600,6 +599,15 @@ ON [dbo].[Smene]
     ([VatrogasnaJedinicaID]);
 GO
 
+-- Creating foreign key on [ID] in table 'Uvidjaji'
+ALTER TABLE [dbo].[Uvidjaji]
+ADD CONSTRAINT [FK_IntervencijaUvidjaj]
+    FOREIGN KEY ([ID])
+    REFERENCES [dbo].[Intervencije]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
 -- Creating foreign key on [InspektorID] in table 'Uvidjaji'
 ALTER TABLE [dbo].[Uvidjaji]
 ADD CONSTRAINT [FK_InspektorUvidjaj]
@@ -613,21 +621,6 @@ GO
 CREATE INDEX [IX_FK_InspektorUvidjaj]
 ON [dbo].[Uvidjaji]
     ([InspektorID]);
-GO
-
--- Creating foreign key on [Intervencija_ID] in table 'Uvidjaji'
-ALTER TABLE [dbo].[Uvidjaji]
-ADD CONSTRAINT [FK_IntervencijaUvidjaj]
-    FOREIGN KEY ([Intervencija_ID])
-    REFERENCES [dbo].[Intervencije]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_IntervencijaUvidjaj'
-CREATE INDEX [IX_FK_IntervencijaUvidjaj]
-ON [dbo].[Uvidjaji]
-    ([Intervencija_ID]);
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Tehnicka_Intervencija'

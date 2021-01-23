@@ -11,17 +11,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class SmeneViewModel : PropertyChangedBase
     {
-
         public SmeneViewModel()
         {
             SveSmene = smenaDAO.GetList();
         }
-
         public List<Smena> sveSmene= new List<Smena>();
-
         public List<Smena> SveSmene{ get { return sveSmene; } set { sveSmene = value; NotifyOfPropertyChange(() => sveSmene); } }
         public Smena OznacenaSmena { get; set; }
-
         private SmenaDAO smenaDAO = new SmenaDAO();
         IWindowManager manager = new WindowManager();
 
@@ -30,7 +26,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new DodavanjeSmeneViewModel(), null, null);
             SveSmene = smenaDAO.GetList();
         }
-
         public void Obrisi()
         {
             if (OznacenaSmena != null)
@@ -41,13 +36,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-
             }
         }
-
         public void Izmeni()
         {
-
         }
     }
 }

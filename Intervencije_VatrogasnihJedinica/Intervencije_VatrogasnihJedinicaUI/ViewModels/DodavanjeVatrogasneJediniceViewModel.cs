@@ -1,11 +1,7 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -16,7 +12,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             OpstinaDAO opstinaDAO = new OpstinaDAO();
             Opstine = opstinaDAO.GetList();
         }
-        
         public List<Opstina> Opstine { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
