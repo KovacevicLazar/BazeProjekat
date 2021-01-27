@@ -93,12 +93,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Models\NullToVisibilityConverter.cs" />
+    <Compile Include="Models\NullToMessageConverter.cs" />
     <Compile Include="ViewModels\AlatiViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeInformacijaOUvidjajuViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeInspektoraViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeIntervencijeViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeAlataViewModel.cs" />
+    <Compile Include="ViewModels\DodavanjeKomandiraViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeRadnikaViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeSmeneViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVatrogasneJediniceViewModel.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="ViewModels\GlavniViewModel.cs" />
     <Compile Include="ViewModels\InspektoriViewModel.cs" />
     <Compile Include="ViewModels\IntervencijeViewModel.cs" />
+    <Compile Include="ViewModels\KomandiriViewModel.cs" />
     <Compile Include="ViewModels\OpstineViewModel.cs" />
     <Compile Include="ViewModels\RadniciViewModel.cs" />
     <Compile Include="ViewModels\SmeneViewModel.cs" />
@@ -125,6 +127,9 @@
     </Compile>
     <Compile Include="Views\DodavanjeIntervencijeView.xaml.cs">
       <DependentUpon>DodavanjeIntervencijeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DodavanjeKomandiraView.xaml.cs">
+      <DependentUpon>DodavanjeKomandiraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DodavanjeRadnikaView.xaml.cs">
       <DependentUpon>DodavanjeRadnikaView.xaml</DependentUpon>
@@ -150,6 +155,9 @@
     </Compile>
     <Compile Include="Views\IntervencijeView.xaml.cs">
       <DependentUpon>IntervencijeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KomandiriView.xaml.cs">
+      <DependentUpon>KomandiriView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OpstineView.xaml.cs">
       <DependentUpon>OpstineView.xaml</DependentUpon>
@@ -186,6 +194,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\DodavanjeKomandiraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DodavanjeRadnikaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -211,6 +223,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\IntervencijeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KomandiriView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

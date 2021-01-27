@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\App.xaml
-17-951179309
+19241978060
 
-41966063287
+45-1380017338
 130-134463555
-Views\AlatiView.xaml;Views\DodavanjeAlataView.xaml;Views\DodavanjeInformacijaOUvidjajuView.xaml;Views\DodavanjeInspektoraView.xaml;Views\DodavanjeIntervencijeView.xaml;Views\DodavanjeRadnikaView.xaml;Views\DodavanjeSmeneView.xaml;Views\DodavanjeVatrogasneJediniceView.xaml;Views\DodavanjeVozilaView.xaml;Views\GlavniView.xaml;Views\InspektoriView.xaml;Views\IntervencijeView.xaml;Views\OpstineView.xaml;Views\RadniciView.xaml;Views\SmeneView.xaml;Views\VatrogasneJediniceView.xaml;Views\VozilaView.xaml;
+Views\AlatiView.xaml;Views\DodavanjeAlataView.xaml;Views\DodavanjeInformacijaOUvidjajuView.xaml;Views\DodavanjeInspektoraView.xaml;Views\DodavanjeIntervencijeView.xaml;Views\DodavanjeKomandiraView.xaml;Views\DodavanjeRadnikaView.xaml;Views\DodavanjeSmeneView.xaml;Views\DodavanjeVatrogasneJediniceView.xaml;Views\DodavanjeVozilaView.xaml;Views\GlavniView.xaml;Views\InspektoriView.xaml;Views\IntervencijeView.xaml;Views\KomandiriView.xaml;Views\OpstineView.xaml;Views\RadniciView.xaml;Views\SmeneView.xaml;Views\VatrogasneJediniceView.xaml;Views\VozilaView.xaml;
 
 False
 

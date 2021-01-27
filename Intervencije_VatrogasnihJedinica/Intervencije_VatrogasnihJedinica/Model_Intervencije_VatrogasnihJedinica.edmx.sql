@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/23/2021 18:07:06
+-- Date Created: 01/27/2021 19:48:59
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -53,9 +53,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_SmenaRadnik]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Radnici] DROP CONSTRAINT [FK_SmenaRadnik];
 GO
-IF OBJECT_ID(N'[dbo].[FK_KomandirVatrogasnaJedinica]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Komandiri] DROP CONSTRAINT [FK_KomandirVatrogasnaJedinica];
-GO
 IF OBJECT_ID(N'[dbo].[FK_VatrogasnaJedinicaSmena]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Smene] DROP CONSTRAINT [FK_VatrogasnaJedinicaSmena];
 GO
@@ -64,6 +61,9 @@ IF OBJECT_ID(N'[dbo].[FK_IntervencijaUvidjaj]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_InspektorUvidjaj]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_InspektorUvidjaj];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KomandirVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Komandiri] DROP CONSTRAINT [FK_KomandirVatrogasnaJedinica];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Tehnicka_Intervencija_inherits_Intervencija]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Intervencije_Tehnicka_Intervencija] DROP CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija];
@@ -106,14 +106,14 @@ GO
 IF OBJECT_ID(N'[dbo].[Smene]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Smene];
 GO
-IF OBJECT_ID(N'[dbo].[Komandiri]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Komandiri];
-GO
 IF OBJECT_ID(N'[dbo].[Radnici]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Radnici];
 GO
 IF OBJECT_ID(N'[dbo].[Uvidjaji]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Uvidjaji];
+GO
+IF OBJECT_ID(N'[dbo].[Komandiri]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Komandiri];
 GO
 IF OBJECT_ID(N'[dbo].[Intervencije_Tehnicka_Intervencija]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Intervencije_Tehnicka_Intervencija];
@@ -208,16 +208,6 @@ CREATE TABLE [dbo].[Smene] (
 );
 GO
 
--- Creating table 'Komandiri'
-CREATE TABLE [dbo].[Komandiri] (
-    [ID] int IDENTITY(1,1) NOT NULL,
-    [Ime] nvarchar(max)  NOT NULL,
-    [Prezime] nvarchar(max)  NOT NULL,
-    [JMBG] nvarchar(max)  NOT NULL,
-    [VatrogasnaJedinica_ID] int  NOT NULL
-);
-GO
-
 -- Creating table 'Radnici'
 CREATE TABLE [dbo].[Radnici] (
     [ID] int IDENTITY(1,1) NOT NULL,
@@ -237,6 +227,15 @@ CREATE TABLE [dbo].[Uvidjaji] (
     [Datum] datetime  NOT NULL,
     [Tekst_Zapisnika] nvarchar(max)  NOT NULL,
     [InspektorID] int  NOT NULL
+);
+GO
+
+-- Creating table 'Komandiri'
+CREATE TABLE [dbo].[Komandiri] (
+    [ID] int  NOT NULL,
+    [Ime] nvarchar(max)  NOT NULL,
+    [Prezime] nvarchar(max)  NOT NULL,
+    [JMBG] int  NOT NULL
 );
 GO
 
@@ -337,12 +336,6 @@ ADD CONSTRAINT [PK_Smene]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [ID] in table 'Komandiri'
-ALTER TABLE [dbo].[Komandiri]
-ADD CONSTRAINT [PK_Komandiri]
-    PRIMARY KEY CLUSTERED ([ID] ASC);
-GO
-
 -- Creating primary key on [ID] in table 'Radnici'
 ALTER TABLE [dbo].[Radnici]
 ADD CONSTRAINT [PK_Radnici]
@@ -352,6 +345,12 @@ GO
 -- Creating primary key on [ID] in table 'Uvidjaji'
 ALTER TABLE [dbo].[Uvidjaji]
 ADD CONSTRAINT [PK_Uvidjaji]
+    PRIMARY KEY CLUSTERED ([ID] ASC);
+GO
+
+-- Creating primary key on [ID] in table 'Komandiri'
+ALTER TABLE [dbo].[Komandiri]
+ADD CONSTRAINT [PK_Komandiri]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
@@ -569,21 +568,6 @@ ON [dbo].[Radnici]
     ([SmenaID]);
 GO
 
--- Creating foreign key on [VatrogasnaJedinica_ID] in table 'Komandiri'
-ALTER TABLE [dbo].[Komandiri]
-ADD CONSTRAINT [FK_KomandirVatrogasnaJedinica]
-    FOREIGN KEY ([VatrogasnaJedinica_ID])
-    REFERENCES [dbo].[Vatrogasne_Jedinice]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_KomandirVatrogasnaJedinica'
-CREATE INDEX [IX_FK_KomandirVatrogasnaJedinica]
-ON [dbo].[Komandiri]
-    ([VatrogasnaJedinica_ID]);
-GO
-
 -- Creating foreign key on [VatrogasnaJedinicaID] in table 'Smene'
 ALTER TABLE [dbo].[Smene]
 ADD CONSTRAINT [FK_VatrogasnaJedinicaSmena]
@@ -621,6 +605,15 @@ GO
 CREATE INDEX [IX_FK_InspektorUvidjaj]
 ON [dbo].[Uvidjaji]
     ([InspektorID]);
+GO
+
+-- Creating foreign key on [ID] in table 'Komandiri'
+ALTER TABLE [dbo].[Komandiri]
+ADD CONSTRAINT [FK_KomandirVatrogasnaJedinica]
+    FOREIGN KEY ([ID])
+    REFERENCES [dbo].[Vatrogasne_Jedinice]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Tehnicka_Intervencija'

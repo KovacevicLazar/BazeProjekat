@@ -1,46 +1,18 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.RadniciView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
-        mc:Ignorable="d"
-        FontWeight="Bold"
-        WindowStartupLocation="CenterScreen"
-        Title="RadniciView" Height="450" Width="800">
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.RadniciView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="RadniciView" Height="450" Width="800">
     <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}"  IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496" >
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="299" Margin="36,69,0,0" VerticalAlignment="Top" Width="496">
             <DataGrid.Columns>
-                <DataGridTextColumn  Binding="{Binding JMBG}"  Header="JMBG: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn   Binding="{Binding Ime}" Header="Ime: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn   Binding="{Binding Prezime}" Header="Perzime: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn   Binding="{Binding Godine_Rada}" Header="Godine rada: ">
-
-                </DataGridTextColumn>
-
-                <DataGridTextColumn   Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna jedinica: ">
-
-                </DataGridTextColumn>
-                <DataGridTextColumn   Binding="{Binding Radno_Mesto}" Header="Radno Mesto: ">
-
-                </DataGridTextColumn>
-                
-
+                <DataGridTextColumn Binding="{Binding JMBG}" Header="JMBG: " />
+                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " />
+                <DataGridTextColumn Binding="{Binding Prezime}" Header="Perzime: " />
+                <DataGridTextColumn Binding="{Binding Godine_Rada}" Header="Godine rada: " />
+                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna jedinica: " />
+                <DataGridTextColumn Binding="{Binding Radno_Mesto}" Header="Radno Mesto: " />
             </DataGrid.Columns>
         </DataGrid>
-
-        <Label Content="Radnici" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="108" Height="54" Margin="354,0,330,0"  />
+        <Label Content="Radnici" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Top" Width="108" Height="54" Margin="354,0,330,0" />
         <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,103,0,0" VerticalAlignment="Top" Width="180"/>
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top" Width="180"/>
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,103,0,0" VerticalAlignment="Top" Width="180" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,137,0,0" VerticalAlignment="Top" Width="180" />
     </Grid>
 </Window>

@@ -1,6 +1,16 @@
-﻿namespace Intervencije_VatrogasnihJedinica.dao
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Intervencije_VatrogasnihJedinica.dao
 {
     public class KomandirDAO : BaseRepo<Komandir>
     {
+        public override List<Komandir> GetList()
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Komandiri.Include("VatrogasnaJedinica").ToList();
+            }
+        }
     }
 }

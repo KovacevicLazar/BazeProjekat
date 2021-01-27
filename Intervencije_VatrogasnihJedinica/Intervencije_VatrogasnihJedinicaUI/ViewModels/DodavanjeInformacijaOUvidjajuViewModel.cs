@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
@@ -9,6 +10,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeInformacijaOUvidjajuViewModel(Intervencija intervencija)
         {
+            var inspektorDao = new InspektorDAO();
+            Inspektori = inspektorDao.GetList();
             Intervencija = intervencija;
             if (intervencija.Uvidjaj != null)
             {
@@ -24,6 +27,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Datum = DateTime.Now;
             }
         }
+        public Inspektor Inspektor { get; set; }
+        public List<Inspektor> Inspektori { get; set; }
         private DateTime datum;
         public DateTime Datum { get { return datum; } set { datum = value; NotifyOfPropertyChange(() => datum); } }
         public Intervencija Intervencija { get; set; }
@@ -44,7 +49,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Uvidjaj uvidjaj = new Uvidjaj { ID = Intervencija.ID, Datum = Datum, InspektorID = 2, Tekst_Zapisnika = TextZapisnika };
+                Uvidjaj uvidjaj = new Uvidjaj { ID = Intervencija.ID, Datum = Datum, InspektorID = Inspektor.ID, Tekst_Zapisnika = TextZapisnika };
                 uvidjajDAO.Insert(uvidjaj);
                 TryClose();
             }

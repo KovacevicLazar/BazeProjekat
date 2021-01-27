@@ -32,8 +32,8 @@ namespace Intervencije_VatrogasnihJedinica
         public virtual DbSet<Inspektor> Inspektori { get; set; }
         public virtual DbSet<Alat> Alati { get; set; }
         public virtual DbSet<Smena> Smene { get; set; }
-        public virtual DbSet<Komandir> Komandiri { get; set; }
         public virtual DbSet<Radnik> Radnici { get; set; }
         public virtual DbSet<Uvidjaj> Uvidjaji { get; set; }
+        public virtual DbSet<Komandir> Komandiri { get; set; }
     }
 }

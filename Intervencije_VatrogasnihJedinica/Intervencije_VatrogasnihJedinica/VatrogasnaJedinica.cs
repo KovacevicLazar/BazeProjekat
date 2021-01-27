@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinica
         {
             this.Vozila = new HashSet<Vozilo>();
             this.Radnici = new HashSet<Radnik>();
-            this.Smenas = new HashSet<Smena>();
+            this.Smene = new HashSet<Smena>();
         }
     
         public int ID { get; set; }
@@ -32,8 +32,8 @@ namespace Intervencije_VatrogasnihJedinica
         public virtual ICollection<Vozilo> Vozila { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Radnik> Radnici { get; set; }
-        public virtual Komandir Komandir { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Smena> Smenas { get; set; }
+        public virtual ICollection<Smena> Smene { get; set; }
+        public virtual Komandir Komandir { get; set; }
     }
 }

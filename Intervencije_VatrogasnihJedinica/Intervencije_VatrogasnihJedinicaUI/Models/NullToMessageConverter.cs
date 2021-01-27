@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Intervencije_VatrogasnihJedinicaUI.Models
 {
-    public class NullToVisibilityConverter : IValueConverter
+    public class NullToMessageConverter : IValueConverter
     {
         public object Convert(object uvidjaj, Type targetType, object parameter, CultureInfo culture)
         {
@@ -25,6 +25,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.Models
                 }
                 return "Informacije o uvidjaju";
             }
+            else if (parameter.ToString() == "Dodaj Komandira")
+            {
+                if (uvidjaj == null)
+                {
+                    return "Dodaj Komandira";
+                }
+                return "Informacije o Komandiru";
+            }
+            
             return "";
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

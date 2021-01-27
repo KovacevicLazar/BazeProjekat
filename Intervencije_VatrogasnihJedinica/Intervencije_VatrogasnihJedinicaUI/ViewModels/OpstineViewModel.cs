@@ -39,7 +39,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
-            var v = OznacenaOpstina;
         }
     }
 }

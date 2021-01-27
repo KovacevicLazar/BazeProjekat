@@ -38,5 +38,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             var i = OznacenaJedinica;
         }
+        public void DodajKomandira(object vatrogasnaJedinica)
+        {
+            manager.ShowDialog(new DodavanjeKomandiraViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
+        }
     }
 }

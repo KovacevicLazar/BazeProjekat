@@ -38,5 +38,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             manager.ShowDialog(new InspektoriViewModel(), null, null);
         }
+        
+        public void Komandiri()
+        {
+            manager.ShowDialog(new KomandiriViewModel(), null, null);
+        }
     }
 }
