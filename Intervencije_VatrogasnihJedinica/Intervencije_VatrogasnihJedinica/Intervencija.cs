@@ -26,6 +26,7 @@ namespace Intervencije_VatrogasnihJedinica
         public System.DateTime Datum_I_Vreme { get; set; }
         public Nullable<int> Id_Opstine { get; set; }
         public bool Obrisana { get; set; }
+        public TipIntervencijeEnum Tip { get; set; }
     
         public virtual Opstina Opstina { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

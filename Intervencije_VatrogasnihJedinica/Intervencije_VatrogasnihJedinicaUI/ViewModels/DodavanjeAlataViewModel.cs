@@ -15,7 +15,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string NazivAlata { get; set; }
         public List<Vozilo> Vozila { get; set; }
         public Vozilo IzabranoVozilo { get; set; }
-        public void Dodaj()
+        public void DodajIzmeni()
         {
             Alat alat = new Alat { Naziv_Alata = NazivAlata, Id_Vozila = IzabranoVozilo.ID };
             AlatDAO alataDAO = new AlatDAO();

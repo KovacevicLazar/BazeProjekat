@@ -36,7 +36,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public int Minuti { get; set; }
         public  string TextZapisnika { get; set; }
 
-        public void Dodaj()
+        public void DodajIzmeni()
         {
             UvidjajDAO uvidjajDAO = new UvidjajDAO();
             Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0);

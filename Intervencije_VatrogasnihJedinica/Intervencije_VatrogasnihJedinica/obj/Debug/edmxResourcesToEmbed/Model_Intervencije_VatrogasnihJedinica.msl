@@ -55,6 +55,7 @@
           <ScalarProperty Name="Datum_I_Vreme" ColumnName="Datum_I_Vreme" />
           <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
           <ScalarProperty Name="Obrisana" ColumnName="Obrisana" />
+          <ScalarProperty Name="Tip" ColumnName="Tip" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija)">

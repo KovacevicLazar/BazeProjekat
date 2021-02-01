@@ -11,8 +11,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
+        IWindowManager manager = new WindowManager();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
-        public string NazivOpstine { get; set; }
         public ObservableCollection<Opstina> sveOpstine = new ObservableCollection<Opstina>();
         public ObservableCollection<Opstina> SveOpstine { get { return sveOpstine; } set { sveOpstine = value; NotifyOfPropertyChange(() => SveOpstine); } }
         public Opstina OznacenaOpstina { get; set; }
@@ -20,9 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            Opstina opstina = new Opstina();
-            opstina.Naziv_Opstine = NazivOpstine;
-            OpstinaDAO.Insert(opstina);
+            manager.ShowDialog(new DodavanjeOpstineViewModel(null), null, null);
             SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
         }
         public void Obrisi()
@@ -39,6 +37,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
+            if (OznacenaOpstina != null)
+            {
+                manager.ShowDialog(new DodavanjeOpstineViewModel(OznacenaOpstina), null, null);
+                SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+            } 
         }
     }
 }

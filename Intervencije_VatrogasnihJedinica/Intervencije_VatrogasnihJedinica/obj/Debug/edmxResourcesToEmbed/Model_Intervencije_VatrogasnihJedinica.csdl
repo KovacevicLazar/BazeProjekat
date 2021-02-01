@@ -137,6 +137,7 @@
     <NavigationProperty Name="Smene" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Intervencija" ToRole="Smena" />
     <Property Name="Obrisana" Type="Boolean" Nullable="false" DefaultValue="False" />
     <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Intervencija" ToRole="Uvidjaj" />
+    <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipIntervencijeEnum" Nullable="false" />
   </EntityType>
   <Association Name="OpstinaIntervencija">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="0..1" />
@@ -227,7 +228,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="JMBG" Type="Int64" Nullable="false" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
     <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
@@ -325,7 +326,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
-    <Property Name="JMBG" Type="Int32" Nullable="false" />
+    <Property Name="JMBG" Type="Int64" Nullable="false" />
   </EntityType>
   <Association Name="KomandirVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
@@ -339,4 +340,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EnumType Name="TipIntervencijeEnum">
+    <Member Name="POZAR" Value="0" />
+    <Member Name="TEHNICKA_INTERVENCIJA" Value="1" />
+  </EnumType>
 </Schema>

@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeInspektoraViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeInspektoraViewModel(null), null, null);
             SviInspektori = inspektorDAO.GetList();
         }
         public void Obrisi()
@@ -37,6 +37,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
+            if (OznacenInspektor != null)
+            {
+                manager.ShowDialog(new DodavanjeInspektoraViewModel(OznacenInspektor), null, null);
+                SviInspektori = inspektorDAO.GetList();
+            }
+            else
+            {
+            }
         }
     }
 }

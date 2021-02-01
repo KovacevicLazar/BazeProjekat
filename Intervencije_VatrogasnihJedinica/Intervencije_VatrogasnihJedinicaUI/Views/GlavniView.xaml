@@ -1,13 +1,13 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.GlavniView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Glavni" Height="434" Width="718">
+﻿<Window ResizeMode="CanMinimize" x:Class="Intervencije_VatrogasnihJedinicaUI.Views.GlavniView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Glavni" Height="416" Width="546">
     <Grid>
-        <Button x:Name="Opstine" Content="Opštine" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="VatrogasneJedinice" Content="Vatrogasne Jedinice" HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Vozila" Content="Vozila" HorizontalAlignment="Left" Margin="45,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Radnici" Content="Radnici" HorizontalAlignment="Left" Margin="541,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Smene" Content="Smene" HorizontalAlignment="Left" Margin="374,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Alati" Content="Alati" HorizontalAlignment="Left" Margin="210,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Intervencije" Content="Intervencije" HorizontalAlignment="Left" Margin="374,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Inspektori" Content="Inspektori" HorizontalAlignment="Left" Margin="541,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
-        <Button x:Name="Komandiri" Content="Komandiri" HorizontalAlignment="Left" Margin="45,271,0,0" VerticalAlignment="Top" Width="120" Height="65" />
+        <Button x:Name="Opstine" Content="Opštine" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="VatrogasneJedinice" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Vatrogasne&#x0a;   jedinice" HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Smene" Content="Smene" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="374,45,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Radnici" Content="Radnici" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Vozila" Content="Vozila" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="210,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Alati" Content="Alati" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="374,159,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Intervencije" Content="Intervencije" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="45,273,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Inspektori" Content="Inspektori" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="210,273,0,0" VerticalAlignment="Top" Width="120" Height="70" />
+        <Button x:Name="Komandiri" Content="Komandiri" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="374,273,0,0" VerticalAlignment="Top" Width="120" Height="70" />
     </Grid>
 </Window>

@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeVozilaViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeVozilaViewModel(null), null, null);
             SvaVozila = voziloDAO.GetList();
         }
         public void Obrisi()
@@ -37,6 +37,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
+            if (OznacenoVozilo != null)
+            {
+                manager.ShowDialog(new DodavanjeVozilaViewModel(OznacenoVozilo), null, null);
+                SvaVozila = voziloDAO.GetList();
+            }
         }
     }
 }

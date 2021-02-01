@@ -29,8 +29,8 @@
         </InheritanceConnector>
         <InheritanceConnector EntityType="Model_Intervencije_VatrogasnihJedinica.Cisterna" ManuallyRouted="true" >
           <ConnectorPoint PointX="10" PointY="5.25" />
-          <ConnectorPoint PointX="10" PointY="4.7850609333927538" />
-          <ConnectorPoint PointX="11.625" PointY="4.7850609333927538" />
+          <ConnectorPoint PointX="10" PointY="4.6971544291061011" />
+          <ConnectorPoint PointX="11.625" PointY="4.6971544291061011" />
           <ConnectorPoint PointX="11.625" PointY="4.143779296875" />
         </InheritanceConnector>
         <InheritanceConnector ManuallyRouted="true" EntityType="Model_Intervencije_VatrogasnihJedinica.Navalno_Vozilo">

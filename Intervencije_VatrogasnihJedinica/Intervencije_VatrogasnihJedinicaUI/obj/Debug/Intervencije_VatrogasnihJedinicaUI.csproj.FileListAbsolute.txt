@@ -82,3 +82,5 @@ C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinic
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Intervencije_VatrogasnihJedinicaUI.csproj.CopyComplete
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Intervencije_VatrogasnihJedinicaUI.exe
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Intervencije_VatrogasnihJedinicaUI.pdb
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeOpstineView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\DodavanjeOpstineView.baml

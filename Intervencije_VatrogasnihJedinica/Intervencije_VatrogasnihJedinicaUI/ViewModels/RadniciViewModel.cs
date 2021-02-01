@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeRadnikaViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeRadnikaViewModel(null), null, null);
             SviRadnici = radnikDAO.GetList();
         }
         public void Obrisi()
@@ -36,6 +36,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
+            if (OznacenRadnik != null)
+            {
+                manager.ShowDialog(new DodavanjeRadnikaViewModel(OznacenRadnik), null, null);
+                SviRadnici = radnikDAO.GetList();
+            }
         }
     }
 }

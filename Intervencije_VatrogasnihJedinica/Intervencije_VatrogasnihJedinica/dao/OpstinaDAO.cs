@@ -12,5 +12,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Opstine.Include("VatrogasneJedinice").Include("Intervencije").ToList();
             }
         }
+        public Opstina pronadjiPoNazivu(string naziv)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Opstine.Where(x => x.Naziv_Opstine.ToUpper() == naziv.ToUpper()).FirstOrDefault();
+            }
+        }
+    
     }
 }

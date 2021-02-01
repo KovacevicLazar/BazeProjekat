@@ -1,20 +1,31 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeVozilaView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="DodavanjeVozilaView" Height="367.875" Width="377">
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeVozilaView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="DodavanjeVozilaView" Height="470.315" Width="398.912">
+    <Window.Resources>
+        <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
+        <models:NullToIsReadOnlyConverter x:Key="NullToIsReadOnlyConverter" />
+    </Window.Resources>
     <Grid>
-        <Label Content="Dodavanje novog Vozila:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Width="236" Margin="0,10,0,0" />
-        <Label Content="Marka:" HorizontalAlignment="Left" Margin="28,81,0,0" VerticalAlignment="Top" Width="130" />
-        <Label Content="Model:" HorizontalAlignment="Left" Margin="28,112,0,0" VerticalAlignment="Top" Width="130" />
-        <Label Content="Godiste:" HorizontalAlignment="Left" Margin="28,139,0,0" VerticalAlignment="Top" Width="130" />
-        <TextBox x:Name="Marka" HorizontalAlignment="Left" Height="23" Margin="163,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-        <TextBox x:Name="Model" HorizontalAlignment="Left" Height="23" Margin="163,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-        <ComboBox x:Name="Godista" SelectedItem="{Binding Path=Godiste , Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="163,143,0,0" VerticalAlignment="Top" Width="120" />
-        <Button x:Name="Dodaj" FontSize="18" Content="Dodaj" HorizontalAlignment="Left" Margin="28,279,0,0" VerticalAlignment="Top" Width="115" Height="37" />
-        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="227,279,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
-        <Label Content="Tip Vozila:" HorizontalAlignment="Left" Margin="28,54,0,0" VerticalAlignment="Top" Width="130" />
-        <ComboBox x:Name="TipoviVozila" SelectedItem="{Binding Path=TipVozila , Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="163,55,0,0" VerticalAlignment="Top" Width="120" Height="25" />
-        <Label Content="Nosivost:" HorizontalAlignment="Left" Margin="28,169,0,0" VerticalAlignment="Top" Width="130" />
-        <TextBox x:Name="Nosivost" HorizontalAlignment="Left" Height="25" Margin="163,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="93" />
-        <ComboBox x:Name="VatrogasneJedinice" DisplayMemberPath="Naziv" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="163,200,0,0" VerticalAlignment="Top" Height="25" Width="120" />
-        <Label Content="Vatrogasna Jedinica:" HorizontalAlignment="Left" Margin="28,199,0,0" VerticalAlignment="Top" Width="130" />
-        <Label Content="Kg" FontSize="16" HorizontalAlignment="Left" Margin="253,169,0,0" VerticalAlignment="Top" />
+        <Label Content="Dodavanje novog Vozila:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="391" Margin="0,10,0,0" />
+        <Label Content="Marka........................:" HorizontalAlignment="Left" Margin="68,107,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Model........................:" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Godiste......................:" HorizontalAlignment="Left" Margin="68,211,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <TextBox x:Name="Marka" HorizontalAlignment="Left" Height="27" Margin="194,107,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="Model" HorizontalAlignment="Left" Height="27" Margin="194,159,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
+        <ComboBox x:Name="Godista" SelectedItem="{Binding Path=Godiste , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="194,211,0,0" VerticalAlignment="Top" Width="120" Height="27" />
+
+        <Label Content="Tip Vozila..................:" HorizontalAlignment="Left" Margin="68,55,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <ComboBox x:Name="TipoviVozila" IsEnabled="{Binding Vozilo, Converter={StaticResource NullToIsReadOnlyConverter}}" ToolTip="Nakon dodavanja vozila, promena tima nije moguca!" SelectedItem="{Binding Path=TipVozila , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="194,55,0,0" VerticalAlignment="Top" Width="120" Height="27" />
+        <Label Content="Nosivost....................:" HorizontalAlignment="Left" Margin="68,263,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <TextBox x:Name="Nosivost" HorizontalAlignment="Left" Height="27" Margin="194,263,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="" VerticalAlignment="Top" Width="93" />
+        <ComboBox x:Name="VatrogasneJedinice" DisplayMemberPath="Naziv" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="194,315,0,0" VerticalAlignment="Top" Height="27" Width="120" />
+        <Label Content="Vatrogasna Jedinica:" HorizontalAlignment="Left" Margin="68,315,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Kg" FontSize="16" HorizontalAlignment="Left" Margin="284,259,0,0" VerticalAlignment="Top" />
+        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Vozilo, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="25,383,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="251,383,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
+        <Label FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,76,0,0" VerticalAlignment="Top" Width="250" Height="26" />
+        <Label x:Name="PorukaGreskeZaMarku" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,128,0,0" VerticalAlignment="Top" Width="250" Height="26" />
+        <Label x:Name="PorukaGreskeZaModel" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,180,0,0" VerticalAlignment="Top" Width="250" Height="26" />
+        <Label x:Name="PorukaGreskeZaGodiste" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,232,0,0" VerticalAlignment="Top" Width="250" Height="26" />
+        <Label x:Name="PorukaGreskeZaNosivost" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,284,0,0" VerticalAlignment="Top" Width="250" Height="26" />
+        <Label x:Name="PorukaGreskeZaVSJ" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="74,336,0,0" VerticalAlignment="Top" Width="250" Height="26" />
     </Grid>
 </Window>

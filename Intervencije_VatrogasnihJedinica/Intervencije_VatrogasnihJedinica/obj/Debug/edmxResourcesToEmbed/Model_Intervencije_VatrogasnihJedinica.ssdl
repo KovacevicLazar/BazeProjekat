@@ -141,6 +141,7 @@
     <Property Name="Datum_I_Vreme" Type="datetime" Nullable="false" />
     <Property Name="Id_Opstine" Type="int" Nullable="true" />
     <Property Name="Obrisana" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Inspektori">
     <Key>
@@ -173,7 +174,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JMBG" Type="int" Nullable="false" />
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Radno_Mesto" Type="int" Nullable="false" />
@@ -197,7 +198,7 @@
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JMBG" Type="int" Nullable="false" />
+    <Property Name="JMBG" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
     <Key>

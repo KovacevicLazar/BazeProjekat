@@ -23,7 +23,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeSmeneViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeSmeneViewModel(null), null, null);
             SveSmene = smenaDAO.GetList();
         }
         public void Obrisi()
@@ -40,6 +40,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
+            if (OznacenaSmena != null)
+            {
+                manager.ShowDialog(new DodavanjeSmeneViewModel(OznacenaSmena), null, null);
+                SveSmene = smenaDAO.GetList();
+            }
         }
     }
 }

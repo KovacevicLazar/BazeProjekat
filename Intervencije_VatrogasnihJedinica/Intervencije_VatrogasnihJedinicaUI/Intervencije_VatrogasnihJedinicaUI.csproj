@@ -93,6 +93,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\NullToIsReadOnlyConverter.cs" />
+    <Compile Include="Models\SadrzajDugmetaDodajIzmeni.cs" />
     <Compile Include="Models\NullToMessageConverter.cs" />
     <Compile Include="ViewModels\AlatiViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeInformacijaOUvidjajuViewModel.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="ViewModels\DodavanjeIntervencijeViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeAlataViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeKomandiraViewModel.cs" />
+    <Compile Include="ViewModels\DodavanjeOpstineViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeRadnikaViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeSmeneViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVatrogasneJediniceViewModel.cs" />
@@ -130,6 +133,9 @@
     </Compile>
     <Compile Include="Views\DodavanjeKomandiraView.xaml.cs">
       <DependentUpon>DodavanjeKomandiraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DodavanjeOpstineView.xaml.cs">
+      <DependentUpon>DodavanjeOpstineView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DodavanjeRadnikaView.xaml.cs">
       <DependentUpon>DodavanjeRadnikaView.xaml</DependentUpon>
@@ -195,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DodavanjeKomandiraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DodavanjeOpstineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

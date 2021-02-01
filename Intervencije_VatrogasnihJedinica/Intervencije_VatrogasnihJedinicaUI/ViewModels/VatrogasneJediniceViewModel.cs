@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(null), null, null);
             SveJedinice = vatrogasnaJedinicaDAO.GetList();
         }
         public void Obrisi()
@@ -36,7 +36,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Izmeni()
         {
-            var i = OznacenaJedinica;
+            if(OznacenaJedinica != null)
+            {
+                manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(OznacenaJedinica), null, null);
+                SveJedinice = vatrogasnaJedinicaDAO.GetList();
+            }
         }
         public void DodajKomandira(object vatrogasnaJedinica)
         {

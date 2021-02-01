@@ -1,11 +1,16 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeAlataView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Dodavanje novog alata" Height="303.963" Width="419.905">
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeAlataView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Dodavanje novog alata" Height="303.963" Width="419.905">
+    <Window.Resources>
+        <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
+    </Window.Resources>
     <Grid>
-        <Label Content="Dodavanje alata:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Width="201" Margin="108,10,108,0" />
-        <Label Content="Naziv alata:" HorizontalAlignment="Left" Margin="90,63,0,0" VerticalAlignment="Top" Width="109" Height="34" />
-        <TextBox x:Name="NazivAlata" HorizontalAlignment="Left" Height="34" Margin="199,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-        <Label Content="Izaberite vozilo :" HorizontalAlignment="Left" Margin="90,108,0,0" VerticalAlignment="Top" Width="109" Height="34" />
-        <ComboBox x:Name="Vozila" DisplayMemberPath="Marka" SelectedItem="{Binding Path=IzabranoVozilo , Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="199,108,0,0" VerticalAlignment="Top" Height="34" Width="120" />
-        <Button x:Name="Dodaj" FontSize="18" Content="Dodaj" HorizontalAlignment="Left" Margin="34,211,0,0" VerticalAlignment="Top" Width="120" Height="35" />
-        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="265,211,0,0" VerticalAlignment="Top" Width="120" IsCancel="True" Height="35" />
+        <Label Content="Dodavanje alata:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="412" Margin="0,10,0,0" />
+        <Label Content="Naziv alata..........:" HorizontalAlignment="Left" Margin="64,74,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <TextBox x:Name="NazivAlata" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="173,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137" />
+        <Label Content="Izaberite vozilo..:" HorizontalAlignment="Left" Margin="64,132,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <ComboBox x:Name="Vozila" DisplayMemberPath="Marka" SelectedItem="{Binding Path=IzabranoVozilo , Mode=OneWayToSource}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="173,132,0,0" VerticalAlignment="Top" Height="30" Width="137" />
+        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding VatrogasnaJedinica, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="34,211,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="265,211,0,0" VerticalAlignment="Top" Width="115" Height="37" IsCancel="True" />
+        <Label FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="64,98,0,0" VerticalAlignment="Top" Height="29" Width="246" />
+        <Label FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="64,156,0,0" VerticalAlignment="Top" Height="29" Width="246" />
     </Grid>
 </Window>
