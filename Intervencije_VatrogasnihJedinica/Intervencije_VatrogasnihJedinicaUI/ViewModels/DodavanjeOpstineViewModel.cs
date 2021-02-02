@@ -38,6 +38,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     Opstina.Naziv_Opstine = NazivOpstine;
                     OpstinaDAO.Update(Opstina);
                 }
+                TryClose();
             }
         }
 

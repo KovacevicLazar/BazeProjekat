@@ -19,19 +19,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Pozicije = Enum.GetValues(typeof(RadnoMesto)).Cast<RadnoMesto>().ToList();
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
-            var smenaDAO = new SmenaDAO();
-            Smene = smenaDAO.GetList();
         }
+        private SmenaDAO smenaDAO = new SmenaDAO();
         private Radnik radnik;
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public long Jmbg { get; set; }
+        public string Jmbg { get; set; }
         public int RadniStaz { get; set; }
         public RadnoMesto RadnaPozicija { get; set; }
         public IReadOnlyList<RadnoMesto> Pozicije { get; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
-        public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set ; }
-        public List<Smena> Smene { get; set; }
+        private VatrogasnaJedinica izabranaVatrogasnaJedinica;
+        private List<Smena> smene;
         public Smena IzabranaSmena { get; set; }
         public string PorukaGreskeZaGodineStaza { get => porukaGreskeZaGodineStaza; set { porukaGreskeZaGodineStaza = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodineStaza); } }
         public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
@@ -42,6 +41,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
 
         public Radnik Radnik { get => radnik; set => radnik = value; }
+        public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get => izabranaVatrogasnaJedinica; set { izabranaVatrogasnaJedinica = value; Smene=smenaDAO.SmeneUnutarJedneVSJ(value.ID); PorukaGreskeZaSmenu = (Smene.Count == 0) ? "Nisu dodate smene za ovu Vatrogasnu jedinicu!" : ""; } }
+
+        public List<Smena> Smene { get => smene; set { smene = value; NotifyOfPropertyChange(() => Smene); } }
 
         private string porukaGreskeZaGodineStaza = "";
         private string porukaGreskeZaIme = "";
@@ -49,7 +51,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaJMBG = "";
         private string porukaGreskeZaPoziciju = "";
         private string porukaGreskeZaVSJ = "";
-        private string porukaGreskeZaSmenu = "";
+        private string porukaGreskeZaSmenu = "Prvo Izaberite Vatrogasnu Jedinicu";
 
         public void DodajIzmeni()
         {
@@ -124,7 +126,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 ispravanUnos = false;
             }
 
-            if (Jmbg.ToString().Length != 13)
+            if (string.IsNullOrEmpty(Jmbg))
+            {
+                PorukaGreskeZaJMBG = "Unesite JBMG komandira!";
+                ispravanUnos = false;
+            }
+            else if (!Jmbg.All(c => char.IsDigit(c)))
+            {
+                PorukaGreskeZaJMBG = "JMBG sme sadrzati samo brojeve!";
+                ispravanUnos = false;
+            }
+            else if (Jmbg.Length != 13)
             {
                 PorukaGreskeZaJMBG = "Jmbg mora sadrzati 13 brojeva!";
                 ispravanUnos = false;

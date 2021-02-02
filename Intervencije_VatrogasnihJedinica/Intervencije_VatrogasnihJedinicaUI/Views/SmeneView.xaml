@@ -3,9 +3,9 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveSmene, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaSmena, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="326" Margin="25,69,0,0" VerticalAlignment="Top" Width="515">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="50" />
+                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;Jedinica: " Width="130" />
                 <DataGridTextColumn Binding="{Binding Broj_Smene}" Header="Broj &#x0a;Smene: " />
                 <DataGridTextColumn Binding="{Binding Broj_Radnika}" Header="Broj &#x0a;Radnika: " />
-                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;Jedinica: " Width="130" />
                 <DataGridTextColumn Binding="{Binding Intervencije.Count}" Header="Broj &#x0a;Intervencija: " />
             </DataGrid.Columns>
         </DataGrid>

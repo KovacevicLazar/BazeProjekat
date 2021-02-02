@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinica
         public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public long JMBG { get; set; }
+        public string JMBG { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
     }

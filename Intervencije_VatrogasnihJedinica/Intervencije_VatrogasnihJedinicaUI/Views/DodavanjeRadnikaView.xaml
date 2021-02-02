@@ -17,7 +17,7 @@
         <Label Content="Godine radnog staza:" HorizontalAlignment="Left" Margin="70,268,0,0" VerticalAlignment="Top" Width="129" Height="25" />
         <TextBox x:Name="RadniStaz" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,268,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
         <Label Content="Smena........................:" HorizontalAlignment="Left" Margin="70,370,0,0" VerticalAlignment="Top" Width="129" Height="25" />
-        <ComboBox x:Name="Smene" VerticalContentAlignment="Center" DisplayMemberPath="Broj_Smene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,370,0,0" VerticalAlignment="Top" Width="121" Height="25" />
+        <ComboBox x:Name="Smene" VerticalContentAlignment="Center" ToolTip="Prvo izaberite Vatrogasnu jedinicu" DisplayMemberPath="Broj_Smene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,370,0,0" VerticalAlignment="Top" Width="121" Height="25" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Radnik, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="22,439,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="274,439,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
         <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,135,0,0" VerticalAlignment="Top" Height="32" Width="271" />
@@ -27,6 +27,6 @@
         <Label x:Name="PorukaGreskeZaPoziciju" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,236,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaGodineStaza" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,287,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaVSJ" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,338,0,0" VerticalAlignment="Top" Height="32" Width="271" />
-        <Label x:Name="PorukaGreskeZaSmenu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,389,0,0" VerticalAlignment="Top" Height="33" Width="271" />
+        <Label x:Name="PorukaGreskeZaSmenu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,389,0,0" VerticalAlignment="Top" Height="33" Width="413" />
     </Grid>
 </Window>

@@ -14,10 +14,16 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Alat
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Alat()
+        {
+            this.Vozila = new HashSet<Vozilo>();
+        }
+    
         public int ID { get; set; }
         public string Naziv_Alata { get; set; }
-        public Nullable<int> Id_Vozila { get; set; }
     
-        public virtual Vozilo Vozilo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vozilo> Vozila { get; set; }
     }
 }

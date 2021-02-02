@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dodaj()
         {
-            manager.ShowDialog(new DodavanjeAlataViewModel(), null, null);
+            manager.ShowDialog(new DodavanjeAlataViewModel(null), null, null);
             SviAlati = AalatDAO.GetList();
         }
         public void Obrisi()
@@ -29,6 +29,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 AalatDAO.Delete(OznacenAlat.ID);
                 SviAlati = AalatDAO.GetList();
                 OznacenAlat = null;
+            }
+            else
+            {
+            }
+        }
+
+        public void Izmeni()
+        {
+            if (OznacenAlat != null)
+            {
+                manager.ShowDialog(new DodavanjeAlataViewModel(OznacenAlat), null, null);
+                SviAlati = AalatDAO.GetList();
             }
             else
             {

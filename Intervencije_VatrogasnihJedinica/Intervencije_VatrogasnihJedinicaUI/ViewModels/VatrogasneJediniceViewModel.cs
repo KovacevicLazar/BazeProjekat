@@ -45,6 +45,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public void DodajKomandira(object vatrogasnaJedinica)
         {
             manager.ShowDialog(new DodavanjeKomandiraViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
+            SveJedinice = vatrogasnaJedinicaDAO.GetList();
         }
     }
 }

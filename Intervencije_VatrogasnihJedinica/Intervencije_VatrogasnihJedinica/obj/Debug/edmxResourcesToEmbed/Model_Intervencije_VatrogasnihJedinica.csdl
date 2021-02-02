@@ -24,10 +24,6 @@
       <End Role="Intervencija" EntitySet="Intervencije" />
       <End Role="Smena" EntitySet="Smene" />
     </AssociationSet>
-    <AssociationSet Name="AlatVozilo" Association="Model_Intervencije_VatrogasnihJedinica.AlatVozilo">
-      <End Role="Alat" EntitySet="Alati" />
-      <End Role="Vozilo" EntitySet="Vozila" />
-    </AssociationSet>
     <AssociationSet Name="Tehnicka_IntervencijaTehnicko_Vozilo" Association="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo">
       <End Role="Tehnicka_Intervencija" EntitySet="Intervencije" />
       <End Role="Tehnicko_Vozilo" EntitySet="Vozila" />
@@ -62,6 +58,10 @@
     <AssociationSet Name="KomandirVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica">
       <End Role="Komandir" EntitySet="Komandiri" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
+    <AssociationSet Name="AlatVozilo" Association="Model_Intervencije_VatrogasnihJedinica.AlatVozilo">
+      <End Role="Alat" EntitySet="Alati" />
+      <End Role="Vozilo" EntitySet="Vozila" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Opstina">
@@ -158,7 +158,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
-    <Property Name="Broj_Telefona" Type="Int32" Nullable="true" />
+    <Property Name="Broj_Telefona" Type="String" Nullable="true" />
     <NavigationProperty Name="Uvidjaji" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Inspektor" ToRole="Uvidjaj" />
   </EntityType>
   <EntityType Name="Alat">
@@ -167,8 +167,7 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv_Alata" Type="String" Nullable="false" />
-    <NavigationProperty Name="Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
-    <Property Name="Id_Vozila" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
   </EntityType>
   <EntityType Name="Smena">
     <Key>
@@ -199,18 +198,6 @@
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicko_Vozilo" ToRole="Tehnicka_Intervencija" />
   </EntityType>
   <EntityType Name="Cisterna" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo" />
-  <Association Name="AlatVozilo">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Alat" Role="Alat" Multiplicity="*" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Vozilo">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Alat">
-        <PropertyRef Name="Id_Vozila" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="Tehnicka_IntervencijaTehnicko_Vozilo">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija" Role="Tehnicka_Intervencija" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo" Role="Tehnicko_Vozilo" Multiplicity="*" />
@@ -228,7 +215,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JMBG" Type="Int64" Nullable="false" />
+    <Property Name="JMBG" Type="String" Nullable="false" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
     <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
@@ -326,7 +313,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" />
     <Property Name="Ime" Type="String" Nullable="false" />
     <Property Name="Prezime" Type="String" Nullable="false" />
-    <Property Name="JMBG" Type="Int64" Nullable="false" />
+    <Property Name="JMBG" Type="String" Nullable="false" />
   </EntityType>
   <Association Name="KomandirVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
@@ -344,4 +331,8 @@
     <Member Name="POZAR" Value="0" />
     <Member Name="TEHNICKA_INTERVENCIJA" Value="1" />
   </EnumType>
+  <Association Name="AlatVozilo">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Alat" Role="Alat" Multiplicity="*" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="*" />
+  </Association>
 </Schema>

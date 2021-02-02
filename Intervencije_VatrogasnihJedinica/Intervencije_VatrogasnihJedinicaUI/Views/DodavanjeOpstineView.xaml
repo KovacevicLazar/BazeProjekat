@@ -6,7 +6,7 @@
         <Label Content="Dodavanje nove opstine:" HorizontalContentAlignment="Center" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Width="383" />
         <Label Content="Naziv Opstine:" FontSize="15" VerticalContentAlignment="Center" Margin="29,91,0,0" Height="47" VerticalAlignment="Top" HorizontalAlignment="Left" Width="124" />
         <TextBox x:Name="NazivOpstine" FontSize="15" VerticalContentAlignment="Center" TextWrapping="Wrap" Margin="158,91,0,0" HorizontalAlignment="Left" Width="195" Height="47" VerticalAlignment="Top" />
-        <Label x:Name="PorukaGreskeZaNaziv" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Normal" HorizontalAlignment="Left" Margin="29,124,0,0" VerticalAlignment="Top" Width="324" Height="32" />
+        <Label x:Name="PorukaGreskeZaNaziv" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="Red" FontWeight="Normal" HorizontalAlignment="Left" Margin="29,132,0,0" VerticalAlignment="Top" Width="324" Height="32" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Opstina, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="27,198,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="238,198,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
     </Grid>

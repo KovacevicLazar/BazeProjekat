@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
+using Intervencije_VatrogasnihJedinicaUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,29 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
+            AlatDAO alatDAO = new AlatDAO();
+            var sviAlati = alatDAO.GetList();
+            Alati = new List<AlatIsSelected>();
             if (vozilo != null)
             {
                 Vozilo = vozilo;
                 InicijalizacijaVrednosti(vozilo);
+                foreach (var alat in sviAlati)
+                {
+                    if (vozilo.Alati.Any(prod => prod.ID == alat.ID))
+                    {
+                        Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = true });
+                        continue;
+                    }
+                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
+                }
+            }
+            else
+            {
+                foreach (var alat in sviAlati)
+                {
+                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
+                }
             }
             
             TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
@@ -27,7 +47,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Godista.Add(godina);
                 godina--;
             }
+
         }
+        public List<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
@@ -63,10 +85,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         case (TipVozila.TEHNICKO):
                             Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            foreach (var alat in Alati)
+                            {
+                                if (alat.IsSelected)
+                                {
+                                    vozilo.Alati.Add(alat.Alat);
+                                }
+                            }
                             voziloDAO.Insert(vozilo);
                             break;
                         case (TipVozila.NAVALNO):
                             Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            foreach (var alat in Alati)
+                            {
+                                if (alat.IsSelected)
+                                {
+                                    navalnoVozilo.Alati.Add(alat.Alat);
+                                }
+                            }
                             navalnovoziloDAO.Insert(navalnoVozilo);
                             break;
                     }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/01/2021 23:33:32
+-- Date Created: 02/02/2021 18:43:20
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -188,15 +188,14 @@ CREATE TABLE [dbo].[Inspektori] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
-    [Broj_Telefona] int  NULL
+    [Broj_Telefona] nvarchar(max)  NULL
 );
 GO
 
 -- Creating table 'Alati'
 CREATE TABLE [dbo].[Alati] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Naziv_Alata] nvarchar(max)  NOT NULL,
-    [Id_Vozila] int  NULL
+    [Naziv_Alata] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -212,7 +211,7 @@ GO
 -- Creating table 'Radnici'
 CREATE TABLE [dbo].[Radnici] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [JMBG] bigint  NOT NULL,
+    [JMBG] nvarchar(max)  NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
     [Radno_Mesto] int  NOT NULL,
@@ -236,7 +235,7 @@ CREATE TABLE [dbo].[Komandiri] (
     [ID] int  NOT NULL,
     [Ime] nvarchar(max)  NOT NULL,
     [Prezime] nvarchar(max)  NOT NULL,
-    [JMBG] bigint  NOT NULL
+    [JMBG] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -287,6 +286,13 @@ GO
 -- Creating table 'PozarNavalno_Vozilo'
 CREATE TABLE [dbo].[PozarNavalno_Vozilo] (
     [Pozari_ID] int  NOT NULL,
+    [Vozila_ID] int  NOT NULL
+);
+GO
+
+-- Creating table 'AlatVozilo'
+CREATE TABLE [dbo].[AlatVozilo] (
+    [Alati_ID] int  NOT NULL,
     [Vozila_ID] int  NOT NULL
 );
 GO
@@ -403,6 +409,12 @@ ADD CONSTRAINT [PK_PozarNavalno_Vozilo]
     PRIMARY KEY CLUSTERED ([Pozari_ID], [Vozila_ID] ASC);
 GO
 
+-- Creating primary key on [Alati_ID], [Vozila_ID] in table 'AlatVozilo'
+ALTER TABLE [dbo].[AlatVozilo]
+ADD CONSTRAINT [PK_AlatVozilo]
+    PRIMARY KEY CLUSTERED ([Alati_ID], [Vozila_ID] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
@@ -474,21 +486,6 @@ GO
 CREATE INDEX [IX_FK_Intervencija_Smena_Smena]
 ON [dbo].[Intervencija_Smena]
     ([Smene_ID]);
-GO
-
--- Creating foreign key on [Id_Vozila] in table 'Alati'
-ALTER TABLE [dbo].[Alati]
-ADD CONSTRAINT [FK_AlatVozilo]
-    FOREIGN KEY ([Id_Vozila])
-    REFERENCES [dbo].[Vozila]
-        ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AlatVozilo'
-CREATE INDEX [IX_FK_AlatVozilo]
-ON [dbo].[Alati]
-    ([Id_Vozila]);
 GO
 
 -- Creating foreign key on [Intervencije_ID] in table 'Tehnicka_IntervencijaTehnicko_Vozilo'
@@ -615,6 +612,30 @@ ADD CONSTRAINT [FK_KomandirVatrogasnaJedinica]
     REFERENCES [dbo].[Vatrogasne_Jedinice]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Alati_ID] in table 'AlatVozilo'
+ALTER TABLE [dbo].[AlatVozilo]
+ADD CONSTRAINT [FK_AlatVozilo_Alat]
+    FOREIGN KEY ([Alati_ID])
+    REFERENCES [dbo].[Alati]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Vozila_ID] in table 'AlatVozilo'
+ALTER TABLE [dbo].[AlatVozilo]
+ADD CONSTRAINT [FK_AlatVozilo_Vozilo]
+    FOREIGN KEY ([Vozila_ID])
+    REFERENCES [dbo].[Vozila]
+        ([ID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AlatVozilo_Vozilo'
+CREATE INDEX [IX_FK_AlatVozilo_Vozilo]
+ON [dbo].[AlatVozilo]
+    ([Vozila_ID]);
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Tehnicka_Intervencija'

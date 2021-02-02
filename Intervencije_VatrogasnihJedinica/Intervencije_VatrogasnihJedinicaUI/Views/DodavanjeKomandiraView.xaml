@@ -13,7 +13,7 @@
         <TextBox x:Name="Jmbg" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="200,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="VatrogasnaJedinica_Naziv" VerticalContentAlignment="Center" IsReadOnly="True" HorizontalAlignment="Left" Margin="200,202,0,0" VerticalAlignment="Top" Height="26" Width="120" />
         <Label Content="Vatrogasna Jedinica:" HorizontalAlignment="Left" Margin="76,202,0,0" VerticalAlignment="Top" Width="130" />
-        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding VatrogasnaJedinica, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="20,283,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding VatrogasnaJedinica.Komandir, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="20,283,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="252,283,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
         <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,75,0,0" VerticalAlignment="Top" Width="244" Height="30" />
         <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,124,0,0" VerticalAlignment="Top" Width="244" Height="30" />

@@ -84,7 +84,6 @@
         <MappingFragment StoreEntitySet="Alati">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Naziv_Alata" ColumnName="Naziv_Alata" />
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -153,6 +152,14 @@
         <ScalarProperty Name="ID" ColumnName="Pozari_ID" />
       </EndProperty>
       <EndProperty Name="Navalno_Vozilo">
+        <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlatVozilo" TypeName="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" StoreEntitySet="AlatVozilo">
+      <EndProperty Name="Alat">
+        <ScalarProperty Name="ID" ColumnName="Alati_ID" />
+      </EndProperty>
+      <EndProperty Name="Vozilo">
         <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>

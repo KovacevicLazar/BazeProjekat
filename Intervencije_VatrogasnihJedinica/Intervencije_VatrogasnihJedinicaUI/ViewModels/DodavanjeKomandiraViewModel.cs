@@ -26,7 +26,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public Komandir Komandir { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public long Jmbg { get; set; }
+        public string Jmbg { get; set; }
         public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
         public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
         public string PorukaGreskeZaJMBG { get => porukaGreskeZaJMBG; set { porukaGreskeZaJMBG = value; NotifyOfPropertyChange(() => PorukaGreskeZaJMBG); } }
@@ -93,11 +93,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 ispravanUnos = false;
             }
 
-            if (Jmbg.ToString().Length != 13)
+            if (string.IsNullOrEmpty(Jmbg))
+            {
+                PorukaGreskeZaJMBG = "Unesite JBMG komandira!";
+                ispravanUnos = false;
+            }
+            else if (!Jmbg.All(c => char.IsDigit(c)))
+            {
+                PorukaGreskeZaJMBG = "JMBG sme sadrzati samo brojeve!";
+                ispravanUnos = false;
+            }
+            else if (Jmbg.Length != 13)
             {
                 PorukaGreskeZaJMBG = "Jmbg mora sadrzati 13 brojeva!";
                 ispravanUnos = false;
             }
+
             return ispravanUnos;
         }
     }

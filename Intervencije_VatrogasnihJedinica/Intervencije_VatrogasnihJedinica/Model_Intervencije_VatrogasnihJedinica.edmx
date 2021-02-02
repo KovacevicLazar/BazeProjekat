@@ -24,6 +24,7 @@
     <EntitySet Name="Intervencija_Smena" EntityType="Model_Intervencije_VatrogasnihJedinica.Store.Intervencija_Smena" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tehnicka_IntervencijaTehnicko_Vozilo" EntityType="Model_Intervencije_VatrogasnihJedinica.Store.Tehnicka_IntervencijaTehnicko_Vozilo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PozarNavalno_Vozilo" EntityType="Model_Intervencije_VatrogasnihJedinica.Store.PozarNavalno_Vozilo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AlatVozilo" EntityType="Model_Intervencije_VatrogasnihJedinica.Store.AlatVozilo" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="OpstinaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.Store.OpstinaVatrogasnaJedinica">
       <End Role="Opstina" EntitySet="Opstine" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
@@ -43,10 +44,6 @@
     <AssociationSet Name="FK_Intervencija_Smena_Smena" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_Intervencija_Smena_Smena">
       <End Role="Smena" EntitySet="Smene" />
       <End Role="Intervencija_Smena" EntitySet="Intervencija_Smena" />
-    </AssociationSet>
-    <AssociationSet Name="AlatVozilo" Association="Model_Intervencije_VatrogasnihJedinica.Store.AlatVozilo">
-      <End Role="Alat" EntitySet="Alati" />
-      <End Role="Vozilo" EntitySet="Vozila" />
     </AssociationSet>
     <AssociationSet Name="FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicka_Intervencija" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicka_Intervencija">
       <End Role="Tehnicka_Intervencija" EntitySet="Intervencije_Tehnicka_Intervencija" />
@@ -87,6 +84,14 @@
     <AssociationSet Name="KomandirVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.Store.KomandirVatrogasnaJedinica">
       <End Role="Komandir" EntitySet="Komandiri" />
       <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlatVozilo_Alat" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_AlatVozilo_Alat">
+      <End Role="Alat" EntitySet="Alati" />
+      <End Role="AlatVozilo" EntitySet="AlatVozilo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AlatVozilo_Vozilo" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_AlatVozilo_Vozilo">
+      <End Role="Vozilo" EntitySet="Vozila" />
+      <End Role="AlatVozilo" EntitySet="AlatVozilo" />
     </AssociationSet>
     <AssociationSet Name="FK_Tehnicka_Intervencija_inherits_Intervencija" Association="Model_Intervencije_VatrogasnihJedinica.Store.FK_Tehnicka_Intervencija_inherits_Intervencija">
       <End Role="Intervencija" EntitySet="Intervencije" />
@@ -155,7 +160,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Broj_Telefona" Type="int" Nullable="true" />
+    <Property Name="Broj_Telefona" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Alati">
     <Key>
@@ -163,7 +168,6 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naziv_Alata" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id_Vozila" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Smene">
     <Key>
@@ -179,7 +183,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="JMBG" Type="bigint" Nullable="false" />
+    <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Radno_Mesto" Type="int" Nullable="false" />
@@ -203,7 +207,7 @@
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JMBG" Type="bigint" Nullable="false" />
+    <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Tehnicka_Intervencija">
     <Key>
@@ -259,6 +263,14 @@
     <Property Name="Pozari_ID" Type="int" Nullable="false" />
     <Property Name="Vozila_ID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="AlatVozilo">
+    <Key>
+      <PropertyRef Name="Alati_ID" />
+      <PropertyRef Name="Vozila_ID" />
+    </Key>
+    <Property Name="Alati_ID" Type="int" Nullable="false" />
+    <Property Name="Vozila_ID" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="OpstinaVatrogasnaJedinica">
     <End Role="Opstina" Type="Model_Intervencije_VatrogasnihJedinica.Store.Opstine" Multiplicity="1" />
     <End Role="VatrogasnaJedinica" Type="Model_Intervencije_VatrogasnihJedinica.Store.Vatrogasne_Jedinice" Multiplicity="*" />
@@ -292,18 +304,6 @@
       </Principal>
       <Dependent Role="Intervencija">
         <PropertyRef Name="Id_Opstine" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="AlatVozilo">
-    <End Role="Alat" Type="Model_Intervencije_VatrogasnihJedinica.Store.Alati" Multiplicity="*" />
-    <End Role="Vozilo" Type="Model_Intervencije_VatrogasnihJedinica.Store.Vozila" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Vozilo">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Alat">
-        <PropertyRef Name="Id_Vozila" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -451,6 +451,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_AlatVozilo_Alat">
+    <End Role="Alat" Type="Model_Intervencije_VatrogasnihJedinica.Store.Alati" Multiplicity="1" />
+    <End Role="AlatVozilo" Type="Model_Intervencije_VatrogasnihJedinica.Store.AlatVozilo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alat">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AlatVozilo">
+        <PropertyRef Name="Alati_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AlatVozilo_Vozilo">
+    <End Role="AlatVozilo" Type="Model_Intervencije_VatrogasnihJedinica.Store.AlatVozilo" Multiplicity="*" />
+    <End Role="Vozilo" Type="Model_Intervencije_VatrogasnihJedinica.Store.Vozila" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Vozilo">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AlatVozilo">
+        <PropertyRef Name="Vozila_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Tehnicka_Intervencija_inherits_Intervencija">
     <End Role="Intervencija" Type="Model_Intervencije_VatrogasnihJedinica.Store.Intervencije" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -549,10 +573,6 @@
             <End Role="Intervencija" EntitySet="Intervencije" />
             <End Role="Smena" EntitySet="Smene" />
           </AssociationSet>
-          <AssociationSet Name="AlatVozilo" Association="Model_Intervencije_VatrogasnihJedinica.AlatVozilo">
-            <End Role="Alat" EntitySet="Alati" />
-            <End Role="Vozilo" EntitySet="Vozila" />
-          </AssociationSet>
           <AssociationSet Name="Tehnicka_IntervencijaTehnicko_Vozilo" Association="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo">
             <End Role="Tehnicka_Intervencija" EntitySet="Intervencije" />
             <End Role="Tehnicko_Vozilo" EntitySet="Vozila" />
@@ -587,6 +607,10 @@
           <AssociationSet Name="KomandirVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica">
             <End Role="Komandir" EntitySet="Komandiri" />
             <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+          </AssociationSet>
+          <AssociationSet Name="AlatVozilo" Association="Model_Intervencije_VatrogasnihJedinica.AlatVozilo">
+            <End Role="Alat" EntitySet="Alati" />
+            <End Role="Vozilo" EntitySet="Vozila" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Opstina">
@@ -683,7 +707,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ime" Type="String" Nullable="false" />
           <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="Broj_Telefona" Type="Int32" Nullable="true" />
+          <Property Name="Broj_Telefona" Type="String" Nullable="true" />
           <NavigationProperty Name="Uvidjaji" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Inspektor" ToRole="Uvidjaj" />
         </EntityType>
         <EntityType Name="Alat">
@@ -692,8 +716,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv_Alata" Type="String" Nullable="false" />
-          <NavigationProperty Name="Vozilo" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
-          <Property Name="Id_Vozila" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
         </EntityType>
         <EntityType Name="Smena">
           <Key>
@@ -725,18 +748,6 @@
         </EntityType>
         <EntityType Name="Cisterna" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo">
         </EntityType>
-        <Association Name="AlatVozilo">
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Alat" Role="Alat" Multiplicity="*" />
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Vozilo">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Alat">
-              <PropertyRef Name="Id_Vozila" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Tehnicka_IntervencijaTehnicko_Vozilo">
           <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija" Role="Tehnicka_Intervencija" Multiplicity="*" />
           <End Type="Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo" Role="Tehnicko_Vozilo" Multiplicity="*" />
@@ -754,7 +765,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JMBG" Type="Int64" Nullable="false" />
+          <Property Name="JMBG" Type="String" Nullable="false" />
           <Property Name="Ime" Type="String" Nullable="false" />
           <Property Name="Prezime" Type="String" Nullable="false" />
           <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
@@ -852,7 +863,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="Ime" Type="String" Nullable="false" />
           <Property Name="Prezime" Type="String" Nullable="false" />
-          <Property Name="JMBG" Type="Int64" Nullable="false" />
+          <Property Name="JMBG" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="KomandirVatrogasnaJedinica">
           <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
@@ -870,6 +881,10 @@
           <Member Name="POZAR" Value="0" />
           <Member Name="TEHNICKA_INTERVENCIJA" Value="1" />
         </EnumType>
+        <Association Name="AlatVozilo">
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Alat" Role="Alat" Multiplicity="*" />
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -959,7 +974,6 @@
         <MappingFragment StoreEntitySet="Alati">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Naziv_Alata" ColumnName="Naziv_Alata" />
-          <ScalarProperty Name="Id_Vozila" ColumnName="Id_Vozila" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1028,6 +1042,14 @@
         <ScalarProperty Name="ID" ColumnName="Pozari_ID" />
       </EndProperty>
       <EndProperty Name="Navalno_Vozilo">
+        <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AlatVozilo" TypeName="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" StoreEntitySet="AlatVozilo">
+      <EndProperty Name="Alat">
+        <ScalarProperty Name="ID" ColumnName="Alati_ID" />
+      </EndProperty>
+      <EndProperty Name="Vozilo">
         <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
