@@ -42,7 +42,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
     public partial class IntervencijeView : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 22 "..\..\..\Views\IntervencijeView.xaml"
+        #line 23 "..\..\..\Views\IntervencijeView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Obrisi;
         
@@ -50,7 +50,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
         #line hidden
         
         
-        #line 23 "..\..\..\Views\IntervencijeView.xaml"
+        #line 24 "..\..\..\Views\IntervencijeView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Izmeni;
         
@@ -58,7 +58,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
         #line hidden
         
         
-        #line 24 "..\..\..\Views\IntervencijeView.xaml"
+        #line 25 "..\..\..\Views\IntervencijeView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Dodaj;
         

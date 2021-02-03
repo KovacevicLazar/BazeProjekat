@@ -24,10 +24,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public Vozilo IzabranoVozilo { get; set; }
 
         private string porukaGreskeZaNazivAlata = "";
-        private string porukaGreskeZaVozilo = "";
         public string PorukaGreskeZaNazivAlata { get => porukaGreskeZaNazivAlata; set { porukaGreskeZaNazivAlata = value; NotifyOfPropertyChange(() => PorukaGreskeZaNazivAlata); } }
-        public string PorukaGreskeZaVozilo { get => porukaGreskeZaVozilo; set { porukaGreskeZaVozilo = value; NotifyOfPropertyChange(() => PorukaGreskeZaVozilo); } }
-
+        
         public void DodajIzmeni()
         {
             if (Validacija())
@@ -38,14 +36,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
-
         private bool Validacija()
         {
             PorukaGreskeZaNazivAlata = "";
-            PorukaGreskeZaVozilo = "";
             bool ispravanUnos = true;
-            
-
             if (string.IsNullOrEmpty(NazivAlata))
             {
                 PorukaGreskeZaNazivAlata = "Unesite naziv!";

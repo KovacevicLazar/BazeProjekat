@@ -47,7 +47,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Godista.Add(godina);
                 godina--;
             }
-
         }
         public List<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
@@ -60,24 +59,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public double Nosivost { get; set; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
-        public string PorukaGreskeZaMarku { get => porukaGreskeZaMarku; set { porukaGreskeZaMarku = value; NotifyOfPropertyChange(() => PorukaGreskeZaMarku); } }
-        public string PorukaGreskeZaModel { get => porukaGreskeZaModel; set { porukaGreskeZaModel = value; NotifyOfPropertyChange(() => PorukaGreskeZaModel); } }
-        public string PorukaGreskeZaGodiste { get => porukaGreskeZaGodiste; set { porukaGreskeZaGodiste = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodiste); } }
-        public string PorukaGreskeZaNosivost { get => porukaGreskeZaNosivost; set { porukaGreskeZaNosivost = value; NotifyOfPropertyChange(() => PorukaGreskeZaNosivost); } }
-        public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
 
         private string porukaGreskeZaMarku = "";
         private string porukaGreskeZaModel = "";
         private string porukaGreskeZaGodiste = "";
         private string porukaGreskeZaNosivost = "";
         private string porukaGreskeZaVSJ = "";
-       
+        public string PorukaGreskeZaMarku { get => porukaGreskeZaMarku; set { porukaGreskeZaMarku = value; NotifyOfPropertyChange(() => PorukaGreskeZaMarku); } }
+        public string PorukaGreskeZaModel { get => porukaGreskeZaModel; set { porukaGreskeZaModel = value; NotifyOfPropertyChange(() => PorukaGreskeZaModel); } }
+        public string PorukaGreskeZaGodiste { get => porukaGreskeZaGodiste; set { porukaGreskeZaGodiste = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodiste); } }
+        public string PorukaGreskeZaNosivost { get => porukaGreskeZaNosivost; set { porukaGreskeZaNosivost = value; NotifyOfPropertyChange(() => PorukaGreskeZaNosivost); } }
+        public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
 
         public void DodajIzmeni()
         {
             if (Validacija())
             {
-                TehnickoVoziloDAO voziloDAO = new TehnickoVoziloDAO();
+                VoziloDAO voziloDAO = new VoziloDAO();
+                TehnickoVoziloDAO tehnickoVoziloDAO = new TehnickoVoziloDAO();
                 NavalnoVoziloDAO navalnovoziloDAO = new NavalnoVoziloDAO();
                 if (Vozilo == null)
                 {
@@ -85,25 +84,25 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         case (TipVozila.TEHNICKO):
                             Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            vozilo = tehnickoVoziloDAO.Insert(vozilo);
                             foreach (var alat in Alati)
                             {
                                 if (alat.IsSelected)
                                 {
-                                    vozilo.Alati.Add(alat.Alat);
+                                    voziloDAO.DodajAlatVozilu(alat.Alat.ID, vozilo.ID);
                                 }
                             }
-                            voziloDAO.Insert(vozilo);
                             break;
                         case (TipVozila.NAVALNO):
                             Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            navalnoVozilo = navalnovoziloDAO.Insert(navalnoVozilo);
                             foreach (var alat in Alati)
                             {
                                 if (alat.IsSelected)
                                 {
-                                    navalnoVozilo.Alati.Add(alat.Alat);
+                                    voziloDAO.DodajAlatVozilu(alat.Alat.ID, navalnoVozilo.ID);
                                 }
                             }
-                            navalnovoziloDAO.Insert(navalnoVozilo);
                             break;
                     }
                 }
@@ -113,11 +112,27 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         case (TipVozila.TEHNICKO):
                             Tehnicko_Vozilo tehnickoVozilo = new Tehnicko_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
-                            voziloDAO.Update(tehnickoVozilo);
+                            tehnickoVoziloDAO.Update(tehnickoVozilo);
+                            voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
+                            foreach (var alat in Alati)
+                            {
+                                if (alat.IsSelected)
+                                {
+                                    voziloDAO.DodajAlatVozilu(alat.Alat.ID, Vozilo.ID);
+                                }
+                            }
                             break;
                         case (TipVozila.NAVALNO):
                             Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                             navalnovoziloDAO.Update(navalnoVozilo);
+                            voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
+                            foreach (var alat in Alati)
+                            {
+                                if (alat.IsSelected)
+                                {
+                                    voziloDAO.DodajAlatVozilu(alat.Alat.ID, Vozilo.ID);
+                                }
+                            }
                             break;
                     }
                 }
@@ -196,7 +211,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaVSJ = "Izaberite vatrogasnu jedinicu!";
                 ispravanUnos = false;
             }
-
             return ispravanUnos;
         }
     }

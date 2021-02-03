@@ -23,14 +23,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string Prezime { get; set; }
         public string Telefon { get; set; }
 
-        public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
-        public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
-        public string PorukaGreskeZaTelefon { get => porukaGreskeZaTelefon; set { porukaGreskeZaTelefon = value; NotifyOfPropertyChange(() => PorukaGreskeZaTelefon); } }
-
         private string porukaGreskeZaIme = "";
         private string porukaGreskeZaPrezime = "";
         private string porukaGreskeZaTelefon = "";
-
+        public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
+        public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
+        public string PorukaGreskeZaTelefon { get => porukaGreskeZaTelefon; set { porukaGreskeZaTelefon = value; NotifyOfPropertyChange(() => PorukaGreskeZaTelefon); } }
 
         public void DodajIzmeni()
         {
@@ -50,7 +48,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
-
         private bool Validacija()
         {
             bool ispravanUnos = true;

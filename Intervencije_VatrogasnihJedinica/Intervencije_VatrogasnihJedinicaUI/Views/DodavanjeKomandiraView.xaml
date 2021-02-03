@@ -8,7 +8,6 @@
         <Label Content="Prezime....................:" HorizontalAlignment="Left" Margin="76,106,0,0" VerticalAlignment="Top" Width="130" />
         <TextBox x:Name="Ime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="200,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="Prezime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="200,106,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
-
         <Label Content="JMBG........................:" HorizontalAlignment="Left" Margin="76,153,0,0" VerticalAlignment="Top" Width="130" />
         <TextBox x:Name="Jmbg" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="200,153,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="VatrogasnaJedinica_Naziv" VerticalContentAlignment="Center" IsReadOnly="True" HorizontalAlignment="Left" Margin="200,202,0,0" VerticalAlignment="Top" Height="26" Width="120" />

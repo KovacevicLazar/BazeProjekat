@@ -40,7 +40,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
     public partial class AlatiView : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 19 "..\..\..\Views\AlatiView.xaml"
+        #line 10 "..\..\..\Views\AlatiView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Obrisi;
         
@@ -48,7 +48,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
         #line hidden
         
         
-        #line 20 "..\..\..\Views\AlatiView.xaml"
+        #line 11 "..\..\..\Views\AlatiView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Izmeni;
         
@@ -56,7 +56,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views {
         #line hidden
         
         
-        #line 21 "..\..\..\Views\AlatiView.xaml"
+        #line 12 "..\..\..\Views\AlatiView.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button Dodaj;
         

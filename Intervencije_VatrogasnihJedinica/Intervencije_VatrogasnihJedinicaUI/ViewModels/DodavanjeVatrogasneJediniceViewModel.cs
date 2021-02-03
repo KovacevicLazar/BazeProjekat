@@ -3,7 +3,6 @@ using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -23,15 +22,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Opstine = opstinaDAO.GetList();
         }
         VatrogasnaJedinica vatrogasnaJedinica;
-        public List<Opstina> Opstine { get; set; }
+        public VatrogasnaJedinica VatrogasnaJedinica { get => vatrogasnaJedinica; set => vatrogasnaJedinica = value; }
+    public List<Opstina> Opstine { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
         public Opstina IzabranaOpstina { get; set; }
+
         private string porukaGreskeZaNaziv = "";
         private string porukaGreskeZaAdresu = "";
         private string porukaGreskeZaOpstinu = "";
-
-        public VatrogasnaJedinica VatrogasnaJedinica { get => vatrogasnaJedinica; set => vatrogasnaJedinica = value; }
         public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set { porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
         public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu);} }
         public string PorukaGreskeZaOpstinu { get => porukaGreskeZaOpstinu; set { porukaGreskeZaOpstinu = value; NotifyOfPropertyChange(() => PorukaGreskeZaOpstinu); } }

@@ -19,13 +19,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
         }
+        public Smena Smena { get; set; }
         public int BrojSmene { get; set; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
+
         private string porukaGreskeZaNazivSmene = "";
         private string porukaGreskeZaVSJ = "";
-
-        public Smena Smena { get; set; }
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
         public string PorukaGreskeZaNazivSmene { get => porukaGreskeZaNazivSmene; set { porukaGreskeZaNazivSmene = value; NotifyOfPropertyChange(() => PorukaGreskeZaNazivSmene); } }
 
@@ -47,7 +47,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
-
         private bool Validacija()
         {
             PorukaGreskeZaVSJ = "";
@@ -64,7 +63,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNazivSmene = "Samo u intervalu od 1 do 4!";
                 ispravanUnos = false;
             }
-            
             return ispravanUnos;
         }
     }

@@ -19,6 +19,5 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Opstine.Where(x => x.Naziv_Opstine.ToUpper() == naziv.ToUpper()).FirstOrDefault();
             }
         }
-    
     }
 }

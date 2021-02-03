@@ -6,12 +6,8 @@ namespace Intervencije_VatrogasnihJedinica.dao
     {
         TEntity FindById(params object[] id);
         List<TEntity> GetList();
-
-        void Insert(TEntity entity);
-
+        TEntity Insert(TEntity entity);
         void Delete(object id);
-
         void Update(TEntity entity);
-
     }
 }

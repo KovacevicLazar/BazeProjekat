@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
 namespace Intervencije_VatrogasnihJedinicaUI.Models
@@ -13,7 +12,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Models
             {
                 if (uvidjaj == null)
                 {
-                    return "Dodaj informacije o uvidjaj";
+                    return "Dodaj informacije o uvidjaju";
                 }
                 return "Informacije o uvidjaju";
             }

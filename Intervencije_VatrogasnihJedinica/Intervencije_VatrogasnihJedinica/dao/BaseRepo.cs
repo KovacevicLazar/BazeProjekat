@@ -26,12 +26,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public void Insert(TEntity entity)
+        public TEntity Insert(TEntity entity)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 db.Set<TEntity>().Add(entity);
                 db.SaveChanges();
+                return entity;
             }
         }
         public void Delete(object id)

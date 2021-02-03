@@ -2,5 +2,6 @@
 {
     public class TehnickoVoziloDAO : BaseRepo<Tehnicko_Vozilo>
     {
+       
     }
 }

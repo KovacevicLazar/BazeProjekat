@@ -28,10 +28,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Datum = DateTime.Now;
             }
         }
-        private string porukaGreskeZaInspektora = "";
-        private string porukaGreskeZaTekst = "";
-        private string porukaGreskeZaDatum = "";
-        private string porukaGreskeZaVreme = "";
         public Inspektor Inspektor { get; set; }
         public List<Inspektor> Inspektori { get; set; }
         private DateTime datum;
@@ -40,6 +36,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public int Sati { get; set; }
         public int Minuti { get; set; }
         public  string TextZapisnika { get; set; }
+
+        private string porukaGreskeZaInspektora = "";
+        private string porukaGreskeZaTekst = "";
+        private string porukaGreskeZaDatum = "";
+        private string porukaGreskeZaVreme = "";
         public string PorukaGreskeZaVreme { get => porukaGreskeZaVreme; set { porukaGreskeZaVreme = value; NotifyOfPropertyChange(() => PorukaGreskeZaVreme); } }
         public string PorukaGreskeZaDatum { get => porukaGreskeZaDatum; set { porukaGreskeZaDatum = value; NotifyOfPropertyChange(() => PorukaGreskeZaDatum); } }
         public string PorukaGreskeZaTekst { get => porukaGreskeZaTekst; set { porukaGreskeZaTekst = value; NotifyOfPropertyChange(() => PorukaGreskeZaTekst); } }

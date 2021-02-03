@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
@@ -10,6 +12,34 @@ namespace Intervencije_VatrogasnihJedinica.dao
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 return db.Vozila.Include("VatrogasnaJedinica").Include("Alati").ToList();
+            }
+        }
+        public Tuple<bool,string> DodajAlatVozilu(int idAlata, int idVozila)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                ObjectParameter objectParameterSuccess = new ObjectParameter("success", typeof(bool));
+                ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
+                db.DodeliAlatVozilu(idAlata, idVozila, objectParameterSuccess, objectParameterMessage);
+                return new Tuple<bool, string> ( (bool)objectParameterSuccess.Value, (string)objectParameterMessage.Value );
+            }
+        }
+
+        public void UkloniAlateIzVozila(int idVozila)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                ObjectParameter objectParameterSuccess = new ObjectParameter("success", typeof(bool));
+                ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
+                db.UkloniAlateIzVozila(idVozila, objectParameterSuccess, objectParameterMessage);
+            }
+        }
+
+        public List<Vozilo> VozilaVatrogasneJedinice(int idVatrogasneJedinice)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.Id_VatrogasneJedinice == idVatrogasneJedinice).ToList();
             }
         }
     }

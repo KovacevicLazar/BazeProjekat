@@ -163,5 +163,13 @@
         <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="DodeliAlatVozilu" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodeliAlatVozilu" />
+    <FunctionImportMapping FunctionImportName="UkloniAlateIzVozila" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniAlateIzVozila" />
+    <FunctionImportMapping FunctionImportName="PostaviNavalnoVoziloNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviNavalnoVoziloNaIntervenciju" />
+    <FunctionImportMapping FunctionImportName="PostaviTehnickoVoziloNaTehnickuIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviTehnickoVoziloNaTehnickuIntervenciju" />
+    <FunctionImportMapping FunctionImportName="UkloniNavalnaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniNavalnaVozilaSaIntervencije" />
+    <FunctionImportMapping FunctionImportName="UkloniTehnickaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniTehnickaVozilaSaIntervencije" />
+    <FunctionImportMapping FunctionImportName="DodajSmenuNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodajSmenuNaIntervenciju" />
+    <FunctionImportMapping FunctionImportName="UkloniSmeneSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniSmeneSaIntervencije" />
   </EntityContainerMapping>
 </Mapping>

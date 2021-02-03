@@ -11,7 +11,6 @@
         <TextBox x:Name="Marka" HorizontalAlignment="Left" Height="27" Margin="194,107,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="Model" HorizontalAlignment="Left" Height="27" Margin="194,159,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
         <ComboBox x:Name="Godista" SelectedItem="{Binding Path=Godiste , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="194,211,0,0" VerticalAlignment="Top" Width="120" Height="27" />
-
         <Label Content="Tip Vozila..................:" HorizontalAlignment="Left" Margin="68,55,0,0" VerticalAlignment="Top" Width="130" Height="27" />
         <ComboBox x:Name="TipoviVozila" IsEnabled="{Binding Vozilo, Converter={StaticResource NullToIsReadOnlyConverter}}" ToolTip="Nakon dodavanja vozila, promena tima nije moguca!" SelectedItem="{Binding Path=TipVozila , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="194,55,0,0" VerticalAlignment="Top" Width="120" Height="27" />
         <Label Content="Nosivost....................:" HorizontalAlignment="Left" Margin="68,263,0,0" VerticalAlignment="Top" Width="130" Height="27" />
@@ -31,7 +30,16 @@
         <ListBox x:Name="Alati" ItemsSource="{Binding Alati, Mode=TwoWay}" Margin="329,92,0,0" HorizontalAlignment="Left" Width="179" Height="250" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"></CheckBox>
+                    <CheckBox Name="chkitems" IsChecked="{Binding IsSelected, Mode=TwoWay }">
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} + {1}">
+                                    <Binding Path="Alat.Naziv_Alata" />
+                                    <Binding Path="Alat.ID" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </CheckBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

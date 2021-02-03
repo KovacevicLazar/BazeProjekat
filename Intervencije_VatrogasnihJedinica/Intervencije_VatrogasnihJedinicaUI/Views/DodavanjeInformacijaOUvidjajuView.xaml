@@ -14,11 +14,11 @@
         <ComboBox x:Name="Inspektori" DisplayMemberPath="Ime" SelectedItem="{Binding Path=Inspektor , Mode=OneWayToSource}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="131" Height="29" />
         <Label Content="Zapisnik o uvidjaju:" HorizontalAlignment="Left" Margin="29,248,0,0" VerticalAlignment="Top" Width="140" />
         <TextBox x:Name="TextZapisnika" FontSize="14" HorizontalAlignment="Left" Height="173" Margin="29,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" />
-        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Intervencija.Uvidjaj, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="29,465,0,0" VerticalAlignment="Top" Width="115" Height="37" />
-        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="312,465,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
         <Label x:Name="PorukaGreskeZaDatum" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" Width="457" Height="29" />
         <Label x:Name="PorukaGreskeZaVreme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,157,0,0" VerticalAlignment="Top" Height="29" Width="457" />
         <Label x:Name="PorukaGreskeZaInspektora" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top" Height="29" Width="457" />
         <Label x:Name="PorukaGreskeZaTekst" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,436,0,0" VerticalAlignment="Top" Width="457" Height="29" />
+        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Intervencija.Uvidjaj, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="29,465,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="312,465,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
     </Grid>
 </Window>

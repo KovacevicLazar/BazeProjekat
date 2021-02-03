@@ -32,17 +32,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private VatrogasnaJedinica izabranaVatrogasnaJedinica;
         private List<Smena> smene;
         public Smena IzabranaSmena { get; set; }
-        public string PorukaGreskeZaGodineStaza { get => porukaGreskeZaGodineStaza; set { porukaGreskeZaGodineStaza = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodineStaza); } }
-        public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
-        public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
-        public string PorukaGreskeZaJMBG { get => porukaGreskeZaJMBG; set { porukaGreskeZaJMBG = value; NotifyOfPropertyChange(() => PorukaGreskeZaJMBG); } }
-        public string PorukaGreskeZaPoziciju { get => porukaGreskeZaPoziciju; set { porukaGreskeZaPoziciju = value; NotifyOfPropertyChange(() => PorukaGreskeZaPoziciju); } }
-        public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
-        public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
-
         public Radnik Radnik { get => radnik; set => radnik = value; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get => izabranaVatrogasnaJedinica; set { izabranaVatrogasnaJedinica = value; Smene=smenaDAO.SmeneUnutarJedneVSJ(value.ID); PorukaGreskeZaSmenu = (Smene.Count == 0) ? "Nisu dodate smene za ovu Vatrogasnu jedinicu!" : ""; } }
-
         public List<Smena> Smene { get => smene; set { smene = value; NotifyOfPropertyChange(() => Smene); } }
 
         private string porukaGreskeZaGodineStaza = "";
@@ -52,6 +43,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaPoziciju = "";
         private string porukaGreskeZaVSJ = "";
         private string porukaGreskeZaSmenu = "Prvo Izaberite Vatrogasnu Jedinicu";
+        public string PorukaGreskeZaGodineStaza { get => porukaGreskeZaGodineStaza; set { porukaGreskeZaGodineStaza = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodineStaza); } }
+        public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
+        public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
+        public string PorukaGreskeZaJMBG { get => porukaGreskeZaJMBG; set { porukaGreskeZaJMBG = value; NotifyOfPropertyChange(() => PorukaGreskeZaJMBG); } }
+        public string PorukaGreskeZaPoziciju { get => porukaGreskeZaPoziciju; set { porukaGreskeZaPoziciju = value; NotifyOfPropertyChange(() => PorukaGreskeZaPoziciju); } }
+        public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
+        public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
 
         public void DodajIzmeni()
         {
@@ -83,7 +81,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
             RadnaPozicija = radnik.Radno_Mesto;
         }
-
         private bool Validacija()
         {
             bool ispravanUnos = true;

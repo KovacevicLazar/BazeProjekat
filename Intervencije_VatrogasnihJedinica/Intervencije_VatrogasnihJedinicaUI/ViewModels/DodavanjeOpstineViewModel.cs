@@ -2,7 +2,6 @@
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -21,6 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string NazivOpstine { get; set; }
         public OpstinaDAO OpstinaDAO { get => opstinaDAO; set => opstinaDAO = value; }
         public Opstina Opstina { get => opstina; set => opstina = value; }
+
         private string porukaGreskeZaNaziv = "";
         public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set {  porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
 
@@ -41,7 +41,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
-
         private bool ValidacijaNaziva(string naziv)
         {
             PorukaGreskeZaNaziv = "";
@@ -65,7 +64,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNaziv = "Opstina sa istim nazivom je uneta!";
                 return false;
             }
-           
             return true;
         }
     }
