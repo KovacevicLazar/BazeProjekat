@@ -11,8 +11,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public DodavanjeAlataViewModel(Alat alat)
         {
             Alat = alat;
-            var voziloDAO = new VoziloDAO();
-            Vozila = voziloDAO.GetList();
             if (alat != null)
             {
                 NazivAlata = alat.Naziv_Alata;
@@ -20,8 +18,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public Alat Alat { get; set; }
         public string NazivAlata { get; set; }
-        public List<Vozilo> Vozila { get; set; }
-        public Vozilo IzabranoVozilo { get; set; }
 
         private string porukaGreskeZaNazivAlata = "";
         public string PorukaGreskeZaNazivAlata { get => porukaGreskeZaNazivAlata; set { porukaGreskeZaNazivAlata = value; NotifyOfPropertyChange(() => PorukaGreskeZaNazivAlata); } }
@@ -30,9 +26,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (Validacija())
             {
-                Alat alat = new Alat { Naziv_Alata = NazivAlata};
                 AlatDAO alataDAO = new AlatDAO();
-                alataDAO.Insert(alat);
+                if (Alat == null)
+                {
+                    Alat alat = new Alat { Naziv_Alata = NazivAlata };
+                    alataDAO.Insert(alat);
+                }
+                else
+                {
+                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata };;
+                    alataDAO.Update(Alat);
+                }
                 TryClose();
             }
         }

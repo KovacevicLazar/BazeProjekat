@@ -27,7 +27,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Minuti = intervencija.Datum_I_Vreme.Minute;
                 Datum = intervencija.Datum_I_Vreme.Date;
                 Adresa = intervencija.Adresa;
-                IzabranaOpstina = intervencija.Opstina;
+                IzabranaOpstina = Opstine.Find(x=> x.ID == intervencija.Id_Opstine);
+                NotifyOfPropertyChange(() => IzabranaOpstina);
                 TipIntervencije = intervencija.Tip;
                 if (TipIntervencije == TipIntervencijeEnum.POZAR)
                 {

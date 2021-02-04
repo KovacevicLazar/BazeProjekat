@@ -2,11 +2,11 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviKomandiri, Mode=OneWay}" SelectedItem="{Binding Path=OznacenKomandir, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="326" Margin="25,69,0,0" VerticalAlignment="Top" Width="439">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" />
-                <DataGridTextColumn Binding="{Binding JMBG}" Header="JMBG: " />
-                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " />
-                <DataGridTextColumn Binding="{Binding Prezime}" Header="Perzime: " />
-                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;jedinica: " />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="50" />
+                <DataGridTextColumn Binding="{Binding JMBG}" Header="JMBG: " Width="110" />
+                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " Width="90" />
+                <DataGridTextColumn Binding="{Binding Prezime}" Header="Perzime: " Width="90" />
+                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;jedinica: " Width="120" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Komandiri" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="654" Height="54" Margin="24,10,0,0" />

@@ -45,6 +45,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public void DodajInformacijeOUvidjaju( object Intervencija )
         {
             manager.ShowDialog(new DodavanjeInformacijaOUvidjajuViewModel(Intervencija  as Intervencija), null, null);
+            SveIntervencije = IntervencijaDAO.GetList();
         }
     }
 }

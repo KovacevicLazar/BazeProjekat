@@ -63,13 +63,14 @@
       <End Role="Alat" EntitySet="Alati" />
       <End Role="Vozilo" EntitySet="Vozila" />
     </AssociationSet>
-    <FunctionImport Name="DodeliAlatVozilu">
-      <Parameter Name="alatID" Mode="In" Type="Int32" />
-      <Parameter Name="voziloID" Mode="In" Type="Int32" />
+    <FunctionImport Name="DodajSmenuNaIntervenciju">
+      <Parameter Name="smenaID" Mode="In" Type="Int32" />
+      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UkloniAlateIzVozila">
+    <FunctionImport Name="DodeliAlatVozilu">
+      <Parameter Name="alatID" Mode="In" Type="Int32" />
       <Parameter Name="voziloID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
@@ -86,23 +87,22 @@
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="UkloniAlateIzVozila">
+      <Parameter Name="voziloID" Mode="In" Type="Int32" />
+      <Parameter Name="success" Mode="InOut" Type="Boolean" />
+      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="UkloniNavalnaVozilaSaIntervencije">
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UkloniTehnickaVozilaSaIntervencije">
-      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
-      <Parameter Name="success" Mode="InOut" Type="Boolean" />
-      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="DodajSmenuNaIntervenciju">
-      <Parameter Name="smenaID" Mode="In" Type="Int32" />
-      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
-      <Parameter Name="success" Mode="InOut" Type="Boolean" />
-      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UkloniSmeneSaIntervencije">
+      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
+      <Parameter Name="success" Mode="InOut" Type="Boolean" />
+      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="UkloniTehnickaVozilaSaIntervencije">
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />

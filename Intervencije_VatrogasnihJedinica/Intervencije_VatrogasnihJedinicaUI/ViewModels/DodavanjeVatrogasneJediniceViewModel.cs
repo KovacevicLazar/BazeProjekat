@@ -10,16 +10,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica postojecaVatrogasnaJedinica)
         {
+            OpstinaDAO opstinaDAO = new OpstinaDAO();
+            Opstine = opstinaDAO.GetList();
             if (postojecaVatrogasnaJedinica != null)
             {
                 VatrogasnaJedinica = postojecaVatrogasnaJedinica;
                 Naziv = VatrogasnaJedinica.Naziv;
                 Adresa = VatrogasnaJedinica.Adresa;
-                IzabranaOpstina = VatrogasnaJedinica.Opstina;
+                IzabranaOpstina = Opstine.Find(x=> x.ID == VatrogasnaJedinica.Id_Opstine);
                 NotifyOfPropertyChange(() => IzabranaOpstina);
             }
-            OpstinaDAO opstinaDAO = new OpstinaDAO();
-            Opstine = opstinaDAO.GetList();
         }
         VatrogasnaJedinica vatrogasnaJedinica;
         public VatrogasnaJedinica VatrogasnaJedinica { get => vatrogasnaJedinica; set => vatrogasnaJedinica = value; }

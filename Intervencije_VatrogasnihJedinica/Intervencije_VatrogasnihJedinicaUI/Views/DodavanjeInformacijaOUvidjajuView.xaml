@@ -11,7 +11,20 @@
         <xctk:IntegerUpDown x:Name="Sati" Value="{Binding Sati, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="23" HorizontalAlignment="Left" Margin="207,134,0,0" VerticalAlignment="Top" Height="29" Width="50" />
         <xctk:IntegerUpDown x:Name="Minuti" Value="{Binding Minuti, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="59" HorizontalAlignment="Left" Margin="288,134,0,0" VerticalAlignment="Top" Height="29" Width="50" />
         <Label Content="Inspektor......:" HorizontalAlignment="Left" Margin="108,191,0,0" VerticalAlignment="Top" Height="29" Width="94" />
-        <ComboBox x:Name="Inspektori" DisplayMemberPath="Ime" SelectedItem="{Binding Path=Inspektor , Mode=OneWayToSource}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="131" Height="29" />
+        <ComboBox x:Name="Inspektori" SelectedItem="{Binding Path=Inspektor , Mode=TwoWay, StringFormat=''}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="131" Height="29" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="ID:{0} - {1} {2}">
+                                <Binding Path="ID"/>
+                                <Binding Path="Ime"/>
+                                <Binding Path="Prezime"/>
+                            </MultiBinding>
+                        </TextBlock.Text></TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <Label Content="Zapisnik o uvidjaju:" HorizontalAlignment="Left" Margin="29,248,0,0" VerticalAlignment="Top" Width="140" />
         <TextBox x:Name="TextZapisnika" FontSize="14" HorizontalAlignment="Left" Height="173" Margin="29,270,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" />
         <Label x:Name="PorukaGreskeZaDatum" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top" Width="457" Height="29" />

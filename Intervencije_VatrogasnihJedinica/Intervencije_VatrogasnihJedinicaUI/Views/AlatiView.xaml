@@ -2,8 +2,8 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviAlati, Mode=OneWay}" SelectedItem="{Binding Path=OznacenAlat, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="325" Margin="25,69,0,0" VerticalAlignment="Top" Width="312">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " />
-                <DataGridTextColumn Binding="{Binding Naziv_Alata}" Header="Naziv alata: " />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="100" />
+                <DataGridTextColumn Binding="{Binding Naziv_Alata}" Header="Naziv alata: " Width="200" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Alati" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="594" Height="54" Margin="0,10,0,0" />

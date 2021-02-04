@@ -20,6 +20,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Minuti = intervencija.Uvidjaj.Datum.Minute;
                 Datum = intervencija.Uvidjaj.Datum.Date;
                 TextZapisnika = intervencija.Uvidjaj.Tekst_Zapisnika;
+                UvidjajDAO uvidjajDAO = new UvidjajDAO();
+                var Uvidjaj = uvidjajDAO.FindById(intervencija.Uvidjaj.ID);
+                Inspektor = Inspektori.Find(x => x.ID == Uvidjaj.Inspektor.ID);
             }
             else
             {
@@ -77,14 +80,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTekst = "Unesite adresu!";
                 ispravanUnos = false;
             }
-            else if (!TextZapisnika.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
-            {
-                PorukaGreskeZaTekst = "Adresa sme sadrzati samo slova i brojeve!";
-                ispravanUnos = false;
-            }
+            //else if (!TextZapisnika.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
+            //{
+            //    PorukaGreskeZaTekst = "Tekst sme sadrzati samo slova i brojeve!";
+            //    ispravanUnos = false;
+            //}
             else if (TextZapisnika.Trim().Length < 30)
             {
-                PorukaGreskeZaTekst = "Tekst mora sadrzati najmanje 30 slova!";
+                PorukaGreskeZaTekst = " mora sadrzati najmanje 30 slova!";
                 ispravanUnos = false;
             }
 

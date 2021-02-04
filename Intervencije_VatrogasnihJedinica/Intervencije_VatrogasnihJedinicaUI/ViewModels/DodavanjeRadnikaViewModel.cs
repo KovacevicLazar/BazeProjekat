@@ -11,14 +11,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeRadnikaViewModel(Radnik radnik)
         {
-            if (radnik != null)
-            {
-                Radnik = radnik;
-                InicijalizacijaVrednosti(radnik);
-            }
             Pozicije = Enum.GetValues(typeof(RadnoMesto)).Cast<RadnoMesto>().ToList();
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
+            if (radnik != null)
+            {
+                Radnik = radnik;
+                Smene = smenaDAO.SmeneUnutarJedneVSJ(radnik.VatrogasnaJedinica.ID);
+                InicijalizacijaVrednosti(radnik);
+            }
         }
         private SmenaDAO smenaDAO = new SmenaDAO();
         private Radnik radnik;
@@ -75,10 +76,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Prezime = radnik.Prezime;
             Jmbg = radnik.JMBG;
             RadniStaz = radnik.Godine_Rada;
-            IzabranaSmena = radnik.Smena;
-            NotifyOfPropertyChange(() => IzabranaSmena);
-            IzabranaVatrogasnaJedinica = radnik.VatrogasnaJedinica;
+            IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == radnik.VatrogasnaJedinicaID);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
+            IzabranaSmena = Smene.Find(x => x.ID == radnik.SmenaID);
+            NotifyOfPropertyChange(() => IzabranaSmena);
             RadnaPozicija = radnik.Radno_Mesto;
         }
         private bool Validacija()

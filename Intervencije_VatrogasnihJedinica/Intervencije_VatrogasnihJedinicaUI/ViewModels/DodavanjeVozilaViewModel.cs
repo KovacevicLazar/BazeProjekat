@@ -15,6 +15,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             AlatDAO alatDAO = new AlatDAO();
             var sviAlati = alatDAO.GetList();
             Alati = new List<AlatIsSelected>();
+            TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
+            var jedinicaDAO = new VatrogasnaJedinicaDAO();
+            VatrogasneJedinice = jedinicaDAO.GetList();
+            Godista = new List<int>();
+            var godina = DateTime.Now.Year;
+            for (int i = 40; i > 0; i--)
+            {
+                Godista.Add(godina);
+                godina--;
+            }
+
             if (vozilo != null)
             {
                 Vozilo = vozilo;
@@ -35,17 +46,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
                 }
-            }
-            
-            TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
-            var jedinicaDAO = new VatrogasnaJedinicaDAO();
-            VatrogasneJedinice = jedinicaDAO.GetList();
-            Godista = new List<int>();
-            var godina = DateTime.Now.Year;
-            for (int i = 40; i > 0; i--)
-            {
-                Godista.Add(godina);
-                godina--;
             }
         }
         public List<AlatIsSelected> Alati { get; set; }
@@ -150,7 +150,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Godiste = vozilo.Godiste;
             NotifyOfPropertyChange(() => Godiste);
             Nosivost = vozilo.Nosivost;
-            IzabranaVatrogasnaJedinica = vozilo.VatrogasnaJedinica;
+            IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == vozilo.Id_VatrogasneJedinice);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
         }
 

@@ -2,10 +2,10 @@
     <Grid>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="325" Margin="26,69,0,0" VerticalAlignment="Top" Width="384">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " />
-                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " />
-                <DataGridTextColumn Binding="{Binding Prezime}" Header="Prezime: " />
-                <DataGridTextColumn Binding="{Binding Broj_Telefona}" Header="Telefon: " />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="50" />
+                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " Width="100"/>
+                <DataGridTextColumn Binding="{Binding Prezime}" Header="Prezime: " Width="110" />
+                <DataGridTextColumn Binding="{Binding Broj_Telefona}" Header="Telefon: " Width="120" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Inspektori" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="656" Height="54" Margin="0,10,0,0" />

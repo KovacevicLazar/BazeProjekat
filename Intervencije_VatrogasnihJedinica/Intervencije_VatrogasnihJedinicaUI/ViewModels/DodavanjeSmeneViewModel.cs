@@ -9,15 +9,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeSmeneViewModel( Smena smena)
         {
+            var jedinicaDAO = new VatrogasnaJedinicaDAO();
+            VatrogasneJedinice = jedinicaDAO.GetList();
             if (smena != null)
             {
                 Smena = smena;
                 BrojSmene = smena.Broj_Smene;
-                IzabranaVatrogasnaJedinica = smena.VatrogasnaJedinica;
+                IzabranaVatrogasnaJedinica =VatrogasneJedinice.Find(x => x.ID == smena.VatrogasnaJedinicaID);
                 NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
             }
-            var jedinicaDAO = new VatrogasnaJedinicaDAO();
-            VatrogasneJedinice = jedinicaDAO.GetList();
         }
         public Smena Smena { get; set; }
         public int BrojSmene { get; set; }
