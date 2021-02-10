@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
@@ -9,7 +11,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Smene.Include("VatrogasnaJedinica").Include("Intervencije").ToList();
+                return  db.Smene.Include("VatrogasnaJedinica").Include("Intervencije").ToList();
             }
         }
         public  List<Smena> SmeneUnutarJedneVSJ(int idVSJ)

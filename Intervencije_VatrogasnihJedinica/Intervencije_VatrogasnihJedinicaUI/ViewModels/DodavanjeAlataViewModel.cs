@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,12 +11,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeAlataViewModel(Alat alat)
         {
+            TipoviAlata = Enum.GetValues(typeof(TipAlataEnum)).Cast<TipAlataEnum>().ToList();
             Alat = alat;
             if (alat != null)
             {
                 NazivAlata = alat.Naziv_Alata;
+                TipAlata = alat.Tip;
             }
         }
+        public List<TipAlataEnum> TipoviAlata { get; set; }
+        public TipAlataEnum TipAlata { get; set; }
         public Alat Alat { get; set; }
         public string NazivAlata { get; set; }
 
@@ -29,12 +34,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 AlatDAO alataDAO = new AlatDAO();
                 if (Alat == null)
                 {
-                    Alat alat = new Alat { Naziv_Alata = NazivAlata };
+                    Alat alat = new Alat { Naziv_Alata = NazivAlata, Tip = TipAlata };
                     alataDAO.Insert(alat);
                 }
                 else
                 {
-                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata };;
+                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata, Tip = TipAlata };;
                     alataDAO.Update(Alat);
                 }
                 TryClose();

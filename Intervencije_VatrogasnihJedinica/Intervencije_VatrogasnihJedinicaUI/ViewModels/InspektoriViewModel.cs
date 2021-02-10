@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -11,6 +13,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SviInspektori = inspektorDAO.GetList();
         }
+        private string poruka;
+        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
 
         private InspektorDAO inspektorDAO = new InspektorDAO();
         IWindowManager manager = new WindowManager();
@@ -25,25 +29,44 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Obrisi()
         {
+            Poruka = "";
             if (OznacenInspektor != null)
             {
-                inspektorDAO.Delete(OznacenInspektor.ID);
+                try
+                {
+                    inspektorDAO.Delete(OznacenInspektor.ID);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null)
+                    {
+                        if (ex.InnerException.InnerException != null)
+                        {
+                            Poruka = ex.InnerException.InnerException.Message;
+                        }
+                    }
+                }
+                
                 SviInspektori = inspektorDAO.GetList();
                 OznacenInspektor = null;
             }
             else
             {
+                Poruka = "Prvo morate selektovati inspektora iz liste inspektora";
             }
         }
         public void Izmeni()
         {
+            Poruka = "";
             if (OznacenInspektor != null)
             {
                 manager.ShowDialog(new DodavanjeInspektoraViewModel(OznacenInspektor), null, null);
                 SviInspektori = inspektorDAO.GetList();
+                OznacenInspektor = null;
             }
             else
             {
+                Poruka = "Prvo morate selektovati inspektora iz liste inspektora";
             }
         }
     }

@@ -77,19 +77,6 @@ namespace Intervencije_VatrogasnihJedinica
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviNavalnoVoziloNaIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
         }
     
-        public virtual int PostaviTehnickoVoziloNaTehnickuIntervenciju(Nullable<int> voziloID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
-        {
-            var voziloIDParameter = voziloID.HasValue ?
-                new ObjectParameter("voziloID", voziloID) :
-                new ObjectParameter("voziloID", typeof(int));
-    
-            var intervencijaIDParameter = intervencijaID.HasValue ?
-                new ObjectParameter("intervencijaID", intervencijaID) :
-                new ObjectParameter("intervencijaID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviTehnickoVoziloNaTehnickuIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
-        }
-    
         public virtual int UkloniAlateIzVozila(Nullable<int> voziloID, ObjectParameter success, ObjectParameter outputMessage)
         {
             var voziloIDParameter = voziloID.HasValue ?
@@ -124,6 +111,19 @@ namespace Intervencije_VatrogasnihJedinica
                 new ObjectParameter("intervencijaID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UkloniTehnickaVozilaSaIntervencije", intervencijaIDParameter, success, outputMessage);
+        }
+    
+        public virtual int PostaviTehnickoVoziloNaTehnickuIntervenciju(Nullable<int> voziloID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
+        {
+            var voziloIDParameter = voziloID.HasValue ?
+                new ObjectParameter("voziloID", voziloID) :
+                new ObjectParameter("voziloID", typeof(int));
+    
+            var intervencijaIDParameter = intervencijaID.HasValue ?
+                new ObjectParameter("intervencijaID", intervencijaID) :
+                new ObjectParameter("intervencijaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviTehnickoVoziloNaTehnickuIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
         }
     }
 }

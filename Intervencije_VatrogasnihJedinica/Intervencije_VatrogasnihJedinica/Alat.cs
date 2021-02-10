@@ -22,6 +22,7 @@ namespace Intervencije_VatrogasnihJedinica
     
         public int ID { get; set; }
         public string Naziv_Alata { get; set; }
+        public TipAlataEnum Tip { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vozilo> Vozila { get; set; }

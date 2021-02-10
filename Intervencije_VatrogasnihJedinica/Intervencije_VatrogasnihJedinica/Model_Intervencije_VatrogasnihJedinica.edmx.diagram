@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b1e22d161ffc4dc1a140eb496377f371" Name="Diagram1" ZoomLevel="82" >
+      <Diagram DiagramId="b1e22d161ffc4dc1a140eb496377f371" Name="Diagram1" ZoomLevel="71" >
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Opstina" Width="1.5" PointX="6.625" PointY="6.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Width="1.5" PointX="9" PointY="10.5" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" />

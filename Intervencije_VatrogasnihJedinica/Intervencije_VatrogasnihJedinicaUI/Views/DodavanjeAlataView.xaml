@@ -1,13 +1,16 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeAlataView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Dodavanje novog alata" Height="287.963" Width="419.905">
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeAlataView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Dodavanje novog alata" Height="346.963" Width="427.905">
     <Window.Resources>
         <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
     </Window.Resources>
     <Grid>
         <Label Content="Dodavanje alata:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="412" Margin="0,10,0,0" />
-        <Label Content="Naziv alata..........:" HorizontalAlignment="Left" Margin="82,94,0,0" VerticalAlignment="Top" Width="109" Height="30" />
-        <TextBox x:Name="NazivAlata" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="191,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="137" />
-        <Label x:Name="PorukaGreskeZaNazivAlata" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="82,124,0,0" VerticalAlignment="Top" Height="29" Width="246" />
-        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Alat, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="28,197,0,0" VerticalAlignment="Top" Width="115" Height="37" />
-        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="265,197,0,0" VerticalAlignment="Top" Width="115" Height="37" IsCancel="True" />
+        <Label Content="Naziv alata..........:" HorizontalAlignment="Left" Margin="68,94,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <TextBox x:Name="NazivAlata" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="177,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" />
+        <Label x:Name="PorukaGreskeZaNazivAlata" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="68,124,0,0" VerticalAlignment="Top" Height="29" Width="285" />
+        <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Alat, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="22,269,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="286,269,0,0" VerticalAlignment="Top" Width="115" Height="37" IsCancel="True" />
+        <Label Content="Tip alata..............:" HorizontalAlignment="Left" Margin="68,158,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <Label x:Name="PorukaGreskeZaTip" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="68,188,0,0" VerticalAlignment="Top" Height="29" Width="285" />
+        <ComboBox x:Name="TipoviAlata" SelectedItem="{Binding Path=TipAlata , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="177,158,0,0" VerticalAlignment="Top" Width="176" Height="30"/>
     </Grid>
 </Window>

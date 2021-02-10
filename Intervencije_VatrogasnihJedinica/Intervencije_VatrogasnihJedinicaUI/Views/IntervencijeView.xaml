@@ -23,5 +23,6 @@
         <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="871,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
         <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="871,121,0,0" VerticalAlignment="Top" Width="180" Height="32" />
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="871,172,0,0" VerticalAlignment="Top" Width="180" Height="32" />
+        <TextBlock x:Name="Poruka" Foreground="Red" HorizontalAlignment="Left" Margin="871,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="180"/>
     </Grid>
 </Window>

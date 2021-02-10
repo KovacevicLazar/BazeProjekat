@@ -9,8 +9,8 @@
         <TextBox x:Name="Ime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
         <TextBox x:Name="Prezime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
         <ComboBox x:Name="Pozicije" VerticalContentAlignment="Center" SelectedItem="{Binding Path=RadnaPozicija , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,217,0,0" VerticalAlignment="Top" Width="121" Height="25" />
-        <Label Content="JMBG..........................:" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="70,167,0,0" VerticalAlignment="Top" Width="130" Height="25" />
-        <TextBox x:Name="Jmbg" HorizontalAlignment="Left" Height="25" Margin="197,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
+        <Label Content="JMBG..........................:" HorizontalAlignment="Left"  Margin="70,167,0,0" VerticalAlignment="Top" Width="130" Height="25" />
+        <TextBox x:Name="Jmbg" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="197,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
         <ComboBox x:Name="VatrogasneJedinice" VerticalContentAlignment="Center" DisplayMemberPath="Naziv" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,319,0,0" VerticalAlignment="Top" Height="25" Width="121" RenderTransformOrigin="0.493,0.48" />
         <Label Content="Vatrogasna Jedinica.:" HorizontalAlignment="Left" Margin="70,320,0,0" VerticalAlignment="Top" Width="129" Height="25" />
         <Label Content="Godine radnog staza:" HorizontalAlignment="Left" Margin="70,268,0,0" VerticalAlignment="Top" Width="129" Height="25" />

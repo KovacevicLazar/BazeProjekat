@@ -125,6 +125,9 @@
     <Compile Include="Tehnicko_Vozilo.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
+    <Compile Include="TipAlataEnum.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
     <Compile Include="TipIntervencijeEnum.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>

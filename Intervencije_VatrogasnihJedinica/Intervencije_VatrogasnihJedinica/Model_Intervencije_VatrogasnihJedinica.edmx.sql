@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/03/2021 21:16:29
+-- Date Created: 02/09/2021 10:31:10
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -201,7 +201,8 @@ GO
 -- Creating table 'Alati'
 CREATE TABLE [dbo].[Alati] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Naziv_Alata] nvarchar(max)  NOT NULL
+    [Naziv_Alata] nvarchar(max)  NOT NULL,
+    [Tip] int  NOT NULL
 );
 GO
 

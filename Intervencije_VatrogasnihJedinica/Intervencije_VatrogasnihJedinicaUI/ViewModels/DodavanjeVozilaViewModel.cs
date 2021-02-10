@@ -12,9 +12,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
-            AlatDAO alatDAO = new AlatDAO();
-            var sviAlati = alatDAO.GetList();
-            Alati = new List<AlatIsSelected>();
+            alatDAO = new AlatDAO();
             TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
@@ -29,34 +27,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (vozilo != null)
             {
                 Vozilo = vozilo;
+                TipVozila = vozilo.Tip;
                 InicijalizacijaVrednosti(vozilo);
-                foreach (var alat in sviAlati)
-                {
-                    if (vozilo.Alati.Any(prod => prod.ID == alat.ID))
-                    {
-                        Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = true });
-                        continue;
-                    }
-                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
-                }
             }
-            else
-            {
-                foreach (var alat in sviAlati)
-                {
-                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
-                }
-            }
+            InicijalizacijaListeAlata();
         }
+        private AlatDAO alatDAO;
         public List<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
         public int Godiste { get; set; }
         public List<int> Godista { get; set; }
-        public TipVozila TipVozila { get; set; }
+        private TipVozila tipVozila { get; set; }
+        public TipVozila TipVozila { get => tipVozila; set { tipVozila = value; InicijalizacijaListeAlata(); NotifyOfPropertyChange(() => Alati); } }
         public IReadOnlyList<TipVozila> TipoviVozila { get; }
-        public double Nosivost { get; set; }
+        public string Nosivost { get; set; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
 
@@ -83,7 +69,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     switch (TipVozila)
                     {
                         case (TipVozila.TEHNICKO):
-                            Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                             vozilo = tehnickoVoziloDAO.Insert(vozilo);
                             foreach (var alat in Alati)
                             {
@@ -94,7 +80,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             break;
                         case (TipVozila.NAVALNO):
-                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                             navalnoVozilo = navalnovoziloDAO.Insert(navalnoVozilo);
                             foreach (var alat in Alati)
                             {
@@ -111,7 +97,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     switch (TipVozila)
                     {
                         case (TipVozila.TEHNICKO):
-                            Tehnicko_Vozilo tehnickoVozilo = new Tehnicko_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Tehnicko_Vozilo tehnickoVozilo = new Tehnicko_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                             tehnickoVoziloDAO.Update(tehnickoVozilo);
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
@@ -123,7 +109,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             break;
                         case (TipVozila.NAVALNO):
-                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = Nosivost, Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse( Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
                             navalnovoziloDAO.Update(navalnoVozilo);
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
@@ -140,6 +126,38 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
+        private void InicijalizacijaListeAlata()
+        {
+            List<Alat> sviAlati =  new List<Alat>();
+            Alati = new List<AlatIsSelected>();
+            if (TipVozila == TipVozila.NAVALNO)
+            {
+                sviAlati = alatDAO.AlatiZaNavalnaVozila();
+            }
+            else if(TipVozila == TipVozila.TEHNICKO)
+            {
+                sviAlati = alatDAO.AlatiZaTehnickaVozila();
+            }
+            if (Vozilo != null)
+            {
+                foreach (var alat in sviAlati)
+                {
+                    if (Vozilo.Alati.Any(prod => prod.ID == alat.ID))
+                    {
+                        Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = true });
+                        continue;
+                    }
+                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
+                }
+            }
+            else
+            {
+                foreach (var alat in sviAlati)
+                {
+                    Alati.Add(new AlatIsSelected { Alat = alat, IsSelected = false });
+                }
+            }
+        }
 
         private void InicijalizacijaVrednosti(Vozilo vozilo)
         {
@@ -149,7 +167,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             NotifyOfPropertyChange(() => TipVozila);
             Godiste = vozilo.Godiste;
             NotifyOfPropertyChange(() => Godiste);
-            Nosivost = vozilo.Nosivost;
+            Nosivost = vozilo.Nosivost.ToString();
             IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == vozilo.Id_VatrogasneJedinice);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
         }
@@ -200,7 +218,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 ispravanUnos = false;
             }
 
-            if (Nosivost < 1000 || Nosivost > 12000)
+            if (!Nosivost.All(c => char.IsDigit(c) || char.IsPunctuation(c)))
+            {
+                PorukaGreskeZaMarku = "Mora sadrzati samo brojeve!";
+                ispravanUnos = false;
+            }
+            else if (double.Parse(Nosivost) < 1000 || double.Parse(Nosivost) > 12000)
             {
                 PorukaGreskeZaNosivost = "Samo u intervalu od 1000kg do 12000kg";
                 ispravanUnos = false;

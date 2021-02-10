@@ -10,7 +10,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="379,71,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="379,124,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="379,177,0,0" VerticalAlignment="Top" Width="180" Height="32" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="379,119,0,0" VerticalAlignment="Top" Width="180" Height="32" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="379,167,0,0" VerticalAlignment="Top" Width="180" Height="32" />
+        <TextBlock x:Name="Poruka" Foreground="Red" HorizontalAlignment="Left" Margin="379,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="180"/>
     </Grid>
 </Window>

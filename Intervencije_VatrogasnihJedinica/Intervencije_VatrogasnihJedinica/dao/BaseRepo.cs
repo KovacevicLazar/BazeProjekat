@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
@@ -18,15 +19,15 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public virtual List<TEntity> GetList()
+        public  virtual List<TEntity> GetList()
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Set<TEntity>().ToList();
+                return  db.Set<TEntity>().ToList();
             }
         }
 
-        public TEntity Insert(TEntity entity)
+        public  TEntity Insert(TEntity entity)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {

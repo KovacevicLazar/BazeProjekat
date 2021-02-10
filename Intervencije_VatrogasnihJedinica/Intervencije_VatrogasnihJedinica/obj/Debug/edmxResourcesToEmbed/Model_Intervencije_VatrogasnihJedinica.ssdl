@@ -6,6 +6,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naziv_Alata" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tip" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AlatVozilo">
     <Key>
@@ -158,7 +159,9 @@
     <Property Name="ID" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_AlatVozilo_Alat">
-    <End Role="Alati" Type="Self.Alati" Multiplicity="1" />
+    <End Role="Alati" Type="Self.Alati" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="AlatVozilo" Type="Self.AlatVozilo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Alati">
@@ -170,7 +173,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_AlatVozilo_Vozilo">
-    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
+    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="AlatVozilo" Type="Self.AlatVozilo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Vozila">
@@ -208,7 +213,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Intervencija_Smena_Intervencija">
-    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
+    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Intervencija_Smena" Type="Self.Intervencija_Smena" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Intervencije">
@@ -232,7 +239,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_IntervencijaUvidjaj">
-    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
+    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Uvidjaji" Type="Self.Uvidjaji" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Intervencije">
@@ -256,9 +265,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Navalno_Vozilo_inherits_Vozilo">
-    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
     <End Role="Vozila_Navalno_Vozilo" Type="Self.Vozila_Navalno_Vozilo" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Vozila">
@@ -294,9 +301,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Pozar_inherits_Intervencija">
-    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
     <End Role="Intervencije_Pozar" Type="Self.Intervencije_Pozar" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Intervencije">
@@ -320,7 +325,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_PozarNavalno_Vozilo_Pozar">
-    <End Role="Intervencije_Pozar" Type="Self.Intervencije_Pozar" Multiplicity="1" />
+    <End Role="Intervencije_Pozar" Type="Self.Intervencije_Pozar" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="PozarNavalno_Vozilo" Type="Self.PozarNavalno_Vozilo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Intervencije_Pozar">
@@ -328,6 +335,20 @@
       </Principal>
       <Dependent Role="PozarNavalno_Vozilo">
         <PropertyRef Name="Pozari_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PozarNavalno_Vozilo_PozarNavalno_Vozilo">
+    <End Role="PozarNavalno_Vozilo" Type="Self.PozarNavalno_Vozilo" Multiplicity="1" />
+    <End Role="PozarNavalno_Vozilo1" Type="Self.PozarNavalno_Vozilo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PozarNavalno_Vozilo">
+        <PropertyRef Name="Pozari_ID" />
+        <PropertyRef Name="Vozila_ID" />
+      </Principal>
+      <Dependent Role="PozarNavalno_Vozilo1">
+        <PropertyRef Name="Pozari_ID" />
+        <PropertyRef Name="Vozila_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -356,9 +377,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tehnicka_Intervencija_inherits_Intervencija">
-    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
     <End Role="Intervencije_Tehnicka_Intervencija" Type="Self.Intervencije_Tehnicka_Intervencija" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Intervencije">
@@ -370,7 +389,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicka_Intervencija">
-    <End Role="Intervencije_Tehnicka_Intervencija" Type="Self.Intervencije_Tehnicka_Intervencija" Multiplicity="1" />
+    <End Role="Intervencije_Tehnicka_Intervencija" Type="Self.Intervencije_Tehnicka_Intervencija" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Tehnicka_IntervencijaTehnicko_Vozilo" Type="Self.Tehnicka_IntervencijaTehnicko_Vozilo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Intervencije_Tehnicka_Intervencija">
@@ -394,9 +415,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Tehnicko_Vozilo_inherits_Vozilo">
-    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
     <End Role="Vozila_Tehnicko_Vozilo" Type="Self.Vozila_Tehnicko_Vozilo" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Vozila">
@@ -550,6 +569,10 @@
     <AssociationSet Name="FK_PozarNavalno_Vozilo_Pozar" Association="Self.FK_PozarNavalno_Vozilo_Pozar">
       <End Role="Intervencije_Pozar" EntitySet="Intervencije_Pozar" />
       <End Role="PozarNavalno_Vozilo" EntitySet="PozarNavalno_Vozilo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PozarNavalno_Vozilo_PozarNavalno_Vozilo" Association="Self.FK_PozarNavalno_Vozilo_PozarNavalno_Vozilo">
+      <End Role="PozarNavalno_Vozilo" EntitySet="PozarNavalno_Vozilo" />
+      <End Role="PozarNavalno_Vozilo1" EntitySet="PozarNavalno_Vozilo" />
     </AssociationSet>
     <AssociationSet Name="FK_RadnikVatrogasnaJedinica" Association="Self.FK_RadnikVatrogasnaJedinica">
       <End Role="Vatrogasne_Jedinice" EntitySet="Vatrogasne_Jedinice" />

@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -11,6 +13,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveIntervencije = IntervencijaDAO.GetList();
         }
+        private string poruka;
+        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         private IntervencijaDAO IntervencijaDAO = new IntervencijaDAO();
         IWindowManager manager = new WindowManager();
         public List<Intervencija> sveIntervencije = new List<Intervencija>();
@@ -24,22 +28,44 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
         public void Obrisi()
         {
+            Poruka = "";
             if (OznacenaIntervencija != null)
             {
-                IntervencijaDAO.Delete(OznacenaIntervencija.ID);
+                try
+                {
+                    IntervencijaDAO.Delete(OznacenaIntervencija.ID);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null)
+                    {
+                        if (ex.InnerException.InnerException != null)
+                        {
+                            Poruka = ex.InnerException.InnerException.Message;
+                        }
+                    }
+                }
+                
                 SveIntervencije = IntervencijaDAO.GetList();
                 OznacenaIntervencija = null;
             }
             else
             {
+                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
             }
         }
         public void Izmeni()
         {
+            Poruka = "";
             if (OznacenaIntervencija != null)
             {
                 manager.ShowDialog(new DodavanjeIntervencijeViewModel(OznacenaIntervencija), null, null);
                 SveIntervencije = IntervencijaDAO.GetList();
+                OznacenaIntervencija = null;
+            }
+            else
+            {
+                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
             }
         }
         public void DodajInformacijeOUvidjaju( object Intervencija )

@@ -81,12 +81,6 @@
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="PostaviTehnickoVoziloNaTehnickuIntervenciju">
-      <Parameter Name="voziloID" Mode="In" Type="Int32" />
-      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
-      <Parameter Name="success" Mode="InOut" Type="Boolean" />
-      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="UkloniAlateIzVozila">
       <Parameter Name="voziloID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
@@ -103,6 +97,12 @@
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UkloniTehnickaVozilaSaIntervencije">
+      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
+      <Parameter Name="success" Mode="InOut" Type="Boolean" />
+      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PostaviTehnickoVoziloNaTehnickuIntervenciju">
+      <Parameter Name="voziloID" Mode="In" Type="Int32" />
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
@@ -212,6 +212,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Naziv_Alata" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
+    <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipAlataEnum" Nullable="false" />
   </EntityType>
   <EntityType Name="Smena">
     <Key>
@@ -379,4 +380,9 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Alat" Role="Alat" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="*" />
   </Association>
+  <EnumType Name="TipAlataEnum">
+    <Member Name="TehnickiAlat" Value="0" />
+    <Member Name="ProtivPozarniAlat" Value="1" />
+    <Member Name="AlatOpsteNamene" Value="2" />
+  </EnumType>
 </Schema>

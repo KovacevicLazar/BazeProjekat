@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
@@ -77,7 +78,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
             if (string.IsNullOrEmpty(TextZapisnika))
             {
-                PorukaGreskeZaTekst = "Unesite adresu!";
+                PorukaGreskeZaTekst = "Unesite tekst zapisnika!";
                 ispravanUnos = false;
             }
             //else if (!TextZapisnika.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
