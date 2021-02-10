@@ -4,6 +4,7 @@ using Intervencije_VatrogasnihJedinica.dao;
 using Intervencije_VatrogasnihJedinicaUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
@@ -33,7 +34,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             InicijalizacijaListeAlata();
         }
         private AlatDAO alatDAO;
-        public List<AlatIsSelected> Alati { get; set; }
+        public ObservableCollection<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
@@ -129,7 +130,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private void InicijalizacijaListeAlata()
         {
             List<Alat> sviAlati =  new List<Alat>();
-            Alati = new List<AlatIsSelected>();
+            Alati = new ObservableCollection<AlatIsSelected>();
             if (TipVozila == TipVozila.NAVALNO)
             {
                 sviAlati = alatDAO.AlatiZaNavalnaVozila();

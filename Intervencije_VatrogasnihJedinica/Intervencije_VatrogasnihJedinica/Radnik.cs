@@ -21,7 +21,7 @@ namespace Intervencije_VatrogasnihJedinica
         public RadnoMesto Radno_Mesto { get; set; }
         public int Godine_Rada { get; set; }
         public int VatrogasnaJedinicaID { get; set; }
-        public int SmenaID { get; set; }
+        public Nullable<int> SmenaID { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public virtual Smena Smena { get; set; }

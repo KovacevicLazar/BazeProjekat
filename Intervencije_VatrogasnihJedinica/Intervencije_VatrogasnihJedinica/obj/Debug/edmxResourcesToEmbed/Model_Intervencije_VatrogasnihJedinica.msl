@@ -92,9 +92,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Smena)">
         <MappingFragment StoreEntitySet="Smene">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Broj_Radnika" ColumnName="Broj_Radnika" />
-          <ScalarProperty Name="Broj_Smene" ColumnName="Broj_Smene" />
+          <ScalarProperty Name="NazivSmene" ColumnName="NazivSmene" />
           <ScalarProperty Name="VatrogasnaJedinicaID" ColumnName="VatrogasnaJedinicaID" />
+          <ScalarProperty Name="DatumPrvogDezurstva" ColumnName="DatumPrvogDezurstva" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,13 +164,5 @@
         <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="DodajSmenuNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodajSmenuNaIntervenciju" />
-    <FunctionImportMapping FunctionImportName="DodeliAlatVozilu" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodeliAlatVozilu" />
-    <FunctionImportMapping FunctionImportName="PostaviNavalnoVoziloNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviNavalnoVoziloNaIntervenciju" />
-    <FunctionImportMapping FunctionImportName="UkloniAlateIzVozila" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniAlateIzVozila" />
-    <FunctionImportMapping FunctionImportName="UkloniNavalnaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniNavalnaVozilaSaIntervencije" />
-    <FunctionImportMapping FunctionImportName="UkloniSmeneSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniSmeneSaIntervencije" />
-    <FunctionImportMapping FunctionImportName="UkloniTehnickaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniTehnickaVozilaSaIntervencije" />
-    <FunctionImportMapping FunctionImportName="PostaviTehnickoVoziloNaTehnickuIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviTehnickoVoziloNaTehnickuIntervenciju" />
   </EntityContainerMapping>
 </Mapping>

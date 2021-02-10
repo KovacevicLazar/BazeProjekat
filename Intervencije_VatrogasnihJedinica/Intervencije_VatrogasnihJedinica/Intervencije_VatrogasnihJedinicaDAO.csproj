@@ -113,9 +113,6 @@
     <Compile Include="RadnoMesto.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
-    <Compile Include="RadnoMestoEnum.cs">
-      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
-    </Compile>
     <Compile Include="Smena.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>

@@ -14,13 +14,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (smena != null)
             {
                 Smena = smena;
-                BrojSmene = smena.Broj_Smene;
+                NazivSmene = smena.NazivSmene;
                 IzabranaVatrogasnaJedinica =VatrogasneJedinice.Find(x => x.ID == smena.VatrogasnaJedinicaID);
                 NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
             }
         }
         public Smena Smena { get; set; }
-        public int BrojSmene { get; set; }
+        public string NazivSmene { get; set; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
 
@@ -36,12 +36,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 SmenaDAO smenaDAO = new SmenaDAO();
                 if (Smena == null)
                 {
-                    Smena = new Smena { Broj_Smene = BrojSmene , VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
+                    Smena = new Smena { NazivSmene = NazivSmene, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
                     smenaDAO.Insert(Smena);
                 }
                 else
                 {
-                    Smena = new Smena { ID= Smena.ID, Broj_Smene = BrojSmene, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
+                    Smena = new Smena { ID= Smena.ID, NazivSmene = NazivSmene, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
                     smenaDAO.Update(Smena);
                 }
                 TryClose();
@@ -55,12 +55,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (IzabranaVatrogasnaJedinica == null)
             {
                 PorukaGreskeZaVSJ = "Izaberite Vatrogasnu jedincu!";
-                ispravanUnos = false;
-            }
-
-            if (BrojSmene < 1 || BrojSmene > 4)
-            {
-                PorukaGreskeZaNazivSmene = "Samo u intervalu od 1 do 4!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

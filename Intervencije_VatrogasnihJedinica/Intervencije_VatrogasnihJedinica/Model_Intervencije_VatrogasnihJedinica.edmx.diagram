@@ -51,10 +51,8 @@
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" ManuallyRouted="true" >
           <ConnectorPoint PointX="10.5" PointY="12.751892903645834" />
-          <ConnectorPoint PointX="16.894560372282193" PointY="12.751892903645834" />
-          <ConnectorPoint PointX="16.894560372282193" PointY="6.2951005045572916" />
-          <ConnectorPoint PointX="16.542901118560849" PointY="6.2951005045572916" />
-          <ConnectorPoint PointX="16.542901118560849" PointY="3.114889322916667" />
+          <ConnectorPoint PointX="16.28776462023297" PointY="12.751892903645834" />
+          <ConnectorPoint PointX="16.28776462023297" PointY="3.114889322916667" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Width="1.5" PointX="2.5" PointY="9.125" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" />

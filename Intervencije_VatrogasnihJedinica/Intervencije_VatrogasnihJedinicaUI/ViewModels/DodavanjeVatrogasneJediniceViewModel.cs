@@ -44,6 +44,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     VatrogasnaJedinica = new VatrogasnaJedinica { Naziv = Naziv, Adresa = Adresa, Id_Opstine= IzabranaOpstina.ID};
                     vatrogasnaJedinicaDAO.Insert(VatrogasnaJedinica);
+                    SmenaDAO smenaDAO = new SmenaDAO();
+                    Smena Smena;
+                    List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
+                    for (int i = 1; i < 5; i++)
+                    {
+                        Smena = new Smena { NazivSmene = naziviSmena[i-1], VatrogasnaJedinicaID = VatrogasnaJedinica.ID, DatumPrvogDezurstva= new System.DateTime(2009,1,i,8,0,0)};
+                        smenaDAO.Insert(Smena);
+                    }
                 }
                 else
                 {

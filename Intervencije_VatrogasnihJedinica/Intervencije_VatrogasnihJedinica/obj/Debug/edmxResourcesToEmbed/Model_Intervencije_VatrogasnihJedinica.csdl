@@ -219,12 +219,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Broj_Radnika" Type="Int32" Nullable="false" DefaultValue="0" />
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
-    <Property Name="Broj_Smene" Type="Int32" Nullable="false" />
+    <Property Name="NazivSmene" Type="String" Nullable="false" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="Smena" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
+    <Property Name="DatumPrvogDezurstva" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
@@ -268,12 +268,8 @@
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
-    <Property Name="SmenaID" Type="Int32" Nullable="false" />
+    <Property Name="SmenaID" Type="Int32" />
   </EntityType>
-  <EnumType Name="RadnoMestoEnum">
-    <Member Name="VATROGASAC" Value="0" />
-    <Member Name="VOZAC" Value="1" />
-  </EnumType>
   <Association Name="RadnikVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="1" />
@@ -287,7 +283,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SmenaRadnik">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="0..1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Smena">
@@ -381,8 +377,8 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="*" />
   </Association>
   <EnumType Name="TipAlataEnum">
-    <Member Name="TehnickiAlat" Value="0" />
-    <Member Name="ProtivPozarniAlat" Value="1" />
-    <Member Name="AlatOpsteNamene" Value="2" />
+    <Member Name="Tehnicki_Alat" Value="0" />
+    <Member Name="Protivpozarni_Alat" Value="1" />
+    <Member Name="Alat_Opste_Namene" Value="2" />
   </EnumType>
 </Schema>

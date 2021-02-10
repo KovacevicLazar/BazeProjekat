@@ -81,11 +81,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTekst = "Unesite tekst zapisnika!";
                 ispravanUnos = false;
             }
-            //else if (!TextZapisnika.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
-            //{
-            //    PorukaGreskeZaTekst = "Tekst sme sadrzati samo slova i brojeve!";
-            //    ispravanUnos = false;
-            //}
+            
             else if (TextZapisnika.Trim().Length < 30)
             {
                 PorukaGreskeZaTekst = " mora sadrzati najmanje 30 slova!";
@@ -105,9 +101,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaVreme = "Neispravan datum i vreme!";
                 ispravanUnos = false;
             }
-            else if (Datum.Year < DateTime.Now.Year - 5)
+            else if (Datum < Intervencija.Datum_I_Vreme)
             {
-                PorukaGreskeZaDatum = "Nije moguce uneti podatke starije od 5 godina!";
+                PorukaGreskeZaDatum = "Uvidjaj je moguce vrsiti samo nakon intervencije!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

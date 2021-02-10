@@ -17,15 +17,14 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Smena()
         {
-            this.Broj_Radnika = 0;
             this.Intervencije = new HashSet<Intervencija>();
             this.Radnici = new HashSet<Radnik>();
         }
     
         public int ID { get; set; }
-        public int Broj_Radnika { get; set; }
-        public int Broj_Smene { get; set; }
+        public string NazivSmene { get; set; }
         public int VatrogasnaJedinicaID { get; set; }
+        public System.DateTime DatumPrvogDezurstva { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Intervencija> Intervencije { get; set; }

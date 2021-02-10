@@ -13,8 +13,8 @@ namespace Intervencije_VatrogasnihJedinica
     
     public enum TipAlataEnum : int
     {
-        TehnickiAlat = 0,
-        ProtivPozarniAlat = 1,
-        AlatOpsteNamene = 2
+        Tehnicki_Alat = 0,
+        Protivpozarni_Alat = 1,
+        Alat_Opste_Namene = 2
     }
 }
