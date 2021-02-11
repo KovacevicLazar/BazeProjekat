@@ -1,0 +1,45 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.InformacijeOSmenamaVatrogasneJediniceView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
+        mc:Ignorable="d"
+        Title="InformacijeOSmenamaVatrogasneJediniceView" Height="640.909" Width="1200.413">
+    <Grid>
+        <Label Content="Raspored radnika po smenama unutar vatrogasne jedinice:" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1192" Height="54" Margin="0,10,0,0" />
+        <ListBox x:Name="SmenaARadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="49,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="SmenaBRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="331,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="SmenaCRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="618,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox x:Name="SmenaDRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="903,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Label x:Name="VatrogasnaJedinica_Naziv" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1192" Height="54" Margin="0,48,0,0" />
+        <Label Content="Smena A" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="49,125,0,0" VerticalAlignment="Top" Width="239"/>
+        <Label Content="Smena B" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="331,125,0,0" VerticalAlignment="Top" Width="239"/>
+        <Label Content="Smena C" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="618,125,0,0" VerticalAlignment="Top" Width="239"/>
+        <Label Content="Smena D" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="903,125,0,0" VerticalAlignment="Top" Width="239"/>
+    </Grid>
+</Window>

@@ -3,7 +3,7 @@
         <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
     </Window.Resources>
     <Grid>
-        <Label Content="Dodavanje novog Komandira:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="389" Margin="0,10,0,0" />
+        <Label Content="Informacije o komandiru:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="389" Margin="0,10,0,0" />
         <Label Content="Ime............................:" HorizontalAlignment="Left" Margin="76,57,0,0" VerticalAlignment="Top" Width="130" />
         <Label Content="Prezime....................:" HorizontalAlignment="Left" Margin="76,106,0,0" VerticalAlignment="Top" Width="130" />
         <TextBox x:Name="Ime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="200,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />

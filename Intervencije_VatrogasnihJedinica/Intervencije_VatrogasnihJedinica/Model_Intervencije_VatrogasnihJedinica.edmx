@@ -190,7 +190,7 @@
     <Property Name="Radno_Mesto" Type="int" Nullable="false" />
     <Property Name="Godine_Rada" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
-    <Property Name="SmenaID" Type="int" Nullable="true" />
+    <Property Name="SmenaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Uvidjaji">
     <Key>
@@ -321,7 +321,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SmenaRadnik">
-    <End Role="Smena" Type="Model_Intervencije_VatrogasnihJedinica.Store.Smene" Multiplicity="0..1" />
+    <End Role="Smena" Type="Model_Intervencije_VatrogasnihJedinica.Store.Smene" Multiplicity="1" />
     <End Role="Radnik" Type="Model_Intervencije_VatrogasnihJedinica.Store.Radnici" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Smena">
@@ -821,7 +821,7 @@
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
           <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
-          <Property Name="SmenaID" Type="Int32" />
+          <Property Name="SmenaID" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="RadnikVatrogasnaJedinica">
           <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
@@ -836,7 +836,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SmenaRadnik">
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="0..1" />
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
           <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Smena">

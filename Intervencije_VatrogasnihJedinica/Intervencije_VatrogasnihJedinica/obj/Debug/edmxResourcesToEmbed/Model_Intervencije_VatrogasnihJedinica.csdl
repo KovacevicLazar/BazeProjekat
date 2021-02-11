@@ -268,7 +268,7 @@
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
-    <Property Name="SmenaID" Type="Int32" />
+    <Property Name="SmenaID" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="RadnikVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
@@ -283,7 +283,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SmenaRadnik">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="0..1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Smena">

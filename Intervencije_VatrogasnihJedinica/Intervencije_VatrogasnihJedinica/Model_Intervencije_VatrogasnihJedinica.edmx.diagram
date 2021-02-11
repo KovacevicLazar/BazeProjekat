@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="b1e22d161ffc4dc1a140eb496377f371" Name="Diagram1" ZoomLevel="71" >
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Opstina" Width="1.5" PointX="6.625" PointY="6.125" />
-        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Width="1.5" PointX="9" PointY="10.5" />
+        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Width="1.5" PointX="9" PointY="10.875" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Vozilo" Width="1.5" PointX="9.25" PointY="5.25" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" />
@@ -49,15 +49,12 @@
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Radnik" Width="1.5" PointX="13.625" PointY="9.25" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" />
-        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" ManuallyRouted="true" >
-          <ConnectorPoint PointX="10.5" PointY="12.751892903645834" />
-          <ConnectorPoint PointX="16.28776462023297" PointY="12.751892903645834" />
-          <ConnectorPoint PointX="16.28776462023297" PointY="3.114889322916667" />
+        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Uvidjaj" Width="1.5" PointX="2.5" PointY="9.125" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" />
-        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Komandir" Width="1.5" PointX="9" PointY="13.875" />
+        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Komandir" Width="1.5" PointX="9" PointY="14.625" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" />
       </Diagram>

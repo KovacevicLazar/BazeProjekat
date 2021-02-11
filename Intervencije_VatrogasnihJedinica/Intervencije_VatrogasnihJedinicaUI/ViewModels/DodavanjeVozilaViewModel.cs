@@ -18,6 +18,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
             Godista = new List<int>();
+            Godiste = DateTime.Now.Year;
             var godina = DateTime.Now.Year;
             for (int i = 40; i > 0; i--)
             {
@@ -219,9 +220,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 ispravanUnos = false;
             }
 
-            if (!Nosivost.All(c => char.IsDigit(c) || char.IsPunctuation(c)))
+            if (string.IsNullOrEmpty(Nosivost))
             {
-                PorukaGreskeZaMarku = "Mora sadrzati samo brojeve!";
+                PorukaGreskeZaNosivost = "Unesite podatak o nosivosti vozila!";
+                ispravanUnos = false;
+            }
+            else if (!Nosivost.All(c => char.IsDigit(c) || char.IsPunctuation(c)))
+            {
+                PorukaGreskeZaNosivost = "Mora sadrzati samo brojeve!";
                 ispravanUnos = false;
             }
             else if (double.Parse(Nosivost) < 1000 || double.Parse(Nosivost) > 12000)

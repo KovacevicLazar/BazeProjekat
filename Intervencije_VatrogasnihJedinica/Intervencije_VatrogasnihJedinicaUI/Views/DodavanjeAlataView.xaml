@@ -3,7 +3,7 @@
         <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
     </Window.Resources>
     <Grid>
-        <Label Content="Dodavanje alata:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="412" Margin="0,10,0,0" />
+        <Label Content="Informacije o alatu:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="420" Margin="0,10,0,0" />
         <Label Content="Naziv alata..........:" HorizontalAlignment="Left" Margin="68,94,0,0" VerticalAlignment="Top" Width="109" Height="30" />
         <TextBox x:Name="NazivAlata" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="177,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" />
         <Label x:Name="PorukaGreskeZaNazivAlata" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="68,124,0,0" VerticalAlignment="Top" Height="29" Width="285" />

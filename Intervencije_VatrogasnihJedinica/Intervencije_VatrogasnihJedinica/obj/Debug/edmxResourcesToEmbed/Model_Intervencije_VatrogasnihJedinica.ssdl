@@ -185,7 +185,7 @@
     <Property Name="Radno_Mesto" Type="int" Nullable="false" />
     <Property Name="Godine_Rada" Type="int" Nullable="false" />
     <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
-    <Property Name="SmenaID" Type="int" Nullable="true" />
+    <Property Name="SmenaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Uvidjaji">
     <Key>
@@ -316,7 +316,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SmenaRadnik">
-    <End Role="Smena" Type="Model_Intervencije_VatrogasnihJedinica.Store.Smene" Multiplicity="0..1" />
+    <End Role="Smena" Type="Model_Intervencije_VatrogasnihJedinica.Store.Smene" Multiplicity="1" />
     <End Role="Radnik" Type="Model_Intervencije_VatrogasnihJedinica.Store.Radnici" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Smena">

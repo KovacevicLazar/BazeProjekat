@@ -44,5 +44,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.Id_VatrogasneJedinice == idVatrogasneJedinice).ToList();
             }
         }
+
+        public List<Vozilo> ListaVozilaZaIzabranuOpstinu(int idOpstine)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.VatrogasnaJedinica.Opstina.ID == idOpstine).ToList();
+            }
+        }
     }
 }

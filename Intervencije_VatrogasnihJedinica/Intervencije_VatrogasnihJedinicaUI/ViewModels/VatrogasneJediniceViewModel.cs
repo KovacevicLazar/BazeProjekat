@@ -42,13 +42,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    if (ex.InnerException != null)
-                    {
-                        if (ex.InnerException.InnerException != null)
-                        {
-                            Poruka = ex.InnerException.InnerException.Message;
-                        }
-                    }
+                    Poruka = ex.InnerException?.InnerException?.Message;
                 }
                 GetListAsync();
                 OznacenaJedinica = null;

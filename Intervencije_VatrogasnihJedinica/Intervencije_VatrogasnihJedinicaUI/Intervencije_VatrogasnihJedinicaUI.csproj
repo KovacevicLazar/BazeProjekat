@@ -161,6 +161,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\InformacijeOSmenamaVatrogasneJediniceView.xaml.cs">
+      <DependentUpon>InformacijeOSmenamaVatrogasneJediniceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InspektoriView.xaml.cs">
       <DependentUpon>InspektoriView.xaml</DependentUpon>
     </Compile>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GlavniView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InformacijeOSmenamaVatrogasneJediniceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
