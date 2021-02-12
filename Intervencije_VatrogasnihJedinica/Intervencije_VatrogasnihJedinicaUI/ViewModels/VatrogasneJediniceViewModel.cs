@@ -66,6 +66,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati vatrogasnu jedinicu iz liste!";
             }
         }
+        public void InformacijeOSmenama(object vatrogasnaJedinica)
+        {
+            manager.ShowDialog(new InformacijeOSmenamaVatrogasneJediniceViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
+        }
         public void DodajKomandira(object vatrogasnaJedinica)
         {
             manager.ShowDialog(new DodavanjeKomandiraViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);

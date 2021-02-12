@@ -75,7 +75,16 @@
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="ListaDezurnihSmenaNaDatum" EntitySet="Smene" ReturnType="Collection(Model_Intervencije_VatrogasnihJedinica.Smena)">
+      <Parameter Name="datum" Mode="In" Type="DateTime" />
+    </FunctionImport>
     <FunctionImport Name="PostaviNavalnoVoziloNaIntervenciju">
+      <Parameter Name="voziloID" Mode="In" Type="Int32" />
+      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
+      <Parameter Name="success" Mode="InOut" Type="Boolean" />
+      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PostaviTehnickoVoziloNaTehnickuIntervenciju">
       <Parameter Name="voziloID" Mode="In" Type="Int32" />
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
@@ -97,12 +106,6 @@
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
     <FunctionImport Name="UkloniTehnickaVozilaSaIntervencije">
-      <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
-      <Parameter Name="success" Mode="InOut" Type="Boolean" />
-      <Parameter Name="outputMessage" Mode="InOut" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="PostaviTehnickoVoziloNaTehnickuIntervenciju">
-      <Parameter Name="voziloID" Mode="In" Type="Int32" />
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
@@ -220,11 +223,11 @@
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
-    <Property Name="NazivSmene" Type="String" Nullable="false" />
+    <Property Name="NazivSmene" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="Smena" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
-    <Property Name="DatumPrvogDezurstva" Type="DateTime" Nullable="false" />
+    <Property Name="DatumPrvogDezurstva" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
@@ -381,4 +384,10 @@
     <Member Name="Protivpozarni_Alat" Value="1" />
     <Member Name="Alat_Opste_Namene" Value="2" />
   </EnumType>
+  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NazivSmene" Nullable="false" />
+    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
+  </ComplexType>
 </Schema>

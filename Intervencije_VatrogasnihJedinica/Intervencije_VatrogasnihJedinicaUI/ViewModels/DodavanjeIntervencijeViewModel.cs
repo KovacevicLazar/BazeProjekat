@@ -78,10 +78,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaOpstinu = "";
         private string porukaGreskeZaDatum = "";
         private string porukaGreskeZaVreme = "";
+        private string porukaGreskeZaSmeneIVozila = "";
         public string PorukaGreskeZaVreme { get => porukaGreskeZaVreme; set { porukaGreskeZaVreme = value; NotifyOfPropertyChange(() => PorukaGreskeZaVreme); } }
         public string PorukaGreskeZaDatum { get => porukaGreskeZaDatum; set { porukaGreskeZaDatum = value; NotifyOfPropertyChange(() => PorukaGreskeZaDatum); } }
         public string PorukaGreskeZaOpstinu { get => porukaGreskeZaOpstinu; set { porukaGreskeZaOpstinu = value; NotifyOfPropertyChange(() => PorukaGreskeZaOpstinu); } }
         public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu); } }
+        public string PorukaGreskeZaSmeneIVozila { get => porukaGreskeZaSmeneIVozila; set { porukaGreskeZaSmeneIVozila = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmeneIVozila); } }
 
         private ObservableCollection<SmenaIsSelected> smene;
         private ObservableCollection<VoziloIsSelected> vozila;
@@ -257,6 +259,45 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
             }
         }
+        private bool ValidacijaSmeneIVozila()
+        {
+            porukaGreskeZaSmeneIVozila = "";
+            Dictionary<int,VatrogasnaJedinica> vatrogasneJediniceSelektovanihSmena = new Dictionary<int, VatrogasnaJedinica>();
+            Dictionary<int, VatrogasnaJedinica> vatrogasneJediniceSelektovanihVozila = new Dictionary<int, VatrogasnaJedinica>();
+            foreach (var smena in Smene)
+            {
+                if (smena.IsSelected)
+                    vatrogasneJediniceSelektovanihSmena[smena.Smena.VatrogasnaJedinicaID]= smena.Smena.VatrogasnaJedinica;
+            }
+            foreach (var vozilo in Vozila)
+            {
+                if (vozilo.IsSelected)
+                    vatrogasneJediniceSelektovanihVozila[vozilo.Vozilo.VatrogasnaJedinica.ID] = vozilo.Vozilo.VatrogasnaJedinica;
+            }
+
+            if (vatrogasneJediniceSelektovanihSmena.Count()==0 || vatrogasneJediniceSelektovanihVozila.Count()==0)
+            {
+                PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jednu smenu, i bar jedno vozilo iz iste vatrogasne jedinice!";
+                return false;
+            }
+
+            if (vatrogasneJediniceSelektovanihSmena.Count() != vatrogasneJediniceSelektovanihVozila.Count())
+            {
+                PorukaGreskeZaSmeneIVozila = "Za svaku izabranu smenu morate selektovati i bar jedno vozilo iz iste vatrogasne jedinice!";
+                return false;
+            }
+                
+            foreach (var IdVatrogasneJedinice in vatrogasneJediniceSelektovanihVozila.Keys)
+            {
+                if (!vatrogasneJediniceSelektovanihSmena.ContainsKey(IdVatrogasneJedinice))
+                {
+                    PorukaGreskeZaSmeneIVozila = "Za svaku izabranu smenu morate selektovati i bar jedno vozilo iz iste vatrogasne jedinice!";
+                    return false;
+                }
+            }
+
+            return true;
+        }
         private bool ValidacijaZaDatumIVreme()
         {
             PorukaGreskeZaDatum = "";
@@ -283,7 +324,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaVreme = "";
             bool ispravanUnos = true;
 
-            ispravanUnos = ValidacijaZaDatumIVreme();
+            ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila();
 
             if (string.IsNullOrEmpty(Adresa))
             {

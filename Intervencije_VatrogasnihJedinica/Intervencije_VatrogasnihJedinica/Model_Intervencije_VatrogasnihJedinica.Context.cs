@@ -64,6 +64,24 @@ namespace Intervencije_VatrogasnihJedinica
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DodeliAlatVozilu", alatIDParameter, voziloIDParameter, success, outputMessage);
         }
     
+        public virtual ObjectResult<Smena> ListaDezurnihSmenaNaDatum(Nullable<System.DateTime> datum)
+        {
+            var datumParameter = datum.HasValue ?
+                new ObjectParameter("datum", datum) :
+                new ObjectParameter("datum", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Smena>("ListaDezurnihSmenaNaDatum", datumParameter);
+        }
+    
+        public virtual ObjectResult<Smena> ListaDezurnihSmenaNaDatum(Nullable<System.DateTime> datum, MergeOption mergeOption)
+        {
+            var datumParameter = datum.HasValue ?
+                new ObjectParameter("datum", datum) :
+                new ObjectParameter("datum", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Smena>("ListaDezurnihSmenaNaDatum", mergeOption, datumParameter);
+        }
+    
         public virtual int PostaviNavalnoVoziloNaIntervenciju(Nullable<int> voziloID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
         {
             var voziloIDParameter = voziloID.HasValue ?
@@ -75,6 +93,19 @@ namespace Intervencije_VatrogasnihJedinica
                 new ObjectParameter("intervencijaID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviNavalnoVoziloNaIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
+        }
+    
+        public virtual int PostaviTehnickoVoziloNaTehnickuIntervenciju(Nullable<int> voziloID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
+        {
+            var voziloIDParameter = voziloID.HasValue ?
+                new ObjectParameter("voziloID", voziloID) :
+                new ObjectParameter("voziloID", typeof(int));
+    
+            var intervencijaIDParameter = intervencijaID.HasValue ?
+                new ObjectParameter("intervencijaID", intervencijaID) :
+                new ObjectParameter("intervencijaID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviTehnickoVoziloNaTehnickuIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
         }
     
         public virtual int UkloniAlateIzVozila(Nullable<int> voziloID, ObjectParameter success, ObjectParameter outputMessage)
@@ -111,19 +142,6 @@ namespace Intervencije_VatrogasnihJedinica
                 new ObjectParameter("intervencijaID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UkloniTehnickaVozilaSaIntervencije", intervencijaIDParameter, success, outputMessage);
-        }
-    
-        public virtual int PostaviTehnickoVoziloNaTehnickuIntervenciju(Nullable<int> voziloID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
-        {
-            var voziloIDParameter = voziloID.HasValue ?
-                new ObjectParameter("voziloID", voziloID) :
-                new ObjectParameter("voziloID", typeof(int));
-    
-            var intervencijaIDParameter = intervencijaID.HasValue ?
-                new ObjectParameter("intervencijaID", intervencijaID) :
-                new ObjectParameter("intervencijaID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PostaviTehnickoVoziloNaTehnickuIntervenciju", voziloIDParameter, intervencijaIDParameter, success, outputMessage);
         }
     }
 }

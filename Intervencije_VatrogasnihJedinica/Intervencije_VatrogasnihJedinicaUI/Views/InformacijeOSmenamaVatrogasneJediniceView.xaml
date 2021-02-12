@@ -3,43 +3,82 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
         mc:Ignorable="d"
         Title="InformacijeOSmenamaVatrogasneJediniceView" Height="640.909" Width="1200.413">
+    <Window.Resources>
+        <Style  TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#19f39611"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#19000000"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Label Content="Raspored radnika po smenama unutar vatrogasne jedinice:" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1192" Height="54" Margin="0,10,0,0" />
-        <ListBox x:Name="SmenaARadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="49,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+        <ListBox x:Name="SmenaA_Radnici" ItemsSource="{Binding SmenaA.Radnici, Mode=TwoWay}" AlternationCount="2" HorizontalContentAlignment="Center"  Margin="49,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                    <TextBlock FontWeight="Bold" FontSize="14">
+                        <TextBlock.Text  >
+                            <MultiBinding StringFormat=" {0} {1} ID:{2}">
+                                <Binding Path="Ime" />
+                                <Binding Path="Prezime" />
+                                <Binding Path="ID" />
+                            </MultiBinding>
+                        </TextBlock.Text></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="SmenaBRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="331,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+        <ListBox x:Name="SmenaB_Radnici" ItemsSource="{Binding SmenaB.Radnici, Mode=TwoWay}"  HorizontalContentAlignment="Center" Margin="331,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                    <TextBlock FontWeight="Bold" FontSize="14">
+                        <TextBlock.Text  >
+                            <MultiBinding StringFormat=" {0} {1} ID: {2}">
+                                <Binding Path="Ime" />
+                                <Binding Path="Prezime" />
+                                <Binding Path="ID" />
+                            </MultiBinding>
+                        </TextBlock.Text></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="SmenaCRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="618,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+        <ListBox x:Name="SmenaC_Radnici" ItemsSource="{Binding SmenaC.Radnici, Mode=TwoWay}" HorizontalContentAlignment="Center" Margin="618,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                    <TextBlock FontWeight="Bold" FontSize="14">
+                        <TextBlock.Text  >
+                            <MultiBinding StringFormat=" {0} {1} ID: {2}">
+                                <Binding Path="Ime" />
+                                <Binding Path="Prezime" />
+                                <Binding Path="ID" />
+                            </MultiBinding>
+                        </TextBlock.Text></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="SmenaDRadnci" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="903,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
+        <ListBox x:Name="SmenaD_Radnici" ItemsSource="{Binding SmenaD.Radnici, Mode=TwoWay}" HorizontalContentAlignment="Center"  Margin="903,152,0,0" HorizontalAlignment="Left" Width="239" Height="398" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                    <TextBlock FontWeight="Bold" FontSize="14">
+                        <TextBlock.Text  >
+                            <MultiBinding StringFormat=" {0} {1} ID: {2}">
+                                <Binding Path="Ime" />
+                                <Binding Path="Prezime" />
+                                <Binding Path="ID" />
+                            </MultiBinding>
+                        </TextBlock.Text></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <Label x:Name="VatrogasnaJedinica_Naziv" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1192" Height="54" Margin="0,48,0,0" />
-        <Label Content="Smena A" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="49,125,0,0" VerticalAlignment="Top" Width="239"/>
-        <Label Content="Smena B" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="331,125,0,0" VerticalAlignment="Top" Width="239"/>
-        <Label Content="Smena C" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="618,125,0,0" VerticalAlignment="Top" Width="239"/>
-        <Label Content="Smena D" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="903,125,0,0" VerticalAlignment="Top" Width="239"/>
+        <Label Content="{Binding SmenaA.NazivSmene}" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="49,107,0,0" VerticalAlignment="Top" Width="239" Height="45"/>
+        <Label Content="{Binding SmenaB.NazivSmene}" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="331,107,0,0" VerticalAlignment="Top" Width="239" Height="45"/>
+        <Label Content="{Binding SmenaC.NazivSmene}" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="618,107,0,0" VerticalAlignment="Top" Width="239" Height="45"/>
+        <Label Content="{Binding SmenaD.NazivSmene}" FontWeight="Bold" FontSize="18" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="903,107,0,0" VerticalAlignment="Top" Width="239" Height="45"/>
     </Grid>
 </Window>

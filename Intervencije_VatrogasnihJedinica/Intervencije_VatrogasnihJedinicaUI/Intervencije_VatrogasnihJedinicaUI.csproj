@@ -113,6 +113,7 @@
     <Compile Include="ViewModels\DodavanjeVatrogasneJediniceViewModel.cs" />
     <Compile Include="ViewModels\DodavanjeVozilaViewModel.cs" />
     <Compile Include="ViewModels\GlavniViewModel.cs" />
+    <Compile Include="ViewModels\InformacijeOSmenamaVatrogasneJediniceViewModel.cs" />
     <Compile Include="ViewModels\InspektoriViewModel.cs" />
     <Compile Include="ViewModels\IntervencijeViewModel.cs" />
     <Compile Include="ViewModels\KomandiriViewModel.cs" />
