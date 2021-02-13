@@ -9,23 +9,26 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class RadniciViewModel : PropertyChangedBase
     {
+        private RadnikDAO radnikDAO = new RadnikDAO();
+        public List<Radnik> sviRadnici = new List<Radnik>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public RadniciViewModel()
         {
             SviRadnici = radnikDAO.GetList();
         }
-        private string poruka;
+        
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        public List<Radnik> sviRadnici = new List<Radnik>();
         public List<Radnik> SviRadnici { get { return sviRadnici; } set { sviRadnici = value; NotifyOfPropertyChange(() => sviRadnici); } }
         public Radnik OznacenRadnik { get; set; }
-        private RadnikDAO radnikDAO = new RadnikDAO();
-        IWindowManager manager = new WindowManager();
 
         public void Dodaj()
         {
             manager.ShowDialog(new DodavanjeRadnikaViewModel(null), null, null);
             SviRadnici = radnikDAO.GetList();
         }
+
         public void Obrisi()
         {
             Poruka = "";
@@ -48,6 +51,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati radnika iz liste radnika";
             }
         }
+
         public void Izmeni()
         {
             Poruka = "";

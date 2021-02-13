@@ -7,6 +7,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class DodavanjeInspektoraViewModel : Screen
     {
+        private InspektorDAO inspektorDAO = new InspektorDAO();
+        private string porukaGreskeZaIme = "";
+        private string porukaGreskeZaPrezime = "";
+        private string porukaGreskeZaTelefon = "";
+
         public DodavanjeInspektoraViewModel(Inspektor inspektor)
         {
             Inspektor = inspektor;
@@ -22,17 +27,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Telefon { get; set; }
-
-        private string porukaGreskeZaIme = "";
-        private string porukaGreskeZaPrezime = "";
-        private string porukaGreskeZaTelefon = "";
         public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
         public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
         public string PorukaGreskeZaTelefon { get => porukaGreskeZaTelefon; set { porukaGreskeZaTelefon = value; NotifyOfPropertyChange(() => PorukaGreskeZaTelefon); } }
 
         public void DodajIzmeni()
         {
-            InspektorDAO inspektorDAO = new InspektorDAO();
             if (Validacija())
             {
                 if (Inspektor == null)
@@ -42,12 +42,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
                 else
                 {
-                    Inspektor = new Inspektor { ID=Inspektor.ID, Ime = Ime, Prezime = Prezime, Broj_Telefona = Telefon };
+                    Inspektor = new Inspektor { ID = Inspektor.ID, Ime = Ime, Prezime = Prezime, Broj_Telefona = Telefon };
                     inspektorDAO.Update(Inspektor);
                 }
                 TryClose();
             }
         }
+
         private bool Validacija()
         {
             bool ispravanUnos = true;

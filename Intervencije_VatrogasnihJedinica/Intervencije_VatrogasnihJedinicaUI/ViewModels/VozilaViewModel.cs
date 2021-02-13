@@ -9,23 +9,26 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     class VozilaViewModel : PropertyChangedBase
     {
+        private VoziloDAO voziloDAO = new VoziloDAO();
+        public List<Vozilo> svaVozila = new List<Vozilo>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public VozilaViewModel()
         {
             SvaVozila = voziloDAO.GetList();
         }
-        private string poruka;
-        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        public List<Vozilo> svaVozila = new List<Vozilo>();
-        public List<Vozilo> SvaVozila { get { return svaVozila; } set { svaVozila = value; NotifyOfPropertyChange(() => svaVozila); } }
-        public Vozilo OznacenoVozilo { get; set; }
-        private VoziloDAO voziloDAO = new VoziloDAO();
-        IWindowManager manager = new WindowManager();
 
+        public Vozilo OznacenoVozilo { get; set; }
+        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
+        public List<Vozilo> SvaVozila { get { return svaVozila; } set { svaVozila = value; NotifyOfPropertyChange(() => svaVozila); } }
+        
         public void Dodaj()
         {
             manager.ShowDialog(new DodavanjeVozilaViewModel(null), null, null);
             SvaVozila = voziloDAO.GetList();
         }
+
         public void Obrisi()
         {
             Poruka = "";

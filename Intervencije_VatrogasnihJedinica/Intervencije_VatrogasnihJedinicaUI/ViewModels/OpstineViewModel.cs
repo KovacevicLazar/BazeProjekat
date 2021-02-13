@@ -9,26 +9,26 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class OpstineViewModel : PropertyChangedBase
     {
-        public OpstineViewModel()
-        {
-            SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
-        }
-        private string poruka;
-        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-
-        IWindowManager manager = new WindowManager();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
         public ObservableCollection<Opstina> sveOpstine = new ObservableCollection<Opstina>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
+        public OpstineViewModel()
+        {
+            SveOpstine = new ObservableCollection<Opstina>(opstinaDAO.GetList());
+        }
+        
+        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public ObservableCollection<Opstina> SveOpstine { get { return sveOpstine; } set { sveOpstine = value; NotifyOfPropertyChange(() => SveOpstine); } }
         public Opstina OznacenaOpstina { get; set; }
-        public OpstinaDAO OpstinaDAO { get => opstinaDAO; set => opstinaDAO = value; }
-        
 
         public void Dodaj()
         {
             manager.ShowDialog(new DodavanjeOpstineViewModel(null), null, null);
-            SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+            SveOpstine = new ObservableCollection<Opstina>(opstinaDAO.GetList());
         }
+
         public void Obrisi()
         {
             Poruka = "";
@@ -36,13 +36,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 try
                 {
-                    OpstinaDAO.Delete(OznacenaOpstina.ID);
+                    opstinaDAO.Delete(OznacenaOpstina.ID);
                 }
                 catch (Exception ex)
                 {
                     Poruka = ex.InnerException?.InnerException?.Message;
                 }
-                SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+                SveOpstine = new ObservableCollection<Opstina>(opstinaDAO.GetList());
                 OznacenaOpstina = null;
             }
             else
@@ -50,13 +50,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati opštinu u listi opština!";
             }
         }
+
         public void Izmeni()
         {
             Poruka = "";
             if (OznacenaOpstina != null)
             {
                 manager.ShowDialog(new DodavanjeOpstineViewModel(OznacenaOpstina), null, null);
-                SveOpstine = new ObservableCollection<Opstina>(OpstinaDAO.GetList());
+                SveOpstine = new ObservableCollection<Opstina>(opstinaDAO.GetList());
                 OznacenaOpstina = null;
             }
             else

@@ -12,17 +12,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class KomandiriViewModel : PropertyChangedBase
     {
+        private KomandirDAO komandirDAO = new KomandirDAO();
+        public List<Komandir> sviKomandiri = new List<Komandir>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public KomandiriViewModel()
         {
             SviKomandiri = komandirDAO.GetList();
         }
-        private string poruka;
+        
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        public List<Komandir> sviKomandiri = new List<Komandir>();
         public List<Komandir> SviKomandiri { get { return sviKomandiri; } set { sviKomandiri = value; NotifyOfPropertyChange(() => sviKomandiri); } }
         public Komandir OznacenKomandir { get; set; }
-        private KomandirDAO komandirDAO = new KomandirDAO();
-        IWindowManager manager = new WindowManager();
 
         public void Obrisi()
         {

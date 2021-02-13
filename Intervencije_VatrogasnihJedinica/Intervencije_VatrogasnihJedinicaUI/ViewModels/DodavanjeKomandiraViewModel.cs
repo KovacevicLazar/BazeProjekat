@@ -5,8 +5,13 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public class DodavanjeKomandiraViewModel:  Screen
+    public class DodavanjeKomandiraViewModel : Screen
     {
+        private KomandirDAO komandirDAO = new KomandirDAO();
+        private string porukaGreskeZaIme = "";
+        private string porukaGreskeZaPrezime = "";
+        private string porukaGreskeZaJMBG = "";
+
         public DodavanjeKomandiraViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
             Komandir = vatrogasnaJedinica.Komandir;
@@ -18,22 +23,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Jmbg = vatrogasnaJedinica.Komandir.JMBG;
             }
         }
+
         public VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public Komandir Komandir { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Jmbg { get; set; }
-
-        private string porukaGreskeZaIme = "";
-        private string porukaGreskeZaPrezime = "";
-        private string porukaGreskeZaJMBG = "";
         public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
         public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
         public string PorukaGreskeZaJMBG { get => porukaGreskeZaJMBG; set { porukaGreskeZaJMBG = value; NotifyOfPropertyChange(() => PorukaGreskeZaJMBG); } }
 
         public void DodajIzmeni()
         {
-            KomandirDAO komandirDAO = new KomandirDAO();
             if (Validacija())
             {
                 if (Komandir == null)
@@ -55,7 +56,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaIme = "";
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaJMBG = "";
-           
+
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime komandira!";
@@ -103,7 +104,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaJMBG = "Jmbg mora sadrzati 13 brojeva!";
                 ispravanUnos = false;
             }
-
             return ispravanUnos;
         }
     }

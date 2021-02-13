@@ -7,22 +7,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class DodavanjeOpstineViewModel : Screen
     {
+        private Opstina opstina;
+        private OpstinaDAO opstinaDAO = new OpstinaDAO();
+        private string porukaGreskeZaNaziv = "";
+
         public DodavanjeOpstineViewModel(Opstina postojecaOpstina)
         {
-            if(postojecaOpstina != null)
+            if (postojecaOpstina != null)
             {
                 Opstina = postojecaOpstina;
                 NazivOpstine = postojecaOpstina.Naziv_Opstine;
             }
         }
-        private Opstina opstina;
-        private OpstinaDAO opstinaDAO = new OpstinaDAO();
-        public string NazivOpstine { get; set; }
-        public OpstinaDAO OpstinaDAO { get => opstinaDAO; set => opstinaDAO = value; }
-        public Opstina Opstina { get => opstina; set => opstina = value; }
 
-        private string porukaGreskeZaNaziv = "";
-        public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set {  porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
+        public string NazivOpstine { get; set; }
+        public Opstina Opstina { get => opstina; set => opstina = value; }
+        public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set { porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
 
         public void DodajIzmeni()
         {
@@ -31,16 +31,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 if (Opstina == null)
                 {
                     Opstina = new Opstina { Naziv_Opstine = NazivOpstine };
-                    OpstinaDAO.Insert(Opstina);
+                    opstinaDAO.Insert(Opstina);
                 }
                 else
                 {
                     Opstina.Naziv_Opstine = NazivOpstine;
-                    OpstinaDAO.Update(Opstina);
+                    opstinaDAO.Update(Opstina);
                 }
                 TryClose();
             }
         }
+
         private bool ValidacijaNaziva(string naziv)
         {
             PorukaGreskeZaNaziv = "";

@@ -11,7 +11,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return  db.Komandiri.Include("VatrogasnaJedinica").ToList();
+                return db.Komandiri.Include("VatrogasnaJedinica").ToList();
             }
         }
     }

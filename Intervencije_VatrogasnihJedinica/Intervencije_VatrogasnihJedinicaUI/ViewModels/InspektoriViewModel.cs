@@ -9,16 +9,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class InspektoriViewModel : PropertyChangedBase
     {
+        private InspektorDAO inspektorDAO = new InspektorDAO();
+        public List<Inspektor> sviInspektori = new List<Inspektor>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public InspektoriViewModel()
         {
             SviInspektori = inspektorDAO.GetList();
         }
-        private string poruka;
+        
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-
-        private InspektorDAO inspektorDAO = new InspektorDAO();
-        IWindowManager manager = new WindowManager();
-        public List<Inspektor> sviInspektori = new List<Inspektor>();
         public List<Inspektor> SviInspektori { get { return sviInspektori; } set { sviInspektori = value; NotifyOfPropertyChange(() => sviInspektori); } }
         public Inspektor OznacenInspektor { get; set; }
 
@@ -27,6 +28,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new DodavanjeInspektoraViewModel(null), null, null);
             SviInspektori = inspektorDAO.GetList();
         }
+
         public void Obrisi()
         {
             Poruka = "";
@@ -40,7 +42,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Poruka = ex.InnerException?.InnerException?.Message;
                 }
-                
                 SviInspektori = inspektorDAO.GetList();
                 OznacenInspektor = null;
             }
@@ -49,6 +50,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati inspektora iz liste inspektora";
             }
         }
+
         public void Izmeni()
         {
             Poruka = "";

@@ -11,30 +11,31 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class DodavanjeVozilaViewModel : Screen
     {
+        private VoziloDAO voziloDAO = new VoziloDAO();
+        private TehnickoVoziloDAO tehnickoVoziloDAO = new TehnickoVoziloDAO();
+        private NavalnoVoziloDAO navalnovoziloDAO = new NavalnoVoziloDAO();
+        private AlatDAO alatDAO = new AlatDAO();
+        private VatrogasnaJedinicaDAO jedinicaDAO = new VatrogasnaJedinicaDAO();
+        private string porukaGreskeZaMarku = "";
+        private string porukaGreskeZaModel = "";
+        private string porukaGreskeZaGodiste = "";
+        private string porukaGreskeZaNosivost = "";
+        private string porukaGreskeZaVSJ = "";
+
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
-            alatDAO = new AlatDAO();
             TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
-            var jedinicaDAO = new VatrogasnaJedinicaDAO();
             VatrogasneJedinice = jedinicaDAO.GetList();
-            Godista = new List<int>();
-            Godiste = DateTime.Now.Year;
-            var godina = DateTime.Now.Year;
-            for (int i = 40; i > 0; i--)
-            {
-                Godista.Add(godina);
-                godina--;
-            }
-
             if (vozilo != null)
             {
                 Vozilo = vozilo;
                 TipVozila = vozilo.Tip;
                 InicijalizacijaVrednosti(vozilo);
             }
+            InicijalizacijaListeGodista();
             InicijalizacijaListeAlata();
         }
-        private AlatDAO alatDAO;
+        
         public ObservableCollection<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
@@ -47,12 +48,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string Nosivost { get; set; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get; set; }
-
-        private string porukaGreskeZaMarku = "";
-        private string porukaGreskeZaModel = "";
-        private string porukaGreskeZaGodiste = "";
-        private string porukaGreskeZaNosivost = "";
-        private string porukaGreskeZaVSJ = "";
         public string PorukaGreskeZaMarku { get => porukaGreskeZaMarku; set { porukaGreskeZaMarku = value; NotifyOfPropertyChange(() => PorukaGreskeZaMarku); } }
         public string PorukaGreskeZaModel { get => porukaGreskeZaModel; set { porukaGreskeZaModel = value; NotifyOfPropertyChange(() => PorukaGreskeZaModel); } }
         public string PorukaGreskeZaGodiste { get => porukaGreskeZaGodiste; set { porukaGreskeZaGodiste = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodiste); } }
@@ -63,9 +58,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (Validacija())
             {
-                VoziloDAO voziloDAO = new VoziloDAO();
-                TehnickoVoziloDAO tehnickoVoziloDAO = new TehnickoVoziloDAO();
-                NavalnoVoziloDAO navalnovoziloDAO = new NavalnoVoziloDAO();
                 if (Vozilo == null)
                 {
                     switch (TipVozila)
@@ -124,10 +116,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             break;
                     }
                 }
-                
                 TryClose();
             }
         }
+
+        private void InicijalizacijaListeGodista() 
+        {
+            Godista = new List<int>();
+            Godiste = DateTime.Now.Year;
+            var godina = DateTime.Now.Year;
+            for (int i = 40; i > 0; i--)
+            {
+                Godista.Add(godina);
+                godina--;
+            }
+        }
+
         private void InicijalizacijaListeAlata()
         {
             List<Alat> sviAlati =  new List<Alat>();

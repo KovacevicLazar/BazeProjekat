@@ -9,15 +9,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public  class IntervencijeViewModel : PropertyChangedBase
     {
+        private IntervencijaDAO IntervencijaDAO = new IntervencijaDAO();
+        public List<Intervencija> sveIntervencije = new List<Intervencija>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public IntervencijeViewModel()
         {
             SveIntervencije = IntervencijaDAO.GetList();
         }
-        private string poruka;
+        
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        private IntervencijaDAO IntervencijaDAO = new IntervencijaDAO();
-        IWindowManager manager = new WindowManager();
-        public List<Intervencija> sveIntervencije = new List<Intervencija>();
         public List<Intervencija> SveIntervencije { get { return sveIntervencije; } set { sveIntervencije = value; NotifyOfPropertyChange(() => sveIntervencije); } }
         public Intervencija OznacenaIntervencija { get; set; }
 
@@ -26,6 +28,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             manager.ShowDialog(new DodavanjeIntervencijeViewModel(null), null, null);
             SveIntervencije = IntervencijaDAO.GetList();
         }
+
         public void Obrisi()
         {
             Poruka = "";
@@ -39,7 +42,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Poruka = ex.InnerException?.InnerException?.Message;
                 }
-                
                 SveIntervencije = IntervencijaDAO.GetList();
                 OznacenaIntervencija = null;
             }
@@ -48,6 +50,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
             }
         }
+
         public void Izmeni()
         {
             Poruka = "";
@@ -62,6 +65,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
             }
         }
+
         public void DodajInformacijeOUvidjaju( object Intervencija )
         {
             manager.ShowDialog(new DodavanjeInformacijaOUvidjajuViewModel(Intervencija  as Intervencija), null, null);

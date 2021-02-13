@@ -11,9 +11,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class InformacijeOSmenamaVatrogasneJediniceViewModel
     {
+        private SmenaDAO smenaDAO = new SmenaDAO();
+
         public InformacijeOSmenamaVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
-            SmenaDAO smenaDAO = new SmenaDAO();
             var smene = smenaDAO.SmeneUnutarJedneVSJ(vatrogasnaJedinica.ID);
             SmenaA = smene.Find(x => x.NazivSmene == "Smena A");
             SmenaB = smene.Find(x => x.NazivSmene == "Smena B");
@@ -21,6 +22,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             SmenaD = smene.Find(x => x.NazivSmene == "Smena D");
             VatrogasnaJedinica = vatrogasnaJedinica;
         }
+
         public VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public Smena SmenaA { get; set; }
         public Smena SmenaB { get; set; }

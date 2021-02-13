@@ -3,15 +3,19 @@ using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public  class DodavanjeAlataViewModel : Screen
+    public class DodavanjeAlataViewModel : Screen
     {
+        private AlatDAO alataDAO = new AlatDAO();
+        private string porukaGreskeZaNazivAlata = "";
+
         public DodavanjeAlataViewModel(Alat alat)
         {
-            TipoviAlata = Enum.GetValues(typeof(TipAlataEnum)).Cast<TipAlataEnum>().ToList();
+            TipoviAlata = new ObservableCollection<TipAlataEnum>( Enum.GetValues(typeof(TipAlataEnum)).Cast<TipAlataEnum>().ToList());
             Alat = alat;
             if (alat != null)
             {
@@ -19,19 +23,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TipAlata = alat.Tip;
             }
         }
-        public List<TipAlataEnum> TipoviAlata { get; set; }
+
+        public ObservableCollection<TipAlataEnum> TipoviAlata { get; set; }
         public TipAlataEnum TipAlata { get; set; }
         public Alat Alat { get; set; }
         public string NazivAlata { get; set; }
-
-        private string porukaGreskeZaNazivAlata = "";
         public string PorukaGreskeZaNazivAlata { get => porukaGreskeZaNazivAlata; set { porukaGreskeZaNazivAlata = value; NotifyOfPropertyChange(() => PorukaGreskeZaNazivAlata); } }
-        
+
         public void DodajIzmeni()
         {
             if (Validacija())
             {
-                AlatDAO alataDAO = new AlatDAO();
                 if (Alat == null)
                 {
                     Alat alat = new Alat { Naziv_Alata = NazivAlata, Tip = TipAlata };
@@ -39,12 +41,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
                 else
                 {
-                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata, Tip = TipAlata };;
+                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata, Tip = TipAlata };
                     alataDAO.Update(Alat);
                 }
                 TryClose();
             }
         }
+
         private bool Validacija()
         {
             PorukaGreskeZaNazivAlata = "";
@@ -64,7 +67,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNazivAlata = "Naziv mora sadrzati od 4 do 30 slova!";
                 ispravanUnos = false;
             }
-
             return ispravanUnos;
         }
     }

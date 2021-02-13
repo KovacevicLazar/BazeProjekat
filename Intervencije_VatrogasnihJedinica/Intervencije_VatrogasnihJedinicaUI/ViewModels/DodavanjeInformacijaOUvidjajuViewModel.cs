@@ -8,11 +8,18 @@ using Intervencije_VatrogasnihJedinica.dao;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public class DodavanjeInformacijaOUvidjajuViewModel :  Screen
+    public class DodavanjeInformacijaOUvidjajuViewModel : Screen
     {
+        private InspektorDAO inspektorDao = new InspektorDAO();
+        private UvidjajDAO uvidjajDAO = new UvidjajDAO();
+        private string porukaGreskeZaInspektora = "";
+        private string porukaGreskeZaTekst = "";
+        private string porukaGreskeZaDatum = "";
+        private string porukaGreskeZaVreme = "";
+        private DateTime datum;
+
         public DodavanjeInformacijaOUvidjajuViewModel(Intervencija intervencija)
         {
-            var inspektorDao = new InspektorDAO();
             Inspektori = inspektorDao.GetList();
             Intervencija = intervencija;
             if (intervencija.Uvidjaj != null)
@@ -21,7 +28,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Minuti = intervencija.Uvidjaj.Datum.Minute;
                 Datum = intervencija.Uvidjaj.Datum.Date;
                 TextZapisnika = intervencija.Uvidjaj.Tekst_Zapisnika;
-                UvidjajDAO uvidjajDAO = new UvidjajDAO();
                 var Uvidjaj = uvidjajDAO.FindById(intervencija.Uvidjaj.ID);
                 Inspektor = Inspektori.Find(x => x.ID == Uvidjaj.Inspektor.ID);
             }
@@ -32,19 +38,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Datum = DateTime.Now;
             }
         }
+
         public Inspektor Inspektor { get; set; }
         public List<Inspektor> Inspektori { get; set; }
-        private DateTime datum;
         public DateTime Datum { get { return datum; } set { datum = value; NotifyOfPropertyChange(() => datum); } }
         public Intervencija Intervencija { get; set; }
         public int Sati { get; set; }
         public int Minuti { get; set; }
-        public  string TextZapisnika { get; set; }
-
-        private string porukaGreskeZaInspektora = "";
-        private string porukaGreskeZaTekst = "";
-        private string porukaGreskeZaDatum = "";
-        private string porukaGreskeZaVreme = "";
+        public string TextZapisnika { get; set; }
         public string PorukaGreskeZaVreme { get => porukaGreskeZaVreme; set { porukaGreskeZaVreme = value; NotifyOfPropertyChange(() => PorukaGreskeZaVreme); } }
         public string PorukaGreskeZaDatum { get => porukaGreskeZaDatum; set { porukaGreskeZaDatum = value; NotifyOfPropertyChange(() => PorukaGreskeZaDatum); } }
         public string PorukaGreskeZaTekst { get => porukaGreskeZaTekst; set { porukaGreskeZaTekst = value; NotifyOfPropertyChange(() => PorukaGreskeZaTekst); } }
@@ -54,7 +55,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             if (Validacija())
             {
-                UvidjajDAO uvidjajDAO = new UvidjajDAO();
                 Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0);
                 Uvidjaj uvidjaj = new Uvidjaj { ID = Intervencija.ID, Datum = Datum, InspektorID = Inspektor.ID, Tekst_Zapisnika = TextZapisnika };
                 if (Intervencija.Uvidjaj == null)
@@ -68,6 +68,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
+
         private bool Validacija()
         {
             PorukaGreskeZaInspektora = "";
@@ -81,7 +82,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTekst = "Unesite tekst zapisnika!";
                 ispravanUnos = false;
             }
-            
+
             else if (TextZapisnika.Trim().Length < 30)
             {
                 PorukaGreskeZaTekst = " mora sadrzati najmanje 30 slova!";

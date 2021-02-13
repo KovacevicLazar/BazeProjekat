@@ -8,43 +8,45 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class DodavanjeVatrogasneJediniceViewModel : Screen
     {
-        public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica postojecaVatrogasnaJedinica)
+        private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
+        private OpstinaDAO opstinaDAO = new OpstinaDAO();
+        private SmenaDAO smenaDAO = new SmenaDAO();
+        private VatrogasnaJedinica vatrogasnaJedinica = new VatrogasnaJedinica();
+        private string porukaGreskeZaNaziv = "";
+        private string porukaGreskeZaAdresu = "";
+        private string porukaGreskeZaOpstinu = "";
+        
+        public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
-            OpstinaDAO opstinaDAO = new OpstinaDAO();
             Opstine = opstinaDAO.GetList();
-            if (postojecaVatrogasnaJedinica != null)
+            if (vatrogasnaJedinica != null)
             {
-                VatrogasnaJedinica = postojecaVatrogasnaJedinica;
+                VatrogasnaJedinica = vatrogasnaJedinica;
                 Naziv = VatrogasnaJedinica.Naziv;
                 Adresa = VatrogasnaJedinica.Adresa;
                 IzabranaOpstina = Opstine.Find(x=> x.ID == VatrogasnaJedinica.Id_Opstine);
                 NotifyOfPropertyChange(() => IzabranaOpstina);
             }
         }
-        VatrogasnaJedinica vatrogasnaJedinica;
+        
         public VatrogasnaJedinica VatrogasnaJedinica { get => vatrogasnaJedinica; set => vatrogasnaJedinica = value; }
-    public List<Opstina> Opstine { get; set; }
+        public List<Opstina> Opstine { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
         public Opstina IzabranaOpstina { get; set; }
-
-        private string porukaGreskeZaNaziv = "";
-        private string porukaGreskeZaAdresu = "";
-        private string porukaGreskeZaOpstinu = "";
         public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set { porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
         public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu);} }
         public string PorukaGreskeZaOpstinu { get => porukaGreskeZaOpstinu; set { porukaGreskeZaOpstinu = value; NotifyOfPropertyChange(() => PorukaGreskeZaOpstinu); } }
 
         public void DodajIzmeni()
         {
-            VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
+            
             if (Validacija())
             {
                 if (VatrogasnaJedinica == null)
                 {
                     VatrogasnaJedinica = new VatrogasnaJedinica { Naziv = Naziv, Adresa = Adresa, Id_Opstine= IzabranaOpstina.ID};
                     vatrogasnaJedinicaDAO.Insert(VatrogasnaJedinica);
-                    SmenaDAO smenaDAO = new SmenaDAO();
                     Smena Smena;
                     List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
                     for (int i = 1; i < 5; i++)

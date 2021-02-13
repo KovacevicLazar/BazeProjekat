@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public  class IntervencijaDAO : BaseRepo<Intervencija>
+    public class IntervencijaDAO : BaseRepo<Intervencija>
     {
         public override List<Intervencija> GetList()
         {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
@@ -19,15 +18,15 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public  virtual List<TEntity> GetList()
+        public virtual List<TEntity> GetList()
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return  db.Set<TEntity>().ToList();
+                return db.Set<TEntity>().ToList();
             }
         }
 
-        public  TEntity Insert(TEntity entity)
+        public TEntity Insert(TEntity entity)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
@@ -36,12 +35,12 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return entity;
             }
         }
+
         public void Delete(object id)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 DbSet<TEntity> dbSet = db.Set<TEntity>();
-
                 TEntity entity = db.Set<TEntity>().Find(id);
                 db.Entry(entity).State = EntityState.Deleted;
                 db.SaveChanges();

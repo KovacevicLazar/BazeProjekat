@@ -10,15 +10,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class VatrogasneJediniceViewModel : PropertyChangedBase
     {
+        private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
+        public List<VatrogasnaJedinica> sveJedinice = new List<VatrogasnaJedinica>();
+        IWindowManager manager = new WindowManager();
+        private string poruka;
+
         public  VatrogasneJediniceViewModel()
         {
             GetListAsync();
         }
-        private string poruka;
+        
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
-        IWindowManager manager = new WindowManager();
-        public List<VatrogasnaJedinica> sveJedinice = new List<VatrogasnaJedinica>();
         public List<VatrogasnaJedinica> SveJedinice { get { return sveJedinice; } set { sveJedinice = value; NotifyOfPropertyChange(() => sveJedinice); } }
         public VatrogasnaJedinica OznacenaJedinica { get; set; }
 
@@ -26,11 +28,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveJedinice = await vatrogasnaJedinicaDAO.GetListAsync();
         }
+
         public void Dodaj()
         {
             manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(null), null, null);
             GetListAsync();
         }
+
         public void Obrisi()
         {
             Poruka = "";
@@ -52,6 +56,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati vatrogasnu jedinicu iz liste!";
             }
         }
+
         public void Izmeni()
         {
             Poruka = "";
@@ -66,10 +71,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati vatrogasnu jedinicu iz liste!";
             }
         }
+
         public void InformacijeOSmenama(object vatrogasnaJedinica)
         {
             manager.ShowDialog(new InformacijeOSmenamaVatrogasneJediniceViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
         }
+
         public void DodajKomandira(object vatrogasnaJedinica)
         {
             manager.ShowDialog(new DodavanjeKomandiraViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);

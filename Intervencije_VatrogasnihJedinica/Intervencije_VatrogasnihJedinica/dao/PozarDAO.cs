@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 
@@ -7,7 +6,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
 {
     public class PozarDAO : BaseRepo<Pozar>
     {
-        public  Pozar FindById( int idPozara )
+        public Pozar FindById(int idPozara)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {

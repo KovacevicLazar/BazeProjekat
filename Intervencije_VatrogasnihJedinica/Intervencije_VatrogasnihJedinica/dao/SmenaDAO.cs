@@ -76,6 +76,5 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
             return false;
         }
-
     }
 }
