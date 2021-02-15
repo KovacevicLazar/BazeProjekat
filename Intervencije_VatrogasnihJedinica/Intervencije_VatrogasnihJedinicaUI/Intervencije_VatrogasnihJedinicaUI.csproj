@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>station%281%29.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.3.2.0\lib\net45\Caliburn.Micro.dll</HintPath>
@@ -309,7 +312,32 @@
       <Name>Intervencije_VatrogasnihJedinicaDAO</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="station%281%29.ico" />
+    <Resource Include="Views\Pictures\firefighter.png" />
+    <Resource Include="Views\Pictures\Inspector.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\City1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\Station.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\Truck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\co2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\Commander.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\Fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\Teams2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -4,15 +4,60 @@
             <ColumnDefinition Width="291"/>
             <ColumnDefinition Width="223*" />
         </Grid.ColumnDefinitions>
-        <Button x:Name="Opstine" Content="Opštine" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonOpstineBackground, Mode=TwoWay}" ></Button>
-        <Button x:Name="VatrogasneJedinice" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Vatrogasne&#x0a;   jedinice" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonVSJBackground, Mode=TwoWay}" />
-        <Button x:Name="Smene" Content="Smene" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonSmeneBackground, Mode=TwoWay}" />
-        <Button x:Name="Radnici" Content="Radnici" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,275,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonRadniciBackground, Mode=TwoWay}" />
-        <Button x:Name="Alati" Content="Alati" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonAlatiBackground, Mode=TwoWay}"/>
-        <Button x:Name="Vozila" Content="Vozila" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonVozilaBackground, Mode=TwoWay}" />
-        <Button x:Name="Inspektori" Content="Inspektori" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,500,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonInspektoriBackground, Mode=TwoWay}"/>
-        <Button x:Name="Intervencije" Content="Intervencije" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,575,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonIntervencijeBackground, Mode=TwoWay}" />
-        <Button x:Name="Komandiri" Content="Komandiri" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,650,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonKomandiriBackground, Mode=TwoWay}"/>
+        <Button x:Name="Opstine"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonOpstineBackground, Mode=TwoWay}" >
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/city1.png" Width="58" Height="48"/>
+                <TextBlock Text="Opštine" Margin="15,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="VatrogasneJedinice" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,125,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonVSJBackground, Mode=TwoWay}" >
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/Station.png" Width="58" Height="48"/>
+                <TextBlock Text="Vatrogasne&#x0a;   jedinice"  Margin="5,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Smene"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,200,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonSmeneBackground, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/Teams2.png" Width="58" Height="51"/>
+                <TextBlock Text="Smene"  Margin="20,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Radnici"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,275,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonRadniciBackground, Mode=TwoWay}" >
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/firefighter.png" Width="58" Height="48"/>
+                <TextBlock Text="Radnici"  Margin="15,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Alati"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonAlatiBackground, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/co2.png"  Width="58" Height="48"/>
+                <TextBlock Text="Alati"  Margin="25,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Vozila" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonVozilaBackground, Mode=TwoWay}" >
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/truck.png"  Width="58" Height="48"/>
+                <TextBlock Text="Vozila"  Margin="20,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Inspektori"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,500,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonInspektoriBackground, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/Inspector.png"  Width="54" Height="48"/>
+                <TextBlock Text="Inspektori"  Margin="10,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Intervencije" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,575,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonIntervencijeBackground, Mode=TwoWay}" >
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/fire.png"  Width="58" Height="48"/>
+                <TextBlock Text="Intervencije" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
+        <Button x:Name="Komandiri" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,650,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonKomandiriBackground, Mode=TwoWay}">
+            <StackPanel Orientation="Horizontal" Width="170">
+                <Image Source="pack://application:,,,/Views/Pictures/commander.png"  Width="58" Height="48"/>
+                <TextBlock Text="Komandiri" VerticalAlignment="Center" />
+            </StackPanel>
+        </Button>
         <ContentControl x:Name="ActiveItem" Margin="282,50,0,0" HorizontalAlignment="Left" Width="1278" Height="660" VerticalAlignment="Top" Grid.ColumnSpan="2"  />
     </Grid>
 </Window>
