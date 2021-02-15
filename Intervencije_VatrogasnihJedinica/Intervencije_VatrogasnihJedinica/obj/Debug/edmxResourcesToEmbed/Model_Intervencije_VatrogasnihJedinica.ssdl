@@ -40,7 +40,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adresa" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Datum_I_Vreme" Type="datetime" Nullable="false" />
-    <Property Name="Id_Opstine" Type="int" />
+    <Property Name="Id_Opstine" Type="int" Nullable="false" />
     <Property Name="Obrisana" Type="bit" Nullable="false" />
     <Property Name="Tip" Type="int" Nullable="false" />
   </EntityType>
@@ -271,7 +271,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_OpstinaIntervencija">
-    <End Role="Opstine" Type="Self.Opstine" Multiplicity="0..1" />
+    <End Role="Opstine" Type="Self.Opstine" Multiplicity="1" />
     <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Opstine">

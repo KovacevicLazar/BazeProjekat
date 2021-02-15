@@ -11,7 +11,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
         private SmenaDAO smenaDAO = new SmenaDAO();
-        private VatrogasnaJedinica vatrogasnaJedinica = new VatrogasnaJedinica();
+        private VatrogasnaJedinica vatrogasnaJedinica;
         private string porukaGreskeZaNaziv = "";
         private string porukaGreskeZaAdresu = "";
         private string porukaGreskeZaOpstinu = "";
@@ -19,9 +19,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
             Opstine = opstinaDAO.GetList();
+            VatrogasnaJedinica = vatrogasnaJedinica;
             if (vatrogasnaJedinica != null)
             {
-                VatrogasnaJedinica = vatrogasnaJedinica;
                 Naziv = VatrogasnaJedinica.Naziv;
                 Adresa = VatrogasnaJedinica.Adresa;
                 IzabranaOpstina = Opstine.Find(x=> x.ID == VatrogasnaJedinica.Id_Opstine);

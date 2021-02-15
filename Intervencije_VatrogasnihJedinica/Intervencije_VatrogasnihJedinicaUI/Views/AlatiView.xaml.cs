@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
     /// <summary>
     /// Interaction logic for AlatiView.xaml
     /// </summary>
-    public partial class AlatiView : Window
+    public partial class AlatiView : UserControl
     {
         public AlatiView()
         {

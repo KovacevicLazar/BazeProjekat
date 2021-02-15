@@ -27,9 +27,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             Pozicije = Enum.GetValues(typeof(RadnoMesto)).Cast<RadnoMesto>().ToList();
             VatrogasneJedinice = jedinicaDAO.GetList();
+            Radnik = radnik;
             if (radnik != null)
             {
-                Radnik = radnik;
                 Smene = smenaDAO.SmeneUnutarJedneVSJ(radnik.VatrogasnaJedinica.ID);
                 InicijalizacijaVrednosti(radnik);
             }

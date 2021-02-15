@@ -12,5 +12,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Intervencije.Include("Opstina").Include("Uvidjaj").ToList();
             }
         }
+        public  List<Intervencija> GetFilteredList(List<int> opstineID, List<TipIntervencijeEnum> tipovi)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Intervencije.Include("Opstina").Include("Uvidjaj").Where(x => (opstineID.Contains(x.Id_Opstine) || opstineID.Count == 0) && (tipovi.Contains(x.Tip) || tipovi.Count == 0)).ToList();
+            }
+        }
+
     }
 }

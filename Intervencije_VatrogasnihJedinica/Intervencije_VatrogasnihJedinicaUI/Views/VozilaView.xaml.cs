@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
     /// <summary>
     /// Interaction logic for VozilaView.xaml
     /// </summary>
-    public partial class VozilaView : Window
+    public partial class VozilaView : UserControl
     {
         public VozilaView()
         {

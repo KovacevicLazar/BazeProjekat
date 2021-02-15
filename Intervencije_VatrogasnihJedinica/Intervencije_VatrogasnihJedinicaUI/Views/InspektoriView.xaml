@@ -1,17 +1,17 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.InspektoriView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="InspektoriView" Height="450" Width="664">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="325" Margin="26,69,0,0" VerticalAlignment="Top" Width="384">
+﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.InspektoriView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" >
+    <Grid Width="1259" Height="675" Background="#FFF9F7F6">
+        <DataGrid FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SviInspektori, Mode=OneWay}" SelectedItem="{Binding Path=OznacenInspektor, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="593" Margin="334,72,0,0" VerticalAlignment="Top" Width="482">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="50" />
-                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " Width="100"/>
-                <DataGridTextColumn Binding="{Binding Prezime}" Header="Prezime: " Width="110" />
-                <DataGridTextColumn Binding="{Binding Broj_Telefona}" Header="Telefon: " Width="120" />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="70" />
+                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime: " Width="120"/>
+                <DataGridTextColumn Binding="{Binding Prezime}" Header="Prezime: " Width="140" />
+                <DataGridTextColumn Binding="{Binding Broj_Telefona}" Header="Telefon: " Width="140" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Inspektori" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="656" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="449,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="449,121,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="449,173,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <TextBlock x:Name="Poruka" Foreground="Red" HorizontalAlignment="Left" Margin="449,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="180"/>
+        <Label Content="Inspektori:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="831,72,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="831,122,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="831,172,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="831,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="237" Width="180"/>
     </Grid>
-</Window>
+</UserControl>

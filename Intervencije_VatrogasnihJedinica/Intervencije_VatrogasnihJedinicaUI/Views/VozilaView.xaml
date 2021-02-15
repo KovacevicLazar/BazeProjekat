@@ -1,19 +1,19 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.VozilaView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="VozilaView" Height="450" Width="783">
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SvaVozila, Mode=OneWay}" SelectedItem="{Binding OznacenoVozilo, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="327" Margin="27,69,0,0" VerticalAlignment="Top" Width="514">
+﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.VozilaView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold"  >
+    <Grid Width="1259" Height="675" Background="#FFF9F7F6">
+        <DataGrid  FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SvaVozila, Mode=OneWay}" SelectedItem="{Binding OznacenoVozilo, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="596" Margin="180,69,0,0" VerticalAlignment="Top" Width="783">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="50" />
-                <DataGridTextColumn Binding="{Binding Marka}" Header="Marka:" Width="100" />
-                <DataGridTextColumn Binding="{Binding Model}" Header="Model:" Width="90" />
-                <DataGridTextColumn Binding="{Binding Godiste}" Header="Godiste: " Width="60" />
-                <DataGridTextColumn Binding="{Binding Tip}" Header="Tip &#xA;Vozila: " Width="75" />
-                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#xA;jedinica: " Width="120" />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="70" />
+                <DataGridTextColumn Binding="{Binding Marka}" Header="Marka:" Width="130" />
+                <DataGridTextColumn Binding="{Binding Model}" Header="Model:" Width="120" />
+                <DataGridTextColumn Binding="{Binding Godiste}" Header="Godiste: " Width="90" />
+                <DataGridTextColumn Binding="{Binding Tip}" Header="Tip &#xA;Vozila: " Width="120" />
+                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#xA;jedinica: " Width="250" />
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Vozila" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="775" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="566,122,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="566,175,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <TextBlock x:Name="Poruka" Foreground="Red" HorizontalAlignment="Left" Margin="566,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="180"/>
+        <Label Content="Vozila:" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="979,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="979,116,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="979,164,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="979,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="218" Width="180"/>
     </Grid>
-</Window>
+</UserControl>

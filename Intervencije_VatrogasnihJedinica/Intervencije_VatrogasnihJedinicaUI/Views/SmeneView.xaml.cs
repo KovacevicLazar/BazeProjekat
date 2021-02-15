@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
     /// <summary>
     /// Interaction logic for SmeneView.xaml
     /// </summary>
-    public partial class SmeneView : Window
+    public partial class SmeneView : UserControl
     {
         public SmeneView()
         {

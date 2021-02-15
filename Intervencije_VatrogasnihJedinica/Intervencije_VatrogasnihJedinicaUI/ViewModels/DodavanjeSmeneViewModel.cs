@@ -15,9 +15,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public DodavanjeSmeneViewModel(Smena smena)
         {
             VatrogasneJedinice = jedinicaDAO.GetList();
+            Smena = smena;
             if (smena != null)
             {
-                Smena = smena;
                 NazivSmene = smena.NazivSmene;
                 IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == smena.VatrogasnaJedinicaID);
                 NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);

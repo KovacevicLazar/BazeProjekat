@@ -24,7 +24,7 @@ namespace Intervencije_VatrogasnihJedinica
         public int ID { get; set; }
         public string Adresa { get; set; }
         public System.DateTime Datum_I_Vreme { get; set; }
-        public Nullable<int> Id_Opstine { get; set; }
+        public int Id_Opstine { get; set; }
         public bool Obrisana { get; set; }
         public TipIntervencijeEnum Tip { get; set; }
     

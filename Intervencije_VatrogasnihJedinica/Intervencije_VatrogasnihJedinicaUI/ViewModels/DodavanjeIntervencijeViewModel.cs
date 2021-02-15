@@ -252,7 +252,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private bool ValidacijaSmeneIVozila()
         {
-            porukaGreskeZaSmeneIVozila = "";
+            PorukaGreskeZaSmeneIVozila = "";
             Dictionary<int, VatrogasnaJedinica> vatrogasneJediniceSelektovanihSmena = new Dictionary<int, VatrogasnaJedinica>();
             Dictionary<int, VatrogasnaJedinica> vatrogasneJediniceSelektovanihVozila = new Dictionary<int, VatrogasnaJedinica>();
             foreach (var smena in Smene)

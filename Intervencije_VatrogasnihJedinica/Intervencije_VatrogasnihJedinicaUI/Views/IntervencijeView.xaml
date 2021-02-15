@@ -1,15 +1,15 @@
-﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.IntervencijeView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="http://www.caliburnproject.org" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" Title="Intervencije" Height="616" Width="1102.133">
-    <Window.Resources>
+﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.IntervencijeView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:cal="http://www.caliburnproject.org" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" >
+    <UserControl.Resources>
         <models:NullToMessageConverter x:Key="NullToMessageConverter" />
-    </Window.Resources>
-    <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="489" Margin="25,69,0,0" VerticalAlignment="Top" Width="831">
+    </UserControl.Resources>
+    <Grid Width="1259" Height="675" Background="#FFF9F7F6">
+        <DataGrid FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="550" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
             <DataGrid.Columns>
-                <DataGridTextColumn MinWidth="20" MaxWidth="70" Width="50" Binding="{Binding ID}" Header="ID: " />
-                <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="160" Binding="{Binding Tip}" Header="Tip Intervencije: " />
-                <DataGridTextColumn MinWidth="100" MaxWidth="120" Width="105" Binding="{Binding Datum_I_Vreme, StringFormat='d/M/yyyy HH:mm'}" Header="Datum: " />
-                <DataGridTextColumn MinWidth="100" MaxWidth="210" Width="190" Binding="{Binding Adresa}" Header="Adresa: " />
-                <DataGridTextColumn MinWidth="20" Width="130" MaxWidth="150" Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: " />
+                <DataGridTextColumn MinWidth="20" MaxWidth="80" Width="70" Binding="{Binding ID}" Header="ID: " />
+                <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="170" Binding="{Binding Tip}" Header="Tip Intervencije: " />
+                <DataGridTextColumn MinWidth="100" MaxWidth="150" Width="140" Binding="{Binding Datum_I_Vreme, StringFormat='d/M/yyyy HH:mm'}" Header="Datum: " />
+                <DataGridTextColumn MinWidth="100" MaxWidth="190" Width="160" Binding="{Binding Adresa}" Header="Adresa: " />
+                <DataGridTextColumn MinWidth="20" Width="150" MaxWidth="150" Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: " />
                 <DataGridTemplateColumn MinWidth="100" MaxWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -19,10 +19,32 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Intervencije" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1094" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="871,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="871,121,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="871,172,0,0" VerticalAlignment="Top" Width="180" Height="32" />
-        <TextBlock x:Name="Poruka" Foreground="Red" HorizontalAlignment="Left" Margin="871,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="112" Width="180"/>
+        <Label Content="Intervencije:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
+        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="1004,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,115,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,162,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="247" Width="180"/>
+        <Border BorderBrush="Black"  BorderThickness="1" HorizontalAlignment="Left" Height="51" Margin="100,64,0,0" VerticalAlignment="Top" Width="884">
+            <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
+                <Label Content="Filter:" FontSize="12" FontWeight="Normal" Margin="0,0,0,19" Width="57"/>
+                <Label Content="Tip Inervencije:" FontSize="12"  VerticalContentAlignment="Center" Margin="0,7,0,7" Width="100"/>
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Selektujte tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="37">
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate>
+                            <CheckBox Content="{Binding Tip}" VerticalContentAlignment="Center"  IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Content="Opstina:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="37" Width="62"/>
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Selektujte opstine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="37">
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate >
+                            <CheckBox  Content="{Binding Opstina.Naziv_Opstine}" VerticalContentAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="FilterList" Content="Primeni filter" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="30,7,0,0" Width="244" Height="37"/>
+            </StackPanel>
+        </Border>
     </Grid>
-</Window>
+</UserControl>

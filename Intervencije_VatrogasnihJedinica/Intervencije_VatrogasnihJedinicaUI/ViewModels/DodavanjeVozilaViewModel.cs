@@ -26,9 +26,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
             VatrogasneJedinice = jedinicaDAO.GetList();
+            Vozilo = vozilo;
+            Godiste = DateTime.Now.Year;
             if (vozilo != null)
             {
-                Vozilo = vozilo;
+                Godiste = vozilo.Godiste;
                 TipVozila = vozilo.Tip;
                 InicijalizacijaVrednosti(vozilo);
             }
@@ -123,7 +125,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private void InicijalizacijaListeGodista() 
         {
             Godista = new List<int>();
-            Godiste = DateTime.Now.Year;
             var godina = DateTime.Now.Year;
             for (int i = 40; i > 0; i--)
             {

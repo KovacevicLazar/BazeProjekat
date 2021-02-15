@@ -11,13 +11,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
         private string porukaGreskeZaNaziv = "";
 
-        public DodavanjeOpstineViewModel(Opstina postojecaOpstina)
+        public DodavanjeOpstineViewModel(Opstina opstina)
         {
-            if (postojecaOpstina != null)
-            {
-                Opstina = postojecaOpstina;
-                NazivOpstine = postojecaOpstina.Naziv_Opstine;
-            }
+            Opstina = opstina;
+            NazivOpstine = opstina?.Naziv_Opstine;
         }
 
         public string NazivOpstine { get; set; }

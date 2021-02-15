@@ -96,9 +96,11 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\AlatIsSelected.cs" />
     <Compile Include="Models\NullToIsReadOnlyConverter.cs" />
+    <Compile Include="Models\OpstinaIsSelected.cs" />
     <Compile Include="Models\SadrzajDugmetaDodajIzmeni.cs" />
     <Compile Include="Models\NullToMessageConverter.cs" />
     <Compile Include="Models\SmenaIsSelected.cs" />
+    <Compile Include="Models\TipIntervencijeIsSelected.cs" />
     <Compile Include="Models\VatrogasnaJeninicaIsSelected.cs" />
     <Compile Include="Models\VoziloIsSelected.cs" />
     <Compile Include="ViewModels\AlatiViewModel.cs" />

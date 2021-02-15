@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
     /// <summary>
     /// Interaction logic for OpstineView.xaml
     /// </summary>
-    public partial class OpstineView : Window
+    public partial class OpstineView : UserControl
     {
         public OpstineView()
         {
