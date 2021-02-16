@@ -17,8 +17,8 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Smena()
         {
-            this.Intervencije = new HashSet<Intervencija>();
             this.Radnici = new HashSet<Radnik>();
+            this.SviRadnici = new HashSet<RadnikUSmeni>();
         }
     
         public int ID { get; set; }
@@ -27,9 +27,9 @@ namespace Intervencije_VatrogasnihJedinica
         public System.DateTime DatumPrvogDezurstva { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Intervencija> Intervencije { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Radnik> Radnici { get; set; }
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RadnikUSmeni> SviRadnici { get; set; }
     }
 }

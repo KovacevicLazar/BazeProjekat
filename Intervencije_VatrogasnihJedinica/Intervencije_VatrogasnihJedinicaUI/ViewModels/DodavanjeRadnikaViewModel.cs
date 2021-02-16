@@ -10,12 +10,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     public class DodavanjeRadnikaViewModel : Screen
     {
         private RadnikDAO radnikDAO = new RadnikDAO();
+        private RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
         private SmenaDAO smenaDAO = new SmenaDAO();
         private VatrogasnaJedinicaDAO jedinicaDAO = new VatrogasnaJedinicaDAO();
         private Radnik radnik;
         private VatrogasnaJedinica izabranaVatrogasnaJedinica;
         private List<Smena> smene;
-        private string porukaGreskeZaGodineStaza = "";
+        private DateTime datumPocetkaRada = DateTime.Now;
+        private string porukaGreskeZaDatumPocetkaRada = "Nije moguće naknadno menjati datum! Unesite ga pažljivo";
         private string porukaGreskeZaIme = "";
         private string porukaGreskeZaPrezime = "";
         private string porukaGreskeZaJMBG = "";
@@ -32,21 +34,21 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 Smene = smenaDAO.SmeneUnutarJedneVSJ(radnik.VatrogasnaJedinica.ID);
                 InicijalizacijaVrednosti(radnik);
+                PorukaGreskeZaDatumPocetkaRada = "Nije moguće naknadno menjati datum!";
             }
         }
 
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Jmbg { get; set; }
-        public int RadniStaz { get; set; }
         public RadnoMesto RadnaPozicija { get; set; }
         public IReadOnlyList<RadnoMesto> Pozicije { get; }
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public Smena IzabranaSmena { get; set; }
-        public Radnik Radnik { get => radnik; set => radnik = value; }
+        public Radnik Radnik { get => radnik; set { radnik = value; NotifyOfPropertyChange(() => Radnik); } }
         public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get => izabranaVatrogasnaJedinica; set { izabranaVatrogasnaJedinica = value; Smene = smenaDAO.SmeneUnutarJedneVSJ(value.ID); PorukaGreskeZaSmenu = (Smene.Count == 0) ? "Nisu dodate smene za ovu Vatrogasnu jedinicu!" : ""; } }
         public List<Smena> Smene { get => smene; set { smene = value; NotifyOfPropertyChange(() => Smene); } }
-        public string PorukaGreskeZaGodineStaza { get => porukaGreskeZaGodineStaza; set { porukaGreskeZaGodineStaza = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodineStaza); } }
+        public string PorukaGreskeZaDatumPocetkaRada { get => porukaGreskeZaDatumPocetkaRada; set { porukaGreskeZaDatumPocetkaRada = value; NotifyOfPropertyChange(() => PorukaGreskeZaDatumPocetkaRada); } }
         public string PorukaGreskeZaIme { get => porukaGreskeZaIme; set { porukaGreskeZaIme = value; NotifyOfPropertyChange(() => PorukaGreskeZaIme); } }
         public string PorukaGreskeZaPrezime { get => porukaGreskeZaPrezime; set { porukaGreskeZaPrezime = value; NotifyOfPropertyChange(() => PorukaGreskeZaPrezime); } }
         public string PorukaGreskeZaJMBG { get => porukaGreskeZaJMBG; set { porukaGreskeZaJMBG = value; NotifyOfPropertyChange(() => PorukaGreskeZaJMBG); } }
@@ -54,18 +56,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
         public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
 
+        public DateTime DatumPocetkaRada { get => datumPocetkaRada; set { datumPocetkaRada = value; NotifyOfPropertyChange(() => DatumPocetkaRada); } }
+
         public void DodajIzmeni()
         {
             if (Validacija())
             {
                 if (Radnik == null)
                 {
-                    Radnik = new Radnik { Ime = Ime, Prezime = Prezime, Godine_Rada = RadniStaz, JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
+                    Radnik = new Radnik { Ime = Ime, Prezime = Prezime, DatumPocetkaRada = DatumPocetkaRada, JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
                     radnikDAO.Insert(Radnik);
+
+                    radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = Radnik.ID, SmenaID = IzabranaSmena.ID, DatumPocetkaRada = DatumPocetkaRada });
                 }
                 else
                 {
-                    Radnik = new Radnik { ID = Radnik.ID, Ime = Ime, Prezime = Prezime, Godine_Rada = RadniStaz, JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
+                    Radnik = new Radnik { ID = Radnik.ID, Ime = Ime, Prezime = Prezime, DatumPocetkaRada = Radnik.DatumPocetkaRada , JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
                     radnikDAO.Update(Radnik);
                 }
                 TryClose();
@@ -77,7 +83,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Ime = radnik.Ime;
             Prezime = radnik.Prezime;
             Jmbg = radnik.JMBG;
-            RadniStaz = radnik.Godine_Rada;
+            DatumPocetkaRada = radnik.DatumPocetkaRada;
             IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == radnik.VatrogasnaJedinicaID);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
             IzabranaSmena = Smene.Find(x => x.ID == radnik.SmenaID);
@@ -88,7 +94,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool Validacija()
         {
             bool ispravanUnos = true;
-            PorukaGreskeZaGodineStaza = "";
+            PorukaGreskeZaDatumPocetkaRada = "";
             PorukaGreskeZaIme = "";
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaJMBG = "";
@@ -143,9 +149,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 ispravanUnos = false;
             }
 
-            if (RadniStaz < 0 || RadniStaz > 50)
+            if (DatumPocetkaRada > DateTime.Now)
             {
-                PorukaGreskeZaGodineStaza = "Samo u intervalu od 0 do 50!";
+                PorukaGreskeZaDatumPocetkaRada = "Moguce je izabrati samo datum koji je prosao!";
                 ispravanUnos = false;
             }
 

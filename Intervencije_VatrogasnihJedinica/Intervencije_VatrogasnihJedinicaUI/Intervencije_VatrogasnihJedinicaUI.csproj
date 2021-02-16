@@ -100,6 +100,7 @@
     <Compile Include="Models\AlatIsSelected.cs" />
     <Compile Include="Models\NullToIsReadOnlyConverter.cs" />
     <Compile Include="Models\OpstinaIsSelected.cs" />
+    <Compile Include="Models\RadnikUSmeniIsSelected.cs" />
     <Compile Include="Models\SadrzajDugmetaDodajIzmeni.cs" />
     <Compile Include="Models\NullToMessageConverter.cs" />
     <Compile Include="Models\SmenaIsSelected.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="ViewModels\IntervencijeViewModel.cs" />
     <Compile Include="ViewModels\KomandiriViewModel.cs" />
     <Compile Include="ViewModels\OpstineViewModel.cs" />
+    <Compile Include="ViewModels\PromenaVSJISmeneZaRadnikaViewModel.cs" />
     <Compile Include="ViewModels\RadniciViewModel.cs" />
     <Compile Include="ViewModels\SmeneViewModel.cs" />
     <Compile Include="ViewModels\VatrogasneJediniceViewModel.cs" />
@@ -181,6 +183,9 @@
     </Compile>
     <Compile Include="Views\OpstineView.xaml.cs">
       <DependentUpon>OpstineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PromenaVSJISmeneZaRadnikaView.xaml.cs">
+      <DependentUpon>PromenaVSJISmeneZaRadnikaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RadniciView.xaml.cs">
       <DependentUpon>RadniciView.xaml</DependentUpon>
@@ -259,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OpstineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PromenaVSJISmeneZaRadnikaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

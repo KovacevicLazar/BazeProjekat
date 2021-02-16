@@ -14,16 +14,24 @@ namespace Intervencije_VatrogasnihJedinica
     
     public partial class Radnik
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Radnik()
+        {
+            this.SveSmene = new HashSet<RadnikUSmeni>();
+        }
+    
         public int ID { get; set; }
         public string JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public RadnoMesto Radno_Mesto { get; set; }
-        public int Godine_Rada { get; set; }
+        public System.DateTime DatumPocetkaRada { get; set; }
         public int VatrogasnaJedinicaID { get; set; }
         public int SmenaID { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public virtual Smena Smena { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RadnikUSmeni> SveSmene { get; set; }
     }
 }

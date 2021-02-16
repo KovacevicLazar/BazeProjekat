@@ -10,7 +10,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Set<Pozar>().Include("Vozila").Include("Smene").Include("Opstina").SingleOrDefault(x => x.ID == idPozara);
+                return db.Set<Pozar>().Include("Vozila").Include("Opstina").Include("RadniciSaSmenama").SingleOrDefault(x => x.ID == idPozara);
             }
         }
 
@@ -35,24 +35,24 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public Tuple<bool, string> DodajSmenuNaIntervenciju(int smenaID, int intervencijaID)
+        public Tuple<bool, string> DodajSmenuIRadnikaNaIntervenciju(int smenaID,int radnikID, int radnikISmenaID, int intervencijaID)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 ObjectParameter objectParameterSuccess = new ObjectParameter("success", typeof(bool));
                 ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
-                db.DodajSmenuNaIntervenciju(smenaID, intervencijaID, objectParameterSuccess, objectParameterMessage);
+                db.DodajSmenuIRadnikaNaIntervenciju(smenaID,radnikID,radnikISmenaID, intervencijaID, objectParameterSuccess, objectParameterMessage);
                 return new Tuple<bool, string>((bool)objectParameterSuccess.Value, (string)objectParameterMessage.Value);
             }
         }
 
-        public void UkloniSmeneSaIntervencije(int idIntervencije)
+        public void UkloniRadnikeISmeneSaIntervencije(int idIntervencije)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 ObjectParameter objectParameterSuccess = new ObjectParameter("success", typeof(bool));
                 ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
-                db.UkloniSmeneSaIntervencije(idIntervencije, objectParameterSuccess, objectParameterMessage);
+                db.UkloniRadnikeISmeneSaIntervencije(idIntervencije, objectParameterSuccess, objectParameterMessage);
             }
         }
     }

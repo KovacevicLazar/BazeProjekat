@@ -20,10 +20,6 @@
     <EntitySet Name="Inspektori" EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" />
     <EntitySet Name="Alati" EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" />
     <EntitySet Name="Smene" EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" />
-    <AssociationSet Name="Intervencija_Smena" Association="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena">
-      <End Role="Intervencija" EntitySet="Intervencije" />
-      <End Role="Smena" EntitySet="Smene" />
-    </AssociationSet>
     <AssociationSet Name="Tehnicka_IntervencijaTehnicko_Vozilo" Association="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo">
       <End Role="Tehnicka_Intervencija" EntitySet="Intervencije" />
       <End Role="Tehnicko_Vozilo" EntitySet="Vozila" />
@@ -63,8 +59,23 @@
       <End Role="Alat" EntitySet="Alati" />
       <End Role="Vozilo" EntitySet="Vozila" />
     </AssociationSet>
-    <FunctionImport Name="DodajSmenuNaIntervenciju">
+    <EntitySet Name="RadniciUSmenama" EntityType="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" />
+    <AssociationSet Name="RadnikRadnikUSmeni" Association="Model_Intervencije_VatrogasnihJedinica.RadnikRadnikUSmeni">
+      <End Role="Radnik" EntitySet="Radnici" />
+      <End Role="RadnikUSmeni" EntitySet="RadniciUSmenama" />
+    </AssociationSet>
+    <AssociationSet Name="SmenaRadnikUSmeni" Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnikUSmeni">
+      <End Role="Smena" EntitySet="Smene" />
+      <End Role="RadnikUSmeni" EntitySet="RadniciUSmenama" />
+    </AssociationSet>
+    <AssociationSet Name="IntervencijaRadnikUSmeni" Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni">
+      <End Role="Intervencija" EntitySet="Intervencije" />
+      <End Role="RadnikUSmeni" EntitySet="RadniciUSmenama" />
+    </AssociationSet>
+    <FunctionImport Name="DodajSmenuIRadnikaNaIntervenciju">
       <Parameter Name="smenaID" Mode="In" Type="Int32" />
+      <Parameter Name="radnikID" Mode="In" Type="Int32" />
+      <Parameter Name="radnikISmenaID" Mode="In" Type="Int32" />
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
@@ -100,7 +111,7 @@
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="UkloniSmeneSaIntervencije">
+    <FunctionImport Name="UkloniRadnikeISmeneSaIntervencije">
       <Parameter Name="intervencijaID" Mode="In" Type="Int32" />
       <Parameter Name="success" Mode="InOut" Type="Boolean" />
       <Parameter Name="outputMessage" Mode="InOut" Type="String" />
@@ -181,10 +192,10 @@
     <Property Name="Datum_I_Vreme" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Intervencija" ToRole="Opstina" />
     <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Smene" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Intervencija" ToRole="Smena" />
     <Property Name="Obrisana" Type="Boolean" Nullable="false" DefaultValue="False" />
     <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Intervencija" ToRole="Uvidjaj" />
     <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipIntervencijeEnum" Nullable="false" />
+    <NavigationProperty Name="RadniciSaSmenama" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni" FromRole="Intervencija" ToRole="RadnikUSmeni" />
   </EntityType>
   <Association Name="OpstinaIntervencija">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
@@ -222,12 +233,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" FromRole="Smena" ToRole="Intervencija" />
     <Property Name="NazivSmene" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="Smena" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
     <Property Name="DatumPrvogDezurstva" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="SviRadnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnikUSmeni" FromRole="Smena" ToRole="RadnikUSmeni" />
   </EntityType>
   <EntityType Name="Pozar" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Pozar" ToRole="Navalno_Vozilo" />
@@ -235,10 +246,6 @@
   <EntityType Name="Tehnicka_Intervencija" BaseType="Model_Intervencije_VatrogasnihJedinica.Intervencija">
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" FromRole="Tehnicka_Intervencija" ToRole="Tehnicko_Vozilo" />
   </EntityType>
-  <Association Name="Intervencija_Smena">
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
-    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="*" />
-  </Association>
   <EntityType Name="Navalno_Vozilo" BaseType="Model_Intervencije_VatrogasnihJedinica.Vozilo">
     <NavigationProperty Name="Pozari" Relationship="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" FromRole="Navalno_Vozilo" ToRole="Pozar" />
   </EntityType>
@@ -267,11 +274,12 @@
     <Property Name="Ime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Prezime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
-    <Property Name="Godine_Rada" Type="Int32" Nullable="false" />
+    <Property Name="DatumPocetkaRada" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
     <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Radnik" ToRole="Smena" />
     <Property Name="SmenaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SveSmene" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikRadnikUSmeni" FromRole="Radnik" ToRole="RadnikUSmeni" />
   </EntityType>
   <Association Name="RadnikVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="*" />
@@ -384,16 +392,45 @@
     <Member Name="Protivpozarni_Alat" Value="1" />
     <Member Name="Alat_Opste_Namene" Value="2" />
   </EnumType>
-  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="NazivSmene" Nullable="false" />
-    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
-    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result1">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="NazivSmene" Nullable="false" />
-    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
-    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
-  </ComplexType>
+  <EntityType Name="RadnikUSmeni">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatumPocetkaRada" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DatumKrajaRada" Type="DateTime" Nullable="true" Precision="3" />
+    <NavigationProperty Name="Radnik" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikRadnikUSmeni" FromRole="RadnikUSmeni" ToRole="Radnik" />
+    <Property Name="RadnikID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Smena" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnikUSmeni" FromRole="RadnikUSmeni" ToRole="Smena" />
+    <Property Name="SmenaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni" FromRole="RadnikUSmeni" ToRole="Intervencija" />
+  </EntityType>
+  <Association Name="RadnikRadnikUSmeni">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Radnik" Role="Radnik" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" Role="RadnikUSmeni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Radnik">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RadnikUSmeni">
+        <PropertyRef Name="RadnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SmenaRadnikUSmeni">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Smena" Role="Smena" Multiplicity="1" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" Role="RadnikUSmeni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Smena">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RadnikUSmeni">
+        <PropertyRef Name="SmenaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IntervencijaRadnikUSmeni">
+    <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
+    <End Type="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" Role="RadnikUSmeni" Multiplicity="*" />
+  </Association>
 </Schema>

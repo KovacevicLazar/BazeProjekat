@@ -106,7 +106,7 @@
           <ScalarProperty Name="Ime" ColumnName="Ime" />
           <ScalarProperty Name="Prezime" ColumnName="Prezime" />
           <ScalarProperty Name="Radno_Mesto" ColumnName="Radno_Mesto" />
-          <ScalarProperty Name="Godine_Rada" ColumnName="Godine_Rada" />
+          <ScalarProperty Name="DatumPocetkaRada" ColumnName="DatumPocetkaRada" />
           <ScalarProperty Name="VatrogasnaJedinicaID" ColumnName="VatrogasnaJedinicaID" />
           <ScalarProperty Name="SmenaID" ColumnName="SmenaID" />
         </MappingFragment>
@@ -132,14 +132,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Intervencija_Smena" TypeName="Model_Intervencije_VatrogasnihJedinica.Intervencija_Smena" StoreEntitySet="Intervencija_Smena">
-      <EndProperty Name="Intervencija">
-        <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
-      </EndProperty>
-      <EndProperty Name="Smena">
-        <ScalarProperty Name="ID" ColumnName="Smene_ID" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="RadniciUSmenama">
+      <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni)">
+        <MappingFragment StoreEntitySet="RadniciUSmenama">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DatumPocetkaRada" ColumnName="DatumPocetkaRada" />
+          <ScalarProperty Name="DatumKrajaRada" ColumnName="DatumKrajaRada" />
+          <ScalarProperty Name="RadnikID" ColumnName="RadnikID" />
+          <ScalarProperty Name="SmenaID" ColumnName="SmenaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="Tehnicka_IntervencijaTehnicko_Vozilo" TypeName="Model_Intervencije_VatrogasnihJedinica.Tehnicka_IntervencijaTehnicko_Vozilo" StoreEntitySet="Tehnicka_IntervencijaTehnicko_Vozilo">
       <EndProperty Name="Tehnicka_Intervencija">
         <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
@@ -164,14 +167,22 @@
         <ScalarProperty Name="ID" ColumnName="Vozila_ID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="DodajSmenuNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodajSmenuNaIntervenciju" />
+    <AssociationSetMapping Name="IntervencijaRadnikUSmeni" TypeName="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni" StoreEntitySet="IntervencijaRadnikUSmeni">
+      <EndProperty Name="Intervencija">
+        <ScalarProperty Name="ID" ColumnName="Intervencije_ID" />
+      </EndProperty>
+      <EndProperty Name="RadnikUSmeni">
+        <ScalarProperty Name="Id" ColumnName="RadniciSaSmenama_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="DodajSmenuIRadnikaNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodajSmenuIRadnikaNaIntervenciju" />
     <FunctionImportMapping FunctionImportName="DodeliAlatVozilu" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.DodeliAlatVozilu" />
     <FunctionImportMapping FunctionImportName="ListaDezurnihSmenaNaDatum" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.ListaDezurnihSmenaNaDatum" />
     <FunctionImportMapping FunctionImportName="PostaviNavalnoVoziloNaIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviNavalnoVoziloNaIntervenciju" />
     <FunctionImportMapping FunctionImportName="PostaviTehnickoVoziloNaTehnickuIntervenciju" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.PostaviTehnickoVoziloNaTehnickuIntervenciju" />
     <FunctionImportMapping FunctionImportName="UkloniAlateIzVozila" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniAlateIzVozila" />
     <FunctionImportMapping FunctionImportName="UkloniNavalnaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniNavalnaVozilaSaIntervencije" />
-    <FunctionImportMapping FunctionImportName="UkloniSmeneSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniSmeneSaIntervencije" />
+    <FunctionImportMapping FunctionImportName="UkloniRadnikeISmeneSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniRadnikeISmeneSaIntervencije" />
     <FunctionImportMapping FunctionImportName="UkloniTehnickaVozilaSaIntervencije" FunctionName="Model_Intervencije_VatrogasnihJedinica.Store.UkloniTehnickaVozilaSaIntervencije" />
   </EntityContainerMapping>
 </Mapping>

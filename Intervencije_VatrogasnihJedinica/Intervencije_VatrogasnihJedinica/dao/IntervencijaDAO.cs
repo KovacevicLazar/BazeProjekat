@@ -9,7 +9,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Intervencije.Include("Opstina").Include("Uvidjaj").ToList();
+                return db.Intervencije.Include("Opstina").Include("Uvidjaj").Include("RadniciSaSmenama").ToList();
             }
         }
         public  List<Intervencija> GetFilteredList(List<int> opstineID, List<TipIntervencijeEnum> tipovi)

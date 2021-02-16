@@ -86,3 +86,5 @@ C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinic
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Intervencije_VatrogasnihJedinicaUI.pdb
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\InformacijeOSmenamaVatrogasneJediniceView.g.cs
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\InformacijeOSmenamaVatrogasneJediniceView.baml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\PromenaVSJISmeneZaRadnikaView.g.cs
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Views\PromenaVSJISmeneZaRadnikaView.baml

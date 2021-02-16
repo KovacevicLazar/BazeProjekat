@@ -12,6 +12,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     public class DodavanjeIntervencijeViewModel : Screen
     {
         private PozarDAO pozarDAO = new PozarDAO();
+        private RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
         private TehnickaIntervencijaDAO tehnickaIntervencijaDAO = new TehnickaIntervencijaDAO();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
         private string porukaGreskeZaAdresu = "";
@@ -25,6 +26,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private TipIntervencijeEnum tipIntervencije;
         private Opstina izabranaOpstina;
         private ObservableCollection<SmenaIsSelected> smene = new ObservableCollection<SmenaIsSelected>();
+        private ObservableCollection<RadnikUSmeniIsSelected> radnici = new ObservableCollection<RadnikUSmeniIsSelected>();
         private ObservableCollection<VoziloIsSelected> vozila = new ObservableCollection<VoziloIsSelected>();
 
         public DodavanjeIntervencijeViewModel(Intervencija intervencija)
@@ -57,7 +59,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     TehnickaIntervencija = tehnickaIntervencijaDAO.FindById(intervencija.ID);
                 }
             }
-
             InicijalizacijaListeVozila();
             InicijalizacijaListeSmena();
         }
@@ -80,6 +81,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaOpstinu { get => porukaGreskeZaOpstinu; set { porukaGreskeZaOpstinu = value; NotifyOfPropertyChange(() => PorukaGreskeZaOpstinu); } }
         public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu); } }
         public string PorukaGreskeZaSmeneIVozila { get => porukaGreskeZaSmeneIVozila; set { porukaGreskeZaSmeneIVozila = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmeneIVozila); } }
+
+        public ObservableCollection<RadnikUSmeniIsSelected> Radnici { get => radnici; set { radnici = value; NotifyOfPropertyChange(() => Radnici); } }
 
         public void DodajIzmeni()
         {
@@ -109,14 +112,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             Pozar = new Pozar { ID = Intervencija.ID, Tip = TipIntervencije, Adresa = Adresa, Datum_I_Vreme = Datum, Id_Opstine = IzabranaOpstina.ID };
                             pozarDAO.Update(Pozar);
                             pozarDAO.UkloniVozilaSaIntervencije(Pozar.ID);
-                            pozarDAO.UkloniSmeneSaIntervencije(Pozar.ID);
+                            pozarDAO.UkloniRadnikeISmeneSaIntervencije(Pozar.ID);
                             DodajVozilaISmeneZaPozarUBazuPodataka();
                             break;
                         case (TipIntervencijeEnum.TEHNICKA_INTERVENCIJA):
                             TehnickaIntervencija = new Tehnicka_Intervencija { ID = Intervencija.ID, Tip = TipIntervencije, Adresa = Adresa, Datum_I_Vreme = Datum, Id_Opstine = IzabranaOpstina.ID };
                             tehnickaIntervencijaDAO.Update(TehnickaIntervencija);
                             tehnickaIntervencijaDAO.UkloniVozilaSaIntervencije(TehnickaIntervencija.ID);
-                            tehnickaIntervencijaDAO.UkloniSmeneSaIntervencije(TehnickaIntervencija.ID);
+                            tehnickaIntervencijaDAO.UkloniRadnikeISmeneSaIntervencije(TehnickaIntervencija.ID);
                             DodajVozilaISmeneZaTehnickuIntervencijuUBazuPodataka();
                             break;
                     }
@@ -134,11 +137,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     pozarDAO.DodajVoziloNaIntervenciju(vozilo.Vozilo.ID, Pozar.ID);
                 }
             }
-            foreach (var smena in Smene)
+            foreach (var radnikISmena in Radnici)
             {
-                if (smena.IsSelected)
+                if (radnikISmena.IsSelected)
                 {
-                    pozarDAO.DodajSmenuNaIntervenciju(smena.Smena.ID, Pozar.ID);
+                    pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.Id, Pozar.ID);
                 }
             }
         }
@@ -152,11 +155,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     tehnickaIntervencijaDAO.DodajVoziloNaIntervenciju(vozilo.Vozilo.ID, TehnickaIntervencija.ID);
                 }
             }
-            foreach (var smena in Smene)
+            foreach (var radnikISmena in Radnici)
             {
-                if (smena.IsSelected)
+                if (radnikISmena.IsSelected)
                 {
-                    tehnickaIntervencijaDAO.DodajSmenuNaIntervenciju(smena.Smena.ID, TehnickaIntervencija.ID);
+                    tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.Id, TehnickaIntervencija.ID);
                 }
             }
         }
@@ -164,6 +167,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private void InicijalizacijaListeSmena()
         {
             Smene.Clear();
+            Radnici.Clear();
             if (ValidacijaZaDatumIVreme())
             {
                 SmenaDAO smenaDAO = new SmenaDAO();
@@ -174,7 +178,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         foreach (var smena in sveSmene)
                         {
-                            if (Pozar.Smene.Any(prod => prod.ID == smena.ID))
+                            if (Pozar.RadniciSaSmenama.Any(prod => prod.SmenaID == smena.ID))
                             {
                                 Smene.Add((new SmenaIsSelected { Smena = smena, IsSelected = true }));
                                 continue;
@@ -186,7 +190,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         foreach (var smena in sveSmene)
                         {
-                            if (TehnickaIntervencija.Smene.Any(prod => prod.ID == smena.ID))
+                            if (TehnickaIntervencija.RadniciSaSmenama.Any(prod => prod.SmenaID == smena.ID))
                             {
                                 Smene.Add((new SmenaIsSelected { Smena = smena, IsSelected = true }));
                                 continue;
@@ -194,6 +198,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             Smene.Add((new SmenaIsSelected { Smena = smena, IsSelected = false }));
                         }
                     }
+                    InicijalizacijaListeRadnika();
                 }
                 else
                 {
@@ -249,6 +254,45 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
             }
         }
+        public void InicijalizacijaListeRadnika()
+        {
+            List<int> smeneID = new List<int>();
+            foreach (var smena in Smene)
+            {
+                if (smena.IsSelected && !Radnici.Any(x => x.RadnikUSmeni.SmenaID == smena.Smena.ID))
+                {
+                        smeneID.Add(smena.Smena.ID);
+                }
+                else if (!smena.IsSelected && Radnici.Any(x => x.RadnikUSmeni.SmenaID == smena.Smena.ID))
+                {
+                    List<RadnikUSmeniIsSelected> radniciUSmeni = Radnici.Where(x => x.RadnikUSmeni.SmenaID == smena.Smena.ID).ToList();
+                    foreach (var radnikUSmeni in radniciUSmeni)
+                    {
+                         Radnici.Remove(radnikUSmeni);
+                    }
+                }
+            }
+            List<RadnikUSmeni> radniciISmene = radnikSmenaDAO.ListaRadnikaIzSmeneZaDatum(smeneID, Datum);
+            foreach (var radnikUSmeni in radniciISmene)
+            {
+                if (!Radnici.Any(x => x.RadnikUSmeni.Id == radnikUSmeni.RadnikID))
+                {
+                    if (Intervencija != null)
+                    {
+                        if (Intervencija.RadniciSaSmenama.Any(prod => prod.RadnikID == radnikUSmeni.RadnikID))
+                        {
+                            Radnici.Add(new RadnikUSmeniIsSelected { RadnikUSmeni = radnikUSmeni, IsSelected = true });
+                            continue;
+                        }
+                        Radnici.Add(new RadnikUSmeniIsSelected { RadnikUSmeni = radnikUSmeni, IsSelected = false });
+                    }
+                    else
+                    {
+                        Radnici.Add(new RadnikUSmeniIsSelected { RadnikUSmeni = radnikUSmeni, IsSelected = false });
+                    }
+                }
+            }
+        }
 
         private bool ValidacijaSmeneIVozila()
         {
@@ -288,6 +332,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             return true;
         }
+        private bool ValidacijaZaSmeneIRadnike()
+        {
+            PorukaGreskeZaSmeneIVozila = "";
+            foreach (var smena in Smene)
+            {
+                if (smena.IsSelected)
+                {
+                    int brojSelektovanihVatrogasaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vatrogasac).Count();
+                    int brojSelektovanihVozaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vozac).Count();
+                    if (brojSelektovanihVatrogasaca < 1 || brojSelektovanihVozaca < 1)
+                    {
+                        PorukaGreskeZaSmeneIVozila = "Za svaku oznacenu smenu morate oznaciti bar jednog vozaca i bar jednog vatrogasca iz te smene!";
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         private bool ValidacijaZaDatumIVreme()
         {
@@ -313,7 +375,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaOpstinu = "";
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
-            bool ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila();
+            bool ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila() && ValidacijaZaSmeneIRadnike();
 
             if (string.IsNullOrEmpty(Adresa))
             {

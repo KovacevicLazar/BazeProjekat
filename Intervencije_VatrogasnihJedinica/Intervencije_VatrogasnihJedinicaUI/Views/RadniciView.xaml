@@ -1,14 +1,35 @@
-﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.RadniciView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold"  >
+﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.RadniciView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:cal="http://www.caliburnproject.org" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold"  >
     <Grid Width="1259" Height="675" Background="#FFF9F7F6" >
-        <DataGrid FontSize="12"  AutoGenerateColumns="False" ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="596" Margin="78,69,0,0" VerticalAlignment="Top" Width="938">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="70" />
-                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime:" Width="120" />
+        <DataGrid FontSize="14" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" AutoGenerateColumns="False" ItemsSource="{Binding SviRadnici, Mode=OneWay}" SelectedItem="{Binding Path=OznacenRadnik, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Height="596" Margin="60,69,0,0" VerticalAlignment="Top" Width="956">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
+            </DataGrid.Resources>
+            <DataGrid.Columns >
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="60" />
+                <DataGridTextColumn Binding="{Binding Ime}" Header="Ime:" Width="110" />
                 <DataGridTextColumn Binding="{Binding Prezime}" Header="Perzime:" Width="140" />
-                <DataGridTextColumn Binding="{Binding JMBG}" Header="JMBG:" Width="140" />
-                <DataGridTextColumn Binding="{Binding Godine_Rada}" Header="Godine &#x0a;rada:" Width="60" />
-                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;jedinica:" Width="170" />
-                <DataGridTextColumn Binding="{Binding Smena.NazivSmene}" Header="Smena:" Width="100" />
+                <DataGridTextColumn Binding="{Binding JMBG}" Header="JMBG:" Width="130" />
+                <DataGridTextColumn Binding="{Binding DatumPocetkaRada, StringFormat='d/M/yyyy'}" Header="Datum&#x0a;početka rada:" Width="100" />
+                <DataGridTemplateColumn  Header="Vatrogasna &#x0a;jedinica:" Width="175" >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding VatrogasnaJedinica.Naziv}"/>
+                                <Button FontSize="12" Content="Promeni vatrogasnu jedinicu" Margin="2,0,2,5" cal:Message.Attach="IzmenaVatrogasneJediniceISmene($dataContext)" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Smena:" Width="105">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Smena.NazivSmene}"/>
+                                <Button FontSize="12" Content="Promeni smenu" Margin="2,0,2,5" cal:Message.Attach="IzmenaVatrogasneJediniceISmene($dataContext)" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Radno_Mesto}" Header="Radno &#x0a;Mesto: " Width="130" />
             </DataGrid.Columns>
         </DataGrid>

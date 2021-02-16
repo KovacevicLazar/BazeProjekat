@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.DodavanjeRadnikaView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Models" mc:Ignorable="d" FontWeight="Bold" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Title="Dodavanje ili izmena radnika" Height="525.388" Width="421.101">
     <Window.Resources>
         <models:SadrzajDugmetaDodajIzmeni x:Key="SadrzajDugmetaDodajIzmeni" />
+        <models:NullToIsReadOnlyConverter x:Key="NullToIsReadOnlyConverter" />
     </Window.Resources>
     <Grid>
         <Label Content="Informacije o radniku:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="413" Margin="0,10,0,0" />
@@ -8,15 +9,15 @@
         <Label Content="Radna Pozicija...........:" HorizontalAlignment="Left" VerticalContentAlignment="Top" Margin="70,217,0,0" VerticalAlignment="Top" Width="130" Height="25" />
         <TextBox x:Name="Ime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
         <TextBox x:Name="Prezime" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
+        <DatePicker SelectedDate="{Binding DatumPocetkaRada, Mode=TwoWay}" IsEnabled="{Binding Radnik, Converter={StaticResource NullToIsReadOnlyConverter}}" SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="197,268,0,0" VerticalAlignment="Top" Width="121" Height="25" />
         <ComboBox x:Name="Pozicije" VerticalContentAlignment="Center" SelectedItem="{Binding Path=RadnaPozicija , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,217,0,0" VerticalAlignment="Top" Width="121" Height="25" />
         <Label Content="JMBG..........................:" HorizontalAlignment="Left"  Margin="70,167,0,0" VerticalAlignment="Top" Width="130" Height="25" />
         <TextBox x:Name="Jmbg" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="197,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
-        <ComboBox x:Name="VatrogasneJedinice" VerticalContentAlignment="Center" DisplayMemberPath="Naziv" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,319,0,0" VerticalAlignment="Top" Height="25" Width="121" RenderTransformOrigin="0.493,0.48" />
+        <ComboBox x:Name="VatrogasneJedinice" IsEnabled="{Binding Radnik, Converter={StaticResource NullToIsReadOnlyConverter}}" VerticalContentAlignment="Center" DisplayMemberPath="Naziv" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,319,0,0" VerticalAlignment="Top" Height="25" Width="121" RenderTransformOrigin="0.493,0.48" />
         <Label Content="Vatrogasna Jedinica.:" HorizontalAlignment="Left" Margin="70,320,0,0" VerticalAlignment="Top" Width="129" Height="25" />
-        <Label Content="Godine radnog staza:" HorizontalAlignment="Left" Margin="70,268,0,0" VerticalAlignment="Top" Width="129" Height="25" />
-        <TextBox x:Name="RadniStaz" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="25" Margin="197,268,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="121" />
+        <Label Content="Datum početka rada:" HorizontalAlignment="Left" Margin="70,268,0,0" VerticalAlignment="Top" Width="129" Height="25" />
         <Label Content="Smena........................:" HorizontalAlignment="Left" Margin="70,370,0,0" VerticalAlignment="Top" Width="129" Height="25" />
-        <ComboBox x:Name="Smene" VerticalContentAlignment="Center" ToolTip="Prvo izaberite Vatrogasnu jedinicu" DisplayMemberPath="NazivSmene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,370,0,0" VerticalAlignment="Top" Width="121" Height="25" />
+        <ComboBox x:Name="Smene" IsEnabled="{Binding Radnik, Converter={StaticResource NullToIsReadOnlyConverter}}" VerticalContentAlignment="Center" ToolTip="Prvo izaberite Vatrogasnu jedinicu" DisplayMemberPath="NazivSmene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="197,370,0,0" VerticalAlignment="Top" Width="121" Height="25" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Radnik, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="22,439,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="274,439,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
         <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,135,0,0" VerticalAlignment="Top" Height="32" Width="271" />
@@ -24,7 +25,7 @@
         <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,83,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaJMBG" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,185,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaPoziciju" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,236,0,0" VerticalAlignment="Top" Height="32" Width="271" />
-        <Label x:Name="PorukaGreskeZaGodineStaza" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,287,0,0" VerticalAlignment="Top" Height="32" Width="271" />
+        <Label x:Name="PorukaGreskeZaDatumPocetkaRada" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,287,0,0" VerticalAlignment="Top" Height="32" Width="413" />
         <Label x:Name="PorukaGreskeZaVSJ" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="70,338,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaSmenu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,389,0,0" VerticalAlignment="Top" Height="33" Width="413" />
     </Grid>

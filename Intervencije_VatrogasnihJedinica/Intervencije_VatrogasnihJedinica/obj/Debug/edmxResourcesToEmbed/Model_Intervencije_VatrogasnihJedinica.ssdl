@@ -25,13 +25,13 @@
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Broj_Telefona" Type="nvarchar(max)" />
   </EntityType>
-  <EntityType Name="Intervencija_Smena">
+  <EntityType Name="IntervencijaRadnikUSmeni">
     <Key>
       <PropertyRef Name="Intervencije_ID" />
-      <PropertyRef Name="Smene_ID" />
+      <PropertyRef Name="RadniciSaSmenama_Id" />
     </Key>
     <Property Name="Intervencije_ID" Type="int" Nullable="false" />
-    <Property Name="Smene_ID" Type="int" Nullable="false" />
+    <Property Name="RadniciSaSmenama_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije">
     <Key>
@@ -89,8 +89,18 @@
     <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Radno_Mesto" Type="int" Nullable="false" />
-    <Property Name="Godine_Rada" Type="int" Nullable="false" />
+    <Property Name="DatumPocetkaRada" Type="datetime" Nullable="false" />
     <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
+    <Property Name="SmenaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RadniciUSmenama">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatumPocetkaRada" Type="datetime" Nullable="false" />
+    <Property Name="DatumKrajaRada" Type="datetime" />
+    <Property Name="RadnikID" Type="int" Nullable="false" />
     <Property Name="SmenaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Smene">
@@ -208,27 +218,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Intervencija_Smena_Intervencija">
+  <Association Name="FK_IntervencijaRadnikUSmeni_Intervencija">
     <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
-    <End Role="Intervencija_Smena" Type="Self.Intervencija_Smena" Multiplicity="*" />
+    <End Role="IntervencijaRadnikUSmeni" Type="Self.IntervencijaRadnikUSmeni" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Intervencije">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Intervencija_Smena">
+      <Dependent Role="IntervencijaRadnikUSmeni">
         <PropertyRef Name="Intervencije_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Intervencija_Smena_Smena">
-    <End Role="Smene" Type="Self.Smene" Multiplicity="1" />
-    <End Role="Intervencija_Smena" Type="Self.Intervencija_Smena" Multiplicity="*" />
+  <Association Name="FK_IntervencijaRadnikUSmeni_RadnikUSmeni">
+    <End Role="RadniciUSmenama" Type="Self.RadniciUSmenama" Multiplicity="1" />
+    <End Role="IntervencijaRadnikUSmeni" Type="Self.IntervencijaRadnikUSmeni" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Smene">
-        <PropertyRef Name="ID" />
+      <Principal Role="RadniciUSmenama">
+        <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Intervencija_Smena">
-        <PropertyRef Name="Smene_ID" />
+      <Dependent Role="IntervencijaRadnikUSmeni">
+        <PropertyRef Name="RadniciSaSmenama_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -332,6 +342,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RadnikRadnikUSmeni">
+    <End Role="Radnici" Type="Self.Radnici" Multiplicity="1" />
+    <End Role="RadniciUSmenama" Type="Self.RadniciUSmenama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Radnici">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RadniciUSmenama">
+        <PropertyRef Name="RadnikID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RadnikVatrogasnaJedinica">
     <End Role="Vatrogasne_Jedinice" Type="Self.Vatrogasne_Jedinice" Multiplicity="1" />
     <End Role="Radnici" Type="Self.Radnici" Multiplicity="*" />
@@ -352,6 +374,18 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Radnici">
+        <PropertyRef Name="SmenaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SmenaRadnikUSmeni">
+    <End Role="Smene" Type="Self.Smene" Multiplicity="1" />
+    <End Role="RadniciUSmenama" Type="Self.RadniciUSmenama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Smene">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RadniciUSmenama">
         <PropertyRef Name="SmenaID" />
       </Dependent>
     </ReferentialConstraint>
@@ -436,8 +470,10 @@
     <Parameter Name="DatumPrvogDezurstva" Type="datetime" Mode="In" />
     <Parameter Name="DatumIntervencije" Type="datetime" Mode="In" />
   </Function>
-  <Function Name="DodajSmenuNaIntervenciju" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="DodajSmenuIRadnikaNaIntervenciju" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="smenaID" Type="int" Mode="In" />
+    <Parameter Name="radnikID" Type="int" Mode="In" />
+    <Parameter Name="radnikISmenaID" Type="int" Mode="In" />
     <Parameter Name="intervencijaID" Type="int" Mode="In" />
     <Parameter Name="success" Type="bit" Mode="InOut" />
     <Parameter Name="outputMessage" Type="varchar" Mode="InOut" />
@@ -473,7 +509,7 @@
     <Parameter Name="success" Type="bit" Mode="InOut" />
     <Parameter Name="outputMessage" Type="varchar" Mode="InOut" />
   </Function>
-  <Function Name="UkloniSmeneSaIntervencije" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="UkloniRadnikeISmeneSaIntervencije" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="intervencijaID" Type="int" Mode="In" />
     <Parameter Name="success" Type="bit" Mode="InOut" />
     <Parameter Name="outputMessage" Type="varchar" Mode="InOut" />
@@ -487,7 +523,7 @@
     <EntitySet Name="Alati" EntityType="Self.Alati" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AlatVozilo" EntityType="Self.AlatVozilo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inspektori" EntityType="Self.Inspektori" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Intervencija_Smena" EntityType="Self.Intervencija_Smena" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IntervencijaRadnikUSmeni" EntityType="Self.IntervencijaRadnikUSmeni" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Intervencije" EntityType="Self.Intervencije" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Intervencije_Pozar" EntityType="Self.Intervencije_Pozar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Intervencije_Tehnicka_Intervencija" EntityType="Self.Intervencije_Tehnicka_Intervencija" Schema="dbo" store:Type="Tables" />
@@ -495,6 +531,7 @@
     <EntitySet Name="Opstine" EntityType="Self.Opstine" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PozarNavalno_Vozilo" EntityType="Self.PozarNavalno_Vozilo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Radnici" EntityType="Self.Radnici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RadniciUSmenama" EntityType="Self.RadniciUSmenama" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Smene" EntityType="Self.Smene" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tehnicka_IntervencijaTehnicko_Vozilo" EntityType="Self.Tehnicka_IntervencijaTehnicko_Vozilo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Uvidjaji" EntityType="Self.Uvidjaji" Schema="dbo" store:Type="Tables" />
@@ -519,13 +556,13 @@
       <End Role="Inspektori" EntitySet="Inspektori" />
       <End Role="Uvidjaji" EntitySet="Uvidjaji" />
     </AssociationSet>
-    <AssociationSet Name="FK_Intervencija_Smena_Intervencija" Association="Self.FK_Intervencija_Smena_Intervencija">
+    <AssociationSet Name="FK_IntervencijaRadnikUSmeni_Intervencija" Association="Self.FK_IntervencijaRadnikUSmeni_Intervencija">
       <End Role="Intervencije" EntitySet="Intervencije" />
-      <End Role="Intervencija_Smena" EntitySet="Intervencija_Smena" />
+      <End Role="IntervencijaRadnikUSmeni" EntitySet="IntervencijaRadnikUSmeni" />
     </AssociationSet>
-    <AssociationSet Name="FK_Intervencija_Smena_Smena" Association="Self.FK_Intervencija_Smena_Smena">
-      <End Role="Smene" EntitySet="Smene" />
-      <End Role="Intervencija_Smena" EntitySet="Intervencija_Smena" />
+    <AssociationSet Name="FK_IntervencijaRadnikUSmeni_RadnikUSmeni" Association="Self.FK_IntervencijaRadnikUSmeni_RadnikUSmeni">
+      <End Role="RadniciUSmenama" EntitySet="RadniciUSmenama" />
+      <End Role="IntervencijaRadnikUSmeni" EntitySet="IntervencijaRadnikUSmeni" />
     </AssociationSet>
     <AssociationSet Name="FK_IntervencijaUvidjaj" Association="Self.FK_IntervencijaUvidjaj">
       <End Role="Intervencije" EntitySet="Intervencije" />
@@ -559,6 +596,10 @@
       <End Role="Intervencije_Pozar" EntitySet="Intervencije_Pozar" />
       <End Role="PozarNavalno_Vozilo" EntitySet="PozarNavalno_Vozilo" />
     </AssociationSet>
+    <AssociationSet Name="FK_RadnikRadnikUSmeni" Association="Self.FK_RadnikRadnikUSmeni">
+      <End Role="Radnici" EntitySet="Radnici" />
+      <End Role="RadniciUSmenama" EntitySet="RadniciUSmenama" />
+    </AssociationSet>
     <AssociationSet Name="FK_RadnikVatrogasnaJedinica" Association="Self.FK_RadnikVatrogasnaJedinica">
       <End Role="Vatrogasne_Jedinice" EntitySet="Vatrogasne_Jedinice" />
       <End Role="Radnici" EntitySet="Radnici" />
@@ -566,6 +607,10 @@
     <AssociationSet Name="FK_SmenaRadnik" Association="Self.FK_SmenaRadnik">
       <End Role="Smene" EntitySet="Smene" />
       <End Role="Radnici" EntitySet="Radnici" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SmenaRadnikUSmeni" Association="Self.FK_SmenaRadnikUSmeni">
+      <End Role="Smene" EntitySet="Smene" />
+      <End Role="RadniciUSmenama" EntitySet="RadniciUSmenama" />
     </AssociationSet>
     <AssociationSet Name="FK_Tehnicka_Intervencija_inherits_Intervencija" Association="Self.FK_Tehnicka_Intervencija_inherits_Intervencija">
       <End Role="Intervencije" EntitySet="Intervencije" />

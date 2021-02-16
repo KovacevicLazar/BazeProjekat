@@ -66,5 +66,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati radnika iz liste radnika";
             }
         }
+
+        public void IzmenaVatrogasneJediniceISmene(object radnik)
+        {
+            manager.ShowDialog(new PromenaVSJISmeneZaRadnikaViewModel(radnik as Radnik), null, null);
+            SviRadnici = radnikDAO.GetList();
+        }
     }
 }

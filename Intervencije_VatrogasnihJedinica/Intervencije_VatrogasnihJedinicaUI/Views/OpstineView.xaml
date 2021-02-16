@@ -2,6 +2,9 @@
     <Grid Width="1259" Height="675" Background="#FFF9F7F6">
         <Label Content="Opštine:" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top" Height="54" Width="1259" Margin="0,9,0,0" />
         <DataGrid FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveOpstine, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaOpstina, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="597" Margin="293,68,0,0" VerticalAlignment="Top" Width="572">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="70" />
                 <DataGridTextColumn Binding="{Binding Naziv_Opstine}" Header="Naziv opstine: " Width="160" />

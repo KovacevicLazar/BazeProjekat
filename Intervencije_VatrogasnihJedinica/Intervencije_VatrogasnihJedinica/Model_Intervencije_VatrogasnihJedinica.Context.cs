@@ -37,18 +37,27 @@ namespace Intervencije_VatrogasnihJedinica
         public virtual DbSet<Radnik> Radnici { get; set; }
         public virtual DbSet<Uvidjaj> Uvidjaji { get; set; }
         public virtual DbSet<Komandir> Komandiri { get; set; }
+        public virtual DbSet<RadnikUSmeni> RadniciUSmenama { get; set; }
     
-        public virtual int DodajSmenuNaIntervenciju(Nullable<int> smenaID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
+        public virtual int DodajSmenuIRadnikaNaIntervenciju(Nullable<int> smenaID, Nullable<int> radnikID, Nullable<int> radnikISmenaID, Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
         {
             var smenaIDParameter = smenaID.HasValue ?
                 new ObjectParameter("smenaID", smenaID) :
                 new ObjectParameter("smenaID", typeof(int));
     
+            var radnikIDParameter = radnikID.HasValue ?
+                new ObjectParameter("radnikID", radnikID) :
+                new ObjectParameter("radnikID", typeof(int));
+    
+            var radnikISmenaIDParameter = radnikISmenaID.HasValue ?
+                new ObjectParameter("radnikISmenaID", radnikISmenaID) :
+                new ObjectParameter("radnikISmenaID", typeof(int));
+    
             var intervencijaIDParameter = intervencijaID.HasValue ?
                 new ObjectParameter("intervencijaID", intervencijaID) :
                 new ObjectParameter("intervencijaID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DodajSmenuNaIntervenciju", smenaIDParameter, intervencijaIDParameter, success, outputMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DodajSmenuIRadnikaNaIntervenciju", smenaIDParameter, radnikIDParameter, radnikISmenaIDParameter, intervencijaIDParameter, success, outputMessage);
         }
     
         public virtual int DodeliAlatVozilu(Nullable<int> alatID, Nullable<int> voziloID, ObjectParameter success, ObjectParameter outputMessage)
@@ -126,13 +135,13 @@ namespace Intervencije_VatrogasnihJedinica
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UkloniNavalnaVozilaSaIntervencije", intervencijaIDParameter, success, outputMessage);
         }
     
-        public virtual int UkloniSmeneSaIntervencije(Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
+        public virtual int UkloniRadnikeISmeneSaIntervencije(Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)
         {
             var intervencijaIDParameter = intervencijaID.HasValue ?
                 new ObjectParameter("intervencijaID", intervencijaID) :
                 new ObjectParameter("intervencijaID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UkloniSmeneSaIntervencije", intervencijaIDParameter, success, outputMessage);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UkloniRadnikeISmeneSaIntervencije", intervencijaIDParameter, success, outputMessage);
         }
     
         public virtual int UkloniTehnickaVozilaSaIntervencije(Nullable<int> intervencijaID, ObjectParameter success, ObjectParameter outputMessage)

@@ -4,6 +4,9 @@
     </UserControl.Resources>
     <Grid Width="1259" Height="675" Background="#FFF9F7F6">
         <DataGrid FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="550" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="20" MaxWidth="80" Width="70" Binding="{Binding ID}" Header="ID: " />
                 <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="170" Binding="{Binding Tip}" Header="Tip Intervencije: " />

@@ -12,25 +12,23 @@ namespace Intervencije_VatrogasnihJedinica
     using System;
     using System.Collections.Generic;
     
-    public partial class Intervencija
+    public partial class RadnikUSmeni
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Intervencija()
+        public RadnikUSmeni()
         {
-            this.Obrisana = false;
-            this.RadniciSaSmenama = new HashSet<RadnikUSmeni>();
+            this.Intervencije = new HashSet<Intervencija>();
         }
     
-        public int ID { get; set; }
-        public string Adresa { get; set; }
-        public System.DateTime Datum_I_Vreme { get; set; }
-        public int Id_Opstine { get; set; }
-        public bool Obrisana { get; set; }
-        public TipIntervencijeEnum Tip { get; set; }
+        public int Id { get; set; }
+        public System.DateTime DatumPocetkaRada { get; set; }
+        public Nullable<System.DateTime> DatumKrajaRada { get; set; }
+        public int RadnikID { get; set; }
+        public int SmenaID { get; set; }
     
-        public virtual Opstina Opstina { get; set; }
-        public virtual Uvidjaj Uvidjaj { get; set; }
+        public virtual Radnik Radnik { get; set; }
+        public virtual Smena Smena { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RadnikUSmeni> RadniciSaSmenama { get; set; }
+        public virtual ICollection<Intervencija> Intervencije { get; set; }
     }
 }
