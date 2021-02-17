@@ -39,12 +39,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Komandir == null)
                 {
-                    Komandir = new Komandir { ID = VatrogasnaJedinica.ID, Prezime = Prezime, Ime = Ime, JMBG = Jmbg };
+                    Komandir = new Komandir
+                    {
+                        ID = VatrogasnaJedinica.ID,
+                        Prezime = Prezime,
+                        Ime = Ime,
+                        JMBG = Jmbg
+                    };
                     komandirDAO.Insert(Komandir);
                 }
                 else
                 {
-                    Komandir = new Komandir { ID = Komandir.ID, Prezime = Prezime, Ime = Ime, JMBG = Jmbg };
+                    Komandir = new Komandir
+                    {
+                        ID = Komandir.ID,
+                        Prezime = Prezime,
+                        Ime = Ime,
+                        JMBG = Jmbg
+                    };
                     komandirDAO.Update(Komandir);
                 }
                 TryClose();

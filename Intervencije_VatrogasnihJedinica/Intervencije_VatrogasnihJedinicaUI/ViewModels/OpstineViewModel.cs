@@ -18,7 +18,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveOpstine = new ObservableCollection<Opstina>(opstinaDAO.GetList());
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public ObservableCollection<Opstina> SveOpstine { get { return sveOpstine; } set { sveOpstine = value; NotifyOfPropertyChange(() => SveOpstine); } }
         public Opstina OznacenaOpstina { get; set; }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
-    public  class IntervencijeViewModel : PropertyChangedBase
+    public class IntervencijeViewModel : PropertyChangedBase
     {
         private IntervencijaDAO intervencijaDAO = new IntervencijaDAO();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
@@ -28,7 +28,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 TipoviIntervencije.Add(new TipIntervencijeIsSelected { Tip = (TipIntervencijeEnum)tip, IsSelected = false });
             }
-            opstinaDAO.GetList().ForEach(x => Opstine.Add(new OpstinaIsSelected { Opstina = x, IsSelected=false }));
+            opstinaDAO.GetList().ForEach(x => Opstine.Add(new OpstinaIsSelected { Opstina = x, IsSelected = false }));
         }
 
         public ObservableCollection<TipIntervencijeIsSelected> TipoviIntervencije { get; }
@@ -83,9 +83,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
         }
 
-        public void DodajInformacijeOUvidjaju( object Intervencija )
+        public void DodajInformacijeOUvidjaju(object Intervencija)
         {
-            manager.ShowDialog(new DodavanjeInformacijaOUvidjajuViewModel(Intervencija  as Intervencija), null, null);
+            manager.ShowDialog(new DodavanjeInformacijaOUvidjajuViewModel(Intervencija as Intervencija), null, null);
             SveIntervencije = intervencijaDAO.GetList();
         }
 
@@ -110,6 +110,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             SveIntervencije = intervencijaDAO.GetFilteredList(opstineID, tipovi);
         }
 
-        
+
     }
 }

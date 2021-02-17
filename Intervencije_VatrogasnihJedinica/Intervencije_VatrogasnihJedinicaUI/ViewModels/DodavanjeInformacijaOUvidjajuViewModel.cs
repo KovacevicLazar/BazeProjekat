@@ -56,7 +56,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (Validacija())
             {
                 Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0);
-                Uvidjaj uvidjaj = new Uvidjaj { ID = Intervencija.ID, Datum = Datum, InspektorID = Inspektor.ID, Tekst_Zapisnika = TextZapisnika };
+                Uvidjaj uvidjaj = new Uvidjaj
+                {
+                    ID = Intervencija.ID,
+                    Datum = Datum,
+                    InspektorID = Inspektor.ID,
+                    Tekst_Zapisnika = TextZapisnika
+                };
                 if (Intervencija.Uvidjaj == null)
                 {
                     uvidjajDAO.Insert(uvidjaj);

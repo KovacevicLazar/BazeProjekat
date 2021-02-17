@@ -336,9 +336,6 @@
     <Resource Include="Views\Pictures\Truck.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Pictures\co2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Views\Pictures\Commander.png" />
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +343,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Pictures\Teams2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Pictures\aparat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

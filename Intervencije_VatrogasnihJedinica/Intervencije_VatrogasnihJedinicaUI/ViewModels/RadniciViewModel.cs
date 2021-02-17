@@ -18,7 +18,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SviRadnici = radnikDAO.GetList();
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public List<Radnik> SviRadnici { get { return sviRadnici; } set { sviRadnici = value; NotifyOfPropertyChange(() => sviRadnici); } }
         public Radnik OznacenRadnik { get; set; }
@@ -42,7 +42,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Poruka = ex.InnerException?.InnerException?.Message;
                 }
-                
+
                 SviRadnici = radnikDAO.GetList();
                 OznacenRadnik = null;
             }

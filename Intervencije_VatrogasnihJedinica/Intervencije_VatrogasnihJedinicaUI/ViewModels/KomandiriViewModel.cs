@@ -21,7 +21,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SviKomandiri = komandirDAO.GetList();
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public List<Komandir> SviKomandiri { get { return sviKomandiri; } set { sviKomandiri = value; NotifyOfPropertyChange(() => sviKomandiri); } }
         public Komandir OznacenKomandir { get; set; }
@@ -39,7 +39,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Poruka = ex.InnerException?.InnerException?.Message;
                 }
-                
+
                 SviKomandiri = komandirDAO.GetList();
                 OznacenKomandir = null;
             }

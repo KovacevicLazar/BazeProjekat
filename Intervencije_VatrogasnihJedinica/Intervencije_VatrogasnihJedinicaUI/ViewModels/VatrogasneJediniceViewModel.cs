@@ -15,16 +15,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         IWindowManager manager = new WindowManager();
         private string poruka;
 
-        public  VatrogasneJediniceViewModel()
+        public VatrogasneJediniceViewModel()
         {
             GetListAsync();
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public List<VatrogasnaJedinica> SveJedinice { get { return sveJedinice; } set { sveJedinice = value; NotifyOfPropertyChange(() => sveJedinice); } }
         public VatrogasnaJedinica OznacenaJedinica { get; set; }
 
-        private  async void GetListAsync()
+        private async void GetListAsync()
         {
             SveJedinice = await vatrogasnaJedinicaDAO.GetListAsync();
         }
@@ -60,7 +60,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public void Izmeni()
         {
             Poruka = "";
-            if(OznacenaJedinica != null)
+            if (OznacenaJedinica != null)
             {
                 manager.ShowDialog(new DodavanjeVatrogasneJediniceViewModel(OznacenaJedinica), null, null);
                 GetListAsync();

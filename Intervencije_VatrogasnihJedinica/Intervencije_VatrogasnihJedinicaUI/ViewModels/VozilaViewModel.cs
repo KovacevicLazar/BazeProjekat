@@ -20,9 +20,29 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         }
 
         public Vozilo OznacenoVozilo { get; set; }
-        public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        public List<Vozilo> SvaVozila { get { return svaVozila; } set { svaVozila = value; NotifyOfPropertyChange(() => svaVozila); } }
-        
+        public string Poruka
+        {
+            get => poruka;
+            set
+            {
+                poruka = value;
+                NotifyOfPropertyChange(() => Poruka);
+            }
+        }
+
+        public List<Vozilo> SvaVozila
+        {
+            get
+            {
+                return svaVozila;
+            }
+            set
+            {
+                svaVozila = value;
+                NotifyOfPropertyChange(() => svaVozila);
+            }
+        }
+
         public void Dodaj()
         {
             manager.ShowDialog(new DodavanjeVozilaViewModel(null), null, null);
@@ -40,9 +60,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    
-                      Poruka = ex.InnerException?.InnerException?.Message;
-                 
+
+                    Poruka = ex.InnerException?.InnerException?.Message;
+
                 }
                 SvaVozila = voziloDAO.GetList();
                 OznacenoVozilo = null;

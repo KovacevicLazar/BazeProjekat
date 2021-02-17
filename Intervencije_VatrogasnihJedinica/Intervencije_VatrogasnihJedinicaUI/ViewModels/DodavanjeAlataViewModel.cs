@@ -15,7 +15,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public DodavanjeAlataViewModel(Alat alat)
         {
-            TipoviAlata = new ObservableCollection<TipAlataEnum>( Enum.GetValues(typeof(TipAlataEnum)).Cast<TipAlataEnum>().ToList());
+            TipoviAlata = new ObservableCollection<TipAlataEnum>(Enum.GetValues(typeof(TipAlataEnum)).Cast<TipAlataEnum>().ToList());
             Alat = alat;
             if (alat != null)
             {
@@ -36,7 +36,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Alat == null)
                 {
-                    Alat alat = new Alat { Naziv_Alata = NazivAlata, Tip = TipAlata };
+                    Alat alat = new Alat
+                    {
+                        Naziv_Alata = NazivAlata,
+                        Tip = TipAlata
+                    };
                     alataDAO.Insert(alat);
                 }
                 else

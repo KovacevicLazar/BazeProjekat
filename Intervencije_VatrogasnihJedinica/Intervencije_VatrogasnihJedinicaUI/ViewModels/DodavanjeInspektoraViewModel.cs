@@ -37,12 +37,23 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Inspektor == null)
                 {
-                    Inspektor = new Inspektor { Ime = Ime, Prezime = Prezime, Broj_Telefona = Telefon };
+                    Inspektor = new Inspektor
+                    {
+                        Ime = Ime,
+                        Prezime = Prezime,
+                        Broj_Telefona = Telefon
+                    };
                     inspektorDAO.Insert(Inspektor);
                 }
                 else
                 {
-                    Inspektor = new Inspektor { ID = Inspektor.ID, Ime = Ime, Prezime = Prezime, Broj_Telefona = Telefon };
+                    Inspektor = new Inspektor
+                    {
+                        ID = Inspektor.ID,
+                        Ime = Ime,
+                        Prezime = Prezime,
+                        Broj_Telefona = Telefon
+                    };
                     inspektorDAO.Update(Inspektor);
                 }
                 TryClose();

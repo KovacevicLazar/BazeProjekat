@@ -96,7 +96,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             NotifyOfPropertyChange(() => ButtonInspektoriBackground);
             ActivateItem(new InspektoriViewModel());
         }
-        
+
         public void Komandiri()
         {
             //manager.ShowDialog(new KomandiriViewModel(), null, null);

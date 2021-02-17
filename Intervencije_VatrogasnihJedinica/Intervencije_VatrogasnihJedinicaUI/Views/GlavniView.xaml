@@ -30,7 +30,7 @@
         </Button>
         <Button x:Name="Alati"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,350,0,0" VerticalAlignment="Top" Width="291" Height="60" Background="{Binding ButtonAlatiBackground, Mode=TwoWay}">
             <StackPanel Orientation="Horizontal" Width="170">
-                <Image Source="pack://application:,,,/Views/Pictures/co2.png"  Width="58" Height="48"/>
+                <Image Source="pack://application:,,,/Views/Pictures/aparat.png"  Width="58" Height="48"/>
                 <TextBlock Text="Alati"  Margin="25,0,0,0" VerticalAlignment="Center" />
             </StackPanel>
         </Button>

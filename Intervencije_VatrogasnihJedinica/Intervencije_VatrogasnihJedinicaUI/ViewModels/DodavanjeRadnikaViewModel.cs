@@ -56,7 +56,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
         public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
 
-        public DateTime DatumPocetkaRada { get => datumPocetkaRada; set { datumPocetkaRada = value; NotifyOfPropertyChange(() => DatumPocetkaRada); } }
+        public DateTime DatumPocetkaRada { get => datumPocetkaRada; set { datumPocetkaRada = new DateTime(value.Year, value.Month, value.Day, 8, 0, 0); NotifyOfPropertyChange(() => DatumPocetkaRada); } }
 
         public void DodajIzmeni()
         {
@@ -64,14 +64,37 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Radnik == null)
                 {
-                    Radnik = new Radnik { Ime = Ime, Prezime = Prezime, DatumPocetkaRada = DatumPocetkaRada, JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
+                    Radnik = new Radnik
+                    {
+                        Ime = Ime,
+                        Prezime = Prezime,
+                        DatumPocetkaRada = DatumPocetkaRada,
+                        JMBG = Jmbg,
+                        Radno_Mesto = RadnaPozicija,
+                        VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
+                        SmenaID = IzabranaSmena.ID
+                    };
                     radnikDAO.Insert(Radnik);
-
-                    radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = Radnik.ID, SmenaID = IzabranaSmena.ID, DatumPocetkaRada = DatumPocetkaRada });
+                    radnikSmenaDAO.Insert(new RadnikUSmeni
+                    {
+                        RadnikID = Radnik.ID,
+                        SmenaID = IzabranaSmena.ID,
+                        DatumPocetkaRada = DatumPocetkaRada
+                    });
                 }
                 else
                 {
-                    Radnik = new Radnik { ID = Radnik.ID, Ime = Ime, Prezime = Prezime, DatumPocetkaRada = Radnik.DatumPocetkaRada , JMBG = Jmbg, Radno_Mesto = RadnaPozicija, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID, SmenaID = IzabranaSmena.ID };
+                    Radnik = new Radnik
+                    {
+                        ID = Radnik.ID,
+                        Ime = Ime,
+                        Prezime = Prezime,
+                        DatumPocetkaRada = Radnik.DatumPocetkaRada,
+                        JMBG = Jmbg,
+                        Radno_Mesto = RadnaPozicija,
+                        VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
+                        SmenaID = IzabranaSmena.ID
+                    };
                     radnikDAO.Update(Radnik);
                 }
                 TryClose();

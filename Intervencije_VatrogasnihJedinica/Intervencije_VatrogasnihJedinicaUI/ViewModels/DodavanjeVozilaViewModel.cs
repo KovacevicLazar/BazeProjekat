@@ -37,7 +37,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             InicijalizacijaListeGodista();
             InicijalizacijaListeAlata();
         }
-        
+
         public ObservableCollection<AlatIsSelected> Alati { get; set; }
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
@@ -65,7 +65,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     switch (TipVozila)
                     {
                         case (TipVozila.TEHNICKO):
-                            Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Tehnicko_Vozilo vozilo = new Tehnicko_Vozilo
+                            {
+                                Marka = Marka,
+                                Model = Model,
+                                Tip = TipVozila,
+                                Godiste = Godiste,
+                                Nosivost = double.Parse(Nosivost),
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                            };
                             vozilo = tehnickoVoziloDAO.Insert(vozilo);
                             foreach (var alat in Alati)
                             {
@@ -76,7 +84,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             break;
                         case (TipVozila.NAVALNO):
-                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo
+                            {
+                                Marka = Marka,
+                                Model = Model,
+                                Tip = TipVozila,
+                                Godiste = Godiste,
+                                Nosivost = double.Parse(Nosivost),
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                            };
                             navalnoVozilo = navalnovoziloDAO.Insert(navalnoVozilo);
                             foreach (var alat in Alati)
                             {
@@ -93,7 +109,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     switch (TipVozila)
                     {
                         case (TipVozila.TEHNICKO):
-                            Tehnicko_Vozilo tehnickoVozilo = new Tehnicko_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse(Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Tehnicko_Vozilo tehnickoVozilo = new Tehnicko_Vozilo
+                            {
+                                ID = Vozilo.ID,
+                                Marka = Marka,
+                                Model = Model,
+                                Tip = TipVozila,
+                                Godiste = Godiste,
+                                Nosivost = double.Parse(Nosivost),
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                            };
                             tehnickoVoziloDAO.Update(tehnickoVozilo);
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
@@ -105,7 +130,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             break;
                         case (TipVozila.NAVALNO):
-                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo { ID = Vozilo.ID, Marka = Marka, Model = Model, Tip = TipVozila, Godiste = Godiste, Nosivost = double.Parse( Nosivost), Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID };
+                            Navalno_Vozilo navalnoVozilo = new Navalno_Vozilo
+                            {
+                                ID = Vozilo.ID,
+                                Marka = Marka,
+                                Model = Model,
+                                Tip = TipVozila,
+                                Godiste = Godiste,
+                                Nosivost = double.Parse(Nosivost),
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                            };
                             navalnovoziloDAO.Update(navalnoVozilo);
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
@@ -122,7 +156,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
         }
 
-        private void InicijalizacijaListeGodista() 
+        private void InicijalizacijaListeGodista()
         {
             Godista = new List<int>();
             var godina = DateTime.Now.Year;
@@ -135,13 +169,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private void InicijalizacijaListeAlata()
         {
-            List<Alat> sviAlati =  new List<Alat>();
+            List<Alat> sviAlati = new List<Alat>();
             Alati = new ObservableCollection<AlatIsSelected>();
             if (TipVozila == TipVozila.NAVALNO)
             {
                 sviAlati = alatDAO.AlatiZaNavalnaVozila();
             }
-            else if(TipVozila == TipVozila.TEHNICKO)
+            else if (TipVozila == TipVozila.TEHNICKO)
             {
                 sviAlati = alatDAO.AlatiZaTehnickaVozila();
             }
@@ -213,12 +247,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaModel = "Naziv modela sadrzi nedozvoljene karaktere!";
                 ispravanUnos = false;
             }
-            else if (Model.Length <3 || Model.Length > 20)
+            else if (Model.Length < 3 || Model.Length > 20)
             {
                 PorukaGreskeZaModel = "Naziv mora sadrzati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
-             
+
             if (Godiste < 1960 || Godiste > DateTime.Now.Year)
             {
                 PorukaGreskeZaGodiste = "Nije izabrano prihvatljivo godiste!";

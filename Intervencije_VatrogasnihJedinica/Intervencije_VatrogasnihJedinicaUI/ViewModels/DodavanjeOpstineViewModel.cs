@@ -27,7 +27,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Opstina == null)
                 {
-                    Opstina = new Opstina { Naziv_Opstine = NazivOpstine };
+                    Opstina = new Opstina
+                    {
+                        Naziv_Opstine = NazivOpstine
+                    };
                     opstinaDAO.Insert(Opstina);
                 }
                 else

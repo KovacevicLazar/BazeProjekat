@@ -15,7 +15,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaNaziv = "";
         private string porukaGreskeZaAdresu = "";
         private string porukaGreskeZaOpstinu = "";
-        
+
         public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
             Opstine = opstinaDAO.GetList();
@@ -24,40 +24,51 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 Naziv = VatrogasnaJedinica.Naziv;
                 Adresa = VatrogasnaJedinica.Adresa;
-                IzabranaOpstina = Opstine.Find(x=> x.ID == VatrogasnaJedinica.Id_Opstine);
+                IzabranaOpstina = Opstine.Find(x => x.ID == VatrogasnaJedinica.Id_Opstine);
                 NotifyOfPropertyChange(() => IzabranaOpstina);
             }
         }
-        
+
         public VatrogasnaJedinica VatrogasnaJedinica { get => vatrogasnaJedinica; set => vatrogasnaJedinica = value; }
         public List<Opstina> Opstine { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
         public Opstina IzabranaOpstina { get; set; }
         public string PorukaGreskeZaNaziv { get => porukaGreskeZaNaziv; set { porukaGreskeZaNaziv = value; NotifyOfPropertyChange(() => PorukaGreskeZaNaziv); } }
-        public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu);} }
+        public string PorukaGreskeZaAdresu { get => porukaGreskeZaAdresu; set { porukaGreskeZaAdresu = value; NotifyOfPropertyChange(() => PorukaGreskeZaAdresu); } }
         public string PorukaGreskeZaOpstinu { get => porukaGreskeZaOpstinu; set { porukaGreskeZaOpstinu = value; NotifyOfPropertyChange(() => PorukaGreskeZaOpstinu); } }
 
         public void DodajIzmeni()
         {
-            
+
             if (Validacija())
             {
                 if (VatrogasnaJedinica == null)
                 {
-                    VatrogasnaJedinica = new VatrogasnaJedinica { Naziv = Naziv, Adresa = Adresa, Id_Opstine= IzabranaOpstina.ID};
+                    VatrogasnaJedinica = new VatrogasnaJedinica
+                    {
+                        Naziv = Naziv,
+                        Adresa = Adresa,
+                        Id_Opstine = IzabranaOpstina.ID
+                    };
                     vatrogasnaJedinicaDAO.Insert(VatrogasnaJedinica);
                     Smena Smena;
                     List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
                     for (int i = 1; i < 5; i++)
                     {
-                        Smena = new Smena { NazivSmene = naziviSmena[i-1], VatrogasnaJedinicaID = VatrogasnaJedinica.ID, DatumPrvogDezurstva= new System.DateTime(2009,1,i,8,0,0)};
+                        Smena = new Smena { NazivSmene = naziviSmena[i - 1], VatrogasnaJedinicaID = VatrogasnaJedinica.ID, DatumPrvogDezurstva = new System.DateTime(2009, 1, i, 8, 0, 0) };
                         smenaDAO.Insert(Smena);
                     }
                 }
                 else
                 {
-                    VatrogasnaJedinica = new VatrogasnaJedinica { ID=VatrogasnaJedinica.ID, Naziv = Naziv, Adresa = Adresa, Id_Opstine = IzabranaOpstina.ID };
+                    VatrogasnaJedinica = new VatrogasnaJedinica
+                    {
+                        ID = VatrogasnaJedinica.ID,
+                        Naziv = Naziv,
+                        Adresa = Adresa,
+                        Id_Opstine = IzabranaOpstina.ID
+                    };
                     vatrogasnaJedinicaDAO.Update(VatrogasnaJedinica);
                 }
                 TryClose();
@@ -73,7 +84,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (string.IsNullOrEmpty(Naziv))
             {
                 PorukaGreskeZaNaziv = "Unesite naziv!";
-                ispravanUnos =  false;
+                ispravanUnos = false;
             }
             else if (!Naziv.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
@@ -96,7 +107,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaAdresu = "Adresa sme sadrzati samo slova i brojeve!";
                 ispravanUnos = false;
             }
-            else if (Adresa.Length < 6 || Adresa.Length > 30 )
+            else if (Adresa.Length < 6 || Adresa.Length > 30)
             {
                 PorukaGreskeZaAdresu = "Adresa mora sadrzati od 6 do 30 karaktera!";
                 ispravanUnos = false;

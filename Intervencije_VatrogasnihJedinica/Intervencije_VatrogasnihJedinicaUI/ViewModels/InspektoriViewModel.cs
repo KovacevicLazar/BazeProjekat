@@ -18,7 +18,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SviInspektori = inspektorDAO.GetList();
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
         public List<Inspektor> SviInspektori { get { return sviInspektori; } set { sviInspektori = value; NotifyOfPropertyChange(() => sviInspektori); } }
         public Inspektor OznacenInspektor { get; set; }

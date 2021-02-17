@@ -37,14 +37,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (Smena == null)
                 {
-                    Smena = new Smena { NazivSmene = NazivSmene, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
+                    Smena = new Smena
+                    {
+                        NazivSmene = NazivSmene,
+                        VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID
+                    };
                     smenaDAO.Insert(Smena);
                 }
                 else
                 {
-                    Smena = new Smena { ID = Smena.ID, NazivSmene = NazivSmene, VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID };
+                    Smena = new Smena
+                    {
+                        ID = Smena.ID,
+                        NazivSmene = NazivSmene,
+                        VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID
+                    };
                     smenaDAO.Update(Smena);
                 }
+
                 TryClose();
             }
         }
@@ -59,6 +69,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaVSJ = "Izaberite Vatrogasnu jedincu!";
                 ispravanUnos = false;
             }
+
             return ispravanUnos;
         }
     }

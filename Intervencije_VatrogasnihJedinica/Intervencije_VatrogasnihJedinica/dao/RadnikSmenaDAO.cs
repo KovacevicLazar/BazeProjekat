@@ -30,6 +30,19 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
+        public DateTime DatumPoslednjeIntervencijeRadnikaSaSmenom(int radnikID, int smenaID)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                var radnikUSmeni = db.RadniciUSmenama.Include("Intervencije").Where(x => x.RadnikID == radnikID && x.SmenaID == smenaID && x.DatumKrajaRada == null).FirstOrDefault();
+                if (radnikUSmeni.Intervencije.Count != 0)
+                {
+                    return radnikUSmeni.Intervencije.Max(x => x.Datum_I_Vreme);
+                }
+                return radnikUSmeni.DatumPocetkaRada; // ako nije imao intervencije sa smenom, vrati datum od kog radi u smeni
+            }
+        }
+
         public List<RadnikUSmeni> ListaRadnikaIzSmeneZaDatum(List<int> smeneID, DateTime datum)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())

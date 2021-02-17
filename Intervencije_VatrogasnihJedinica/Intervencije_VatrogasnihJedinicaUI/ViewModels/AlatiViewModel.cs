@@ -12,12 +12,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         private AlatDAO alatDAO = new AlatDAO();
         public ObservableCollection<Alat> sviAlati = new ObservableCollection<Alat>();
-        private string poruka="";
+        private string poruka = "";
         IWindowManager manager = new WindowManager();
 
         public AlatiViewModel()
         {
-            SviAlati = new ObservableCollection<Alat>( alatDAO.GetList());
+            SviAlati = new ObservableCollection<Alat>(alatDAO.GetList());
         }
 
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }

@@ -17,9 +17,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             SveSmene = smenaDAO.GetList();
         }
-        
+
         public string Poruka { get => poruka; set { poruka = value; NotifyOfPropertyChange(() => Poruka); } }
-        public List<Smena> SveSmene{ get { return sveSmene; } set { sveSmene = value; NotifyOfPropertyChange(() => sveSmene); } }
+        public List<Smena> SveSmene { get { return sveSmene; } set { sveSmene = value; NotifyOfPropertyChange(() => sveSmene); } }
         public Smena OznacenaSmena { get; set; }
 
         public void Dodaj()
