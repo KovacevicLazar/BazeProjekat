@@ -91,7 +91,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
             else if (TextZapisnika.Trim().Length < 30)
             {
-                PorukaGreskeZaTekst = " mora sadrzati najmanje 30 slova!";
+                PorukaGreskeZaTekst = "Tekst mora sadržati najmanje 30 slova!";
                 ispravanUnos = false;
             }
 
@@ -110,7 +110,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (Datum < Intervencija.Datum_I_Vreme)
             {
-                PorukaGreskeZaDatum = "Uvidjaj je moguce vrsiti samo nakon intervencije!";
+                PorukaGreskeZaDatum = $"Uviđaj je moguće vršiti samo nakon intervencije( {Intervencija.Datum_I_Vreme.ToLongDateString()} )!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

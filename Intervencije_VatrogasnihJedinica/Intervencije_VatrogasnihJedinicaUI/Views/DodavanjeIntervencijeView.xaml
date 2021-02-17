@@ -6,17 +6,17 @@
     <Grid>
         <Label Content="Informacije o intervenciji:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1227" Margin="0,10,0,0" />
         <Label Content="Adresa..............:" HorizontalAlignment="Left" Margin="71,239,0,0" VerticalAlignment="Top" Width="109" />
-        <Label Content="Opstina.............:" HorizontalAlignment="Left" Margin="71,179,0,0" VerticalAlignment="Top" Width="104" />
+        <Label Content="Opština.............:" HorizontalAlignment="Left" Margin="71,179,0,0" VerticalAlignment="Top" Width="104" />
         <Label Content="Datum...............:" HorizontalAlignment="Left" Margin="71,299,0,0" VerticalAlignment="Top" Width="109" Height="28" />
-        <TextBox x:Name="Adresa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="180,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131" />
-        <ComboBox x:Name="Opstine" SelectedItem="{Binding IzabranaOpstina, Mode=TwoWay}" VerticalContentAlignment="Center" DisplayMemberPath="Naziv_Opstine" HorizontalAlignment="Left" Margin="180,179,0,0" VerticalAlignment="Top" Width="131" Height="26" />
-        <DatePicker SelectedDate="{Binding Datum, Mode=TwoWay}" SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="180,299,0,0" VerticalAlignment="Top" Width="131" Height="28" />
+        <TextBox x:Name="Adresa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="180,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" />
+        <ComboBox x:Name="Opstine" SelectedItem="{Binding IzabranaOpstina, Mode=TwoWay}" VerticalContentAlignment="Center" DisplayMemberPath="Naziv_Opstine" HorizontalAlignment="Left" Margin="180,179,0,0" VerticalAlignment="Top" Width="154" Height="26" />
+        <DatePicker SelectedDate="{Binding Datum, Mode=TwoWay}" SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="180,299,0,0" VerticalAlignment="Top" Width="154" Height="28" />
         <Label Content="Vreme...............:" HorizontalAlignment="Left" Margin="71,361,0,0" VerticalAlignment="Top" Width="104" Height="28" />
-        <Label Content=":" FontSize="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Height="35" Margin="237,354,0,0" />
-        <xctk:IntegerUpDown x:Name="Sati" Value="{Binding Sati, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="23" HorizontalAlignment="Left" Margin="180,361,0,0" VerticalAlignment="Top" Height="28" Width="46" />
-        <xctk:IntegerUpDown x:Name="Minuti" VerticalContentAlignment="Center" Value="{Binding Minuti, Mode=TwoWay}" Minimum="0" Maximum="59" HorizontalAlignment="Left" Margin="265,361,0,0" VerticalAlignment="Top" Height="28" Width="46" />
-        <ComboBox x:Name="TipoviIntervencije" IsEnabled="{Binding Intervencija, Converter={StaticResource NullToIsReadOnlyConverter}}" SelectedItem="{Binding Path=TipIntervencije , Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="180,118,0,0" VerticalAlignment="Top" Width="131" Height="26" />
-        <Label Content="Tip Intervencije: " HorizontalAlignment="Left" Margin="71,118,0,0" VerticalAlignment="Top" Width="104" />
+        <Label Content=":" FontSize="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Height="35" Margin="247,354,0,0" />
+        <xctk:IntegerUpDown x:Name="Sati" Value="{Binding Sati, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="23" HorizontalAlignment="Left" Margin="191,361,0,0" VerticalAlignment="Top" Height="28" Width="46" />
+        <xctk:IntegerUpDown x:Name="Minuti" VerticalContentAlignment="Center" Value="{Binding Minuti, Mode=TwoWay}" Minimum="0" Maximum="59" HorizontalAlignment="Left" Margin="275,361,0,0" VerticalAlignment="Top" Height="28" Width="46" />
+        <ComboBox x:Name="TipoviIntervencije" IsEnabled="{Binding Intervencija, Converter={StaticResource NullToIsReadOnlyConverter}}" SelectedItem="{Binding Path=TipIntervencije , Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="180,118,0,0" VerticalAlignment="Top" Width="154" Height="26" />
+        <Label Content="Tip intervencije: " HorizontalAlignment="Left" Margin="71,118,0,0" VerticalAlignment="Top" Width="104" />
         <Button x:Name="DodajIzmeni" Content="{Binding Intervencija, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="29,497,0,0" VerticalAlignment="Top" Width="114" Height="38" />
         <Button Content="Vrati se" HorizontalAlignment="Left" Margin="1051,497,0,0" VerticalAlignment="Top" IsCancel="True" Width="115" Height="38" />
         <Label x:Name="PorukaGreskeZaOpstinu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="5,205,0,0" VerticalAlignment="Top" Width="362" Height="29" />
@@ -74,7 +74,7 @@
         </ListBox>
         <Label Content="Vozila:" HorizontalAlignment="Left" Margin="377,100,0,0" VerticalAlignment="Top" Width="162"/>
         <Label Content="Smene:" HorizontalAlignment="Left" Margin="651,100,0,0" VerticalAlignment="Top" Width="158"/>
-        <Label Content="Oznacite smene i vozila koja su ucestvovala:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="372,83,0,0" VerticalAlignment="Top" Width="794"/>
+        <Label Content="Označite smene i vozila koja su učestvovala:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="372,83,0,0" VerticalAlignment="Top" Width="794"/>
         <TextBlock x:Name="PorukaGreskeZaSmeneIVozila" FontSize="14" FontWeight="Normal" Foreground="Red"  HorizontalAlignment="Left" Margin="372,418,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="794" Height="51"/>
         <ListBox x:Name="Smene_Copy" ItemsSource="{Binding Radnici, Mode=TwoWay}" Margin="926,118,0,0" HorizontalAlignment="Left" Width="240" Height="300" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
@@ -102,6 +102,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="Vozaci i Vatrogasci:" HorizontalAlignment="Left" Margin="926,100,0,0" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Vozači i Vatrogasci:" HorizontalAlignment="Left" Margin="926,100,0,0" VerticalAlignment="Top" Width="158"/>
     </Grid>
 </Window>

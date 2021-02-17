@@ -45,7 +45,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati komandira iz liste komandira";
+                Poruka = "Prvo morate selektovati komandira iz liste komandira!";
             }
         }
         public void Izmeni()
@@ -59,7 +59,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati komandira iz liste komandira";
+                Poruka = "Prvo morate selektovati komandira iz liste komandira!";
             }
         }
     }

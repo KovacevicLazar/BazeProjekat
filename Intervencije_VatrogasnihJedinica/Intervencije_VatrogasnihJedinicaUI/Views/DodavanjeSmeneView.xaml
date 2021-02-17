@@ -7,7 +7,7 @@
         <Label Content="Naziv smene:" FontSize="15" HorizontalAlignment="Left" Margin="38,135,0,0" VerticalAlignment="Top" Width="104" />
         <TextBox x:Name="NazivSmene" VerticalContentAlignment="Center" FontSize="15" HorizontalAlignment="Left" Height="30" Margin="192,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="167" />
         <ComboBox x:Name="VatrogasneJedinice" VerticalContentAlignment="Center" FontSize="15" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" DisplayMemberPath="Naziv" HorizontalAlignment="Left" Margin="192,70,0,0" VerticalAlignment="Top" Height="30" Width="167" />
-        <Label Content="Vatrogasna Jedinica:" FontSize="15" HorizontalAlignment="Left" Margin="38,70,0,0" VerticalAlignment="Top" Width="154" />
+        <Label Content="Vatrogasna jedinica:" FontSize="15" HorizontalAlignment="Left" Margin="38,70,0,0" VerticalAlignment="Top" Width="154" />
         <Label x:Name="PorukaGreskeZaVSJ" Foreground="Red" FontWeight="Normal" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="38,89,0,0" VerticalAlignment="Top" Height="32" Width="321" />
         <Label x:Name="PorukaGreskeZaNazivSmene" Foreground="Red" FontWeight="Normal" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="38,156,0,0" VerticalAlignment="Top" Height="31" Width="321" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Smena, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="27,231,0,0" VerticalAlignment="Top" Width="115" Height="37" />

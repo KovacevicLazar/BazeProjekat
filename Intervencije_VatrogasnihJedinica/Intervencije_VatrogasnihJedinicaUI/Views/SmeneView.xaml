@@ -6,14 +6,14 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="80" />
-                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;Jedinica: " Width="190" />
+                <DataGridTextColumn Binding="{Binding VatrogasnaJedinica.Naziv}" Header="Vatrogasna &#x0a;jedinica: " Width="190" />
                 <DataGridTextColumn Binding="{Binding NazivSmene}" Header="Naziv smene : " Width="150" />
-                <DataGridTextColumn Binding="{Binding Radnici.Count}" Header="Broj &#x0a;Radnika: " />
-                <DataGridTextColumn Binding="{Binding Intervencije.Count}" Header="Broj &#x0a;Intervencija: " Width="210" />
+                <DataGridTextColumn Binding="{Binding Radnici.Count}" Header="Broj &#x0a;radnika: " />
+                
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Smene:" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Visibility="Hidden" Content="Obrisi" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
+        <Button x:Name="Obrisi" Visibility="Hidden" Content="Obriši" HorizontalAlignment="Left" Margin="566,69,0,0" VerticalAlignment="Top" Width="180" Height="32" />
         <Button x:Name="Izmeni"  Visibility="Hidden" Content="Izmeni" HorizontalAlignment="Left" Margin="648,121,0,0" VerticalAlignment="Top" Width="180" Height="32" />
         <Button x:Name="Dodaj" Visibility="Hidden" Content="Dodaj" HorizontalAlignment="Left" Margin="566,175,0,0" VerticalAlignment="Top" Width="180" Height="32" />
         <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1022,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="202" Width="227"/>

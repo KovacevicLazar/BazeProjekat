@@ -11,11 +11,11 @@
         <Label Content="Premeštaj radnika:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Margin="0,10,0,0" />
         <Label x:Name="RadnikInfo" HorizontalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Margin="0,47,0,0" Height="37" />
         <ComboBox x:Name="VatrogasneJedinice"  VerticalContentAlignment="Center" DisplayMemberPath="Naziv" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="214,110,0,0" VerticalAlignment="Top" Height="28" Width="130" RenderTransformOrigin="0.493,0.48" />
-        <Label Content="Vatrogasna Jedinica.:" HorizontalAlignment="Left" Margin="80,110,0,0" VerticalAlignment="Top" Width="129" Height="28" />
+        <Label Content="Vatrogasna jedinica.:" HorizontalAlignment="Left" Margin="80,110,0,0" VerticalAlignment="Top" Width="129" Height="28" />
         <Label Content="Smena........................:" HorizontalAlignment="Left" Margin="80,168,0,0" VerticalAlignment="Top" Width="129" Height="28" />
         <ComboBox x:Name="Smene"  VerticalContentAlignment="Center" ToolTip="Prvo izaberite Vatrogasnu jedinicu" DisplayMemberPath="NazivSmene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="214,168,0,0" VerticalAlignment="Top" Width="130" Height="28" />
         <DatePicker SelectedDate="{Binding DatumPremestaja, Mode=TwoWay}"  SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="214,230,0,0" VerticalAlignment="Top" Width="130" Height="28" />
-        <Label Content="Datum promene.......:" HorizontalAlignment="Left" Margin="80,230,0,0" VerticalAlignment="Top" Width="129" Height="28"/>
+        <Label Content="Datum premeštaja...:" HorizontalAlignment="Left" Margin="80,230,0,0" VerticalAlignment="Top" Width="129" Height="28"/>
         <TextBlock x:Name="PorukaGreskeZaDatumPremestaja" FontSize="12" Foreground="Red" HorizontalAlignment="Left" Margin="22,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="99" Width="380"/>
         <Label x:Name="PorukaGreskeZaVSJ" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,131,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaSmenu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="33" Width="413" />

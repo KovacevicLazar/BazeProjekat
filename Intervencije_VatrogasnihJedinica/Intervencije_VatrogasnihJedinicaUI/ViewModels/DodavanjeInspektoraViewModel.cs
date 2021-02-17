@@ -69,33 +69,33 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
             if (string.IsNullOrEmpty(Ime))
             {
-                PorukaGreskeZaIme = "Unesite ime komandira!";
+                PorukaGreskeZaIme = "Unesite ime inspektora!";
                 ispravanUnos = false;
             }
             else if (!Ime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaIme = "Ime sme sadrzati samo slova!";
+                PorukaGreskeZaIme = "Ime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Ime.Length < 4 || Ime.Length > 20)
             {
-                PorukaGreskeZaIme = "Ime mora sadrzati od 4 do 20 slova!";
+                PorukaGreskeZaIme = "Ime mora sadržati od 4 do 20 slova!";
                 ispravanUnos = false;
             }
 
             if (string.IsNullOrEmpty(Prezime))
             {
-                PorukaGreskeZaPrezime = "Unesite prezime komandira!";
+                PorukaGreskeZaPrezime = "Unesite prezime inspektora!";
                 ispravanUnos = false;
             }
             else if (!Prezime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaPrezime = "Prezime sme sadrzati samo slova!";
+                PorukaGreskeZaPrezime = "Prezime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Prezime.Length < 4 || Prezime.Length > 20)
             {
-                PorukaGreskeZaPrezime = "Prezime mora sadrzati od 4 do 20 slova!";
+                PorukaGreskeZaPrezime = "Prezime mora sadržati od 4 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -106,12 +106,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Telefon.All(c => char.IsNumber(c)))
             {
-                PorukaGreskeZaTelefon = "Telefon sme sadrzati samo brojeve!";
+                PorukaGreskeZaTelefon = "Telefon sme sadržati samo brojeve!";
                 ispravanUnos = false;
             }
             else if (Telefon.Length < 6 || Telefon.Length > 14)
             {
-                PorukaGreskeZaTelefon = "Telefon mora sadrzati od 6 do 14 brojeva!";
+                PorukaGreskeZaTelefon = "Telefon mora sadržati od 6 do 14 brojeva!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

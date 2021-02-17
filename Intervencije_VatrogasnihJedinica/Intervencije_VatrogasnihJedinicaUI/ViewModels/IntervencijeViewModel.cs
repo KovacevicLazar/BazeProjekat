@@ -64,7 +64,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
+                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija!";
             }
         }
 
@@ -79,7 +79,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija";
+                Poruka = "Prvo morate selektovati intervenciju iz liste intervencija!";
             }
         }
 

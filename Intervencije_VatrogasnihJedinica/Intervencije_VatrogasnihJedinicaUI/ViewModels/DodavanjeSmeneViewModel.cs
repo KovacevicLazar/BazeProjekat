@@ -66,7 +66,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             bool ispravanUnos = true;
             if (IzabranaVatrogasnaJedinica == null)
             {
-                PorukaGreskeZaVSJ = "Izaberite Vatrogasnu jedincu!";
+                PorukaGreskeZaVSJ = "Izaberite vatrogasnu jedincu!";
                 ispravanUnos = false;
             }
 

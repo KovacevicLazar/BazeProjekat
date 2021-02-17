@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private DateTime datumPremestaja = DateTime.Now;
         private string porukaGreskeZaDatumPremestaja = "Nije moguće naknadno menjati datum! Unesite ga pažljivo!";
         private string porukaGreskeZaVSJ = "";
-        private string porukaGreskeZaSmenu = "Prvo Izaberite Vatrogasnu Jedinicu";
+        private string porukaGreskeZaSmenu = "Prvo izaberite vatrogasnu jedinicu";
         private string radnikInfo = "";
         private DateTime datumPoslednjeIntervencije;
 
@@ -37,7 +37,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public List<VatrogasnaJedinica> VatrogasneJedinice { get; set; }
         public List<Smena> Smene { get => smene; set { smene = value; NotifyOfPropertyChange(() => Smene); } }
         public Smena IzabranaSmena { get; set; }
-        public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get => izabranaVatrogasnaJedinica; set { izabranaVatrogasnaJedinica = value; Smene = smenaDAO.SmeneUnutarJedneVSJ(value.ID); PorukaGreskeZaSmenu = (Smene.Count == 0) ? "Nisu dodate smene za ovu Vatrogasnu jedinicu!" : ""; } }
+        public VatrogasnaJedinica IzabranaVatrogasnaJedinica { get => izabranaVatrogasnaJedinica; set { izabranaVatrogasnaJedinica = value; Smene = smenaDAO.SmeneUnutarJedneVSJ(value.ID); PorukaGreskeZaSmenu = (Smene.Count == 0) ? "Nisu dodate smene za ovu vatrogasnu jedinicu!" : ""; } }
         public Radnik Radnik { get; set; }
         public string PorukaGreskeZaSmenu { get => porukaGreskeZaSmenu; set { porukaGreskeZaSmenu = value; NotifyOfPropertyChange(() => PorukaGreskeZaSmenu); } }
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
@@ -83,17 +83,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
             if (DatumPremestaja > DateTime.Now)
             {
-                PorukaGreskeZaDatumPremestaja = "Moguce je izabrati samo datum koji je prošao!";
+                PorukaGreskeZaDatumPremestaja = "Moguće je izabrati samo datum koji je prošao!";
                 return false;
             }
             else if (DatumPremestaja < datumPoslednjePromene)
             {
-                PorukaGreskeZaDatumPremestaja = $"Zanja promena je bila:{datumPoslednjePromene.ToShortDateString()}, moguće je uneti samo datum posle pomenutog!";
+                PorukaGreskeZaDatumPremestaja = $"Zadnja promena je bila:{datumPoslednjePromene.ToShortDateString()}, moguće je uneti samo datum posle pomenutog!";
                 return false;
             }
             else if (DatumPremestaja < datumPoslednjeIntervencije)
             {
-                PorukaGreskeZaDatumPremestaja = $"Radnik je učestvovao na intervenciji:{datumPoslednjeIntervencije.ToShortDateString()}, sa prethodnom smenom, moguće je uneti samo datum posle pomenutog!";
+                PorukaGreskeZaDatumPremestaja = $"Radnik je učestvovao na intervenciji:{datumPoslednjeIntervencije.ToShortDateString()} sa prethodnom smenom, moguće je uneti samo datum posle pomenutog!";
                 return false;
             }
 

@@ -323,6 +323,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool ValidacijaSmeneIVozila()
         {
             PorukaGreskeZaSmeneIVozila = "";
+            var brojIzabranihVozila = Vozila.Where(x => x.IsSelected == true).Count();
+            var brojIzabranihSmena = Smene.Where(x => x.IsSelected == true).Count();
+            if(brojIzabranihSmena == 0)
+            {
+                PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jednu smenu!";
+                return false;
+            }
+            if(brojIzabranihVozila == 0)
+            {
+                PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jedno vozilo";
+                return false;
+            }
 
             foreach (var smena in Smene)
             {
@@ -330,7 +342,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     if (!Vozila.Any(x => x.Vozilo.Id_VatrogasneJedinice == smena.Smena.VatrogasnaJedinicaID && x.IsSelected))
                     {
-                        PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jedno vozilo, iz iste vatrogasne jedinice iz koje je izabrana neka smena!";
+                        PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jedno vozilo iz iste vatrogasne jedinice iz koje je izabrana neka smena!";
                         return false;
                     }
                 }
@@ -342,7 +354,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     if (!Smene.Any(x => x.Smena.VatrogasnaJedinicaID == vozilo.Vozilo.Id_VatrogasneJedinice && x.IsSelected))
                     {
-                        PorukaGreskeZaSmeneIVozila = "Morate izabrati smenu, iz vatrogasne jedinice iz koje je izabrano i vozilo!";
+                        PorukaGreskeZaSmeneIVozila = "Morate izabrati smenu iz vatrogasne jedinice iz koje je izabrano i vozilo!";
                         return false;
                     }
                 }
@@ -360,7 +372,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     int brojSelektovanihVozaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vozac).Count();
                     if (brojSelektovanihVatrogasaca < 1 || brojSelektovanihVozaca < 1)
                     {
-                        PorukaGreskeZaSmeneIVozila = "Za svaku oznacenu smenu morate oznaciti bar jednog vozaca i bar jednog vatrogasca iz te smene!";
+                        PorukaGreskeZaSmeneIVozila = "Za svaku označenu smenu morate označiti bar jednog vozača i bar jednog vatrogasca iz te smene!";
                         return false;
                     }
                 }
@@ -374,13 +386,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaVreme = "";
             if (Datum > DateTime.Now)
             {
-                PorukaGreskeZaDatum = "Moguce je izabrati samo datum koji je prosao!";
+                PorukaGreskeZaDatum = "Moguće je izabrati samo datum koji je prošao!";
                 PorukaGreskeZaVreme = "Neispravan datum i vreme!";
                 return false;
             }
             else if (Datum.Year < DateTime.Now.Year - 5)
             {
-                PorukaGreskeZaDatum = "Nije moguce uneti podatke starije od 5 godina!";
+                PorukaGreskeZaDatum = "Nije moguće uneti podatke starije od 5 godina!";
                 return false;
             }
             return true;
@@ -401,18 +413,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Adresa.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
-                PorukaGreskeZaAdresu = "Adresa sme sadrzati samo slova i brojeve!";
+                PorukaGreskeZaAdresu = "Adresa sme sadržati samo slova i brojeve!";
                 ispravanUnos = false;
             }
             else if (Adresa.Length < 6 || Adresa.Length > 30)
             {
-                PorukaGreskeZaAdresu = "Adresa mora sadrzati od 6 do 30 karaktera!";
+                PorukaGreskeZaAdresu = "Adresa mora sadržati od 6 do 30 karaktera!";
                 ispravanUnos = false;
             }
 
             if (IzabranaOpstina == null)
             {
-                PorukaGreskeZaOpstinu = "Izaberite opstinu!";
+                PorukaGreskeZaOpstinu = "Izaberite opštinu!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

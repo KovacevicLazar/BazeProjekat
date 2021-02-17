@@ -228,12 +228,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Marka.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaMarku = "Marka sme sadrzati samo slova!";
+                PorukaGreskeZaMarku = "Marka sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Marka.Length < 3 || Marka.Length > 20)
             {
-                PorukaGreskeZaMarku = "Naziv mora sadrzati od 3 do 20 slova!";
+                PorukaGreskeZaMarku = "Naziv mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -244,18 +244,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Model.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
-                PorukaGreskeZaModel = "Naziv modela sadrzi nedozvoljene karaktere!";
+                PorukaGreskeZaModel = "Naziv modela sadrži nedozvoljene karaktere!";
                 ispravanUnos = false;
             }
             else if (Model.Length < 3 || Model.Length > 20)
             {
-                PorukaGreskeZaModel = "Naziv mora sadrzati od 3 do 20 slova!";
+                PorukaGreskeZaModel = "Naziv mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
             if (Godiste < 1960 || Godiste > DateTime.Now.Year)
             {
-                PorukaGreskeZaGodiste = "Nije izabrano prihvatljivo godiste!";
+                PorukaGreskeZaGodiste = "Nije izabrano prihvatljivo godište!";
                 ispravanUnos = false;
             }
 
@@ -266,12 +266,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Nosivost.All(c => char.IsDigit(c) || char.IsPunctuation(c)))
             {
-                PorukaGreskeZaNosivost = "Mora sadrzati samo brojeve!";
+                PorukaGreskeZaNosivost = "Mora sadržati samo brojeve!";
                 ispravanUnos = false;
             }
             else if (double.Parse(Nosivost) < 1000 || double.Parse(Nosivost) > 12000)
             {
-                PorukaGreskeZaNosivost = "Samo u intervalu od 1000kg do 12000kg";
+                PorukaGreskeZaNosivost = "Samo u intervalu od 1000kg do 12000kg!";
                 ispravanUnos = false;
             }
 

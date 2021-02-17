@@ -44,7 +44,7 @@
           <ConnectorPoint PointX="9.98379967198335" PointY="3.125" />
         </AssociationConnector>
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.PozarNavalno_Vozilo" />
-        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Radnik" Width="1.5" PointX="13.625" PointY="9.25" />
+        <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Radnik" Width="1.5" PointX="15.625" PointY="9.375" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" ManuallyRouted="false" >

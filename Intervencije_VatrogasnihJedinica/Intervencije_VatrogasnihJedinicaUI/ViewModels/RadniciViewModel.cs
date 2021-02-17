@@ -48,7 +48,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati radnika iz liste radnika";
+                Poruka = "Prvo morate selektovati radnika iz liste radnika!";
             }
         }
 
@@ -63,7 +63,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati radnika iz liste radnika";
+                Poruka = "Prvo morate selektovati radnika iz liste radnika!";
             }
         }
 

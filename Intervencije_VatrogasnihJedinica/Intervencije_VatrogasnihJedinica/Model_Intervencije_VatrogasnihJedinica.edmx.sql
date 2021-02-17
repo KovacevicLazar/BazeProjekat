@@ -1,4 +1,4 @@
-
+﻿
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
@@ -595,7 +595,7 @@ ADD CONSTRAINT [FK_IntervencijaUvidjaj]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Intervencije]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE Cascade ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [InspektorID] in table 'Uvidjaji'
@@ -628,7 +628,7 @@ ADD CONSTRAINT [FK_AlatVozilo_Alat]
     FOREIGN KEY ([Alati_ID])
     REFERENCES [dbo].[Alati]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [Vozila_ID] in table 'AlatVozilo'
@@ -637,7 +637,7 @@ ADD CONSTRAINT [FK_AlatVozilo_Vozilo]
     FOREIGN KEY ([Vozila_ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AlatVozilo_Vozilo'
@@ -706,7 +706,7 @@ ADD CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Intervencije]
         ([ID])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Tehnicko_Vozilo'
@@ -715,7 +715,7 @@ ADD CONSTRAINT [FK_Tehnicko_Vozilo_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Pozar'
@@ -724,7 +724,7 @@ ADD CONSTRAINT [FK_Pozar_inherits_Intervencija]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Intervencije]
         ([ID])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Navalno_Vozilo'
@@ -733,7 +733,7 @@ ADD CONSTRAINT [FK_Navalno_Vozilo_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Cisterna'
@@ -742,9 +742,495 @@ ADD CONSTRAINT [FK_Cisterna_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- --------------------------------------------------
--- Script has ended
+-- INDEXI
+-- -------------------------------------------------
+
+
+CREATE INDEX Intervencija_Tip_OpstinaID_Idx ON [dbo].Intervencije (Id_Opstine, Tip);
+
+CREATE INDEX RadnikSmena_DatumKrajaRada_Idx ON [dbo].RadniciUSmenama (DatumKrajaRada);
+
+CREATE INDEX RadnikSmena_DatumPocetkaRada_Idx ON [dbo].RadniciUSmenama (DatumPocetkaRada);
+
+CREATE INDEX Alat_Tip_Idx ON [dbo].Alati (Tip);
+
+
+
+
 -- --------------------------------------------------
+-- TRIGERI
+-- -------------------------------------------------
+
+-- --------------------------------------------------
+-- TRIGER ZA OPSTINU
+-- -------------------------------------------------
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+
+Create TRIGGER [dbo].[Trigger_Opstina_ioD]  ON [dbo].[Opstine] 
+instead of delete
+AS 
+declare @Id int;
+declare @Message varchar(300);
+declare @VatrogasneJediniceID varchar(250);
+declare @IntervencijeID varchar(250);
+
+set @Message = ''
+set @VatrogasneJediniceID = ''
+set @IntervencijeID = ''
+
+BEGIN
+	Select @Id = Opstine.ID from Opstine join deleted on deleted.ID = Opstine.ID
+	If(@Id is null)
+	begin
+		Raiserror('Ne postoji opština sa ovim ID-em',16,1)
+		Return
+	end
+	else
+	begin
+		Select @VatrogasneJediniceID = CONCAT(@VatrogasneJediniceID, Vatrogasne_Jedinice.ID , '; ') from Vatrogasne_Jedinice where Id_Opstine = @Id
+        if(@VatrogasneJediniceID != '')
+		    begin
+			    set @Message= CONCAT('Na teritoriji opštine se nalaze vatrogasne jedinice sa ID-em: ', @VatrogasneJediniceID);
+		    end
+
+		Select @IntervencijeID = CONCAT(@IntervencijeID, Intervencije.ID , '; ') from Intervencije where Id_Opstine = @Id
+		if(@IntervencijeID != '')
+		    begin
+			    set @Message= CONCAT(@Message,' U ovoj opštini su se dogodile intervencije sa ID-em: ', @IntervencijeID);
+		    end
+
+		if(@Message != '')
+		    begin
+			    set @Message= CONCAT('Brisanje nije moguće!! ',@Message);
+			    Raiserror(@Message,16,1)
+			    return
+		    end
+		else
+		    begin 
+			    delete from Opstine where ID = @Id
+		    end
+	end
+END
+
+-- --------------------------------------------------
+-- TRIGER ZA Tehnicko vozilo
+-- -------------------------------------------------
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+CREATE TRIGGER [dbo].[Trigger_Tehnicko_Vozilo_ioD]  ON [dbo].[Vozila_Tehnicko_Vozilo] 
+instead of delete
+AS 
+declare @Id int;
+declare @Message varchar(300);
+declare @IdIntervencija varchar(300);
+
+set @Message = ''
+set @IdIntervencija=''
+
+BEGIN
+	Select @Id = Vozila_Tehnicko_Vozilo.ID from Vozila_Tehnicko_Vozilo join deleted on deleted.ID = Vozila_Tehnicko_Vozilo.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji vozilo sa ovim ID-em',16,1)
+		    Return
+	    end
+	else
+	    begin
+		    Select  @IdIntervencija = Concat(@IdIntervencija, Intervencije_ID , '; ') from Tehnicka_IntervencijaTehnicko_Vozilo where Vozila_ID = @Id
+		    if(@IdIntervencija != '')
+		        begin 
+			        set @Message = Concat('Brisanje nije moguće!! Vozlio je učestvovalo na Intervencijama sa ID-em: ',@IdIntervencija);
+			        Raiserror(@Message ,16,1)
+			        Return
+		        end
+            else
+                begin
+                    delete from Vozila_Tehnicko_Vozilo where ID = @Id
+                end
+	    end
+END
+
+
+
+-- --------------------------------------------------
+-- TRIGER ZA NAVALNO VOZILO
+-- -------------------------------------------------
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+create TRIGGER [dbo].[Trigger_Navalno_Vozilo_ioD]  ON [dbo].[Vozila_Navalno_Vozilo] 
+instead of delete
+AS 
+declare @Id int;
+declare @Message varchar(300);
+declare @IdIntervencija varchar(300);
+set @Message = ''
+set @IdIntervencija = ''
+
+BEGIN
+	Select @Id = Vozila_Navalno_Vozilo.ID from Vozila_Navalno_Vozilo join deleted on deleted.ID = Vozila_Navalno_Vozilo.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji vozilo sa ovim ID-em',16,1)
+		    Return
+	    end
+	else
+	    begin
+		    Select  @IdIntervencija = Concat(@IdIntervencija, Pozari_ID , '; ') from PozarNavalno_Vozilo where Vozila_ID = @Id
+		    if(@IdIntervencija != '')
+		        begin 
+			        set @Message = Concat('Brisanje nije moguće!! Vozlio je učestvovalo na Intervencijama sa ID-em: ',@IdIntervencija);
+			        Raiserror(@Message ,16,1)
+			        Return
+		        end
+            ELSE
+                begin
+                    delete from Vozila_Navalno_Vozilo where ID = @Id
+                end
+	    end
+END
+
+
+-- --------------------------------------------------
+-- TRIGER ZA INSPEKTORA
+-- -------------------------------------------------
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+Create TRIGGER [dbo].[Trigger_Inspektor_ioD]  ON [dbo].[Inspektori]
+instead of delete
+AS 
+
+declare @Id int;
+declare @Message varchar(1000);
+declare @IdUvidjaja varchar(500);
+
+set @Message = ''
+set @IdUvidjaja = ''
+
+BEGIN
+	Select @Id = Inspektori.ID from Inspektori join deleted on deleted.ID = Inspektori.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji inspektor sa ovim ID-em',16,1)
+		    Return
+	    end
+    else
+	    begin
+		    Select  @IdUvidjaja = Concat(@IdUvidjaja, ID , '; ') from Uvidjaji where InspektorID = @Id
+		    if(@IdUvidjaja != '')
+		        begin
+			        set @Message = CONCAT('Brisanje nije moguće!! Inspektor je vršio uviđaje sa ID-em: ', @IdUvidjaja)
+			        Raiserror(@Message,16,1)
+			        Return
+		        end
+            else
+		        begin 
+			        delete from Inspektori where ID = @Id
+		        end
+	    end
+END
+
+
+-- --------------------------------------------------
+-- TRIGER ZA VATROGASNU JEDINICU
+-- -------------------------------------------------
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+Create TRIGGER [dbo].[Trigger_Vatrogasna_Jedinica_ioD]  ON [dbo].[Vatrogasne_Jedinice] 
+instead of delete
+AS 
+declare @Id int;
+declare @Message varchar(1000);
+declare @IdIntervencija varchar(500);
+declare @IdVozila varchar(500);
+declare @IdRadnika varchar(500);
+declare @IdKomandira varchar(300);
+
+set @Message = ''
+set @IdIntervencija = ''
+set @IdVozila = ''
+set @IdRadnika = ''
+set @IdKomandira = ''
+
+BEGIN
+	Select @Id = Vatrogasne_Jedinice.ID from Vatrogasne_Jedinice join deleted on deleted.ID = Vatrogasne_Jedinice.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji vatrogasna jedinica sa ovim ID-em',16,1)
+		    Return
+	    end
+	else
+	    begin
+		    Select  @IdRadnika = Concat(@IdRadnika, ID , '; ') from Radnici where VatrogasnaJedinicaID = @Id
+		    if(@IdRadnika != '')
+		        begin 
+			        set @IdRadnika = Concat('Radnike sa ID-em: ', @IdRadnika);
+		        end
+
+		    Select  @IdVozila = Concat(@IdVozila, ID , '; ') from Vozila where Id_VatrogasneJedinice = @Id
+		    if(@IdVozila != '')
+		        begin 
+			        set @IdVozila = Concat('Vozila sa ID-em: ', @IdVozila);
+		        end
+
+		    Select  @IdKomandira = ID  from Komandiri where ID = @Id /*id komandira je isti kao id Vatrogasne jedinice*/
+		    if(@IdKomandira != '')
+		        begin 
+			        set @IdKomandira = Concat('Komandira sa ID-em: ', @IdKomandira);
+		        end
+
+            Select DISTINCT @IdIntervencija = Concat(@IdIntervencija, IRUS.Intervencije_ID , '; ') from IntervencijaRadnikUSmeni IRUS inner join RadniciUSmenama RUS ON IRUS.RadniciSaSmenama_Id = RUS.Id inner join Smene S on S.ID = RUS.SmenaID  where S.VatrogasnaJedinicaID = @Id
+		    if(@IdIntervencija != '')
+		        begin 
+			        set @IdIntervencija = Concat(' Vatrogasna jedinica je učestvovala na intervencijama sa ID-em: ', @IdIntervencija);
+		        end
+
+		    if(@IdRadnika != '' or @IdVozila != '' or @IdKomandira != '' or @IdIntervencija != '')
+		        begin
+			        set @Message = CONCAT('Brisanje nije moguće!! Vatrogasna jedinica sadrži: ',@IdRadnika, @IdVozila, @IdKomandira, @IdIntervencija)
+			        Raiserror(@Message,16,1)
+			        Return
+		        end
+		    else
+		        begin 
+                    delete from Smene where VatrogasnaJedinicaID = @Id
+			        delete from Vatrogasne_Jedinice where ID = @Id
+		        end
+	    end
+END
+
+
+-- --------------------------------------------------
+-- TRIGER ZA RADNIKA
+-- -------------------------------------------------
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+create TRIGGER [dbo].[Trigger_Radnik_ioD]  ON [dbo].[Radnici]
+instead of delete
+AS 
+
+declare @Id int;
+declare @Message varchar(1000);
+declare @IdIntervencija varchar(500);
+
+set @Message = ''
+set @IdIntervencija = ''
+
+BEGIN
+	Select @Id = Radnici.ID from Radnici join deleted on deleted.ID = Radnici.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji radnik sa ovim ID-em',16,1)
+		    Return
+	    end 
+    else
+	    begin
+
+		    Select  @IdIntervencija = Concat(@IdIntervencija, IRS.Intervencije_ID , '; ') from IntervencijaRadnikUSmeni IRS inner join RadniciUSmenama RUS on IRS.RadniciSaSmenama_Id = RUS.Id where RUS.RadnikID = @Id
+		    if(@IdIntervencija != '')
+		        begin
+			        set @IdIntervencija = CONCAT('Brisanje nije moguće!! Radnik je učestvovao na intervencijama sa ID-em: ', @IdIntervencija)
+			        Raiserror(@IdIntervencija, 16, 1)
+			        Return
+		        end 
+            else
+		        begin
+			        delete from RadniciUSmenama where RadnikID = @Id
+			        delete from Radnici where ID = @Id
+		        end
+	    end
+END
+
+
+
+-- --------------------------------------------------
+-- TRIGER ZA TEHNICKE INTERVENCIJE
+-- -------------------------------------------------
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+create TRIGGER [dbo].[Trigger_TehnickaIntervencija_ioD]  ON [dbo].Intervencije_Tehnicka_Intervencija
+instead of delete
+AS 
+
+declare @Id int;
+declare @Message varchar(1000);
+declare @IdSmena varchar(500);
+declare @IdRadnika varchar(500);
+declare @IdVozila varchar(500);
+
+set @Message = ''
+set @IdSmena = ''
+set @IdRadnika = ''
+set @IdVozila = ''
+
+BEGIN
+	Select @Id = Intervencije.ID from Intervencije join deleted on deleted.ID = Intervencije.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji intervencija sa ovim ID-em',16,1)
+		    Return
+	    end 
+    else
+	    begin
+
+		    Select DISTINCT @IdSmena = Concat(@IdSmena,  RUS.SmenaID , '; ') from IntervencijaRadnikUSmeni IRUS inner join RadniciUSmenama RUS on  IRUS.RadniciSaSmenama_Id = RUS.Id where IRUS.Intervencije_ID = @Id
+		    if(@IdSmena != '')
+		        begin
+			        set @IdSmena = CONCAT('Smene sa ID-em: ', @IdSmena)
+		        end 
+
+            Select @IdRadnika = Concat(@IdRadnika, RUS.RadnikID , '; ')  from IntervencijaRadnikUSmeni IRUS inner join RadniciUSmenama RUS on  IRUS.RadniciSaSmenama_Id = RUS.Id where IRUS.Intervencije_ID = @Id
+		    if(@IdRadnika != '')
+		        begin
+			        set @IdRadnika = CONCAT('Radnici sa ID-em: ', @IdRadnika)
+		        end 
+
+            Select @IdVozila = Concat(@IdVozila, Vozila_ID , '; ')  from Tehnicka_IntervencijaTehnicko_Vozilo where Intervencije_ID = @Id
+		    if(@IdVozila != '')
+		        begin
+			        set @IdVozila = CONCAT('Vozila sa ID-em: ', @IdVozila)
+		        end 
+
+            if(@IdSmena != '' or @IdRadnika != '' or @IdVozila != '')
+		        begin
+			        set @Message = CONCAT('Brisanje nije moguće!! Na intervenciji su učestvovali: ', @IdRadnika, @IdSmena, @IdVozila)
+			        Raiserror(@Message,16,1)
+			        Return
+		        end
+            else
+		        begin
+			        delete from Intervencije_Tehnicka_Intervencija where ID = @Id
+		        end
+	    end
+END
+
+
+-- --------------------------------------------------
+-- TRIGER ZA POŽARE
+-- -------------------------------------------------
+
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<LAZAR KOVACEVIC>
+-- =============================================
+create TRIGGER [dbo].[Trigger_IntervencijePozar_ioD]  ON [dbo].Intervencije_Pozar
+instead of delete
+AS 
+
+declare @Id int;
+declare @Message varchar(1000);
+declare @IdSmena varchar(500);
+declare @IdRadnika varchar(500);
+declare @IdVozila varchar(500);
+
+set @Message = ''
+set @IdSmena = ''
+set @IdRadnika = ''
+set @IdVozila = ''
+
+BEGIN
+	Select @Id = Intervencije.ID from Intervencije join deleted on deleted.ID = Intervencije.ID
+	If(@Id is null)
+	    begin
+		    Raiserror('Ne postoji intervencija sa ovim ID-em',16,1)
+		    Return
+	    end 
+    else
+	    begin
+
+		    Select DISTINCT @IdSmena = Concat(@IdSmena, RUS.SmenaID, '; ')  from IntervencijaRadnikUSmeni IRUS inner join RadniciUSmenama RUS on  IRUS.RadniciSaSmenama_Id = RUS.Id where IRUS.Intervencije_ID = @Id
+		    if(@IdSmena != '')
+		        begin
+			        set @IdSmena = CONCAT('Smene sa ID-em: ', @IdSmena)
+		        end 
+
+            Select @IdRadnika =  Concat(@IdRadnika, RUS.RadnikID, '; ')  from IntervencijaRadnikUSmeni IRUS inner join RadniciUSmenama RUS on  IRUS.RadniciSaSmenama_Id = RUS.Id where IRUS.Intervencije_ID = @Id
+		    if(@IdRadnika != '')
+		        begin
+			        set @IdRadnika = CONCAT('Radnici sa ID-em: ', @IdRadnika)
+		        end 
+
+            Select @IdVozila =  Concat(@IdVozila, Vozila_ID, '; ')  from PozarNavalno_Vozilo where Pozari_ID = @Id
+		    if(@IdVozila != '')
+		        begin
+			        set @IdVozila = CONCAT('Vozila sa ID-em: ', @IdVozila)
+		        end 
+
+            if(@IdSmena != '' or @IdRadnika != '' or @IdVozila != '')
+		        begin
+			        set @Message = CONCAT('Brisanje nije moguće!! Na intervenciji su učestvovali: ', @IdRadnika,@IdSmena, @IdVozila)
+			        Raiserror(@Message,16,1)
+			        Return
+		        end
+            else
+		        begin
+			        delete from Intervencije_Pozar where ID = @Id
+		        end
+	    end
+END
+
+
+
+-- --------------------------------------------------
+-- Script has ended
+-- -------------------------------------------------

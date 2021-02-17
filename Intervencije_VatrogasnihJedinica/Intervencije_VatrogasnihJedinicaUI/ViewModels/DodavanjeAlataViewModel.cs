@@ -63,12 +63,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!NazivAlata.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaNazivAlata = "Naziv sme sadrzati samo slova!";
+                PorukaGreskeZaNazivAlata = "Naziv sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (NazivAlata.Length < 4 || NazivAlata.Length > 30)
             {
-                PorukaGreskeZaNazivAlata = "Naziv mora sadrzati od 4 do 30 slova!";
+                PorukaGreskeZaNazivAlata = "Naziv mora sadržati od 4 do 30 slova!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

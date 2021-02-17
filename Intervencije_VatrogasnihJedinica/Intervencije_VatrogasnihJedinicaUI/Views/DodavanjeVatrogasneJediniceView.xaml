@@ -5,7 +5,7 @@
     <Grid>
         <Label Content="Informacije o vatrogasnoj jedinici:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="361" Margin="0,10,0,0" />
         <Label Content="Naziv jedinice..:" HorizontalAlignment="Left" Margin="62,64,0,0" VerticalAlignment="Top" Width="99" />
-        <Label Content="Opstina............:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" Width="99" Height="26" />
+        <Label Content="Opština............:" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" Width="99" Height="26" />
         <Label Content="Adresa.............:" HorizontalAlignment="Left" Margin="62,163,0,0" VerticalAlignment="Top" Width="99" Height="26" />
         <TextBox x:Name="Naziv" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="161,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" />
         <ComboBox x:Name="Opstine" VerticalContentAlignment="Center"  SelectedItem="{Binding Path=IzabranaOpstina , Mode=TwoWay}" DisplayMemberPath="Naziv_Opstine" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="161,113,0,0" VerticalAlignment="Top" Width="129" Height="26" />

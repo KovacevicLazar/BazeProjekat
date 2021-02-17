@@ -12,9 +12,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.Models
             {
                 if (uvidjaj == null)
                 {
-                    return "Dodaj informacije o uvidjaju";
+                    return "Dodaj informacije o uviđaju";
                 }
-                return "Informacije o uvidjaju";
+                return "Informacije o uviđaju";
             }
             else if (parameter.ToString() == "Dodaj Komandira")
             {

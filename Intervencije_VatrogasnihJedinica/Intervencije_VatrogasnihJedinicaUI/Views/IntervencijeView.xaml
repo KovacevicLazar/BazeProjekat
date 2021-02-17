@@ -9,10 +9,10 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="20" MaxWidth="80" Width="70" Binding="{Binding ID}" Header="ID: " />
-                <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="170" Binding="{Binding Tip}" Header="Tip Intervencije: " />
+                <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="170" Binding="{Binding Tip}" Header="Tip intervencije: " />
                 <DataGridTextColumn MinWidth="100" MaxWidth="150" Width="140" Binding="{Binding Datum_I_Vreme, StringFormat='d/M/yyyy HH:mm'}" Header="Datum: " />
                 <DataGridTextColumn MinWidth="100" MaxWidth="190" Width="160" Binding="{Binding Adresa}" Header="Adresa: " />
-                <DataGridTextColumn MinWidth="20" Width="150" MaxWidth="150" Binding="{Binding Opstina.Naziv_Opstine}" Header="Opstina: " />
+                <DataGridTextColumn MinWidth="20" Width="150" MaxWidth="150" Binding="{Binding Opstina.Naziv_Opstine}" Header="Opština: " />
                 <DataGridTemplateColumn MinWidth="100" MaxWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -23,7 +23,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Intervencije:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="1004,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="1004,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,115,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,162,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="247" Width="180"/>
@@ -38,7 +38,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Label Content="Opstina:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="37" Width="62"/>
+                <Label Content="Opština:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="37" Width="62"/>
                 <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Selektujte opstine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="37">
                     <ComboBox.ItemTemplate >
                         <DataTemplate >

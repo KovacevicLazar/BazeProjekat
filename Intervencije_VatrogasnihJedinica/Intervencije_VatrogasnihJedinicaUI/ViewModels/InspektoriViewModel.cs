@@ -47,7 +47,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati inspektora iz liste inspektora";
+                Poruka = "Prvo morate selektovati inspektora iz liste inspektora!";
             }
         }
 
@@ -62,7 +62,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati inspektora iz liste inspektora";
+                Poruka = "Prvo morate selektovati inspektora iz liste inspektora!";
             }
         }
     }

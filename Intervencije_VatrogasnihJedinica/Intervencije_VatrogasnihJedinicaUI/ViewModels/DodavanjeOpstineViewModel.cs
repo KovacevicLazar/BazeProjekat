@@ -52,17 +52,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!naziv.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaNaziv = "Naziv sme sadrzati samo slova!";
+                PorukaGreskeZaNaziv = "Naziv sme sadržati samo slova!";
                 return false;
             }
             else if (naziv.Length < 2 || naziv.Length > 30)
             {
-                PorukaGreskeZaNaziv = "Naziv mora sadrzati od 2 do 30 slova!";
+                PorukaGreskeZaNaziv = "Naziv mora sadržati od 2 do 30 slova!";
                 return false;
             }
             else if (opstinaDAO.pronadjiPoNazivu(NazivOpstine) != null)
             {
-                PorukaGreskeZaNaziv = "Opstina sa istim nazivom je uneta!";
+                PorukaGreskeZaNaziv = "Opština sa istim nazivom je uneta!";
                 return false;
             }
             return true;

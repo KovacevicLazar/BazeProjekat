@@ -76,12 +76,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Ime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaIme = "Ime sme sadrzati samo slova!";
+                PorukaGreskeZaIme = "Ime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Ime.Length < 4 || Ime.Length > 20)
             {
-                PorukaGreskeZaIme = "Ime mora sadrzati od 4 do 20 slova!";
+                PorukaGreskeZaIme = "Ime mora sadržati od 4 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -92,12 +92,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Prezime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaPrezime = "Prezime sme sadrzati samo slova!";
+                PorukaGreskeZaPrezime = "Prezime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Prezime.Length < 4 || Prezime.Length > 20)
             {
-                PorukaGreskeZaPrezime = "Prezime mora sadrzati od 4 do 20 slova!";
+                PorukaGreskeZaPrezime = "Prezime mora sadržati od 4 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -108,12 +108,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Jmbg.All(c => char.IsDigit(c)))
             {
-                PorukaGreskeZaJMBG = "JMBG sme sadrzati samo brojeve!";
+                PorukaGreskeZaJMBG = "JMBG sme sadržati samo brojeve!";
                 ispravanUnos = false;
             }
             else if (Jmbg.Length != 13)
             {
-                PorukaGreskeZaJMBG = "Jmbg mora sadrzati 13 brojeva!";
+                PorukaGreskeZaJMBG = "Jmbg mora sadržati 13 brojeva!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

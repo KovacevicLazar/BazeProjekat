@@ -88,12 +88,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Naziv.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                PorukaGreskeZaNaziv = "Naziv sme sadrzati samo slova!";
+                PorukaGreskeZaNaziv = "Naziv sme sadržati samo slova!";
                 ispravanUnos = false;
             }
             else if (Naziv.Length < 5 || Naziv.Length > 40)
             {
-                PorukaGreskeZaNaziv = "Naziv mora sadrzati od 5 do 40 slova!";
+                PorukaGreskeZaNaziv = "Naziv mora sadržati od 5 do 40 slova!";
                 ispravanUnos = false;
             }
 
@@ -104,18 +104,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (!Adresa.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
-                PorukaGreskeZaAdresu = "Adresa sme sadrzati samo slova i brojeve!";
+                PorukaGreskeZaAdresu = "Adresa sme sadržati samo slova i brojeve!";
                 ispravanUnos = false;
             }
             else if (Adresa.Length < 6 || Adresa.Length > 30)
             {
-                PorukaGreskeZaAdresu = "Adresa mora sadrzati od 6 do 30 karaktera!";
+                PorukaGreskeZaAdresu = "Adresa mora sadržati od 6 do 30 karaktera!";
                 ispravanUnos = false;
             }
 
             if (IzabranaOpstina == null)
             {
-                PorukaGreskeZaOpstinu = "Izaberite opstinu!";
+                PorukaGreskeZaOpstinu = "Izaberite opštinu!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

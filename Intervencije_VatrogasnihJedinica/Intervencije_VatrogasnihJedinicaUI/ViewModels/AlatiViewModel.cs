@@ -48,7 +48,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati alat iz liste alata";
+                Poruka = "Prvo morate selektovati alat iz liste alata!";
             }
         }
 
@@ -63,7 +63,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else
             {
-                Poruka = "Prvo morate selektovati alat iz liste alata";
+                Poruka = "Prvo morate selektovati alat iz liste alata!";
             }
         }
     }

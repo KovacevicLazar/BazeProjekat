@@ -7,12 +7,12 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="70" />
-                <DataGridTextColumn Binding="{Binding Naziv_Opstine}" Header="Naziv opstine: " Width="160" />
-                <DataGridTextColumn Binding="{Binding VatrogasneJedinice.Count}" Header="Broj Vatrogasnih &#x0a;jedinica: " Width="160" />
-                <DataGridTextColumn Binding="{Binding Intervencije.Count}" Header="Broj &#x0a;Intervencija: " Width="160" />
+                <DataGridTextColumn Binding="{Binding Naziv_Opstine}" Header="Naziv opštine: " Width="160" />
+                <DataGridTextColumn Binding="{Binding VatrogasneJedinice.Count}" Header="Broj vatrogasnih &#x0a;jedinica: " Width="160" />
+                <DataGridTextColumn Binding="{Binding Intervencije.Count}" Header="Broj &#x0a;intervencija: " Width="160" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="883,68,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="883,68,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="883,118,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="883,168,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="883,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="222" Width="180"/>

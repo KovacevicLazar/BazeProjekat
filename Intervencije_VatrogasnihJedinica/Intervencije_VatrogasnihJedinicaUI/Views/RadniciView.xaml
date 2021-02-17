@@ -30,11 +30,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Binding="{Binding Radno_Mesto}" Header="Radno &#x0a;Mesto: " Width="130" />
+                <DataGridTextColumn Binding="{Binding Radno_Mesto}" Header="Radno &#x0a;mesto: " Width="130" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Radnici:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1249" Height="54" Margin="10,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obrisi" HorizontalAlignment="Left" Margin="1030,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="1030,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1030,118,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1030,168,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1030,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="239" Width="180"/>
