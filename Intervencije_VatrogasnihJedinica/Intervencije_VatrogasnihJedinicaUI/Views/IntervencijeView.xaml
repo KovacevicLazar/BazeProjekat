@@ -28,7 +28,7 @@
         <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,162,0,0" VerticalAlignment="Top" Width="180" Height="35" />
         <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="247" Width="180"/>
         <Border BorderBrush="Black"  BorderThickness="1" HorizontalAlignment="Left" Height="51" Margin="100,64,0,0" VerticalAlignment="Top" Width="884">
-            <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
+            <StackPanel HorizontalAlignment="Left" Background="#9C918E"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
                 <Label Content="Filter:" FontSize="12" FontWeight="Normal" Margin="0,0,0,19" Width="57"/>
                 <Label Content="Tip Inervencije:" FontSize="12"  VerticalContentAlignment="Center" Margin="0,7,0,7" Width="100"/>
                 <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Selektujte tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="37">

@@ -370,9 +370,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     int brojSelektovanihVatrogasaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vatrogasac).Count();
                     int brojSelektovanihVozaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vozac).Count();
+                    int brojSelektovanihVozila = Vozila.Where(x => x.IsSelected == true && x.Vozilo.Id_VatrogasneJedinice == smena.Smena.VatrogasnaJedinicaID).Count();
                     if (brojSelektovanihVatrogasaca < 1 || brojSelektovanihVozaca < 1)
                     {
                         PorukaGreskeZaSmeneIVozila = "Za svaku označenu smenu morate označiti bar jednog vozača i bar jednog vatrogasca iz te smene!";
+                        return false;
+                    }
+
+                    if(brojSelektovanihVozaca < brojSelektovanihVozila) // ne moze 3 vozila a 2 vozaca
+                    {
+                        PorukaGreskeZaSmeneIVozila = "Za svako označeno vozilo morate označiti bar jednog vozača iz iste vatrogasne jedinice!";
                         return false;
                     }
                 }
