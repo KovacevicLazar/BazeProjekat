@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 ObjectParameter objectParameterSuccess = new ObjectParameter("success", typeof(bool));
-                ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
+               ObjectParameter objectParameterMessage = new ObjectParameter("outputMessage", typeof(string));
                 db.DodeliAlatVozilu(idAlata, idVozila, objectParameterSuccess, objectParameterMessage);
                 return new Tuple<bool, string>((bool)objectParameterSuccess.Value, (string)objectParameterMessage.Value);
             }

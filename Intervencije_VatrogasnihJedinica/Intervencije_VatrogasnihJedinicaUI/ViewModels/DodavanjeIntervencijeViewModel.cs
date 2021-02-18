@@ -15,6 +15,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
         private TehnickaIntervencijaDAO tehnickaIntervencijaDAO = new TehnickaIntervencijaDAO();
         private OpstinaDAO opstinaDAO = new OpstinaDAO();
+        private VoziloDAO voziloDAO = new VoziloDAO();
+        private SmenaDAO smenaDAO = new SmenaDAO();
         private string porukaGreskeZaAdresu = "";
         private string porukaGreskeZaOpstinu = "";
         private string porukaGreskeZaDatum = "";
@@ -69,7 +71,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public IReadOnlyList<TipIntervencijeEnum> TipoviIntervencije { get; }
         public TipIntervencijeEnum TipIntervencije { get => tipIntervencije; set { tipIntervencije = value; InicijalizacijaListeVozila(); } }
         public List<Opstina> Opstine { get; set; }
-        public DateTime Datum { get { return datum; } set { datum = new DateTime(value.Year, value.Month, value.Day, Sati, Minuti, 0); NotifyOfPropertyChange(() => datum); InicijalizacijaListeSmena(); } }
+        public DateTime Datum { get { return datum; } set { datum = new DateTime(value.Year, value.Month, value.Day, Sati, Minuti, 0); NotifyOfPropertyChange(() => datum); InicijalizacijaListeSmena(); InicijalizacijaListeVozila(); } }
         public int Minuti { get => minuti; set { minuti = value; Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0); } }
         public int Sati { get => sati; set { sati = value; Datum = new DateTime(Datum.Year, Datum.Month, Datum.Day, Sati, Minuti, 0); } }
         public string Adresa { get; set; }
@@ -196,7 +198,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Radnici.Clear();
             if (ValidacijaZaDatumIVreme())
             {
-                SmenaDAO smenaDAO = new SmenaDAO();
                 List<Smena> sveSmene = izabranaOpstina == null ? smenaDAO.ListaDezurnihSmenaNaDatum(Datum) : smenaDAO.ListaDezurnihSmenaNaDatumZaOpstinu(Datum, IzabranaOpstina.ID);
                 if (Intervencija != null)
                 {
@@ -238,8 +239,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private void InicijalizacijaListeVozila()
         {
-            VoziloDAO voziloDAO = new VoziloDAO();
-            var svaVozila = izabranaOpstina == null ? voziloDAO.GetList() : voziloDAO.ListaVozilaZaIzabranuOpstinu(IzabranaOpstina.ID);
+            var svaVozila = izabranaOpstina == null ? voziloDAO.GetList().Where( x => x.Godiste < Datum.Year) : voziloDAO.ListaVozilaZaIzabranuOpstinu(IzabranaOpstina.ID).Where(x => x.Godiste < Datum.Year);
             Vozila.Clear();
             if (Intervencija == null)
             {

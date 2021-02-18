@@ -35,6 +35,7 @@
                                         <Binding Path="Vozilo.Model" />
                                     </MultiBinding>
                                 </TextBlock.Text></TextBlock>
+                            <TextBlock FontWeight="Normal" Text="{Binding Vozilo.Godiste ,StringFormat=' {0}.godište'}" />
                             <TextBlock FontWeight="Normal">
                                 <TextBlock.Text  >
                                     <MultiBinding StringFormat="VSJ: {1} ID:{0}">
@@ -92,9 +93,10 @@
                             <TextBlock Text="{Binding RadnikUSmeni.Radnik.Radno_Mesto}" />
                             <TextBlock FontWeight="Normal">
                                 <TextBlock.Text >
-                                    <MultiBinding StringFormat=" {0} ID:{1}">
+                                    <MultiBinding StringFormat="VSJ ID:{2} - {0} ID:{1} ">
                                         <Binding Path="RadnikUSmeni.Smena.NazivSmene" />
                                         <Binding Path="RadnikUSmeni.Smena.ID" />
+                                        <Binding Path="RadnikUSmeni.Radnik.VatrogasnaJedinicaID" />
                                     </MultiBinding>
                                 </TextBlock.Text></TextBlock>
                         </StackPanel>

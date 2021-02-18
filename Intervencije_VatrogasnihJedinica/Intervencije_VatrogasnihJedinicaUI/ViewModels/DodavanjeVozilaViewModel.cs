@@ -21,6 +21,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaGodiste = "";
         private string porukaGreskeZaNosivost = "";
         private string porukaGreskeZaVSJ = "";
+        private int godinaPrveIntervencijeVozila = 0;
 
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
@@ -202,6 +203,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private void InicijalizacijaVrednosti(Vozilo vozilo)
         {
+            if(vozilo.Tip == TipVozila.TEHNICKO)
+            {
+                godinaPrveIntervencijeVozila = tehnickoVoziloDAO.DatumPrveIntervencije(vozilo.ID);
+            }
+            else if(vozilo.Tip == TipVozila.NAVALNO)
+            {
+                godinaPrveIntervencijeVozila = navalnovoziloDAO.DatumPrveIntervencije(vozilo.ID);
+            }
             Marka = vozilo.Marka;
             Model = vozilo.Model;
             TipVozila = vozilo.Tip;
@@ -258,7 +267,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaGodiste = "Nije izabrano prihvatljivo godište!";
                 ispravanUnos = false;
             }
-
+            else if (godinaPrveIntervencijeVozila < Godiste)
+            {
+                PorukaGreskeZaGodiste = $"Prva intervencija vozila je bila {godinaPrveIntervencijeVozila}.godine!";
+                ispravanUnos = false;
+            }
+            
             if (string.IsNullOrEmpty(Nosivost))
             {
                 PorukaGreskeZaNosivost = "Unesite podatak o nosivosti vozila!";
