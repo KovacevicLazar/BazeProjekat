@@ -305,7 +305,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     if (Intervencija != null)
                     {
-                        if (Intervencija.RadniciSaSmenama.Any(prod => prod.RadnikID == radnikUSmeni.RadnikID))
+                        if (Intervencija.RadniciSaSmenama.Any(prod => prod.RadnikID == radnikUSmeni.RadnikID && Smene.Any(x => x.IsSelected && x.Smena.ID == prod.SmenaID))) //selektuj radnika ako je bas sa tom smenom ucestvovao
                         {
                             Radnici.Add(new RadnikUSmeniIsSelected { RadnikUSmeni = radnikUSmeni, IsSelected = true });
                             continue;

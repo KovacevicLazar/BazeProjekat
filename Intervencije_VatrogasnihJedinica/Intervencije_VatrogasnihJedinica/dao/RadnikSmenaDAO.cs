@@ -45,16 +45,14 @@ namespace Intervencije_VatrogasnihJedinica.dao
 
         public List<RadnikUSmeni> ListaRadnikaIzSmeneZaDatum(List<int> smeneID, DateTime datum)
         {
-            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            if (smeneID.Count != 0)
             {
-                var RadnikUSmeni = db.RadniciUSmenama.Include("Radnik").Include("Smena").Where(x => smeneID.Contains(x.SmenaID) && x.DatumPocetkaRada < datum).ToList();
-                return RadnikUSmeni.Where(x => datum < PreuzmiDatumKrajaRadaUSmeni(x.DatumKrajaRada)).ToList();
+                using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+                {
+                    return db.RadniciUSmenama.Include("Radnik").Include("Smena").Where(x => smeneID.Contains(x.SmenaID) && x.DatumPocetkaRada < datum && (x.DatumKrajaRada == null || datum < x.DatumKrajaRada)).ToList();
+                }
             }
-        }
-
-        private DateTime PreuzmiDatumKrajaRadaUSmeni(DateTime? datum)
-        {
-            return (datum == null) ? DateTime.Now : (DateTime)datum;
+            return new List<RadnikUSmeni>();
         }
     }
 }

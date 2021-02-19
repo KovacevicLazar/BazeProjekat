@@ -1269,7 +1269,7 @@ BEGIN
 			begin
 			   if exists (select * from AlatVozilo AV inner join Vozila V on AV.Vozila_ID=V.ID where AV.Alati_ID = @Id AND V.Tip = 1) --tehnicko vozilo
 				begin
-				 Raiserror('Ovaj alat poseduju neka tehnicka vozila, nije moguca promena u protivpozarni tip alata! ',16,1) 
+				 Raiserror('Ovaj alat poseduju neka tehnička vozila, nije moguća promena u protivpožarni tip alata! ',16,1) 
 				 return
 				end
 			end
@@ -1277,7 +1277,7 @@ BEGIN
 			begin
 			   if exists (select * from AlatVozilo AV inner join Vozila V on AV.Vozila_ID=V.ID where AV.Alati_ID = @Id AND V.Tip = 0) --navalno vozilo
 				begin
-				 Raiserror('Ovaj alat poseduju neka navalna vozila, nije moguca promena u tehnicki tip alata! ',16,1) 
+				 Raiserror('Ovaj alat poseduju neka navalna vozila, nije moguća promena u tehnički tip alata! ',16,1) 
 				 return
 				end
 			end
@@ -1322,7 +1322,7 @@ BEGIN
 		  begin
 		    if exists (Select DISTINCT * from Intervencije Inter inner join IntervencijaRadnikUSmeni IRUS on Inter.ID=IRUS.Intervencije_ID inner join RadniciUSmenama RUS ON IRUS.RadniciSaSmenama_Id = RUS.Id inner join Smene S on S.ID = RUS.SmenaID  where S.VatrogasnaJedinicaID = @Id and Inter.Id_Opstine = @staraOpstinaID) 
 			 begin
-				Raiserror('Premena opstine nije moguca, vatrogasna jedinica je ucestvovala na intervencijam u trenutnoj opstini! ',16,1) 
+				Raiserror('Promena opštine nije moguća, vatrogasna jedinica je učestvovala na intervencijama u trenutnoj opštini! ',16,1) 
 				return
 			 end
 		  end
@@ -1331,6 +1331,63 @@ BEGIN
 	  end
 	 close ucursor;
 END
+
+
+-- --------------------------------------------------
+-- UPDATE TRIGER ZA VOZILO
+-- -------------------------------------------------
+
+
+GO
+/****** Object:  Trigger [dbo].[Trigger_Vatrogasna_Jedinica_ioU]    Script Date: 19.2.2021. 20:24:35 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+alter TRIGGER [dbo].[Trigger_Vozilo_ioU] ON  [dbo].[Vozila]
+   INSTEAD OF UPDATE
+AS 
+	declare @Id int;
+	declare @novaMarka nvarchar(200);
+	declare @staraMarka nvarchar(200);
+	declare @noviModel nvarchar(400);
+	declare @stariModel nvarchar(400);
+	declare @staroGodiste int;
+	declare @novoGodiste int;
+	declare @staraNosivost float;
+	declare @novaNosivost float;
+	declare @staraVSJId int;
+	declare @novaVSJId int;
+BEGIN
+
+	DECLARE ucursor cursor local for
+    select ID,Marka,Model,Godiste, Nosivost, Id_VatrogasneJedinice  from deleted;
+    open ucursor;
+
+	 FETCH NEXT FROM ucursor into @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId; 
+	 while @@FETCH_STATUS=0 
+	  begin
+		SELECT @novaMarka = Marka, @noviModel = Model, @novoGodiste = Godiste, @novaNosivost = Nosivost, @novaVSJId = Id_VatrogasneJedinice FROM inserted WHERE ID=@Id;
+		if @novaVSJId != @staraVSJId
+		  begin
+		    if exists (Select DISTINCT * from PozarNavalno_Vozilo  where Vozila_ID = @Id) 
+			 begin
+				Raiserror('Promena vatrogasne jedinice nije moguća, vozilo je učestvovalo na požaru sa trenutnom vatrogasnom jedinicom! ',16,1) 
+				return
+			 end
+			 if exists (Select DISTINCT * from Tehnicka_IntervencijaTehnicko_Vozilo  where Vozila_ID = @Id) 
+			 begin
+				Raiserror('Promena vatrogasne jedinice nije moguća, vozilo je učestvovalo na tehničkoj intervenciji sa trenutnom vatrogasnom jedinicom! ',16,1) 
+				return
+			 end
+		  end
+		UPDATE Vozila SET Marka=@novaMarka, Model= @noviModel, Godiste=@novoGodiste, Nosivost=@novaNosivost, Id_VatrogasneJedinice=@novaVSJId WHERE ID=@Id;
+		fetch next from ucursor into  @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId; 
+	  end
+	 close ucursor;
+END
+
 
 -- --------------------------------------------------
 -- Script has ended

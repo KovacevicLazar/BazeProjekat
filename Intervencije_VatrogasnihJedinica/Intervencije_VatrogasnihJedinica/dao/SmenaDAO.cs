@@ -15,6 +15,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Smene.Include("VatrogasnaJedinica").Include("Radnici").ToList();
             }
         }
+
         public List<Smena> SmeneUnutarJedneVSJ(int idVSJ)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())

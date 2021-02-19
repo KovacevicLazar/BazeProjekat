@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -120,7 +121,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Nosivost = double.Parse(Nosivost),
                                 Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
                             };
-                            tehnickoVoziloDAO.Update(tehnickoVozilo);
+                            try
+                            {
+                                tehnickoVoziloDAO.Update(tehnickoVozilo);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
                             {
@@ -141,7 +150,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Nosivost = double.Parse(Nosivost),
                                 Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
                             };
-                            navalnovoziloDAO.Update(navalnoVozilo);
+                            try
+                            {
+                                navalnovoziloDAO.Update(navalnoVozilo);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                return;
+                            }
                             voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
                             {
