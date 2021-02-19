@@ -762,7 +762,7 @@ CREATE INDEX Alat_Tip_Idx ON [dbo].Alati (Tip);
 
 
 -- --------------------------------------------------
--- TRIGERI
+-- DELETE TRIGERI
 -- -------------------------------------------------
 
 -- --------------------------------------------------
@@ -1230,6 +1230,107 @@ BEGIN
 END
 
 
+
+-- --------------------------------------------------
+-- UPDATE TRIGERI
+-- -------------------------------------------------
+
+-- --------------------------------------------------
+-- UPDATE TRIGER ZA ALAT
+-- -------------------------------------------------
+
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER Trigger_Alat_bu ON  dbo.Alati 
+   INSTEAD OF UPDATE
+AS 
+	declare @Id int;
+	declare @noviTip int;
+	declare @stariNaziv nvarchar(200);
+	declare @noviNaziv nvarchar(200);
+	declare @stariTip int;
+BEGIN
+
+	DECLARE ucursor cursor local for
+    select ID,Tip,Naziv_Alata from deleted;
+    open ucursor;
+
+	 FETCH NEXT FROM ucursor into @Id, @stariTip, @stariNaziv; 
+	 while @@FETCH_STATUS=0 
+	  begin
+		SELECT @noviTip=Tip, @noviNaziv=Naziv_Alata FROM inserted WHERE ID=@Id;
+		if @noviTip != @stariTip and @noviTip != 2   --Ako je novi tip alatopste namene, to moze
+		  begin
+		   if @noviTip = 1 --protivpozarni alat
+			begin
+			   if exists (select * from AlatVozilo AV inner join Vozila V on AV.Vozila_ID=V.ID where AV.Alati_ID = @Id AND V.Tip = 1) --tehnicko vozilo
+				begin
+				 Raiserror('Ovaj alat poseduju neka tehnicka vozila, nije moguca promena u protivpozarni tip alata! ',16,1) 
+				 return
+				end
+			end
+			if @noviTip = 0 --tehnicki alat
+			begin
+			   if exists (select * from AlatVozilo AV inner join Vozila V on AV.Vozila_ID=V.ID where AV.Alati_ID = @Id AND V.Tip = 0) --navalno vozilo
+				begin
+				 Raiserror('Ovaj alat poseduju neka navalna vozila, nije moguca promena u tehnicki tip alata! ',16,1) 
+				 return
+				end
+			end
+		  end
+		UPDATE Alati SET Tip=@noviTip, Naziv_Alata=@noviNaziv WHERE ID=@Id;
+		fetch next from ucursor into @Id, @stariTip,  @stariNaziv;
+	  end
+	 close ucursor;
+END
+
+-- --------------------------------------------------
+-- UPDATE TRIGER ZA VSJ
+-- -------------------------------------------------
+
+go
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER Trigger_Vatrogasna_Jedinica_ioU ON  dbo.Vatrogasne_Jedinice
+   INSTEAD OF UPDATE
+AS 
+	declare @Id int;
+	declare @noviNaziv nvarchar(200);
+	declare @stariNaziv nvarchar(200);
+	declare @novaAdresa nvarchar(400);
+	declare @staraAdresa nvarchar(400);
+	declare @staraOpstinaID int;
+	declare @novaOpstinaID int;
+BEGIN
+
+	DECLARE ucursor cursor local for
+    select ID,Naziv,Adresa,Id_Opstine from deleted;
+    open ucursor;
+
+	 FETCH NEXT FROM ucursor into @Id, @stariNaziv, @staraAdresa, @staraOpstinaID; 
+	 while @@FETCH_STATUS=0 
+	  begin
+		SELECT @noviNaziv=Naziv, @novaAdresa=Adresa, @novaOpstinaID = Id_Opstine FROM inserted WHERE ID=@Id;
+		if @novaOpstinaID != @staraOpstinaID
+		  begin
+		    if exists (Select DISTINCT * from Intervencije Inter inner join IntervencijaRadnikUSmeni IRUS on Inter.ID=IRUS.Intervencije_ID inner join RadniciUSmenama RUS ON IRUS.RadniciSaSmenama_Id = RUS.Id inner join Smene S on S.ID = RUS.SmenaID  where S.VatrogasnaJedinicaID = @Id and Inter.Id_Opstine = @staraOpstinaID) 
+			 begin
+				Raiserror('Premena opstine nije moguca, vatrogasna jedinica je ucestvovala na intervencijam u trenutnoj opstini! ',16,1) 
+				return
+			 end
+		  end
+		UPDATE Vatrogasne_Jedinice SET Naziv=@noviNaziv, Adresa= @novaAdresa, Id_Opstine=@novaOpstinaID WHERE ID=@Id;
+		fetch next from ucursor into  @Id, @stariNaziv, @staraAdresa, @staraOpstinaID; 
+	  end
+	 close ucursor;
+END
 
 -- --------------------------------------------------
 -- Script has ended

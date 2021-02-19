@@ -3,7 +3,7 @@
         <models:NullToMessageConverter x:Key="NullToMessageConverter" />
     </UserControl.Resources>
     <Grid Width="1259" Height="675" Background="#FFF9F7F6">
-        <DataGrid FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="550" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
+        <DataGrid FontSize="12" AlternatingRowBackground="#FFD8D6D6" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="550" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
             </DataGrid.Resources>
@@ -31,7 +31,7 @@
             <StackPanel HorizontalAlignment="Left" Background="#9C918E"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
                 <Label Content="Filter:" FontSize="12" FontWeight="Normal" Margin="0,0,0,19" Width="57"/>
                 <Label Content="Tip Inervencije:" FontSize="12"  VerticalContentAlignment="Center" Margin="0,7,0,7" Width="100"/>
-                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Selektujte tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="37">
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Izaberite tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="37">
                     <ComboBox.ItemTemplate >
                         <DataTemplate>
                             <CheckBox Content="{Binding Tip}" VerticalContentAlignment="Center"  IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
@@ -39,7 +39,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Label Content="Opština:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="37" Width="62"/>
-                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Selektujte opstine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="37">
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Izaberite opštine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="37">
                     <ComboBox.ItemTemplate >
                         <DataTemplate >
                             <CheckBox  Content="{Binding Opstina.Naziv_Opstine}" VerticalContentAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>

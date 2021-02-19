@@ -22,7 +22,7 @@
         <Label x:Name="PorukaGreskeZaOpstinu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="5,205,0,0" VerticalAlignment="Top" Width="362" Height="29" />
         <Label x:Name="PorukaGreskeZaAdresu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Height="29" Width="362" />
         <Label x:Name="PorukaGreskeZaDatum" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="5,327,0,0" VerticalAlignment="Top" Height="29" Width="367" />
-        <Label x:Name="PorukaGreskeZaVreme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="71,389,0,0" VerticalAlignment="Top" Height="29" Width="240" />
+        <Label x:Name="PorukaGreskeZaVreme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="29,389,0,0" VerticalAlignment="Top" Height="29" Width="338" />
         <ListBox x:Name="Vozila" ItemsSource="{Binding Vozila, Mode=TwoWay}" Margin="377,118,0,0" HorizontalAlignment="Left" Width="240" Height="300" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -60,7 +60,6 @@
                                         <Binding Path="Smena.ID" />
                                     </MultiBinding>
                                 </TextBlock.Text></TextBlock>
-                            
                             <TextBlock FontWeight="Normal">
                                 <TextBlock.Text  >
                                     <MultiBinding StringFormat="VSJ: {1} ID:{0}">
@@ -76,7 +75,7 @@
         <Label Content="Vozila:" HorizontalAlignment="Left" Margin="377,100,0,0" VerticalAlignment="Top" Width="162"/>
         <Label Content="Smene:" HorizontalAlignment="Left" Margin="651,100,0,0" VerticalAlignment="Top" Width="158"/>
         <Label Content="Označite smene i vozila koja su učestvovala:" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="372,83,0,0" VerticalAlignment="Top" Width="794"/>
-        <TextBlock x:Name="PorukaGreskeZaSmeneIVozila" FontSize="14" FontWeight="Normal" Foreground="Red"  HorizontalAlignment="Left" Margin="372,418,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="794" Height="51"/>
+        <TextBlock x:Name="PorukaGreskeZaSmeneIVozila" FontSize="14" FontWeight="Normal" Foreground="Red"  HorizontalAlignment="Left" Margin="372,418,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="794" Height="60"/>
         <ListBox x:Name="Smene_Copy" ItemsSource="{Binding Radnici, Mode=TwoWay}" Margin="926,118,0,0" HorizontalAlignment="Left" Width="240" Height="300" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>

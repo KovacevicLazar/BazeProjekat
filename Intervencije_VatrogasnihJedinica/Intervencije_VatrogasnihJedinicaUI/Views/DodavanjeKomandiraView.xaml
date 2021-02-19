@@ -14,8 +14,8 @@
         <Label Content="Vatrogasna jedinica:" HorizontalAlignment="Left" Margin="76,202,0,0" VerticalAlignment="Top" Width="130" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding VatrogasnaJedinica.Komandir, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="20,283,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="252,283,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
-        <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,75,0,0" VerticalAlignment="Top" Width="244" Height="30" />
-        <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,124,0,0" VerticalAlignment="Top" Width="244" Height="30" />
-        <Label x:Name="PorukaGreskeZaJMBG" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="76,172,0,0" VerticalAlignment="Top" Width="244" Height="30" />
+        <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="55,75,0,0" VerticalAlignment="Top" Width="284" Height="30" />
+        <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="55,124,0,0" VerticalAlignment="Top" Width="284" Height="30" />
+        <Label x:Name="PorukaGreskeZaJMBG" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="55,172,0,0" VerticalAlignment="Top" Width="284" Height="30" />
     </Grid>
 </Window>

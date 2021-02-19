@@ -1,8 +1,10 @@
 ﻿using Caliburn.Micro;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -69,7 +71,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         Adresa = Adresa,
                         Id_Opstine = IzabranaOpstina.ID
                     };
-                    vatrogasnaJedinicaDAO.Update(VatrogasnaJedinica);
+                    try
+                    {
+                        vatrogasnaJedinicaDAO.Update(VatrogasnaJedinica);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.InnerException?.InnerException?.Message,"Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                 }
                 TryClose();
             }

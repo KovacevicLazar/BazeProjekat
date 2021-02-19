@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -46,7 +47,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 else
                 {
                     Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata, Tip = TipAlata };
-                    alataDAO.Update(Alat);
+                    try
+                    {
+                        alataDAO.Update(Alat);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
                 }
                 TryClose();
             }

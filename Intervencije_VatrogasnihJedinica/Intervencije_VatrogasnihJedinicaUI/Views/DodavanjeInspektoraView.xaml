@@ -12,8 +12,8 @@
         <TextBox x:Name="Telefon" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="29" Margin="195,184,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Inspektor, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="254,270,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
-        <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="82,93,0,0" VerticalAlignment="Top" Height="29" Width="233" />
-        <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="82,150,0,0" VerticalAlignment="Top" Height="29" Width="233" />
-        <Label x:Name="PorukaGreskeZaTelefon" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="53,207,0,0" VerticalAlignment="Top" Height="29" Width="284" />
+        <Label x:Name="PorukaGreskeZaIme" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="53,93,0,0" VerticalAlignment="Top" Height="34" Width="284" />
+        <Label x:Name="PorukaGreskeZaPrezime" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="53,150,0,0" VerticalAlignment="Top" Height="34" Width="284" />
+        <Label x:Name="PorukaGreskeZaTelefon" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="53,207,0,0" VerticalAlignment="Top" Height="34" Width="284" />
     </Grid>
 </Window>
