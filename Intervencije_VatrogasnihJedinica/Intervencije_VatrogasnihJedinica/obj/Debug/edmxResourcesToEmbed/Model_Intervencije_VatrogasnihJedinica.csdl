@@ -433,4 +433,10 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" Role="RadnikUSmeni" Multiplicity="*" />
   </Association>
+  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NazivSmene" Nullable="false" />
+    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
+  </ComplexType>
 </Schema>

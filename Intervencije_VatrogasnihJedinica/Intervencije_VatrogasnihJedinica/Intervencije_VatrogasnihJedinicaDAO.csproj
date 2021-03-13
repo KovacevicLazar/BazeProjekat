@@ -57,7 +57,7 @@
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
     <Compile Include="dao\AlatDAO.cs" />
-    <Compile Include="dao\BaseRepo.cs" />
+    <Compile Include="dao\Repository.cs" />
     <Compile Include="dao\CisternaDAO.cs" />
     <Compile Include="dao\InspektorDAO.cs" />
     <Compile Include="dao\IntervencijaDAO.cs" />
@@ -81,6 +81,9 @@
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
     <Compile Include="Komandir.cs">
+      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ListaDezurnihSmenaNaDatum_Result.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
     <Compile Include="Model_Intervencije_VatrogasnihJedinica.Context.cs">

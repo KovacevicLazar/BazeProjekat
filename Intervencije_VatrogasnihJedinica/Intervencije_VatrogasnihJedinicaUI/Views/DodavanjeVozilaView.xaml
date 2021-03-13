@@ -5,15 +5,15 @@
     </Window.Resources>
     <Grid>
         <Label Content="Informacije  o vozilu:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="623" Margin="0,10,0,0" />
-        <Label Content="Marka........................:" HorizontalAlignment="Left" Margin="68,107,0,0" VerticalAlignment="Top" Width="130" Height="27" />
-        <Label Content="Model........................:" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="130" Height="27" />
-        <Label Content="Godište......................:" HorizontalAlignment="Left" Margin="68,211,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Marka :" HorizontalAlignment="Left" Margin="68,107,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Model :" HorizontalAlignment="Left" Margin="68,159,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Godište :" HorizontalAlignment="Left" Margin="68,211,0,0" VerticalAlignment="Top" Width="130" Height="27" />
         <TextBox x:Name="Marka" HorizontalAlignment="Left" Height="27" Margin="194,107,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="Model" HorizontalAlignment="Left" Height="27" Margin="194,159,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="120" />
         <ComboBox x:Name="Godista" SelectedItem="{Binding Path=Godiste , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="194,211,0,0" VerticalAlignment="Top" Width="120" Height="27" />
-        <Label Content="Tip vozila..................:" HorizontalAlignment="Left" Margin="68,55,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Tip vozila :" HorizontalAlignment="Left" Margin="68,55,0,0" VerticalAlignment="Top" Width="130" Height="27" />
         <ComboBox x:Name="TipoviVozila" IsEnabled="{Binding Vozilo, Converter={StaticResource NullToIsReadOnlyConverter}}" ToolTip="Nakon dodavanja vozila, promena tima nije moguca!" SelectedItem="{Binding Path=TipVozila , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="194,55,0,0" VerticalAlignment="Top" Width="120" Height="27" />
-        <Label Content="Nosivost....................:" HorizontalAlignment="Left" Margin="68,263,0,0" VerticalAlignment="Top" Width="130" Height="27" />
+        <Label Content="Nosivost :" HorizontalAlignment="Left" Margin="68,263,0,0" VerticalAlignment="Top" Width="130" Height="27" />
         <TextBox x:Name="Nosivost" HorizontalAlignment="Left" Height="27" Margin="194,263,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" Text="" VerticalAlignment="Top" Width="93" />
         <ComboBox x:Name="VatrogasneJedinice" DisplayMemberPath="Naziv" IsSynchronizedWithCurrentItem="True" SelectedItem="{Binding Path=IzabranaVatrogasnaJedinica , Mode=TwoWay}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="194,315,0,0" VerticalAlignment="Top" Height="27" Width="120" />
         <Label Content="Vatrogasna jedinica.:" HorizontalAlignment="Left" Margin="68,315,0,0" VerticalAlignment="Top" Width="130" Height="27" />

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class TehnickoVoziloDAO : BaseRepo<Tehnicko_Vozilo>
+    public class TehnickoVoziloDAO : Repository<Tehnicko_Vozilo>
     {
         public int DatumPrveIntervencije(int id)
         {

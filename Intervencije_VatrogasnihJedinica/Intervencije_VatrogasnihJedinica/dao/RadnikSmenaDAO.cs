@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class RadnikSmenaDAO : BaseRepo<RadnikUSmeni>
+    public class RadnikSmenaDAO : Repository<RadnikUSmeni>
     {
         public void PostaviDatumKrajaRadaUsmeni(int radnikID, int smenaID, DateTime datumKrajaRada)
         {

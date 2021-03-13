@@ -284,7 +284,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaGodiste = "Nije izabrano prihvatljivo godište!";
                 ispravanUnos = false;
             }
-            else if (godinaPrveIntervencijeVozila < Godiste)
+            else if (godinaPrveIntervencijeVozila != 0 && godinaPrveIntervencijeVozila < Godiste)
             {
                 PorukaGreskeZaGodiste = $"Prva intervencija vozila je bila {godinaPrveIntervencijeVozila}.godine!";
                 ispravanUnos = false;

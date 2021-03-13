@@ -2,7 +2,7 @@
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class UvidjajDAO : BaseRepo<Uvidjaj>
+    public class UvidjajDAO : Repository<Uvidjaj>
     {
         public Uvidjaj FindById(int idUvidjaja)
         {

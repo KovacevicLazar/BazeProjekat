@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class AlatDAO : BaseRepo<Alat>
+    public class AlatDAO : Repository<Alat>
     {
         public List<Alat> AlatiZaNavalnaVozila()
         {

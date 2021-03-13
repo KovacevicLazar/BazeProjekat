@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class SmenaDAO : BaseRepo<Smena>
+    public class SmenaDAO : Repository<Smena>
     {
         public override List<Smena> GetList()
         {

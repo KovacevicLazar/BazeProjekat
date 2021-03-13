@@ -4,13 +4,13 @@
     </Window.Resources>
     <Grid>
         <Label Content="Informacije o uviđaju:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="457" Margin="0,10,0,0" />
-        <Label Content="Datum...........:" HorizontalAlignment="Left" Margin="108,76,0,0" VerticalAlignment="Top" Width="94" Height="29" />
+        <Label Content="Datum:" HorizontalAlignment="Left" Margin="130,76,0,0" VerticalAlignment="Top" Width="72" Height="29" />
         <DatePicker x:Name="Datum" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,76,0,0" VerticalAlignment="Top" Width="131" Height="29" RenderTransformOrigin="0.494,0.538" />
-        <Label Content="Vreme...........:" HorizontalAlignment="Left" Margin="108,134,0,0" VerticalAlignment="Top" Width="94" Height="29" />
+        <Label Content="Vreme:" HorizontalAlignment="Left" Margin="130,134,0,0" VerticalAlignment="Top" Width="72" Height="29" />
         <Label Content=":" FontSize="23" VerticalContentAlignment="Top" HorizontalAlignment="Left" VerticalAlignment="Top" Width="20" Height="37" Margin="263,126,0,0" />
         <xctk:IntegerUpDown x:Name="Sati" Value="{Binding Sati, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="23" HorizontalAlignment="Left" Margin="207,134,0,0" VerticalAlignment="Top" Height="29" Width="50" />
         <xctk:IntegerUpDown x:Name="Minuti" Value="{Binding Minuti, Mode=TwoWay}" VerticalContentAlignment="Center" Minimum="0" Maximum="59" HorizontalAlignment="Left" Margin="288,134,0,0" VerticalAlignment="Top" Height="29" Width="50" />
-        <Label Content="Inspektor......:" HorizontalAlignment="Left" Margin="108,191,0,0" VerticalAlignment="Top" Height="29" Width="94" />
+        <Label Content="Inspektor:" HorizontalAlignment="Left" Margin="130,191,0,0" VerticalAlignment="Top" Height="29" Width="72" />
         <ComboBox x:Name="Inspektori" SelectedItem="{Binding Path=Inspektor , Mode=TwoWay, StringFormat=''}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="207,191,0,0" VerticalAlignment="Top" Width="131" Height="29" >
             <ComboBox.ItemTemplate>
                 <DataTemplate>

@@ -4,12 +4,12 @@
     </Window.Resources>
     <Grid>
         <Label Content="Informacije o alatu:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="420" Margin="0,10,0,0" />
-        <Label Content="Naziv alata..........:" HorizontalAlignment="Left" Margin="68,94,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <Label Content="Naziv alata:" HorizontalAlignment="Left" Margin="91,94,0,0" VerticalAlignment="Top" Width="86" Height="30" />
         <TextBox x:Name="NazivAlata" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Margin="177,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="176" />
         <Label x:Name="PorukaGreskeZaNazivAlata" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,124,0,0" VerticalAlignment="Top" Height="29" Width="326" />
         <Button x:Name="DodajIzmeni" FontSize="18" Content="{Binding Alat, Converter={StaticResource SadrzajDugmetaDodajIzmeni}}" HorizontalAlignment="Left" Margin="22,269,0,0" VerticalAlignment="Top" Width="115" Height="37" />
         <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="286,269,0,0" VerticalAlignment="Top" Width="115" Height="37" IsCancel="True" />
-        <Label Content="Tip alata..............:" HorizontalAlignment="Left" Margin="68,158,0,0" VerticalAlignment="Top" Width="109" Height="30" />
+        <Label Content="Tip alata:" HorizontalAlignment="Left" Margin="91,158,0,0" VerticalAlignment="Top" Width="86" Height="30" />
         <Label x:Name="PorukaGreskeZaTip" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="50,188,0,0" VerticalAlignment="Top" Height="29" Width="326" />
         <ComboBox x:Name="TipoviAlata" SelectedItem="{Binding Path=TipAlata , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="177,158,0,0" VerticalAlignment="Top" Width="176" Height="30"/>
     </Grid>

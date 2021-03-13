@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class VoziloDAO : BaseRepo<Vozilo>
+    public class VoziloDAO : Repository<Vozilo>
     {
         public override List<Vozilo> GetList()
         {

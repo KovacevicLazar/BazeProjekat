@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class PozarDAO : BaseRepo<Pozar>
+    public class PozarDAO : Repository<Pozar>
     {
         public Pozar FindById(int idPozara)
         {

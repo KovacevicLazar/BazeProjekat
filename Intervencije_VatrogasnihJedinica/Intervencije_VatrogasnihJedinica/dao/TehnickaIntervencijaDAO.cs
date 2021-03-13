@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class TehnickaIntervencijaDAO : BaseRepo<Tehnicka_Intervencija>
+    public class TehnickaIntervencijaDAO : Repository<Tehnicka_Intervencija>
     {
         public Tehnicka_Intervencija FindById(int idIntervencije)
         {

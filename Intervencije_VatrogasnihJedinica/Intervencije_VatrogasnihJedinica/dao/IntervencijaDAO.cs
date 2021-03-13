@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class IntervencijaDAO : BaseRepo<Intervencija>
+    public class IntervencijaDAO : Repository<Intervencija>
     {
         public override List<Intervencija> GetList()
         {

@@ -88,3 +88,12 @@ C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinic
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\Intervencije_VatrogasnihJedinicaUI.exe.config
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\Intervencije_VatrogasnihJedinicaUI.pdb
 C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\obj\Debug\Intervencije_VatrogasnihJedinicaUI.csproj.CopyComplete
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\ClosedXML.dll
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\ExcelNumberFormat.dll
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\System.IO.Packaging.dll
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\ClosedXML.pdb
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\ClosedXML.xml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\ExcelNumberFormat.xml
+C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinicaUI\bin\Debug\FastMember.dll

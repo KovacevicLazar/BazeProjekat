@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Intervencije_VatrogasnihJedinica.dao
 {
-    public class VatrogasnaJedinicaDAO : BaseRepo<VatrogasnaJedinica>
+    public class VatrogasnaJedinicaDAO : Repository<VatrogasnaJedinica>
     {
         public override List<VatrogasnaJedinica> GetList()
         {
