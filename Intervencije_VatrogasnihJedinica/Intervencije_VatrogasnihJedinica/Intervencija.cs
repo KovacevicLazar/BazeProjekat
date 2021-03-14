@@ -24,13 +24,13 @@ namespace Intervencije_VatrogasnihJedinica
         public int ID { get; set; }
         public string Adresa { get; set; }
         public System.DateTime Datum_I_Vreme { get; set; }
-        public int Id_Opstine { get; set; }
         public bool Obrisana { get; set; }
         public TipIntervencijeEnum Tip { get; set; }
+        public int Id_Opstine { get; set; }
     
-        public virtual Opstina Opstina { get; set; }
         public virtual Uvidjaj Uvidjaj { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RadnikUSmeni> RadniciSaSmenama { get; set; }
+        public virtual Opstina Opstina { get; set; }
     }
 }

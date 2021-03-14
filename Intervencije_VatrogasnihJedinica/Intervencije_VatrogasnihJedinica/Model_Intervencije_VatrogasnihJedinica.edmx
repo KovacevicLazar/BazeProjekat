@@ -10,7 +10,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv_Alata" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Naziv_Alata" Type="nvarchar" MaxLength="40" Nullable="false" />
           <Property Name="Tip" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AlatVozilo">
@@ -26,9 +26,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Broj_Telefona" Type="nvarchar(max)" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Broj_Telefona" Type="nvarchar" MaxLength="35" />
         </EntityType>
         <EntityType Name="IntervencijaRadnikUSmeni">
           <Key>
@@ -43,11 +43,11 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Adresa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Datum_I_Vreme" Type="datetime" Nullable="false" />
-          <Property Name="Id_Opstine" Type="int" Nullable="false" />
           <Property Name="Obrisana" Type="bit" Nullable="false" />
           <Property Name="Tip" Type="int" Nullable="false" />
+          <Property Name="Id_Opstine" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Intervencije_Pozar">
           <Key>
@@ -66,16 +66,16 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="JMBG" Type="nvarchar" MaxLength="13" Nullable="false" />
         </EntityType>
         <EntityType Name="Opstine">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv_Opstine" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Naziv_Opstine" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="PozarNavalno_Vozilo">
           <Key>
@@ -90,9 +90,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JMBG" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Ime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Prezime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="JMBG" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Prezime" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Radno_Mesto" Type="int" Nullable="false" />
           <Property Name="DatumPocetkaRada" Type="datetime" Nullable="false" />
           <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
@@ -113,7 +113,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NazivSmene" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NazivSmene" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
           <Property Name="DatumPrvogDezurstva" Type="datetime" Nullable="false" />
         </EntityType>
@@ -139,8 +139,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Naziv" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Adresa" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Id_Opstine" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Vozila">
@@ -148,8 +148,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Marka" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Model" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Marka" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Model" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Tip" Type="int" Nullable="false" />
           <Property Name="Godiste" Type="int" Nullable="false" />
           <Property Name="Nosivost" Type="float" Nullable="false" />
@@ -174,7 +174,9 @@
           <Property Name="ID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_AlatVozilo_Alat">
-          <End Role="Alati" Type="Self.Alati" Multiplicity="1" />
+          <End Role="Alati" Type="Self.Alati" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AlatVozilo" Type="Self.AlatVozilo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Alati">
@@ -186,7 +188,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AlatVozilo_Vozilo">
-          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
+          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="AlatVozilo" Type="Self.AlatVozilo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Vozila">
@@ -198,9 +202,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cisterna_inherits_Vozilo">
-          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
           <End Role="Vozila_Cisterna" Type="Self.Vozila_Cisterna" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vozila">
@@ -272,9 +274,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Navalno_Vozilo_inherits_Vozilo">
-          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
           <End Role="Vozila_Navalno_Vozilo" Type="Self.Vozila_Navalno_Vozilo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vozila">
@@ -310,9 +310,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Pozar_inherits_Intervencija">
-          <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
           <End Role="Intervencije_Pozar" Type="Self.Intervencije_Pozar" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Intervencije">
@@ -396,9 +394,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tehnicka_Intervencija_inherits_Intervencija">
-          <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Intervencije" Type="Self.Intervencije" Multiplicity="1" />
           <End Role="Intervencije_Tehnicka_Intervencija" Type="Self.Intervencije_Tehnicka_Intervencija" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Intervencije">
@@ -434,9 +430,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Tehnicko_Vozilo_inherits_Vozilo">
-          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Vozila" Type="Self.Vozila" Multiplicity="1" />
           <End Role="Vozila_Tehnicko_Vozilo" Type="Self.Vozila_Tehnicko_Vozilo" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Vozila">
@@ -649,20 +643,12 @@
         <EntityContainer Name="Model_Intervencije_VatrogasnihJedinicaContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Opstine" EntityType="Model_Intervencije_VatrogasnihJedinica.Opstina" />
           <EntitySet Name="Vatrogasne_Jedinice" EntityType="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" />
-          <AssociationSet Name="OpstinaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica">
-            <End Role="Opstina" EntitySet="Opstine" />
-            <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
-          </AssociationSet>
           <EntitySet Name="Vozila" EntityType="Model_Intervencije_VatrogasnihJedinica.Vozilo" />
           <AssociationSet Name="VoziloVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica">
             <End Role="Vozilo" EntitySet="Vozila" />
             <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
           </AssociationSet>
           <EntitySet Name="Intervencije" EntityType="Model_Intervencije_VatrogasnihJedinica.Intervencija" />
-          <AssociationSet Name="OpstinaIntervencija" Association="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija">
-            <End Role="Opstina" EntitySet="Opstine" />
-            <End Role="Intervencija" EntitySet="Intervencije" />
-          </AssociationSet>
           <EntitySet Name="Inspektori" EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" />
           <EntitySet Name="Alati" EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" />
           <EntitySet Name="Smene" EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" />
@@ -717,6 +703,14 @@
           <AssociationSet Name="IntervencijaRadnikUSmeni" Association="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni">
             <End Role="Intervencija" EntitySet="Intervencije" />
             <End Role="RadnikUSmeni" EntitySet="RadniciUSmenama" />
+          </AssociationSet>
+          <AssociationSet Name="OpstinaVatrogasnaJedinica" Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica">
+            <End Role="Opstina" EntitySet="Opstine" />
+            <End Role="VatrogasnaJedinica" EntitySet="Vatrogasne_Jedinice" />
+          </AssociationSet>
+          <AssociationSet Name="OpstinaIntervencija" Association="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija">
+            <End Role="Opstina" EntitySet="Opstine" />
+            <End Role="Intervencija" EntitySet="Intervencije" />
           </AssociationSet>
           <FunctionImport Name="DodajSmenuIRadnikaNaIntervenciju">
             <Parameter Name="smenaID" Mode="In" Type="Int32" />
@@ -773,7 +767,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv_Opstine" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Naziv_Opstine" Type="String" Nullable="false" Unicode="true" annotation:StoreGeneratedPattern="None" FixedLength="false" MaxLength="25" />
           <NavigationProperty Name="VatrogasneJedinice" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" FromRole="Opstina" ToRole="VatrogasnaJedinica" />
           <NavigationProperty Name="Intervencije" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Opstina" ToRole="Intervencija" />
         </EntityType>
@@ -782,34 +776,22 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Adresa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Opstina" />
-          <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
+          <Property Name="Naziv" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Adresa" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Vozilo" />
           <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Radnik" />
           <NavigationProperty Name="Smene" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="VatrogasnaJedinica" ToRole="Smena" />
           <NavigationProperty Name="Komandir" Relationship="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Komandir" />
+          <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Opstina" />
+          <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="OpstinaVatrogasnaJedinica">
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
-          <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Opstina">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="VatrogasnaJedinica">
-              <PropertyRef Name="Id_Opstine" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Vozilo">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Marka" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Model" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Marka" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
           <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipVozila" Nullable="false" />
           <Property Name="Godiste" Type="Int32" Nullable="false" />
           <Property Name="Nosivost" Type="Double" Nullable="false" />
@@ -834,35 +816,23 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Adresa" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Adresa" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="Datum_I_Vreme" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Intervencija" ToRole="Opstina" />
-          <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
           <Property Name="Obrisana" Type="Boolean" Nullable="false" DefaultValue="False" />
           <NavigationProperty Name="Uvidjaj" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaUvidjaj" FromRole="Intervencija" ToRole="Uvidjaj" />
           <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipIntervencijeEnum" Nullable="false" />
           <NavigationProperty Name="RadniciSaSmenama" Relationship="Model_Intervencije_VatrogasnihJedinica.IntervencijaRadnikUSmeni" FromRole="Intervencija" ToRole="RadnikUSmeni" />
+          <NavigationProperty Name="Opstina" Relationship="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" FromRole="Intervencija" ToRole="Opstina" />
+          <Property Name="Id_Opstine" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="OpstinaIntervencija">
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
-          <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Opstina">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Intervencija">
-              <PropertyRef Name="Id_Opstine" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Inspektor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Broj_Telefona" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Broj_Telefona" Type="String" Nullable="true" MaxLength="35" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Uvidjaji" Relationship="Model_Intervencije_VatrogasnihJedinica.InspektorUvidjaj" FromRole="Inspektor" ToRole="Uvidjaj" />
         </EntityType>
         <EntityType Name="Alat">
@@ -870,7 +840,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv_Alata" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Naziv_Alata" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Alat" ToRole="Vozilo" />
           <Property Name="Tip" Type="Model_Intervencije_VatrogasnihJedinica.TipAlataEnum" Nullable="false" />
         </EntityType>
@@ -879,7 +849,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NazivSmene" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NazivSmene" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.SmenaRadnik" FromRole="Smena" ToRole="Radnik" />
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinicaSmena" FromRole="Smena" ToRole="VatrogasnaJedinica" />
           <Property Name="VatrogasnaJedinicaID" Type="Int32" Nullable="false" />
@@ -919,9 +889,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JMBG" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Ime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="JMBG" Type="String" Nullable="false" MaxLength="13" Unicode="true" FixedLength="false" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
           <Property Name="Radno_Mesto" Type="Model_Intervencije_VatrogasnihJedinica.RadnoMesto" Nullable="false" />
           <Property Name="DatumPocetkaRada" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="Radnik" ToRole="VatrogasnaJedinica" />
@@ -1012,9 +982,9 @@
           </Key>
           <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.KomandirVatrogasnaJedinica" FromRole="Komandir" ToRole="VatrogasnaJedinica" />
           <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Ime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="JMBG" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="JMBG" Type="String" Nullable="false" MaxLength="13" Unicode="true" FixedLength="false" />
         </EntityType>
         <Association Name="KomandirVatrogasnaJedinica">
           <End Type="Model_Intervencije_VatrogasnihJedinica.Komandir" Role="Komandir" Multiplicity="0..1" />
@@ -1090,6 +1060,36 @@
           <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
           <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
         </ComplexType>
+        <Association Name="OpstinaVatrogasnaJedinica">
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
+          <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opstina">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VatrogasnaJedinica">
+              <PropertyRef Name="Id_Opstine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OpstinaIntervencija">
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
+          <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opstina">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Intervencija">
+              <PropertyRef Name="Id_Opstine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ListaDezurnihSmenaNaDatum_Result1">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="NazivSmene" Nullable="false" MaxLength="25" />
+          <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
+          <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1148,9 +1148,9 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Adresa" ColumnName="Adresa" />
           <ScalarProperty Name="Datum_I_Vreme" ColumnName="Datum_I_Vreme" />
-          <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
           <ScalarProperty Name="Obrisana" ColumnName="Obrisana" />
           <ScalarProperty Name="Tip" ColumnName="Tip" />
+          <ScalarProperty Name="Id_Opstine" ColumnName="Id_Opstine" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Tehnicka_Intervencija)">

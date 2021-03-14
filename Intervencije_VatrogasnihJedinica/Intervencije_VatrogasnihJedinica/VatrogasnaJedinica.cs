@@ -27,7 +27,6 @@ namespace Intervencije_VatrogasnihJedinica
         public string Adresa { get; set; }
         public int Id_Opstine { get; set; }
     
-        public virtual Opstina Opstina { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vozilo> Vozila { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -35,5 +34,6 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Smena> Smene { get; set; }
         public virtual Komandir Komandir { get; set; }
+        public virtual Opstina Opstina { get; set; }
     }
 }

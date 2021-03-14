@@ -7,11 +7,9 @@
       <Diagram DiagramId="b1e22d161ffc4dc1a140eb496377f371" Name="Diagram1" ZoomLevel="62" >
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Opstina" Width="1.5" PointX="6.625" PointY="6.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Width="1.5" PointX="9.125" PointY="9.375" />
-        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Vozilo" Width="1.5" PointX="9.125" PointY="5.75" />
         <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Intervencija" Width="1.5" PointX="2.5" PointY="5.625" />
-        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Inspektor" Width="1.5" PointX="4.875" PointY="9.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Alat" Width="1.5" PointX="11.75" PointY="6.125" />
         <EntityTypeShape EntityType="Model_Intervencije_VatrogasnihJedinica.Smena" Width="1.5" PointX="16.5" PointY="7.625" />
@@ -50,8 +48,10 @@
           <ConnectorPoint PointX="2.7742270279924734" PointY="5.625" />
           <ConnectorPoint PointX="2.7742270279924734" PointY="2.6928763829799642" />
           <ConnectorPoint PointX="14.55234981332201" PointY="2.6928763829799642" />
-          <ConnectorPoint PointX="14.55234981332201" PointY="3.4999999999999996" />
+          <ConnectorPoint PointX="14.55234981332201" PointY="3.4999999999999907" />
         </AssociationConnector>
+        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaVatrogasnaJedinica" />
+        <AssociationConnector Association="Model_Intervencije_VatrogasnihJedinica.OpstinaIntervencija" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
