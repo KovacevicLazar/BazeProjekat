@@ -10,7 +10,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 var vozilo = db.Set<Navalno_Vozilo>().Include("Pozari").SingleOrDefault(x => x.ID == id);
-                if (vozilo.Pozari.Count != 0)
+                if (vozilo != null &&  vozilo.Pozari.Count != 0)
                 {
                     return vozilo.Pozari.Min(x => x.Datum_I_Vreme).Year;
                 }

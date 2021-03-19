@@ -29,6 +29,7 @@
           <ScalarProperty Name="Godiste" ColumnName="Godiste" />
           <ScalarProperty Name="Nosivost" ColumnName="Nosivost" />
           <ScalarProperty Name="Id_VatrogasneJedinice" ColumnName="Id_VatrogasneJedinice" />
+          <ScalarProperty Name="RegistarskaOznaka" ColumnName="RegistarskaOznaka" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model_Intervencije_VatrogasnihJedinica.Tehnicko_Vozilo)">

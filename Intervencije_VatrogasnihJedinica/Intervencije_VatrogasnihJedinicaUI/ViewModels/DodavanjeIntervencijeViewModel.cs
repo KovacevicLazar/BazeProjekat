@@ -241,7 +241,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             var svaVozila = izabranaOpstina == null ? voziloDAO.GetList().Where( x => x.Godiste < Datum.Year) : voziloDAO.ListaVozilaZaIzabranuOpstinu(IzabranaOpstina.ID).Where(x => x.Godiste < Datum.Year);
             Vozila.Clear();
-            if (Intervencija == null)
+            if (Intervencija == null || Pozar == null || TehnickaIntervencija == null)
             {
                 foreach (var vozilo in svaVozila)
                 {
@@ -301,7 +301,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             List<RadnikUSmeni> radniciISmene = radnikSmenaDAO.ListaRadnikaIzSmeneZaDatum(smeneID, Datum);
             foreach (var radnikUSmeni in radniciISmene)
             {
-                if (!Radnici.Any(x => x.RadnikUSmeni.Id == radnikUSmeni.RadnikID))
+                if (!Radnici.Any(x => x.RadnikUSmeni.RadnikID == radnikUSmeni.RadnikID))
                 {
                     if (Intervencija != null)
                     {

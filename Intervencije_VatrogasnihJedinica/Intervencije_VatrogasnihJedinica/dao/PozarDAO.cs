@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 
@@ -6,11 +7,19 @@ namespace Intervencije_VatrogasnihJedinica.dao
 {
     public class PozarDAO : Repository<Pozar>
     {
+        public override List<Pozar> GetList()
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Set<Pozar>().Include("Vozila.VatrogasnaJedinica").Include("Opstina").Include("RadniciSaSmenama").ToList();
+            }
+        }
+
         public Pozar FindById(int idPozara)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Set<Pozar>().Include("Vozila").Include("Opstina").Include("RadniciSaSmenama").SingleOrDefault(x => x.ID == idPozara);
+                return db.Set<Pozar>().Include("Vozila.VatrogasnaJedinica").Include("Opstina").Include("RadniciSaSmenama").SingleOrDefault(x => x.ID == idPozara);
             }
         }
 

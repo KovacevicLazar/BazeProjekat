@@ -149,6 +149,7 @@
     <Property Name="Godiste" Type="int" Nullable="false" />
     <Property Name="Nosivost" Type="float" Nullable="false" />
     <Property Name="Id_VatrogasneJedinice" Type="int" />
+    <Property Name="RegistarskaOznaka" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Vozila_Cisterna">
     <Key>

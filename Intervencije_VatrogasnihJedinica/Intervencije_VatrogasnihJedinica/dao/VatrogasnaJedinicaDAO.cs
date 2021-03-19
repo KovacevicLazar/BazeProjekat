@@ -15,6 +15,14 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
+        public  VatrogasnaJedinica PronadjiPoNazivu(string naziv)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Vatrogasne_Jedinice.Include("Opstina").Include("Smene").Include("Komandir").Include("Radnici").Include("Vozila").Where(x => x.Naziv.Trim().ToLower() == naziv.Trim().ToLower()).FirstOrDefault();
+            }
+        }
+
         public async Task<List<VatrogasnaJedinica>> GetListAsync()
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())

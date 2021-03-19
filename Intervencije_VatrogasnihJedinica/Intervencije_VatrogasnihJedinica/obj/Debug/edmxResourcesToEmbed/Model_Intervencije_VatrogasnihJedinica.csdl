@@ -158,6 +158,7 @@
     <NavigationProperty Name="VatrogasnaJedinica" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="Vozilo" ToRole="VatrogasnaJedinica" />
     <Property Name="Id_VatrogasneJedinice" Type="Int32" Nullable="true" />
     <NavigationProperty Name="Alati" Relationship="Model_Intervencije_VatrogasnihJedinica.AlatVozilo" FromRole="Vozilo" ToRole="Alat" />
+    <Property Name="RegistarskaOznaka" Type="String" Nullable="true" MaxLength="10" Unicode="true" FixedLength="false" />
   </EntityType>
   <Association Name="VoziloVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Vozilo" Role="Vozilo" Multiplicity="*" />
@@ -440,6 +441,12 @@
     </ReferentialConstraint>
   </Association>
   <ComplexType Name="ListaDezurnihSmenaNaDatum_Result1">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="NazivSmene" Nullable="false" MaxLength="25" />
+    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
+    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result2">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="NazivSmene" Nullable="false" MaxLength="25" />
     <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />

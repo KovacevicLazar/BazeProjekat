@@ -25,6 +25,21 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         IWindowManager manager = new WindowManager();
         private string poruka;
 
+        InspektorDAO inspektorDAO = new InspektorDAO();
+        UvidjajDAO uvidjajDAO = new UvidjajDAO();
+        VoziloDAO voziloDAO = new VoziloDAO();
+        SmenaDAO smenaDAO = new SmenaDAO();
+        RadnikDAO radnikDAO = new RadnikDAO();
+        AlatDAO alatDAO = new AlatDAO();
+        KomandirDAO komandirDAO = new KomandirDAO();
+        RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
+        TehnickaIntervencijaDAO tehnickaIntervencijaDAO = new TehnickaIntervencijaDAO();
+        PozarDAO pozarDAO = new PozarDAO();
+        NavalnoVoziloDAO navalnoVoziloDAO = new NavalnoVoziloDAO();
+        TehnickoVoziloDAO tehnickoVoziloDAO = new TehnickoVoziloDAO();
+        CisternaDAO cisternaDAO = new CisternaDAO();
+
+
         public IntervencijeViewModel()
         {
             SveIntervencije = intervencijaDAO.GetList();
@@ -44,7 +59,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public List<Intervencija> SveIntervencije { get { return sveIntervencije; } set { sveIntervencije = value; NotifyOfPropertyChange(() => sveIntervencije); } }
         public Intervencija OznacenaIntervencija { get; set; }
         public TipIntervencijeIsSelected FilterTip { get; set; }
-
         public OpstinaIsSelected FilterOpstina { get; set; }
 
         public void Dodaj()
@@ -128,90 +142,86 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         using (XLWorkbook workbook = new XLWorkbook())
                         {
-                            DataTable table = new DataTable();
-                            using (var reader = ObjectReader.Create(opstinaDAO.GetList(), "ID", "Naziv_Opstine"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Opstine");
-                            table = new DataTable();
-                            using (var reader = ObjectReader.Create(SveIntervencije, "ID", "Adresa", "Datum_I_Vreme", "Id_Opstine", "Tip"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Intervencije");
+                           
+                            DataTable dt = new DataTable();
+                            dt.Clear();
+                            dt.Columns.Add("Tip intervencije");
+                            dt.Columns.Add("Opstina");
+                            dt.Columns.Add("Adresa");
+                            dt.Columns.Add("Datum i vreme");
+                            dt.Columns.Add("Vozila");
+                            dt.Columns.Add("Radnici");
+                            dt.Columns.Add("Informacije o uvidjaju");
 
-                            table = new DataTable();
-                            InspektorDAO inspektorDAO = new InspektorDAO();
-                            using (var reader = ObjectReader.Create(inspektorDAO.GetList(), "ID", "Ime", "Prezime", "Broj_Telefona"))
+                            Dictionary<string, string> VsjRadnici;
+                            string radnici = "";
+                            SveIntervencije.ForEach(intervencija =>
                             {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Inspektori");
+                                VsjRadnici = new Dictionary<string, string>();
+                                DataRow _ravi = dt.NewRow();
+                                radnici = "";
+                                _ravi["Tip intervencije"] = intervencija.Tip == 0 ? "Požar" : "Tehnička intervencija";
+                                _ravi["Opstina"] = intervencija.Opstina.Naziv_Opstine;
+                                _ravi["Adresa"] = intervencija.Adresa;
+                                _ravi["Datum i vreme"] = intervencija.Datum_I_Vreme;
+                                _ravi["Vozila"] = "";
+                                Dictionary<string,string> VSJVozila = new Dictionary<string,string>();
+                                if (intervencija.Tip == TipIntervencijeEnum.POZAR)
+                                {
+                                    var vozila = new List<Navalno_Vozilo>();
+                                    vozila = pozarDAO.FindById(intervencija.ID)?.Vozila?.ToList();
+                                    foreach (var item in vozila)
+                                    {
+                                        if (VSJVozila.ContainsKey($"{item.VatrogasnaJedinica.Naziv}"))
+                                        {
+                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} {item.Tip.ToString()} \r\n";
+                                            continue;
+                                        }
+                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} {item.Tip.ToString()} \r\n";
+                                    } 
+                                }                                
+                                else
+                                {
+                                    var vozila = new List<Tehnicko_Vozilo>();
+                                    vozila = tehnickaIntervencijaDAO.FindById(intervencija.ID)?.Vozila?.ToList();
+                                    foreach (var item in vozila)
+                                    {
+                                        if (VSJVozila.ContainsKey($"{item.VatrogasnaJedinica.Naziv}"))
+                                        {
+                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} \r\n";
+                                            continue;
+                                        }
+                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} \r\n";
+                                    }
+                                }
+                                foreach (var eee in VSJVozila)
+                                {
+                                    _ravi["Vozila"] += $"VSJ:  {eee.Key} \r\n   Vozila:  {eee.Value} ";
+                                }
 
-                            table = new DataTable();
-                            UvidjajDAO uvidjajDAO = new UvidjajDAO();
-                            using (var reader = ObjectReader.Create(uvidjajDAO.GetList(), "ID", "Datum", "Tekst_Zapisnika", "InspektorID"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Uvidjaji");
+                                foreach (var radnikSmena in intervencija.RadniciSaSmenama)
+                                {
+                                    
+                                    if (VsjRadnici.ContainsKey($"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"))
+                                    {
+                                        VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"] += $"     {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()} \r\n";
+                                        continue;
+                                    }
+                                    VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"] =  $" \r\n     {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()} \r\n";
+                                }
+                                foreach (var eee in VsjRadnici)
+                                {
+                                    radnici += $"{eee.Key} \r\n   Radnici: {eee.Value} ";
+                                }
+                                _ravi["Radnici"] = radnici;
+                                _ravi["Informacije o uvidjaju"] = intervencija.Uvidjaj !=null ? $"Datum uvidjaja: {intervencija.Uvidjaj?.Datum}  \r\nInspektor: {intervencija.Uvidjaj.Inspektor?.Ime} {intervencija.Uvidjaj.Inspektor?.Prezime} {intervencija.Uvidjaj.Inspektor?.Broj_Telefona}  \r\nText zapisnika: {intervencija.Uvidjaj.Tekst_Zapisnika} " : null;
+                                dt.Rows.Add(_ravi);
+                            });
 
-                            table = new DataTable();
-                            VatrogasnaJedinicaDAO vatrogasnaJedinicaDAO = new VatrogasnaJedinicaDAO();
-                            using (var reader = ObjectReader.Create(vatrogasnaJedinicaDAO.GetList(), "ID", "Naziv", "Adresa", "Id_Opstine"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Vatrogasne jedinice");
-
-                            table = new DataTable();
-                            VoziloDAO voziloDAO = new VoziloDAO();
-                            using (var reader = ObjectReader.Create(voziloDAO.GetList(), "ID", "Marka", "Model", "Tip", "Godiste", "Nosivost", "Id_VatrogasneJedinice"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Vozila");
-
-                            table = new DataTable();
-                            SmenaDAO smenaDAO = new SmenaDAO();
-                            using (var reader = ObjectReader.Create(smenaDAO.GetList(), "ID", "NazivSmene", "VatrogasnaJedinicaID", "DatumPrvogDezurstva"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Smene");
-
-                            table = new DataTable();
-                            RadnikDAO radnikDAO = new RadnikDAO();
-                            using (var reader = ObjectReader.Create(radnikDAO.GetList(), "ID", "JMBG", "Ime", "Prezime", "Radno_Mesto", "DatumPocetkaRada", "VatrogasnaJedinicaID", "SmenaID"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Radnici");
-
-                            table = new DataTable();
-                            AlatDAO alatDAO = new AlatDAO();
-                            using (var reader = ObjectReader.Create(alatDAO.GetList(), "ID", "Naziv_Alata", "Tip"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Alati");
-
-                            table = new DataTable();
-                            KomandirDAO komandirDAO = new KomandirDAO();
-                            using (var reader = ObjectReader.Create(komandirDAO.GetList(), "ID", "Ime", "Prezime", "JMBG"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Komandiri");
-
-                            table = new DataTable();
-                            RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
-                            using (var reader = ObjectReader.Create(radnikSmenaDAO.GetList(), "Id", "RadnikID", "SmenaID", "DatumPocetkaRada", "DatumKrajaRada"))
-                            {
-                                table.Load(reader);
-                            }
-                            workbook.Worksheets.Add(table, "Rad po smenama");
+                            workbook.Worksheets.Add(dt, "proba");
+                            workbook.Worksheet("proba").Cells().Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+                            workbook.Worksheet("proba").Columns().AdjustToContents();
+                      
 
                             workbook.SaveAs(saveFileDialog.FileName);
                         }
@@ -234,264 +244,161 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         using (XLWorkbook workbook = new XLWorkbook(saveFileDialog.FileName))
                         {
-                            DataTable opstineDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Opstine"));
-                            Dictionary<int, Opstina> opstine = opstineDataTable.AsEnumerable().ToDictionary<DataRow, int, Opstina>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Opstina
+                            DataTable opstineDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("proba"));
+                            foreach (DataRow row in opstineDataTable.Rows)
                             {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Naziv_Opstine = row.Field<string>("Naziv_Opstine"),
-                            });
-                            List<int> keys = new List<int>(opstine.Keys);
-                            keys.Sort();
-                            foreach (var key in keys)
-                            {
-                                if (opstinaDAO.pronadjiPoNazivu(opstine[key].Naziv_Opstine) == null)
-                                {
-                                    opstine[key] = opstinaDAO.Insert(opstine[key]);
-                                }
+                                string tipIntervencije = row["Tip intervencije"].ToString();
+                                string opstina = row["Opstina"].ToString();
+                                string adresa = row["Adresa"].ToString();
+                                DateTime datumIVreme = DateTime.Parse(row["Datum i vreme"].ToString());
+                                string vozila = row["Vozila"].ToString();
+                                string radnici = row["Radnici"].ToString();
+                                string informacijeOUvidjaju = row["Informacije o uvidjaju"].ToString();
+                                KreiranjePodatakaOIntervenciji(tipIntervencije, adresa, opstina, datumIVreme, vozila, radnici, informacijeOUvidjaju);
                             }
-
-
-                            DataTable inspektoriDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Inspektori"));
-                            Dictionary<int, Inspektor> inspektori = inspektoriDataTable.AsEnumerable().ToDictionary<DataRow, int, Inspektor>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Inspektor
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Ime = row.Field<string>("Ime"),
-                                Prezime = row.Field<string>("Prezime"),
-                                Broj_Telefona = row.Field<string>("Broj_Telefona"),
-                            });
-                            keys = new List<int>(inspektori.Keys);
-                            keys.Sort();
-                            InspektorDAO inspektorDAO = new InspektorDAO();
-                            foreach (var key in keys)
-                            {
-                                if (inspektorDAO.FindById(key) == null)
-                                {
-                                    inspektori[key] = inspektorDAO.Insert(inspektori[key]);
-                                }
-                            }
-
-
-
-                            DataTable intervencijeDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Intervencije"));
-                            DataTable uvidjajiDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Uvidjaji"));
-                            
-                            Dictionary<int, Uvidjaj> uvidjaji = uvidjajiDataTable.AsEnumerable().ToDictionary<DataRow, int, Uvidjaj>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Uvidjaj
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Tekst_Zapisnika = row.Field<string>("Tekst_Zapisnika"),
-                                Datum = DateTime.Parse(row.Field<string>("Datum")),
-                                InspektorID = inspektori[int.Parse(row.Field<string>("InspektorID"))].ID,
-                            });
-
-
-                            Dictionary<int, Intervencija> intervencije = intervencijeDataTable.AsEnumerable().ToDictionary<DataRow, int, Intervencija>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Intervencija
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Adresa = row.Field<string>("Adresa"),
-                                Datum_I_Vreme = DateTime.Parse(row.Field<string>("Datum_I_Vreme")),
-                                Obrisana = false,
-                                Id_Opstine = int.Parse(row.Field<string>("Id_Opstine")),
-                                Tip = (TipIntervencijeEnum)int.Parse(row.Field<string>("Tip")),
-                                Uvidjaj = uvidjaji.ContainsKey(int.Parse(row.Field<string>("ID"))) ? uvidjaji[int.Parse(row.Field<string>("ID"))] : null
-                            });
-                            keys = new List<int>(intervencije.Keys);
-                            keys.Sort();
-                            foreach (var key in keys)
-                            {
-                                if (intervencijaDAO.FindById(key) == null)
-                                {
-                                    intervencije[key].Id_Opstine = opstine[intervencije[key].Id_Opstine].ID; //dodeli novokreirani id opstine
-                                    intervencije[key] = intervencijaDAO.Insert(intervencije[key]);
-                                }
-                            }
-
-                         
-                            DataTable vatrogasneJediniceDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Vatrogasne jedinice"));
-                            Dictionary<int, VatrogasnaJedinica> vatrogasneJedinice = vatrogasneJediniceDataTable.AsEnumerable().ToDictionary<DataRow, int, VatrogasnaJedinica>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new VatrogasnaJedinica
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Adresa = row.Field<string>("Adresa"),
-                                Naziv = row.Field<string>("Naziv"),
-                                Id_Opstine = int.Parse(row.Field<string>("Id_Opstine"))
-                            });
-                            keys = new List<int>(vatrogasneJedinice.Keys);
-                            keys.Sort();
-                            foreach (var key in keys)
-                            {
-                                if (vatrogasnaJedinicaDAO.FindById(key) == null)
-                                {
-                                    vatrogasneJedinice[key].Id_Opstine = opstine[vatrogasneJedinice[key].Id_Opstine].ID; //dodeli novokreirani id opstine
-                                    vatrogasneJedinice[key] = vatrogasnaJedinicaDAO.Insert(vatrogasneJedinice[key]);
-                                }
-                            }
-
-                            DataTable smeneDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Smene"));
-                            Dictionary<int, Smena> smene = smeneDataTable.AsEnumerable().ToDictionary<DataRow, int, Smena>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Smena
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                NazivSmene = row.Field<string>("NazivSmene"),
-                                DatumPrvogDezurstva = DateTime.Parse(row.Field<string>("DatumPrvogDezurstva")),
-                                VatrogasnaJedinicaID = int.Parse(row.Field<string>("VatrogasnaJedinicaID"))
-                            });
-                            keys = new List<int>(smene.Keys);
-                            keys.Sort();
-                            SmenaDAO smenaDAO = new SmenaDAO();
-                            foreach (var key in keys)
-                            {
-                                if (smenaDAO.FindById(key) == null)
-                                {
-                                    smene[key].VatrogasnaJedinicaID = vatrogasneJedinice[smene[key].VatrogasnaJedinicaID].ID; //dodeli novokreirani id 
-                                    smene[key] = smenaDAO.Insert(smene[key]);
-                                }
-                            }
-
-
-                            DataTable radniciDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Radnici"));
-                            Dictionary<int, Radnik> radnici = radniciDataTable.AsEnumerable().ToDictionary<DataRow, int, Radnik>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Radnik
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Ime = row.Field<string>("Ime"),
-                                Prezime = row.Field<string>("Prezime"),
-                                JMBG = row.Field<string>("JMBG"),
-                                Radno_Mesto = (RadnoMesto)int.Parse(row.Field<string>("Radno_Mesto")),
-                                DatumPocetkaRada = DateTime.Parse(row.Field<string>("DatumPocetkaRada")),
-                                SmenaID = int.Parse(row.Field<string>("SmenaID")),
-                                VatrogasnaJedinicaID = int.Parse(row.Field<string>("VatrogasnaJedinicaID"))
-                            });
-                            keys = new List<int>(radnici.Keys);
-                            keys.Sort();
-                            RadnikDAO radnikDAO = new RadnikDAO();
-                            foreach (var key in keys)
-                            {
-                                if (radnikDAO.FindById(key) == null)
-                                {
-                                    radnici[key].VatrogasnaJedinicaID = vatrogasneJedinice[radnici[key].VatrogasnaJedinicaID].ID; //dodeli novokreirani id 
-                                    radnici[key].SmenaID = smene[radnici[key].SmenaID].ID; //dodeli novokreirani id 
-                                    radnici[key] = radnikDAO.Insert(radnici[key]);
-                                }
-                            }
-
-
-
-                            DataTable vozilaDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Vozila"));
-                            Dictionary<int, Vozilo> vozila = vozilaDataTable.AsEnumerable().ToDictionary<DataRow, int, Vozilo>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Vozilo
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Marka = row.Field<string>("Marka"),
-                                Model = row.Field<string>("Model"),
-                                Nosivost = int.Parse(row.Field<string>("Nosivost")),
-                                Godiste = int.Parse(row.Field<string>("Godiste")),
-                                Tip = (TipVozila)int.Parse(row.Field<string>("Tip")),
-                                Id_VatrogasneJedinice = int.Parse(row.Field<string>("Id_VatrogasneJedinice"))
-                            });
-                            keys = new List<int>(vozila.Keys);
-                            keys.Sort();
-                            VoziloDAO voziloDAO = new VoziloDAO();
-                            foreach (var key in keys)
-                            {
-                                if (voziloDAO.FindById(key) == null)
-                                {
-                                    vozila[key].Id_VatrogasneJedinice = vatrogasneJedinice[(int)vozila[key].Id_VatrogasneJedinice].ID; //dodeli novokreirani id 
-                                    vozila[key] = voziloDAO.Insert(vozila[key]);
-                                }
-                            }
-
-
-
-                           
-                            DataTable alatiDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Alati"));
-
-                            Dictionary<int, Alat> alati = alatiDataTable.AsEnumerable().ToDictionary<DataRow, int, Alat>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Alat
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Naziv_Alata = row.Field<string>("Naziv_Alata"),
-                                Tip = (TipAlataEnum)int.Parse(row.Field<string>("Tip"))
-                            });
-                            keys = new List<int>(alati.Keys);
-                            keys.Sort();
-                            AlatDAO alatDAO = new AlatDAO();
-                            foreach (var key in keys)
-                            {
-                                if (alatDAO.FindById(key) == null)
-                                {
-                                    alati[key] = alatDAO.Insert(alati[key]);
-                                }
-                            }
-
-
-                            DataTable komandiriDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Komandiri"));
-                            Dictionary<int, Komandir> komandiri = komandiriDataTable.AsEnumerable().ToDictionary<DataRow, int, Komandir>(
-                            row => int.Parse(row.Field<string>("ID")),
-                            row => new Komandir
-                            {
-                                ID = int.Parse(row.Field<string>("ID")),
-                                Ime = row.Field<string>("Ime"),
-                                Prezime = row.Field<string>("Prezime"),
-                                JMBG = row.Field<string>("JMBG"),
-                            });
-                            keys = new List<int>(komandiri.Keys);
-                            keys.Sort();
-                            KomandirDAO komandirDAO = new KomandirDAO();
-                            foreach (var key in keys)
-                            {
-                                komandiri[key].ID = vatrogasneJedinice[komandiri[key].ID].ID; //dodeli novokreirani id VATROGASNE JEDINICE KAO NOVI ID Komandira
-                                if (komandirDAO.FindById(key) == null)
-                                {
-                                    komandiri[key] = komandirDAO.Insert(komandiri[key]);
-                                }
-                            }
-
-
-
-                            DataTable radniciSaSmenamaDataTable = PreuzmiPodatkeIzExcelTabele(workbook.Worksheet("Rad po smenama"));
-                            Dictionary<int, RadnikUSmeni> radniciSaSmenama = radniciSaSmenamaDataTable.AsEnumerable().ToDictionary<DataRow, int, RadnikUSmeni>(
-                            row => int.Parse(row.Field<string>("Id")),
-                            row => new RadnikUSmeni
-                            {
-                                Id = int.Parse(row.Field<string>("Id")),
-                                RadnikID = int.Parse(row.Field<string>("RadnikID")),
-                                SmenaID = int.Parse(row.Field<string>("SmenaID")),
-                                DatumPocetkaRada = DateTime.Parse(row.Field<string>("DatumPocetkaRada")),
-                                DatumKrajaRada = (row.Field<string>("DatumKrajaRada") != null) ? (DateTime?)DateTime.Parse(row.Field<string>("DatumKrajaRada")) : null,  
-                            });
-                            keys = new List<int>(radniciSaSmenama.Keys);
-                            keys.Sort();
-                            RadnikSmenaDAO radnikSmenaDAO = new RadnikSmenaDAO();
-                            foreach (var key in keys)
-                            {
-                                radniciSaSmenama[key].RadnikID = radnici[radniciSaSmenama[key].RadnikID].ID; //dodeli novokreirani id Vradnika
-                                radniciSaSmenama[key].SmenaID = smene[radniciSaSmenama[key].SmenaID].ID;
-                                if (radnikSmenaDAO.FindById(key) == null)
-                                {
-                                    radniciSaSmenama[key] = radnikSmenaDAO.Insert(radniciSaSmenama[key]);
-                                }
-                            }
-
-
                         }
                     } 
                     catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
+                }
+            }
+        }
+
+        public void KreiranjePodatakaOIntervenciji(string tip, string adresa, string nazivOpstine, DateTime datum, string vozila, string radnici, string informacijeOUvidjaju)
+        {
+            TipIntervencijeEnum tipIntervencije = tip == "Požar" ? TipIntervencijeEnum.POZAR : TipIntervencijeEnum.TEHNICKA_INTERVENCIJA;
+            Opstina opstinaIntervencije = opstinaDAO.pronadjiPoNazivu(nazivOpstine);
+            if(opstinaIntervencije == null)
+            {
+                opstinaIntervencije = opstinaDAO.Insert(new Opstina { Naziv_Opstine = nazivOpstine });
+            }
+
+
+
+            var vatrogasneJedinice = vozila.Split(new string[] { "VSJ:" }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var vatrogasnaJednicaRadnici in vatrogasneJedinice)
+            {
+                var vatrogasnaJedinicaIVozila = vatrogasnaJednicaRadnici.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                VatrogasnaJedinica vatrogasnaJedinica = null;
+                try
+                {
+                    var nazivVatrogasnaJedinica = vatrogasnaJedinicaIVozila[0].Trim();
+                    vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
+                    if (vatrogasnaJedinica == null)
+                    {
+                        vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", Id_Opstine = opstinaIntervencije.ID });
+                        Smena Smena;
+                        List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
+                        for (int i = 1; i < 5; i++)
+                        {
+                            Smena = new Smena { NazivSmene = naziviSmena[i - 1], VatrogasnaJedinicaID = vatrogasnaJedinica.ID, DatumPrvogDezurstva = new System.DateTime(2009, 1, i, 8, 0, 0) };
+                            smenaDAO.Insert(Smena);
+                        }
+                    }
+                    string[] podaciOVozilu ;
+                    for(int i = 2; i < vatrogasnaJedinicaIVozila.Length; i++)
+                    {
+                        podaciOVozilu = vatrogasnaJedinicaIVozila[i].Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                        var marka = podaciOVozilu[0];
+                        var model = podaciOVozilu[1];
+                        var regirtarsaOznaka = podaciOVozilu[2];
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+
+
+                List<Radnik> radniciNaIntervenciji = new List<Radnik>();
+            vatrogasneJedinice = radnici.Split(new string[] { "VSJ:"}, StringSplitOptions.RemoveEmptyEntries);
+            string[] vatrogasnaJedinicaSaRadnicima;
+            List<RadnikUSmeni> radniciISmene = new List<RadnikUSmeni>();
+            foreach( var vatrogasnaJednicaRadnici in vatrogasneJedinice)
+            {
+                vatrogasnaJedinicaSaRadnicima = vatrogasnaJednicaRadnici.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                var nazivVatrogasnaJedinica = vatrogasnaJedinicaSaRadnicima[0].Trim();
+                var vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
+                if (vatrogasnaJedinica == null)
+                {
+                    vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", Id_Opstine = opstinaIntervencije.ID });
+                    Smena Smena;
+                    List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
+                    for (int i = 1; i < 5; i++)
+                    {
+                        Smena = new Smena { NazivSmene = naziviSmena[i - 1], VatrogasnaJedinicaID = vatrogasnaJedinica.ID, DatumPrvogDezurstva = new System.DateTime(2009, 1, i, 8, 0, 0) };
+                        smenaDAO.Insert(Smena);
+                    }
+                }
+
+                var nazivSmene = vatrogasnaJedinicaSaRadnicima[1].Split(new string[] { "Smena:" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                Smena smena = smenaDAO.PronadjiPoNazivuIVatrogasnojJedinici(nazivSmene, vatrogasnaJedinica.ID);
+                Radnik radnik;
+                for(int i = 3; i< vatrogasnaJedinicaSaRadnicima.Length; i++)
+                {
+                    var radnikPodaci = vatrogasnaJedinicaSaRadnicima[i].Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    if (radnikPodaci.Length < 4)
+                    {
+                        continue;
+                    }
+                    var jmbg = radnikPodaci[0];
+                    var ime = radnikPodaci[1];
+                    var prezime = radnikPodaci[2];
+                    var radno_mesto = radnikPodaci[3] == "Vatrogasac" ? RadnoMesto.Vatrogasac : RadnoMesto.Vozac;
+                    radnik = radnikDAO.PronadjiPoJMBG(jmbg);
+                    if(radnik == null)
+                    {
+                        radnik = radnikDAO.Insert(new Radnik { JMBG = jmbg, Ime = ime, Prezime = prezime, Radno_Mesto = radno_mesto, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0) });
+                        radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0), DatumKrajaRada = null });
+                    }
+
+                    try
+                    {
+                        var radnikSmena = radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = datum.AddDays(-1), DatumKrajaRada = datum.AddDays(1) });
+                        radniciISmene.Add(radnikSmena);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            var informacijeOUvidjajuSPLIT = informacijeOUvidjaju.Trim().Split(new string[] { "Datum uvidjaja:", "Inspektor:", "Text zapisnika:", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            Uvidjaj uvidjaj = null;
+            if(informacijeOUvidjajuSPLIT.Length == 3)
+            {
+                try
+                {
+                    DateTime datumUvidjaja = DateTime.Parse(informacijeOUvidjajuSPLIT[0]);
+                    string tekstZapisnika = informacijeOUvidjajuSPLIT[2];
+                    string[] inspektorPodaci = informacijeOUvidjajuSPLIT[1].Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    string ime = inspektorPodaci[0];
+                    string prezime = inspektorPodaci[1];
+                    string brojTelefona = inspektorPodaci[2];
+                    var inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, Broj_Telefona = brojTelefona });
+                    uvidjaj = new Uvidjaj { Datum = datumUvidjaja, Tekst_Zapisnika = tekstZapisnika, InspektorID = inspektor.ID };
+                }
+                catch { }
+            }
+
+            if (tipIntervencije == TipIntervencijeEnum.POZAR)
+            {
+                var pozar = pozarDAO.Insert(new Pozar { Tip = tipIntervencije, Id_Opstine = opstinaIntervencije.ID, Adresa = adresa, Datum_I_Vreme = datum, Uvidjaj = uvidjaj});
+                foreach (var radnikSmena in radniciISmene)
+                {
+                    pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.Id, pozar.ID);
+                }
+            }
+            else
+            {
+                var tehnickaIntervencija = tehnickaIntervencijaDAO.Insert(new Tehnicka_Intervencija { Tip = tipIntervencije, Id_Opstine = opstinaIntervencije.ID, Adresa = adresa, Datum_I_Vreme = datum, Uvidjaj = uvidjaj });
+                foreach (var radnikSmena in radniciISmene)
+                {
+                    tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.Id, tehnickaIntervencija.ID);
                 }
             }
         }

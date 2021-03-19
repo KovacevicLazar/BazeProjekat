@@ -22,18 +22,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaGodiste = "";
         private string porukaGreskeZaNosivost = "";
         private string porukaGreskeZaVSJ = "";
+        private string porukaGreskeZaRegistarskuOznaku = "";
         private int godinaPrveIntervencijeVozila = 0;
 
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
-            TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().ToList();
+            TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().Where(x => x != TipVozila.CISTERNA).ToList();
             VatrogasneJedinice = jedinicaDAO.GetList();
             Vozilo = vozilo;
             Godiste = DateTime.Now.Year;
             if (vozilo != null)
             {
-                Godiste = vozilo.Godiste;
-                TipVozila = vozilo.Tip;
                 InicijalizacijaVrednosti(vozilo);
             }
             InicijalizacijaListeGodista();
@@ -44,6 +43,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public Vozilo Vozilo { get; set; }
         public string Marka { get; set; }
         public string Model { get; set; }
+        public string RegistarskaOznaka { get; set; }
         public int Godiste { get; set; }
         public List<int> Godista { get; set; }
         private TipVozila tipVozila { get; set; }
@@ -57,6 +57,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaGodiste { get => porukaGreskeZaGodiste; set { porukaGreskeZaGodiste = value; NotifyOfPropertyChange(() => PorukaGreskeZaGodiste); } }
         public string PorukaGreskeZaNosivost { get => porukaGreskeZaNosivost; set { porukaGreskeZaNosivost = value; NotifyOfPropertyChange(() => PorukaGreskeZaNosivost); } }
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
+        public string PorukaGreskeZaRegistarskuOznaku { get => porukaGreskeZaRegistarskuOznaku; set { porukaGreskeZaRegistarskuOznaku = value; NotifyOfPropertyChange(() => PorukaGreskeZaRegistarskuOznaku); } }
+        
 
         public void DodajIzmeni()
         {
@@ -74,7 +76,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                RegistarskaOznaka = RegistarskaOznaka
                             };
                             vozilo = tehnickoVoziloDAO.Insert(vozilo);
                             foreach (var alat in Alati)
@@ -93,7 +96,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                RegistarskaOznaka = RegistarskaOznaka
                             };
                             navalnoVozilo = navalnovoziloDAO.Insert(navalnoVozilo);
                             foreach (var alat in Alati)
@@ -119,18 +123,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                RegistarskaOznaka = RegistarskaOznaka
                             };
                             try
                             {
                                 tehnickoVoziloDAO.Update(tehnickoVozilo);
+                                voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
-                            voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
                             {
                                 if (alat.IsSelected)
@@ -148,18 +153,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID
+                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                RegistarskaOznaka = RegistarskaOznaka
                             };
                             try
                             {
                                 navalnovoziloDAO.Update(navalnoVozilo);
+                                voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
                             }
-                            voziloDAO.UkloniAlateIzVozila(Vozilo.ID);
                             foreach (var alat in Alati)
                             {
                                 if (alat.IsSelected)
@@ -220,14 +226,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private void InicijalizacijaVrednosti(Vozilo vozilo)
         {
-            if(vozilo.Tip == TipVozila.TEHNICKO)
+            if (vozilo.Tip == TipVozila.TEHNICKO)
             {
                 godinaPrveIntervencijeVozila = tehnickoVoziloDAO.DatumPrveIntervencije(vozilo.ID);
             }
-            else if(vozilo.Tip == TipVozila.NAVALNO)
+            else if (vozilo.Tip == TipVozila.NAVALNO)
             {
                 godinaPrveIntervencijeVozila = navalnovoziloDAO.DatumPrveIntervencije(vozilo.ID);
             }
+            RegistarskaOznaka = vozilo.RegistarskaOznaka;
+            NotifyOfPropertyChange(() => RegistarskaOznaka);
             Marka = vozilo.Marka;
             Model = vozilo.Model;
             TipVozila = vozilo.Tip;
@@ -260,6 +268,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             else if (Marka.Length < 3 || Marka.Length > 20)
             {
                 PorukaGreskeZaMarku = "Naziv mora sadržati od 3 do 20 slova!";
+                ispravanUnos = false;
+            }
+
+            if (string.IsNullOrEmpty(RegistarskaOznaka))
+            {
+                PorukaGreskeZaRegistarskuOznaku = "Unesite registarsku oznaki!";
+                ispravanUnos = false;
+            }
+            else if (!RegistarskaOznaka.All(c => char.IsLetterOrDigit(c)))
+            {
+                PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka gradi se od slova i brojeva!";
                 ispravanUnos = false;
             }
 

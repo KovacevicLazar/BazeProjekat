@@ -118,6 +118,8 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\AlatIsSelected.cs" />
+    <Compile Include="Models\AlatVozilo.cs" />
+    <Compile Include="Models\IntervencijaVozilo.cs" />
     <Compile Include="Models\NullToIsReadOnlyConverter.cs" />
     <Compile Include="Models\OpstinaIsSelected.cs" />
     <Compile Include="Models\RadnikUSmeniIsSelected.cs" />

@@ -3,7 +3,7 @@
         <models:NullToMessageConverter x:Key="NullToMessageConverter" />
     </UserControl.Resources>
     <Grid Width="1259" Height="675" Background="#FFF9F7F6">
-        <DataGrid FontSize="12" AlternatingRowBackground="#FFD8D6D6" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="550" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
+        <DataGrid FontSize="12" AlternatingRowBackground="#FFD8D6D6" AutoGenerateColumns="False" ItemsSource="{Binding SveIntervencije, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaIntervencija, Mode=TwoWay}" IsReadOnly="True" HorizontalAlignment="Left" Height="525" Margin="100,115,0,0" VerticalAlignment="Top" Width="884">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
             </DataGrid.Resources>
@@ -23,10 +23,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Intervencije:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="1004,149,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,189,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="247" Width="180"/>
+        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="1004,64,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,110,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,159,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="261" Width="180"/>
         <Border BorderBrush="Black"  BorderThickness="1" HorizontalAlignment="Left" Height="51" Margin="100,64,0,0" VerticalAlignment="Top" Width="884">
             <StackPanel HorizontalAlignment="Left" Background="#9C918E"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
                 <Label Content="Filter:" FontSize="12" FontWeight="Normal" Margin="0,0,0,19" Width="57"/>
@@ -49,7 +49,7 @@
                 <Button x:Name="FilterList" Content="Primeni filter" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="30,7,0,0" Width="244" Height="37"/>
             </StackPanel>
         </Border>
-        <Button x:Name="Izvezi" Content="Izvezi" HorizontalAlignment="Left" Margin="1004,109,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Uvezi" Content="Uvezi podatke" HorizontalAlignment="Left" Margin="1004,490,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izvezi" Content="Izvezi podatke" HorizontalAlignment="Left" Margin="1004,210,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Uvezi" Content="Uvezi podatke" HorizontalAlignment="Left" Margin="1004,260,0,0" VerticalAlignment="Top" Width="180" Height="35" />
     </Grid>
 </UserControl>

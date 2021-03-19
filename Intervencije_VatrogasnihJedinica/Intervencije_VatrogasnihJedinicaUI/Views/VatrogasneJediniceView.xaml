@@ -3,7 +3,7 @@
         <models:NullToMessageConverter x:Key="NullToMessageConverter" />
     </UserControl.Resources>
     <Grid Width="1259" Height="675" Background="#FFF9F7F6" >
-        <DataGrid Name="datagrid" AlternatingRowBackground="#FFD8D6D6" FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="596" Margin="10,69,0,0" VerticalAlignment="Top" Width="1048">
+        <DataGrid Name="datagrid" AlternatingRowBackground="#FFD8D6D6" FontSize="12" AutoGenerateColumns="False" ItemsSource="{Binding SveJedinice, Mode=OneWay}" SelectedItem="{Binding Path=OznacenaJedinica, Mode=TwoWay}"  IsReadOnly="True" HorizontalAlignment="Left" Height="575" Margin="10,69,0,0" VerticalAlignment="Top" Width="1048">
             <DataGrid.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
             </DataGrid.Resources>

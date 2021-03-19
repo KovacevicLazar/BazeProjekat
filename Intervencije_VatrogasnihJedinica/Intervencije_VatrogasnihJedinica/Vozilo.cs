@@ -27,6 +27,7 @@ namespace Intervencije_VatrogasnihJedinica
         public int Godiste { get; set; }
         public double Nosivost { get; set; }
         public Nullable<int> Id_VatrogasneJedinice { get; set; }
+        public string RegistarskaOznaka { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Objects;
 using System.Linq;
 
@@ -6,11 +7,19 @@ namespace Intervencije_VatrogasnihJedinica.dao
 {
     public class TehnickaIntervencijaDAO : Repository<Tehnicka_Intervencija>
     {
+        public override List<Tehnicka_Intervencija> GetList()
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Set<Tehnicka_Intervencija>().Include("Vozila.VatrogasnaJedinica").Include("Opstina").Include("RadniciSaSmenama").ToList();
+            }
+        }
+
         public Tehnicka_Intervencija FindById(int idIntervencije)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Set<Tehnicka_Intervencija>().Include("Vozila").Include("Opstina").Include("RadniciSaSmenama").SingleOrDefault(x => x.ID == idIntervencije);
+                return db.Set<Tehnicka_Intervencija>().Include("Vozila.VatrogasnaJedinica").Include("Opstina").Include("RadniciSaSmenama").SingleOrDefault(x => x.ID == idIntervencije);
             }
         }
 

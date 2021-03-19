@@ -12,5 +12,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Radnici.Include("VatrogasnaJedinica").Include("Smena").ToList();
             }
         }
+
+        public Radnik PronadjiPoJMBG(string jmbg)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Radnici.Include("VatrogasnaJedinica").Include("Smena").Where(x => x.JMBG == jmbg).FirstOrDefault();
+            }
+        }
     }
 }
