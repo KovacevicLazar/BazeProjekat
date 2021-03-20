@@ -256,23 +256,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaNosivost = "";
             PorukaGreskeZaVSJ = "";
 
-            Marka = Marka.Trim();
-            Model = Model.Trim();
-            RegistarskaOznaka = RegistarskaOznaka.Trim();
-            Nosivost = Nosivost.Trim();
-
-
             if (string.IsNullOrEmpty(Marka))
             {
                 PorukaGreskeZaMarku = "Unesite marku!";
                 ispravanUnos = false;
             }
-            else if (!Marka.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Marka.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaMarku = "Marka sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Marka.Length < 3 || Marka.Length > 20)
+            else if (Marka.Trim().Length < 3 || Marka.Trim().Length > 20)
             {
                 PorukaGreskeZaMarku = "Naziv mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
@@ -283,9 +277,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaRegistarskuOznaku = "Unesite registarsku oznaki!";
                 ispravanUnos = false;
             }
-            else if (!RegistarskaOznaka.All(c => char.IsLetterOrDigit(c)))
+            else if (!RegistarskaOznaka.Trim().All(c => char.IsLetterOrDigit(c)))
             {
                 PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka gradi se od slova i brojeva!";
+                ispravanUnos = false;
+            }
+            else if(voziloDAO.PronadjiPoRegistarskojOznaci(RegistarskaOznaka.Trim()) != null)
+            {
+                PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka je zauzeta!";
                 ispravanUnos = false;
             }
 
@@ -294,12 +293,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaModel = "Unesite model!";
                 ispravanUnos = false;
             }
-            else if (!Model.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
+            else if (!Model.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
                 PorukaGreskeZaModel = "Naziv modela sadrži nedozvoljene karaktere!";
                 ispravanUnos = false;
             }
-            else if (Model.Length < 3 || Model.Length > 20)
+            else if (Model.Trim().Length < 3 || Model.Trim().Length > 20)
             {
                 PorukaGreskeZaModel = "Naziv mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
@@ -321,12 +320,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNosivost = "Unesite podatak o nosivosti vozila!";
                 ispravanUnos = false;
             }
-            else if (!Nosivost.All(c => char.IsDigit(c) || char.IsPunctuation(c)))
+            else if (!Nosivost.Trim().All(c => char.IsDigit(c) || char.IsPunctuation(c)))
             {
                 PorukaGreskeZaNosivost = "Mora sadržati samo brojeve!";
                 ispravanUnos = false;
             }
-            else if (double.Parse(Nosivost) < 1000 || double.Parse(Nosivost) > 12000)
+            else if (double.Parse(Nosivost.Trim()) < 1000 || double.Parse(Nosivost.Trim()) > 12000)
             {
                 PorukaGreskeZaNosivost = "Samo u intervalu od 1000kg do 12000kg!";
                 ispravanUnos = false;

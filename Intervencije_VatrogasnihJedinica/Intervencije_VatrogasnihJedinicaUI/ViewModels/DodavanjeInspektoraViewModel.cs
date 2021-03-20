@@ -66,24 +66,20 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaTelefon = "";
 
-            Ime = Ime.Trim();
-            Prezime = Prezime.Trim();
-            Telefon = Telefon.Trim();
-
             bool ispravanUnos = true;
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime inspektora!";
                 ispravanUnos = false;
             }
-            else if (!Ime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Ime.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaIme = "Ime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Ime.Length < 4 || Ime.Length > 20)
+            else if (Ime.Trim().Length < 3 || Ime.Trim().Length > 20)
             {
-                PorukaGreskeZaIme = "Ime mora sadržati od 4 do 20 slova!";
+                PorukaGreskeZaIme = "Ime mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -92,14 +88,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaPrezime = "Unesite prezime inspektora!";
                 ispravanUnos = false;
             }
-            else if (!Prezime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Prezime.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaPrezime = "Prezime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Prezime.Length < 4 || Prezime.Length > 20)
+            else if (Prezime.Trim().Length < 3 || Prezime.Trim().Length > 20)
             {
-                PorukaGreskeZaPrezime = "Prezime mora sadržati od 4 do 20 slova!";
+                PorukaGreskeZaPrezime = "Prezime mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -108,14 +104,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTelefon = "Unesite broj telefona!";
                 ispravanUnos = false;
             }
-            else if (!Telefon.All(c => char.IsNumber(c)))
+            else if (!Telefon.Trim().All(c => char.IsNumber(c)))
             {
                 PorukaGreskeZaTelefon = "Telefon sme sadržati samo brojeve!";
                 ispravanUnos = false;
             }
-            else if (Telefon.Length < 6 || Telefon.Length > 14)
+            else if (Telefon.Trim().Length < 6 || Telefon.Trim().Length > 14)
             {
                 PorukaGreskeZaTelefon = "Telefon mora sadržati od 6 do 14 brojeva!";
+                ispravanUnos = false;
+            }
+            else if(inspektorDAO.PronadjiPoBrojuTelefona(Telefon.Trim()) != null)
+            {
+                PorukaGreskeZaTelefon = "Ovaj broj telefona koristi drugi inspektor!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

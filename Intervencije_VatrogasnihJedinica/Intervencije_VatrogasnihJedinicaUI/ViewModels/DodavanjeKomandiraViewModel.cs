@@ -69,23 +69,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaJMBG = "";
 
-            Ime = Ime.Trim();
-            Prezime = Prezime.Trim();
-            Jmbg = Jmbg.Trim();
-
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime komandira!";
                 ispravanUnos = false;
             }
-            else if (!Ime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Ime.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaIme = "Ime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Ime.Length < 4 || Ime.Length > 20)
+            else if (Ime.Trim().Length < 3 || Ime.Trim().Length > 20)
             {
-                PorukaGreskeZaIme = "Ime mora sadržati od 4 do 20 slova!";
+                PorukaGreskeZaIme = "Ime mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -94,14 +90,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaPrezime = "Unesite prezime komandira!";
                 ispravanUnos = false;
             }
-            else if (!Prezime.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Prezime.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaPrezime = "Prezime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Prezime.Length < 4 || Prezime.Length > 20)
+            else if (Prezime.Trim().Length < 3 || Prezime.Trim().Length > 20)
             {
-                PorukaGreskeZaPrezime = "Prezime mora sadržati od 4 do 20 slova!";
+                PorukaGreskeZaPrezime = "Prezime mora sadržati od 3 do 20 slova!";
                 ispravanUnos = false;
             }
 
@@ -110,12 +106,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaJMBG = "Unesite JBMG komandira!";
                 ispravanUnos = false;
             }
-            else if (!Jmbg.All(c => char.IsDigit(c)))
+            else if (!Jmbg.Trim().All(c => char.IsDigit(c)))
             {
                 PorukaGreskeZaJMBG = "JMBG sme sadržati samo brojeve!";
                 ispravanUnos = false;
             }
-            else if (Jmbg.Length != 13)
+            else if (Jmbg.Trim().Length != 13)
             {
                 PorukaGreskeZaJMBG = "Jmbg mora sadržati 13 brojeva!";
                 ispravanUnos = false;

@@ -92,22 +92,24 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaOpstinu = "";
             bool ispravanUnos = true;
 
-            Naziv = Naziv.Trim();
-            Adresa = Adresa.Trim();
-
             if (string.IsNullOrEmpty(Naziv))
             {
                 PorukaGreskeZaNaziv = "Unesite naziv!";
                 ispravanUnos = false;
             }
-            else if (!Naziv.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!Naziv.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaNaziv = "Naziv sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Naziv.Length < 5 || Naziv.Length > 40)
+            else if (Naziv.Trim().Length < 5 || Naziv.Trim().Length > 40)
             {
                 PorukaGreskeZaNaziv = "Naziv mora sadržati od 5 do 40 slova!";
+                ispravanUnos = false;
+            }
+            else if (vatrogasnaJedinicaDAO.PronadjiPoNazivu(Naziv.Trim()) != null)
+            {
+                PorukaGreskeZaNaziv = "Ovaj naziv je zauzet!";
                 ispravanUnos = false;
             }
 
@@ -116,12 +118,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaAdresu = "Unesite adresu!";
                 ispravanUnos = false;
             }
-            else if (!Adresa.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
+            else if (!Adresa.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
                 PorukaGreskeZaAdresu = "Adresa sme sadržati samo slova i brojeve!";
                 ispravanUnos = false;
             }
-            else if (Adresa.Length < 6 || Adresa.Length > 30)
+            else if (Adresa.Trim().Length < 6 || Adresa.Trim().Length > 30)
             {
                 PorukaGreskeZaAdresu = "Adresa mora sadržati od 6 do 30 karaktera!";
                 ispravanUnos = false;

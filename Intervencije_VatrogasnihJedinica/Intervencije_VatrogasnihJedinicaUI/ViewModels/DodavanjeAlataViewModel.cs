@@ -64,7 +64,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool Validacija()
         {
             PorukaGreskeZaNazivAlata = "";
-            NazivAlata = NazivAlata.Trim();
 
             bool ispravanUnos = true;
             if (string.IsNullOrEmpty(NazivAlata))
@@ -72,12 +71,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNazivAlata = "Unesite naziv!";
                 ispravanUnos = false;
             }
-            else if (!NazivAlata.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!NazivAlata.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaNazivAlata = "Naziv sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (NazivAlata.Length < 4 || NazivAlata.Length > 30)
+            else if (NazivAlata.Trim().Length < 4 || NazivAlata.Trim().Length > 30)
             {
                 PorukaGreskeZaNazivAlata = "Naziv mora sadržati od 4 do 30 slova!";
                 ispravanUnos = false;

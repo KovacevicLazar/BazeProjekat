@@ -82,8 +82,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
 
-            TextZapisnika = TextZapisnika.Trim();
-
             bool ispravanUnos = true;
             
             if (string.IsNullOrEmpty(TextZapisnika))
@@ -91,7 +89,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTekst = "Unesite tekst zapisnika!";
                 ispravanUnos = false;
             }
-
             else if (TextZapisnika.Trim().Length < 30)
             {
                 PorukaGreskeZaTekst = "Tekst mora sadržati najmanje 30 slova!";

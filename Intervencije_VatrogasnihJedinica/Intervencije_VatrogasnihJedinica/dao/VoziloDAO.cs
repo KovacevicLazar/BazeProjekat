@@ -51,5 +51,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.VatrogasnaJedinica.Opstina.ID == idOpstine).ToList();
             }
         }
+
+        public Vozilo PronadjiPoRegistarskojOznaci(string redistarskaOznaka)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Vozila.Where(x => x.RegistarskaOznaka.Trim().ToLower() == redistarskaOznaka.Trim().ToLower()).FirstOrDefault();
+            }
+        }
     }
 }

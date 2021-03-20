@@ -152,18 +152,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             dt.Columns.Add("Informacije o uvidjaju");
 
                             Dictionary<string, string> VsjRadnici;
+                            Dictionary<string, string> VSJVozila;
                             string radnici = "";
                             SveIntervencije.ForEach(intervencija =>
                             {
                                 VsjRadnici = new Dictionary<string, string>();
                                 DataRow _ravi = dt.NewRow();
                                 radnici = "";
-                                _ravi["Tip intervencije"] = intervencija.Tip == 0 ? "Požar" : "Tehnička intervencija";
+                                _ravi["Tip intervencije"] = intervencija.Tip == TipIntervencijeEnum.POZAR ? "Požar" : "Tehnička intervencija";
                                 _ravi["Opstina"] = intervencija.Opstina.Naziv_Opstine;
                                 _ravi["Adresa"] = intervencija.Adresa;
                                 _ravi["Datum i vreme"] = intervencija.Datum_I_Vreme;
                                 _ravi["Vozila"] = "";
-                                Dictionary<string,string> VSJVozila = new Dictionary<string,string>();
+                                VSJVozila = new Dictionary<string,string>();
                                 if (intervencija.Tip == TipIntervencijeEnum.POZAR)
                                 {
                                     var vozila = new List<Navalno_Vozilo>();
@@ -172,10 +173,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                     {
                                         if (VSJVozila.ContainsKey($"{item.VatrogasnaJedinica.Naziv}"))
                                         {
-                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} {item.Tip.ToString()} \r\n";
+                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} {item.RegistarskaOznaka}\r\n";
                                             continue;
                                         }
-                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} {item.Tip.ToString()} \r\n";
+                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} {item.RegistarskaOznaka}\r\n";
                                     } 
                                 }                                
                                 else
@@ -186,10 +187,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                     {
                                         if (VSJVozila.ContainsKey($"{item.VatrogasnaJedinica.Naziv}"))
                                         {
-                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} \r\n";
+                                            VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] += $"     {item.Marka} {item.Model} {item.RegistarskaOznaka}\r\n";
                                             continue;
                                         }
-                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} \r\n";
+                                        VSJVozila[$"{item.VatrogasnaJedinica.Naziv}"] = $" \r\n     {item.Marka} {item.Model} {item.RegistarskaOznaka}\r\n";
                                     }
                                 }
                                 foreach (var eee in VSJVozila)
@@ -200,16 +201,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 foreach (var radnikSmena in intervencija.RadniciSaSmenama)
                                 {
                                     
-                                    if (VsjRadnici.ContainsKey($"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"))
+                                    if (VsjRadnici.ContainsKey($"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"))
                                     {
-                                        VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"] += $"     {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()} \r\n";
+                                        VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] += $"       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()}\r\n";
                                         continue;
                                     }
-                                    VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\nSmena: {radnikSmena.Smena.NazivSmene}"] =  $" \r\n     {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()} \r\n";
+                                    VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] =  $"\r\n       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()}\r\n";
                                 }
                                 foreach (var eee in VsjRadnici)
                                 {
-                                    radnici += $"{eee.Key} \r\n   Radnici: {eee.Value} ";
+                                    radnici += $"{eee.Key} \r\n     Radnici: {eee.Value} ";
                                 }
                                 _ravi["Radnici"] = radnici;
                                 _ravi["Informacije o uvidjaju"] = intervencija.Uvidjaj !=null ? $"Datum uvidjaja: {intervencija.Uvidjaj?.Datum}  \r\nInspektor: {intervencija.Uvidjaj.Inspektor?.Ime} {intervencija.Uvidjaj.Inspektor?.Prezime} {intervencija.Uvidjaj.Inspektor?.Broj_Telefona}  \r\nText zapisnika: {intervencija.Uvidjaj.Tekst_Zapisnika} " : null;
@@ -248,7 +249,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 string opstina = row["Opstina"].ToString();
                                 string adresa = row["Adresa"].ToString();
                                 string datum = row["Datum i vreme"].ToString();
-                                if (ValidacijaPodataka(tipIntervencije, opstina, datum, i + 1))
+                                if (ValidacijaPodataka(tipIntervencije, opstina, datum, i + 2))
                                 {
                                     DateTime datumIVreme = DateTime.Parse(row["Datum i vreme"].ToString());
                                     string vozila = row["Vozila"].ToString();
@@ -265,6 +266,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     }
                 }
             }
+            SveIntervencije = intervencijaDAO.GetList();
         }
 
         public void KreiranjePodatakaOIntervenciji(string tip, string adresa, string nazivOpstine, DateTime datum, string vozilaString, string radniciString, string informacijeOUvidjajuString)
@@ -308,6 +310,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private Uvidjaj KreirajUvidjajIzStringa(string informacijeOUvidjajuString)
         {
+            if(!informacijeOUvidjajuString.Contains("Datum uvidjaja:") || !informacijeOUvidjajuString.Contains("Inspektor:") || !informacijeOUvidjajuString.Contains("Text zapisnika:"))
+            {
+                return null;
+            }
             var informacijeOUvidjajuSPLIT = informacijeOUvidjajuString.Trim().Split(new string[] { "Datum uvidjaja:", "Inspektor:", "Text zapisnika:", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             Uvidjaj uvidjaj = null;
             if (informacijeOUvidjajuSPLIT.Length == 3)
@@ -315,12 +321,17 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 try
                 {
                     DateTime datumUvidjaja = DateTime.Parse(informacijeOUvidjajuSPLIT[0]);
-                    string tekstZapisnika = informacijeOUvidjajuSPLIT[2];
+                    string tekstZapisnika = informacijeOUvidjajuSPLIT[2].Trim();
                     string[] inspektorPodaci = informacijeOUvidjajuSPLIT[1].Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    string ime = inspektorPodaci[0];
-                    string prezime = inspektorPodaci[1];
-                    string brojTelefona = inspektorPodaci[2];
-                    var inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, Broj_Telefona = brojTelefona });
+                    string ime = inspektorPodaci[0].Trim();
+                    string prezime = inspektorPodaci[1].Trim();
+                    string brojTelefona = inspektorPodaci[2].Trim();
+                    var inspektor = inspektorDAO.PronadjiPoBrojuTelefona(brojTelefona);
+                    if(inspektor == null)
+                    {
+                        inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, Broj_Telefona = brojTelefona });
+                    }
+
                     uvidjaj = new Uvidjaj { Datum = datumUvidjaja, Tekst_Zapisnika = tekstZapisnika, InspektorID = inspektor.ID };
                 }
                 catch { }
@@ -330,6 +341,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private List<Vozilo> KreirajListuVozilaIzStringa(string vozilaString, TipIntervencijeEnum tipIntervencije, Opstina opstinaIntervencije)
         {
+            if (!vozilaString.Contains("VSJ:") || !vozilaString.Contains("Vozila:"))
+            {
+                return new List<Vozilo>();
+            }
             var vatrogasneJedinice = vozilaString.Split(new string[] { "VSJ:" }, StringSplitOptions.RemoveEmptyEntries);
             List<Vozilo> vozilaNaIntervenciji = new List<Vozilo>();
             foreach (var vatrogasnaJednicaVozila in vatrogasneJedinice)
@@ -337,8 +352,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 try
                 {
                     var vatrogasnaJedinicaIVozila = vatrogasnaJednicaVozila.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (vatrogasnaJedinicaIVozila.Length < 3)
+                    {
+                        continue;
+                    }
                     VatrogasnaJedinica vatrogasnaJedinica = null;
                     var nazivVatrogasnaJedinica = vatrogasnaJedinicaIVozila[0].Trim();
+                    if (nazivVatrogasnaJedinica.Length < 3)
+                    {
+                        continue;
+                    }
                     vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
                     if (vatrogasnaJedinica == null)
                     {
@@ -357,9 +380,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         try
                         {
                             podaciOVozilu = vatrogasnaJedinicaIVozila[i].Trim().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                            var marka = podaciOVozilu[0];
-                            var model = podaciOVozilu[1];
-                            var regirtarsaOznaka = podaciOVozilu[2];
+                            var marka = podaciOVozilu[0].Trim();
+                            var model = podaciOVozilu[1].Trim();
+                            var regirtarsaOznaka = podaciOVozilu[2].Trim();
                             if (tipIntervencije == TipIntervencijeEnum.POZAR)
                             {
                                 Navalno_Vozilo navalnoVozilo = navalnoVoziloDAO.PronadjiPoRegistarskojOznaci(regirtarsaOznaka);
@@ -389,6 +412,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private List<RadnikUSmeni> KreirajListuRadnikaIzStringa(string radniciString, Opstina opstinaIntervencije, DateTime datumIntervencije)
         {
+            if(!radniciString.Contains("VSJ:") || !radniciString.Contains("Smena:"))
+            {
+                return new List<RadnikUSmeni>();
+            }
             List<Radnik> radniciNaIntervenciji = new List<Radnik>();
             var vatrogasneJedinice = radniciString.Split(new string[] { "VSJ:" }, StringSplitOptions.RemoveEmptyEntries);
             string[] vatrogasnaJedinicaSaRadnicima;
@@ -398,7 +425,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 try
                 {
                     vatrogasnaJedinicaSaRadnicima = vatrogasnaJednicaRadnici.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                    if (vatrogasnaJedinicaSaRadnicima.Length < 4)
+                    {
+                        continue;
+                    }
                     var nazivVatrogasnaJedinica = vatrogasnaJedinicaSaRadnicima[0].Trim();
+                    if(nazivVatrogasnaJedinica.Length < 3)
+                    {
+                        continue;
+                    }
                     var vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
                     if (vatrogasnaJedinica == null)
                     {
@@ -412,8 +447,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         }
                     }
 
-                    var nazivSmene = vatrogasnaJedinicaSaRadnicima[1].Split(new string[] { "Smena:" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                    var nazivSmene = vatrogasnaJedinicaSaRadnicima[1].Trim().Split(new string[] { "Smena:" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
                     Smena smena = smenaDAO.PronadjiPoNazivuIVatrogasnojJedinici(nazivSmene, vatrogasnaJedinica.ID);
+                    if(smena == null)
+                    {
+                        continue;
+                    }
                     Radnik radnik;
                     for (int i = 3; i < vatrogasnaJedinicaSaRadnicima.Length; i++)
                     {
@@ -424,10 +463,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 continue;
                             }
-                            var jmbg = radnikPodaci[0];
-                            var ime = radnikPodaci[1];
-                            var prezime = radnikPodaci[2];
-                            var radno_mesto = radnikPodaci[3] == "Vatrogasac" ? RadnoMesto.Vatrogasac : RadnoMesto.Vozac;
+                            var jmbg = radnikPodaci[0].Trim();
+                            var ime = radnikPodaci[1].Trim();
+                            var prezime = radnikPodaci[2].Trim();
+                            var radno_mesto = radnikPodaci[3].Trim().ToLower() == "vatrogasac" ? RadnoMesto.Vatrogasac : RadnoMesto.Vozac;
                             radnik = radnikDAO.PronadjiPoJMBG(jmbg);
                             if (radnik == null)
                             {
@@ -495,7 +534,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 MessageBox.Show($"U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan tip intervencije");
                 return false;
             }
-            if (string.IsNullOrEmpty(opstina) || !opstina.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            if (string.IsNullOrEmpty(opstina.Trim()) || !opstina.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 MessageBox.Show($"U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan naziv opstine");
                 return false;

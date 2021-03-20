@@ -412,7 +412,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
 
-            Adresa = Adresa.Trim();
+            
 
             bool ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila() && ValidacijaZaSmeneIRadnike();
 
@@ -421,12 +421,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaAdresu = "Unesite adresu!";
                 ispravanUnos = false;
             }
-            else if (!Adresa.All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
+            else if (!Adresa.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)))
             {
                 PorukaGreskeZaAdresu = "Adresa sme sadržati samo slova i brojeve!";
                 ispravanUnos = false;
             }
-            else if (Adresa.Length < 6 || Adresa.Length > 30)
+            else if (Adresa.Trim().Length < 6 || Adresa.Trim().Length > 30)
             {
                 PorukaGreskeZaAdresu = "Adresa mora sadržati od 6 do 30 karaktera!";
                 ispravanUnos = false;

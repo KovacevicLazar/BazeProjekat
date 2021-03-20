@@ -46,25 +46,22 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         {
             PorukaGreskeZaNaziv = "";
 
-            NazivOpstine = NazivOpstine.Trim();
-            naziv = naziv.Trim();
-
             if (string.IsNullOrEmpty(naziv))
             {
                 PorukaGreskeZaNaziv = "Unesite naziv za opštinu!";
                 return false;
             }
-            else if (!naziv.All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
+            else if (!naziv.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
                 PorukaGreskeZaNaziv = "Naziv sme sadržati samo slova!";
                 return false;
             }
-            else if (naziv.Length < 2 || naziv.Length > 30)
+            else if (naziv.Trim().Length < 2 || naziv.Trim().Length > 30)
             {
                 PorukaGreskeZaNaziv = "Naziv mora sadržati od 2 do 30 slova!";
                 return false;
             }
-            else if (opstinaDAO.pronadjiPoNazivu(NazivOpstine) != null)
+            else if (opstinaDAO.pronadjiPoNazivu(NazivOpstine.Trim()) != null)
             {
                 PorukaGreskeZaNaziv = "Opština sa istim nazivom je uneta!";
                 return false;
