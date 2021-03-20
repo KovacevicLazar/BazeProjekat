@@ -62,11 +62,15 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private bool Validacija()
         {
-            bool ispravanUnos = true;
             PorukaGreskeZaIme = "";
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaTelefon = "";
 
+            Ime = Ime.Trim();
+            Prezime = Prezime.Trim();
+            Telefon = Telefon.Trim();
+
+            bool ispravanUnos = true;
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime inspektora!";

@@ -64,6 +64,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool Validacija()
         {
             PorukaGreskeZaNazivAlata = "";
+            NazivAlata = NazivAlata.Trim();
+
             bool ispravanUnos = true;
             if (string.IsNullOrEmpty(NazivAlata))
             {

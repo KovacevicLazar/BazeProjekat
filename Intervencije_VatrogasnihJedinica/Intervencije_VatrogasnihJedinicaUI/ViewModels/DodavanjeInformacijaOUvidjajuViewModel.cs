@@ -81,8 +81,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaTekst = "";
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
-            bool ispravanUnos = true;
 
+            TextZapisnika = TextZapisnika.Trim();
+
+            bool ispravanUnos = true;
+            
             if (string.IsNullOrEmpty(TextZapisnika))
             {
                 PorukaGreskeZaTekst = "Unesite tekst zapisnika!";

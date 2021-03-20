@@ -69,6 +69,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaPrezime = "";
             PorukaGreskeZaJMBG = "";
 
+            Ime = Ime.Trim();
+            Prezime = Prezime.Trim();
+            Jmbg = Jmbg.Trim();
+
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime komandira!";

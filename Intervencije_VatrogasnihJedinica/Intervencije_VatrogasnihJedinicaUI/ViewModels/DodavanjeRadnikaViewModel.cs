@@ -124,6 +124,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaPoziciju = "";
             PorukaGreskeZaVSJ = "";
             PorukaGreskeZaSmenu = "";
+
+            Ime = Ime.Trim();
+            Prezime = Prezime.Trim();
+            Jmbg = Jmbg.Trim();
+
             if (string.IsNullOrEmpty(Ime))
             {
                 PorukaGreskeZaIme = "Unesite ime radnika!";

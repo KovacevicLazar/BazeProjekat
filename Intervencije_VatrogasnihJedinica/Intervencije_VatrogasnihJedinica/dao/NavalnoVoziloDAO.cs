@@ -17,5 +17,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 return DateTime.Now.Year;
             }
         }
+        public Navalno_Vozilo PronadjiPoRegistarskojOznaci(string redistarskaOznaka)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                return db.Set<Navalno_Vozilo>().Include("Pozari").Where(x => x.RegistarskaOznaka.Trim().ToLower() == redistarskaOznaka.Trim().ToLower()).FirstOrDefault();
+            }
+        }
+
     }
 }

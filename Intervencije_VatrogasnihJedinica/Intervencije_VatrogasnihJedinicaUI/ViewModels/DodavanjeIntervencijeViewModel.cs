@@ -411,6 +411,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaOpstinu = "";
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
+
+            Adresa = Adresa.Trim();
+
             bool ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila() && ValidacijaZaSmeneIRadnike();
 
             if (string.IsNullOrEmpty(Adresa))

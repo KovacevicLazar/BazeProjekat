@@ -255,6 +255,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaGodiste = "";
             PorukaGreskeZaNosivost = "";
             PorukaGreskeZaVSJ = "";
+
+            Marka = Marka.Trim();
+            Model = Model.Trim();
+            RegistarskaOznaka = RegistarskaOznaka.Trim();
+            Nosivost = Nosivost.Trim();
+
+
             if (string.IsNullOrEmpty(Marka))
             {
                 PorukaGreskeZaMarku = "Unesite marku!";

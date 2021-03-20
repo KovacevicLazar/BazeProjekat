@@ -45,6 +45,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool ValidacijaNaziva(string naziv)
         {
             PorukaGreskeZaNaziv = "";
+
+            NazivOpstine = NazivOpstine.Trim();
+            naziv = naziv.Trim();
+
             if (string.IsNullOrEmpty(naziv))
             {
                 PorukaGreskeZaNaziv = "Unesite naziv za opštinu!";

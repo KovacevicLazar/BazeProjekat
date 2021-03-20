@@ -91,6 +91,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaAdresu = "";
             PorukaGreskeZaOpstinu = "";
             bool ispravanUnos = true;
+
+            Naziv = Naziv.Trim();
+            Adresa = Adresa.Trim();
+
             if (string.IsNullOrEmpty(Naziv))
             {
                 PorukaGreskeZaNaziv = "Unesite naziv!";
