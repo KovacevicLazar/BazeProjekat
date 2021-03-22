@@ -476,7 +476,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
                             try
                             {
-                                var radnikSmena = radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = datumIntervencije.AddDays(-1), DatumKrajaRada = datumIntervencije.AddDays(1) });
+                                var radnikSmena = radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime( datumIntervencije.AddDays(-1).Year , datumIntervencije.AddDays(-1).Month, datumIntervencije.AddDays(-1).Day,8,0,0), DatumKrajaRada = new DateTime(datumIntervencije.AddDays(1).Year, datumIntervencije.AddDays(1).Month, datumIntervencije.AddDays(1).Day, 8, 0, 0) });
                                 radniciISmene.Add(radnikSmena);
                             }
                             catch (Exception)

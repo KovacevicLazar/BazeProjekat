@@ -1,0 +1,17 @@
+﻿<Window x:Class="Intervencije_VatrogasnihJedinicaUI.Views.UnosDatumaView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Title="UnosDatumaView" Height="317.647" Width="486.134" FontSize="24">
+    <Grid Margin="0,0,2,0">
+        <DatePicker Name="Datum" HorizontalContentAlignment="Center" Margin="34,111,0,0" Height="44" VerticalAlignment="Top" HorizontalAlignment="Left" Width="394"></DatePicker>
+        <Label Content="Unesite datum promene smene:" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="478"/>
+        <TextBlock x:Name="PorukaGreskeZaDatumPremestaja" FontSize="12" Foreground="Red" HorizontalAlignment="Left" Margin="34,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="66" Width="394"/>
+        <Button  x:Name="Potvrdi" Content="Potvrdi" HorizontalAlignment="Left" Margin="34,221,0,0" VerticalAlignment="Top" Width="130"/>
+        <Button x:Name="Odustani" Content="Odustani" HorizontalAlignment="Left" Margin="298,221,0,0" VerticalAlignment="Top" Width="130" />
+    </Grid>
+</Window>

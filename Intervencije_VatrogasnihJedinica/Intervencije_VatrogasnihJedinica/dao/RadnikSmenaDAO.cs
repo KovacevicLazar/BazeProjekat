@@ -21,16 +21,16 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public DateTime DatumPoslednjePromeneSmene(int radnikID, int smenaID)
+        public DateTime? DatumPoslednjePromeneSmene(int radnikID, int smenaID)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 var RadnikUSmeni = db.RadniciUSmenama.Where(x => x.RadnikID == radnikID && x.SmenaID == smenaID && x.DatumKrajaRada == null).FirstOrDefault();
-                return RadnikUSmeni.DatumPocetkaRada;
+                return RadnikUSmeni?.DatumPocetkaRada;
             }
         }
 
-        public DateTime DatumPoslednjeIntervencijeRadnikaSaSmenom(int radnikID, int smenaID)
+        public DateTime? DatumPoslednjeIntervencijeRadnikaSaSmenom(int radnikID, int smenaID)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
@@ -39,7 +39,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 {
                     return radnikUSmeni.Intervencije.Max(x => x.Datum_I_Vreme);
                 }
-                return radnikUSmeni.DatumPocetkaRada; // ako nije imao intervencije sa smenom, vrati datum od kog radi u smeni
+                return null; // ako nije imao intervencije sa smenom,
             }
         }
 

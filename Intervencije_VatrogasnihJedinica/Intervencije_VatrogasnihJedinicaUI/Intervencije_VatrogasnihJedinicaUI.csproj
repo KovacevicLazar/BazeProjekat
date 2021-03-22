@@ -68,6 +68,9 @@
     <Reference Include="FastMember, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FastMember.1.5.0\lib\net461\FastMember.dll</HintPath>
     </Reference>
+    <Reference Include="GongSolutions.WPF.DragDrop, Version=2.0.0.0, Culture=neutral, PublicKeyToken=91f1945125b7a587, processorArchitecture=MSIL">
+      <HintPath>..\packages\gong-wpf-dragdrop.2.3.2\lib\net47\GongSolutions.WPF.DragDrop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -149,6 +152,7 @@
     <Compile Include="ViewModels\PromenaVSJISmeneZaRadnikaViewModel.cs" />
     <Compile Include="ViewModels\RadniciViewModel.cs" />
     <Compile Include="ViewModels\SmeneViewModel.cs" />
+    <Compile Include="ViewModels\UnosDatumaViewModel.cs" />
     <Compile Include="ViewModels\VatrogasneJediniceViewModel.cs" />
     <Compile Include="ViewModels\VozilaViewModel.cs" />
     <Compile Include="Views\AlatiView.xaml.cs">
@@ -214,6 +218,9 @@
     </Compile>
     <Compile Include="Views\SmeneView.xaml.cs">
       <DependentUpon>SmeneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UnosDatumaView.xaml.cs">
+      <DependentUpon>UnosDatumaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VatrogasneJediniceView.xaml.cs">
       <DependentUpon>VatrogasneJediniceView.xaml</DependentUpon>
@@ -298,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SmeneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UnosDatumaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

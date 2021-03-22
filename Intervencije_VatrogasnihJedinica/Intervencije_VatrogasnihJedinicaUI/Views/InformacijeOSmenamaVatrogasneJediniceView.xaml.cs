@@ -23,5 +23,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
         {
             InitializeComponent();
         }
+
     }
 }

@@ -3,6 +3,7 @@ using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
+using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -19,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private string porukaGreskeZaVSJ = "";
         private string porukaGreskeZaSmenu = "Prvo izaberite vatrogasnu jedinicu";
         private string radnikInfo = "";
-        private DateTime datumPoslednjeIntervencije;
+        private DateTime? datumPoslednjeIntervencije;
 
         public PromenaVSJISmeneZaRadnikaViewModel(Radnik radnik)
         {
@@ -47,8 +48,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void SacuvajIzmene()
         {
-            DateTime datumPoslednjePromene = radnikSmenaDAO.DatumPoslednjePromeneSmene(Radnik.ID, Radnik.SmenaID);
-            if (Validacija(datumPoslednjePromene))
+            
+            DateTime? datumPoslednjePromene = radnikSmenaDAO.DatumPoslednjePromeneSmene(Radnik.ID, Radnik.SmenaID);
+            if (datumPoslednjePromene != null && Validacija((DateTime)datumPoslednjePromene))
             {
                 radnikSmenaDAO.PostaviDatumKrajaRadaUsmeni(Radnik.ID, Radnik.SmenaID, DatumPremestaja);
                 radnikSmenaDAO.Insert(new RadnikUSmeni
@@ -81,9 +83,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 return false;
             }
 
-            if (DatumPremestaja > DateTime.Now)
+            if (DatumPremestaja > DateTime.Now.AddDays(7))
             {
-                PorukaGreskeZaDatumPremestaja = "Moguće je izabrati samo datum koji je prošao!";
+                PorukaGreskeZaDatumPremestaja = "Moguće je izabrati samo datum koji je prošao ili u narednih 7 dana!";
                 return false;
             }
             else if (DatumPremestaja < datumPoslednjePromene)
@@ -91,9 +93,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaDatumPremestaja = $"Zadnja promena je bila:{datumPoslednjePromene.ToShortDateString()}, moguće je uneti samo datum posle pomenutog!";
                 return false;
             }
-            else if (DatumPremestaja < datumPoslednjeIntervencije)
+            else if (datumPoslednjeIntervencije != null && DatumPremestaja <= datumPoslednjeIntervencije)
             {
-                PorukaGreskeZaDatumPremestaja = $"Radnik je učestvovao na intervenciji:{datumPoslednjeIntervencije.ToShortDateString()} sa prethodnom smenom, moguće je uneti samo datum posle pomenutog!";
+                PorukaGreskeZaDatumPremestaja = $"Radnik je učestvovao na intervenciji:{((DateTime)datumPoslednjeIntervencije).ToShortDateString()} sa prethodnom smenom, moguće je uneti samo datum posle pomenutog!";
+                return false;
+            }
+
+            if (DatumPremestaja == datumPoslednjePromene)
+            {
+                var Result= MessageBox.Show($"Radnik je vec menjao smenu za ovaj datum! Da li želite ponovnu promenu smene za isti datum?", "Promena smene za isti datum" , MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if(Result == MessageBoxResult.Yes)
+                {
+                    return true;
+                }
                 return false;
             }
 
