@@ -14,6 +14,13 @@ namespace Intervencije_VatrogasnihJedinica.dao
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 var RadnikUSmeni = db.RadniciUSmenama.Where(x => x.RadnikID == radnikID && x.SmenaID == smenaID && x.DatumKrajaRada == null).FirstOrDefault();
+                if(RadnikUSmeni.DatumPocetkaRada == datumKrajaRada)
+                {
+                    db.Set<RadnikUSmeni>().Attach(RadnikUSmeni);
+                    db.Entry(RadnikUSmeni).State = EntityState.Deleted;
+                    db.SaveChanges();
+                    return;
+                }
                 RadnikUSmeni.DatumKrajaRada = datumKrajaRada;
                 db.Set<RadnikUSmeni>().Attach(RadnikUSmeni);
                 db.Entry(RadnikUSmeni).State = EntityState.Modified;

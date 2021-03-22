@@ -1369,16 +1369,18 @@ AS
 	declare @novaNosivost float;
 	declare @staraVSJId int;
 	declare @novaVSJId int;
+	declare @novaRegistarskaOznaka nvarchar(200);
+	declare @staraRegistarskaOznaka nvarchar(200);
 BEGIN
 
 	DECLARE ucursor cursor local for
-    select ID,Marka,Model,Godiste, Nosivost, Id_VatrogasneJedinice  from deleted;
+    select ID,Marka,Model,Godiste, Nosivost, Id_VatrogasneJedinice, RegistarskaOznaka  from deleted;
     open ucursor;
 
-	 FETCH NEXT FROM ucursor into @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId; 
+	 FETCH NEXT FROM ucursor into @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId, @staraRegistarskaOznaka; 
 	 while @@FETCH_STATUS=0 
 	  begin
-		SELECT @novaMarka = Marka, @noviModel = Model, @novoGodiste = Godiste, @novaNosivost = Nosivost, @novaVSJId = Id_VatrogasneJedinice FROM inserted WHERE ID=@Id;
+		SELECT @novaMarka = Marka, @noviModel = Model, @novoGodiste = Godiste, @novaNosivost = Nosivost, @novaVSJId = Id_VatrogasneJedinice, @novaRegistarskaOznaka = RegistarskaOznaka FROM inserted WHERE ID=@Id;
 		if @novaVSJId != @staraVSJId
 		  begin
 		    if exists (Select DISTINCT * from PozarNavalno_Vozilo  where Vozila_ID = @Id) 
@@ -1392,8 +1394,8 @@ BEGIN
 				return
 			 end
 		  end
-		UPDATE Vozila SET Marka=@novaMarka, Model= @noviModel, Godiste=@novoGodiste, Nosivost=@novaNosivost, Id_VatrogasneJedinice=@novaVSJId WHERE ID=@Id;
-		fetch next from ucursor into  @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId; 
+		UPDATE Vozila SET Marka=@novaMarka, Model= @noviModel, Godiste=@novoGodiste, Nosivost=@novaNosivost, Id_VatrogasneJedinice=@novaVSJId, RegistarskaOznaka = @novaRegistarskaOznaka WHERE ID=@Id;
+		fetch next from ucursor into  @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId, @staraRegistarskaOznaka; 
 	  end
 	 close ucursor;
 END

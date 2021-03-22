@@ -116,8 +116,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if(inspektorDAO.PronadjiPoBrojuTelefona(Telefon.Trim()) != null)
             {
-                PorukaGreskeZaTelefon = "Ovaj broj telefona koristi drugi inspektor!";
-                ispravanUnos = false;
+                if (Inspektor == null || ( Inspektor!=null && Inspektor.Broj_Telefona != Telefon))
+                {
+                    PorukaGreskeZaTelefon = "Ovaj broj telefona koristi drugi inspektor!";
+                    ispravanUnos = false;
+                }
             }
             return ispravanUnos;
         }

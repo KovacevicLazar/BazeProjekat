@@ -255,6 +255,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaGodiste = "";
             PorukaGreskeZaNosivost = "";
             PorukaGreskeZaVSJ = "";
+            PorukaGreskeZaRegistarskuOznaku = "";
 
             if (string.IsNullOrEmpty(Marka))
             {
@@ -282,10 +283,18 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka gradi se od slova i brojeva!";
                 ispravanUnos = false;
             }
+            else if (RegistarskaOznaka.Trim().Length < 4 || RegistarskaOznaka.Length > 10)
+            {
+                PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka mora sadrzati bar 4, a najvise 10 karaktera!";
+                ispravanUnos = false;
+            }
             else if(voziloDAO.PronadjiPoRegistarskojOznaci(RegistarskaOznaka.Trim()) != null)
             {
-                PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka je zauzeta!";
-                ispravanUnos = false;
+                if(Vozilo == null || (Vozilo != null && Vozilo.RegistarskaOznaka != RegistarskaOznaka))
+                {
+                    PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka je zauzeta!";
+                    ispravanUnos = false;
+                }
             }
 
             if (string.IsNullOrEmpty(Model))
