@@ -56,9 +56,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaNaziv = "Naziv sme sadržati samo slova!";
                 return false;
             }
-            else if (naziv.Trim().Length < 2 || naziv.Trim().Length > 30)
+            else if (naziv.Trim().Length < 2 || naziv.Trim().Length > 25)
             {
-                PorukaGreskeZaNaziv = "Naziv mora sadržati od 2 do 30 slova!";
+                PorukaGreskeZaNaziv = "Naziv mora sadržati od 2 do 25 slova!";
                 return false;
             }
             else if (opstinaDAO.pronadjiPoNazivu(NazivOpstine.Trim()) != null)

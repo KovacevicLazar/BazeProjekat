@@ -135,9 +135,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaIme = "Ime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Ime.Trim().Length < 3 || Ime.Trim().Length > 20)
+            else if (Ime.Trim().Length < 3 || Ime.Trim().Length > 25)
             {
-                PorukaGreskeZaIme = "Ime mora sadržati od 3 do 20 slova!";
+                PorukaGreskeZaIme = "Ime mora sadržati od 3 do 25 slova!";
                 ispravanUnos = false;
             }
 
@@ -151,9 +151,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaPrezime = "Prezime sme sadržati samo slova!";
                 ispravanUnos = false;
             }
-            else if (Prezime.Trim().Length < 3 || Prezime.Trim().Length > 20)
+            else if (Prezime.Trim().Length < 3 || Prezime.Trim().Length > 25)
             {
-                PorukaGreskeZaPrezime = "Prezime mora sadržati od 3 do 20 slova!";
+                PorukaGreskeZaPrezime = "Prezime mora sadržati od 3 do 25 slova!";
                 ispravanUnos = false;
             }
 

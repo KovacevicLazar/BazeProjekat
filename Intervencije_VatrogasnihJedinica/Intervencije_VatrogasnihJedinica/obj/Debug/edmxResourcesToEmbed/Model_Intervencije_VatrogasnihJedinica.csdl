@@ -136,7 +136,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="Naziv" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
     <Property Name="Adresa" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Vozila" Relationship="Model_Intervencije_VatrogasnihJedinica.VoziloVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Vozilo" />
     <NavigationProperty Name="Radnici" Relationship="Model_Intervencije_VatrogasnihJedinica.RadnikVatrogasnaJedinica" FromRole="VatrogasnaJedinica" ToRole="Radnik" />
@@ -410,12 +410,6 @@
     <End Type="Model_Intervencije_VatrogasnihJedinica.Intervencija" Role="Intervencija" Multiplicity="*" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.RadnikUSmeni" Role="RadnikUSmeni" Multiplicity="*" />
   </Association>
-  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="NazivSmene" Nullable="false" />
-    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
-    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
-  </ComplexType>
   <Association Name="OpstinaVatrogasnaJedinica">
     <End Type="Model_Intervencije_VatrogasnihJedinica.Opstina" Role="Opstina" Multiplicity="1" />
     <End Type="Model_Intervencije_VatrogasnihJedinica.VatrogasnaJedinica" Role="VatrogasnaJedinica" Multiplicity="*" />
@@ -440,13 +434,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result1">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="NazivSmene" Nullable="false" MaxLength="25" />
-    <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />
-    <Property Type="DateTime" Name="DatumPrvogDezurstva" Nullable="false" Precision="23" />
-  </ComplexType>
-  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result2">
+  <ComplexType Name="ListaDezurnihSmenaNaDatum_Result">
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="NazivSmene" Nullable="false" MaxLength="25" />
     <Property Type="Int32" Name="VatrogasnaJedinicaID" Nullable="false" />

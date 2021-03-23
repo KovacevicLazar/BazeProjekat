@@ -86,12 +86,6 @@
     <Compile Include="ListaDezurnihSmenaNaDatum_Result.cs">
       <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
     </Compile>
-    <Compile Include="ListaDezurnihSmenaNaDatum_Result1.cs">
-      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ListaDezurnihSmenaNaDatum_Result2.cs">
-      <DependentUpon>Model_Intervencije_VatrogasnihJedinica.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model_Intervencije_VatrogasnihJedinica.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

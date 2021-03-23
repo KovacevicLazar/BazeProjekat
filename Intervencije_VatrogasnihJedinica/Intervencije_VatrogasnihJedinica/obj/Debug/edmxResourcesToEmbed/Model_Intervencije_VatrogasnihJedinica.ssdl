@@ -134,7 +134,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Naziv" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="Adresa" Type="nvarchar" MaxLength="30" Nullable="false" />
     <Property Name="Id_Opstine" Type="int" Nullable="false" />
   </EntityType>

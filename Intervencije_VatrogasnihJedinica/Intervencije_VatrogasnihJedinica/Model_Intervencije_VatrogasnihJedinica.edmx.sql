@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/19/2021 22:10:32
+-- Date Created: 03/23/2021 12:15:42
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -169,7 +169,7 @@ GO
 -- Creating table 'Vatrogasne_Jedinice'
 CREATE TABLE [dbo].[Vatrogasne_Jedinice] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Naziv] nvarchar(25)  NOT NULL,
+    [Naziv] nvarchar(40)  NOT NULL,
     [Adresa] nvarchar(30)  NOT NULL,
     [Id_Opstine] int  NOT NULL
 );
@@ -745,6 +745,7 @@ ADD CONSTRAINT [FK_Cisterna_inherits_Vozilo]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
+
 
 
 
