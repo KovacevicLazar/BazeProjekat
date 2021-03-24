@@ -9,12 +9,26 @@ namespace Intervencije_VatrogasnihJedinica.dao
 {
     public class RadnikSmenaDAO : Repository<RadnikUSmeni>
     {
+        public override RadnikUSmeni Insert(RadnikUSmeni entity)
+        {
+            using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
+            {
+                var radnikSmena = db.RadniciUSmenama.Where(x => x.RadnikID == entity.RadnikID && x.SmenaID == entity.SmenaID && x.DatumPocetkaRada <= entity.DatumPocetkaRada && x.DatumKrajaRada >= entity.DatumKrajaRada).FirstOrDefault();
+                if (radnikSmena == null)
+                {
+                    return base.Insert(entity);
+                }
+                return radnikSmena;
+            }
+
+        }
+
         public void PostaviDatumKrajaRadaUsmeni(int radnikID, int smenaID, DateTime datumKrajaRada)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 var RadnikUSmeni = db.RadniciUSmenama.Where(x => x.RadnikID == radnikID && x.SmenaID == smenaID && x.DatumKrajaRada == null).FirstOrDefault();
-                if(RadnikUSmeni.DatumPocetkaRada == datumKrajaRada)
+                if (RadnikUSmeni.DatumPocetkaRada == datumKrajaRada)
                 {
                     db.Set<RadnikUSmeni>().Attach(RadnikUSmeni);
                     db.Entry(RadnikUSmeni).State = EntityState.Deleted;

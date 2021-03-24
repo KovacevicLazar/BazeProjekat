@@ -26,7 +26,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public TEntity Insert(TEntity entity)
+        public virtual TEntity Insert(TEntity entity)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
