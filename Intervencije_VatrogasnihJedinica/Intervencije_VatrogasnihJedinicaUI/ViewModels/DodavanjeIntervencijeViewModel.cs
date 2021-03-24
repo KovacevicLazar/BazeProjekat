@@ -239,7 +239,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private void InicijalizacijaListeVozila()
         {
-            var svaVozila = izabranaOpstina == null ? voziloDAO.GetList().Where( x => x.Godiste < Datum.Year) : voziloDAO.ListaVozilaZaIzabranuOpstinu(IzabranaOpstina.ID).Where(x => x.Godiste < Datum.Year);
+            var svaVozila = izabranaOpstina == null ? voziloDAO.GetList().Where(x => x.Godiste < Datum.Year) : voziloDAO.ListaVozilaZaIzabranuOpstinu(IzabranaOpstina.ID).Where(x => x.Godiste < Datum.Year);
             Vozila.Clear();
             if (Intervencija == null || Pozar == null || TehnickaIntervencija == null)
             {
@@ -325,12 +325,12 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaSmeneIVozila = "";
             var brojIzabranihVozila = Vozila.Where(x => x.IsSelected == true).Count();
             var brojIzabranihSmena = Smene.Where(x => x.IsSelected == true).Count();
-            if(brojIzabranihSmena == 0)
+            if (brojIzabranihSmena == 0)
             {
                 PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jednu smenu!";
                 return false;
             }
-            if(brojIzabranihVozila == 0)
+            if (brojIzabranihVozila == 0)
             {
                 PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jedno vozilo";
                 return false;
@@ -377,7 +377,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         return false;
                     }
 
-                    if(brojSelektovanihVozaca < brojSelektovanihVozila) // ne moze 3 vozila a 2 vozaca
+                    if (brojSelektovanihVozaca < brojSelektovanihVozila) // ne moze 3 vozila a 2 vozaca
                     {
                         PorukaGreskeZaSmeneIVozila = "Za svako označeno vozilo morate označiti bar jednog vozača iz iste vatrogasne jedinice!";
                         return false;
@@ -411,8 +411,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             PorukaGreskeZaOpstinu = "";
             PorukaGreskeZaDatum = "";
             PorukaGreskeZaVreme = "";
-
-            
 
             bool ispravanUnos = ValidacijaZaDatumIVreme() && ValidacijaSmeneIVozila() && ValidacijaZaSmeneIRadnike();
 

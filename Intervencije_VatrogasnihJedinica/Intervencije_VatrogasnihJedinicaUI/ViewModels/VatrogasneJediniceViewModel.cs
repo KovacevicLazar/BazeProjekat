@@ -3,8 +3,6 @@ using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -14,9 +12,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public List<VatrogasnaJedinica> sveJedinice = new List<VatrogasnaJedinica>();
         IWindowManager manager = new WindowManager();
         private string poruka;
-
-        public VatrogasneJediniceViewModel()
+        private GlavniViewModel glavniView;
+        public VatrogasneJediniceViewModel(GlavniViewModel glavniVieww)
         {
+            glavniView = glavniVieww;
             GetListAsync();
         }
 
@@ -74,7 +73,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void InformacijeOSmenama(object vatrogasnaJedinica)
         {
-            manager.ShowDialog(new InformacijeOSmenamaVatrogasneJediniceViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
+            glavniView.ActivateItem(new InformacijeOSmenamaVatrogasneJediniceViewModel(vatrogasnaJedinica as VatrogasnaJedinica, glavniView));
+            //manager.ShowDialog(new InformacijeOSmenamaVatrogasneJediniceViewModel(vatrogasnaJedinica as VatrogasnaJedinica), null, null);
         }
 
         public void DodajKomandira(object vatrogasnaJedinica)

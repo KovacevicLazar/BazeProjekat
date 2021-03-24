@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.Views
     /// <summary>
     /// Interaction logic for InformacijeOSmenamaVatrogasneJediniceView.xaml
     /// </summary>
-    public partial class InformacijeOSmenamaVatrogasneJediniceView : Window
+    public partial class InformacijeOSmenamaVatrogasneJediniceView : UserControl
     {
         public InformacijeOSmenamaVatrogasneJediniceView()
         {

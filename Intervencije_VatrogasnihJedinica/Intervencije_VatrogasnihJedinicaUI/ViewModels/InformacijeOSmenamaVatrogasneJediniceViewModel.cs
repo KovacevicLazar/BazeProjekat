@@ -14,8 +14,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         RadnikDAO radnikDAO = new RadnikDAO();
         IWindowManager manager = new WindowManager();
         private Radnik oznacenRadnik;
-        public InformacijeOSmenamaVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
+        private GlavniViewModel glavniViewModel;
+
+        public InformacijeOSmenamaVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica, GlavniViewModel glavni)
         {
+            glavniViewModel = glavni;
             RadniciSmenaA = new ObservableCollection<Radnik>();
             RadniciSmenaB = new ObservableCollection<Radnik>();
             RadniciSmenaC = new ObservableCollection<Radnik>();
@@ -49,7 +52,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private int IDSmenaB = 0;
         private int IDSmenaC = 0;
         private int IDSmenaD = 0;
-        
+
         public VatrogasnaJedinica VatrogasnaJedinica { get; set; }
         public ObservableCollection<Radnik> RadniciSmenaA { get; set; }
         public ObservableCollection<Radnik> RadniciSmenaB { get; set; }
@@ -59,7 +62,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Dropped(string smena)
         {
-            if(OznacenRadnik == null)
+            if (OznacenRadnik == null)
             {
                 return;
             }
@@ -77,7 +80,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         return;
                     }
 
-                    PomenaSmene(OznacenRadnik, IDSmenaA, unosDatuma.Datum); 
+                    PomenaSmene(OznacenRadnik, IDSmenaA, unosDatuma.Datum);
                     RadniciSmenaA.Add(OznacenRadnik);
                     RadniciSmenaB.Remove(OznacenRadnik);
                     RadniciSmenaC.Remove(OznacenRadnik);
@@ -128,7 +131,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         return;
                     }
 
-                    PomenaSmene(OznacenRadnik, IDSmenaD , unosDatuma.Datum);
+                    PomenaSmene(OznacenRadnik, IDSmenaD, unosDatuma.Datum);
                     RadniciSmenaD.Add(OznacenRadnik);
                     RadniciSmenaB.Remove(OznacenRadnik);
                     RadniciSmenaC.Remove(OznacenRadnik);
@@ -144,23 +147,28 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             radnikSmenaDAO.PostaviDatumKrajaRadaUsmeni(radnik.ID, radnik.SmenaID, datumPremestaja);
             radnikSmenaDAO.Insert(new RadnikUSmeni
             {
-                 RadnikID = radnik.ID,
-                 SmenaID = novaSmenaID,
-                 DatumPocetkaRada = datumPremestaja
+                RadnikID = radnik.ID,
+                SmenaID = novaSmenaID,
+                DatumPocetkaRada = datumPremestaja
             });
             radnik = new Radnik
             {
-                 ID = radnik.ID,
-                 Ime = radnik.Ime,
-                 Prezime = radnik.Prezime,
-                 DatumPocetkaRada = radnik.DatumPocetkaRada,
-                 JMBG = radnik.JMBG,
-                 Radno_Mesto = radnik.Radno_Mesto,
-                 VatrogasnaJedinicaID = radnik.VatrogasnaJedinicaID,
-                 SmenaID = novaSmenaID
+                ID = radnik.ID,
+                Ime = radnik.Ime,
+                Prezime = radnik.Prezime,
+                DatumPocetkaRada = radnik.DatumPocetkaRada,
+                JMBG = radnik.JMBG,
+                Radno_Mesto = radnik.Radno_Mesto,
+                VatrogasnaJedinicaID = radnik.VatrogasnaJedinicaID,
+                SmenaID = novaSmenaID
             };
             OznacenRadnik.SmenaID = novaSmenaID;
             radnikDAO.Update(radnik);
+        }
+
+        public void Nazad()
+        {
+            glavniViewModel.ActivateItem(new VatrogasneJediniceViewModel(glavniViewModel));
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public string PorukaGreskeZaNosivost { get => porukaGreskeZaNosivost; set { porukaGreskeZaNosivost = value; NotifyOfPropertyChange(() => PorukaGreskeZaNosivost); } }
         public string PorukaGreskeZaVSJ { get => porukaGreskeZaVSJ; set { porukaGreskeZaVSJ = value; NotifyOfPropertyChange(() => PorukaGreskeZaVSJ); } }
         public string PorukaGreskeZaRegistarskuOznaku { get => porukaGreskeZaRegistarskuOznaku; set { porukaGreskeZaRegistarskuOznaku = value; NotifyOfPropertyChange(() => PorukaGreskeZaRegistarskuOznaku); } }
-        
+
 
         public void DodajIzmeni()
         {
@@ -288,9 +288,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka mora sadrzati bar 4, a najvise 10 karaktera!";
                 ispravanUnos = false;
             }
-            else if(voziloDAO.PronadjiPoRegistarskojOznaci(RegistarskaOznaka.Trim()) != null)
+            else if (voziloDAO.PronadjiPoRegistarskojOznaci(RegistarskaOznaka.Trim()) != null)
             {
-                if(Vozilo == null || (Vozilo != null && Vozilo.RegistarskaOznaka != RegistarskaOznaka))
+                if (Vozilo == null || (Vozilo != null && Vozilo.RegistarskaOznaka != RegistarskaOznaka))
                 {
                     PorukaGreskeZaRegistarskuOznaku = "Registarska oznaka je zauzeta!";
                     ispravanUnos = false;
@@ -323,7 +323,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaGodiste = $"Prva intervencija vozila je bila {godinaPrveIntervencijeVozila}.godine!";
                 ispravanUnos = false;
             }
-            
+
             if (string.IsNullOrEmpty(Nosivost))
             {
                 PorukaGreskeZaNosivost = "Unesite podatak o nosivosti vozila!";

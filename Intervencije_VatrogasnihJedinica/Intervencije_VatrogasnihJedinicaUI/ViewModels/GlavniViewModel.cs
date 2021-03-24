@@ -10,7 +10,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public GlavniViewModel()
         {
             InicijalizacijaBoja();
-            ActivateItem(new VatrogasneJediniceViewModel());
+            ActivateItem(new VatrogasneJediniceViewModel(this));
             ButtonVSJBackground = new SolidColorBrush(Colors.White);
             NotifyOfPropertyChange(() => ButtonVSJBackground);
         }
@@ -27,83 +27,110 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void Opstine()
         {
-            //manager.ShowDialog(new OpstineViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonOpstineBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonOpstineBackground);
-            ActivateItem(new OpstineViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonOpstineBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonOpstineBackground);
+                ActivateItem(new OpstineViewModel());
+            }
+            catch { }
         }
 
         public void VatrogasneJedinice()
         {
-            //manager.ShowDialog(new VatrogasneJediniceViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonVSJBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonVSJBackground);
-            ActivateItem(new VatrogasneJediniceViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonVSJBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonVSJBackground);
+                ActivateItem(new VatrogasneJediniceViewModel(this));
+            }
+            catch { }
         }
 
         public void Vozila()
         {
-            //manager.ShowDialog(new VozilaViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonVozilaBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonVozilaBackground);
-            ActivateItem(new VozilaViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonVozilaBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonVozilaBackground);
+                ActivateItem(new VozilaViewModel());
+            }
+            catch { }
         }
 
         public void Radnici()
         {
-            // manager.ShowDialog(new RadniciViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonRadniciBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonRadniciBackground);
-            ActivateItem(new RadniciViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonRadniciBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonRadniciBackground);
+                ActivateItem(new RadniciViewModel());
+            }
+            catch { }
         }
 
         public void Smene()
         {
-            //manager.ShowDialog(new SmeneViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonSmeneBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonSmeneBackground);
-            ActivateItem(new SmeneViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonSmeneBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonSmeneBackground);
+                ActivateItem(new SmeneViewModel());
+            }
+            catch { }
         }
 
         public void Alati()
         {
-            //manager.ShowDialog(new AlatiViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonAlatiBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonAlatiBackground);
-            ActivateItem(new AlatiViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonAlatiBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonAlatiBackground);
+                ActivateItem(new AlatiViewModel());
+            }
+            catch { }
         }
 
         public void Intervencije()
         {
-            //manager.ShowDialog(new IntervencijeViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonIntervencijeBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonIntervencijeBackground);
-            ActivateItem(new IntervencijeViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonIntervencijeBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonIntervencijeBackground);
+                ActivateItem(new IntervencijeViewModel());
+            }
+            catch { }
         }
 
         public void Inspektori()
         {
-            //manager.ShowDialog(new InspektoriViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonInspektoriBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonInspektoriBackground);
-            ActivateItem(new InspektoriViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonInspektoriBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonInspektoriBackground);
+                ActivateItem(new InspektoriViewModel());
+            }
+            catch { }
         }
 
         public void Komandiri()
         {
-            //manager.ShowDialog(new KomandiriViewModel(), null, null);
-            InicijalizacijaBoja();
-            ButtonKomandiriBackground = new SolidColorBrush(Colors.White);
-            NotifyOfPropertyChange(() => ButtonKomandiriBackground);
-            ActivateItem(new KomandiriViewModel());
+            try
+            {
+                InicijalizacijaBoja();
+                ButtonKomandiriBackground = new SolidColorBrush(Colors.White);
+                NotifyOfPropertyChange(() => ButtonKomandiriBackground);
+                ActivateItem(new KomandiriViewModel());
+            }
+            catch { }
         }
 
         private void InicijalizacijaBoja()

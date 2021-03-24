@@ -64,6 +64,5 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Poruka = "Prvo morate selektovati smenu iz liste smena!";
             }
         }
-
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using ClosedXML.Excel;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using FastMember;
 using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using Intervencije_VatrogasnihJedinicaUI.Models;
@@ -152,10 +148,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
                             Dictionary<string, string> VsjRadnici;
                             Dictionary<string, string> VSJVozila;
-
                             SveIntervencije.ForEach(intervencija =>
                             {
-
                                 DataRow _ravi = dt.NewRow();
                                 _ravi["Tip intervencije"] = intervencija.Tip == TipIntervencijeEnum.POZAR ? "Požar" : "Tehnička intervencija";
                                 _ravi["Opstina"] = intervencija.Opstina.Naziv_Opstine;
@@ -178,7 +172,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 _ravi["Informacije o uvidjaju"] = intervencija.Uvidjaj != null ? $"Datum uvidjaja: {intervencija.Uvidjaj?.Datum}  \r\nInspektor: {intervencija.Uvidjaj.Inspektor?.Ime} {intervencija.Uvidjaj.Inspektor?.Prezime} {intervencija.Uvidjaj.Inspektor?.Broj_Telefona}  \r\nText zapisnika: {intervencija.Uvidjaj.Tekst_Zapisnika} " : null;
                                 dt.Rows.Add(_ravi);
                             });
-
                             workbook.Worksheets.Add(dt, "Intervencije");
                             workbook.Worksheet("Intervencije").Cells().Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
                             workbook.Worksheet("Intervencije").Columns().AdjustToContents();
@@ -232,7 +225,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             var VsjRadnici = new Dictionary<string, string>();
             foreach (var radnikSmena in intervencija.RadniciSaSmenama)
             {
-
                 if (VsjRadnici.ContainsKey($"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"))
                 {
                     VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] += $"       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()}\r\n";
@@ -274,7 +266,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             if (UspesanUnos)
                             {
-                                foreach(var pozar in PozariIzFajla)
+                                foreach (var pozar in PozariIzFajla)
                                 {
                                     var pozarTemp = pozarDAO.Insert(new Pozar { Tip = pozar.Tip, Id_Opstine = pozar.Id_Opstine, Adresa = pozar.Adresa, Datum_I_Vreme = pozar.Datum_I_Vreme, Uvidjaj = pozar.Uvidjaj });
                                     foreach (var radnikSmena in pozar.RadniciSaSmenama)
@@ -302,7 +294,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             else
                             {
-                                MessageBox.Show(porukaGreskePriUvozu,"Neuspešan unos podataka!",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show(porukaGreskePriUvozu, "Neuspešan unos podataka!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -326,7 +318,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             List<Vozilo> vozilaNaIntervenciji = string.IsNullOrEmpty(vozilaString) ? new List<Vozilo>() : KreirajListuVozilaIzStringa(vozilaString, tipIntervencije, opstinaIntervencije, brojVrste);
             List<RadnikUSmeni> radniciISmene = string.IsNullOrEmpty(radniciString) ? new List<RadnikUSmeni>() : KreirajListuRadnikaIzStringa(radniciString, opstinaIntervencije, datum, brojVrste);
             Uvidjaj uvidjaj = string.IsNullOrEmpty(informacijeOUvidjajuString) ? null : KreirajUvidjajIzStringa(informacijeOUvidjajuString, brojVrste);
-
             if (tipIntervencije == TipIntervencijeEnum.POZAR)
             {
                 PozariIzFajla.Add(new Pozar { Tip = tipIntervencije, Id_Opstine = opstinaIntervencije.ID, Adresa = adresa, Datum_I_Vreme = datum, Uvidjaj = uvidjaj, RadniciSaSmenama = radniciISmene, Vozila = vozilaNaIntervenciji.Cast<Navalno_Vozilo>().ToList() });
@@ -431,7 +422,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                     {
                                         continue;
                                     }
-
                                 }
                                 vozilaNaIntervenciji.Add(navalnoVozilo);
                                 continue;
@@ -603,7 +593,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             catch
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan DATUM!"; 
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan DATUM!";
                 UspesanUnos = false;
                 return false;
             }

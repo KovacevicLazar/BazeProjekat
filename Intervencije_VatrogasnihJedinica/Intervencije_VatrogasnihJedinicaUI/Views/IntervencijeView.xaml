@@ -24,32 +24,34 @@
         </DataGrid>
         <Label Content="Intervencije:" HorizontalContentAlignment="Center" FontSize="28" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
         <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="1004,64,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,110,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,159,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="261" Width="180"/>
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="1004,111,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="1004,158,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="1004,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="261" Width="180"/>
         <Border BorderBrush="Black"  BorderThickness="1" HorizontalAlignment="Left" Height="51" Margin="100,64,0,0" VerticalAlignment="Top" Width="884">
             <StackPanel HorizontalAlignment="Left" Background="#9C918E"  Orientation="Horizontal" Height="51" Margin="-1" VerticalAlignment="Top" Width="884">
                 <Label Content="Filter:" FontSize="12" FontWeight="Normal" Margin="0,0,0,19" Width="57"/>
-                <Label Content="Tip Inervencije:" FontSize="12"  VerticalContentAlignment="Center" Margin="0,7,0,7" Width="100"/>
-                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Izaberite tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="37">
+                <Label Content="Tip Inervencije:" FontSize="12"  VerticalContentAlignment="Center" Margin="0,7,0,10" Width="100"/>
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding TipoviIntervencije, Mode=OneWay}" Text="Izaberite tipove" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"  Margin="0,7,0,0" VerticalAlignment="Top" Width="180" Height="34">
                     <ComboBox.ItemTemplate >
                         <DataTemplate>
                             <CheckBox Content="{Binding Tip}" VerticalContentAlignment="Center"  IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Label Content="Opština:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="37" Width="62"/>
-                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Izaberite opštine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="37">
+                <Label Content="Opština:" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Top"  Margin="20,7,0,0" Height="34" Width="62"/>
+                <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Izaberite opštine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="34">
                     <ComboBox.ItemTemplate >
                         <DataTemplate >
                             <CheckBox  Content="{Binding Opstina.Naziv_Opstine}" VerticalContentAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Button x:Name="FilterList" Content="Primeni filter" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="30,7,0,0" Width="244" Height="37"/>
+                <Button x:Name="FilterList" Content="Primeni filter" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="30,7,0,0" Width="244" Height="34"/>
             </StackPanel>
         </Border>
-        <Button x:Name="Izvezi" Content="Izvezi podatke" HorizontalAlignment="Left" Margin="1004,210,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Uvezi" Content="Uvezi podatke" HorizontalAlignment="Left" Margin="1004,260,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izvezi" Content="Izvezi podatke" HorizontalAlignment="Left" Margin="1004,226,0,0" VerticalAlignment="Top" Width="180" Height="34" />
+        <Button x:Name="Uvezi" Content="Uvezi podatke" HorizontalAlignment="Left" Margin="1004,293,0,0" VerticalAlignment="Top" Width="180" Height="34" />
+        <Rectangle Fill="#9C918E" HorizontalAlignment="Left" Height="9" Margin="1004,205,0,0" Stroke="Black" VerticalAlignment="Top" Width="180"/>
+        <Rectangle Fill="#9C918E" HorizontalAlignment="Left" Height="9" Margin="1004,272,0,0" Stroke="Black" VerticalAlignment="Top" Width="180"/>
     </Grid>
 </UserControl>

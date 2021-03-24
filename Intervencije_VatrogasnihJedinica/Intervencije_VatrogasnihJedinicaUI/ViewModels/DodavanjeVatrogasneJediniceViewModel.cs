@@ -42,7 +42,6 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public void DodajIzmeni()
         {
-
             if (Validacija())
             {
                 if (VatrogasnaJedinica == null)
@@ -77,7 +76,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.InnerException?.InnerException?.Message,"Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                 }

@@ -3,7 +3,6 @@ using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {

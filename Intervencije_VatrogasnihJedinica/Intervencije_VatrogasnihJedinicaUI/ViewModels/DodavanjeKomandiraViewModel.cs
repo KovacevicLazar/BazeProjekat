@@ -62,6 +62,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 TryClose();
             }
         }
+
         private bool Validacija()
         {
             bool ispravanUnos = true;

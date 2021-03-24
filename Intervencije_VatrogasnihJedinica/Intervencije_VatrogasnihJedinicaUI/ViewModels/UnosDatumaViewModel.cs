@@ -1,16 +1,12 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
     public class UnosDatumaViewModel : Screen
     {
-        private DateTime datum = new DateTime( DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,8,0,0);
+        private DateTime datum = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
         private DateTime? datumPoslednjeIntervencije;
         private DateTime datumPoslednjePromene;
         private string porukaGreskeZaDatumPremestaja = "";
@@ -22,13 +18,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             datumPoslednjePromene = datumPoslednjePromen;
         }
 
-        public DateTime Datum { get => datum; set { datum = new DateTime(value.Year, value.Month, value.Day,8,0,0); NotifyOfPropertyChange(() => Datum); } }
+        public DateTime Datum { get => datum; set { datum = new DateTime(value.Year, value.Month, value.Day, 8, 0, 0); NotifyOfPropertyChange(() => Datum); } }
         public bool NastaviPromenuSmene { get; set; }
         public string PorukaGreskeZaDatumPremestaja { get => porukaGreskeZaDatumPremestaja; set { porukaGreskeZaDatumPremestaja = value; NotifyOfPropertyChange(() => PorukaGreskeZaDatumPremestaja); } }
 
         public void Potvrdi()
         {
-            if(Validacija())
+            if (Validacija())
             {
                 NastaviPromenuSmene = true;
                 TryClose();

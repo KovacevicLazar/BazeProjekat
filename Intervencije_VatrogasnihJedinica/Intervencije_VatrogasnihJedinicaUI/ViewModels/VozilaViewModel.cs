@@ -3,7 +3,6 @@ using Intervencije_VatrogasnihJedinica;
 using Intervencije_VatrogasnihJedinica.dao;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -60,9 +59,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 }
                 catch (Exception ex)
                 {
-
                     Poruka = ex.InnerException?.InnerException?.Message;
-
                 }
                 SvaVozila = voziloDAO.GetList();
                 OznacenoVozilo = null;

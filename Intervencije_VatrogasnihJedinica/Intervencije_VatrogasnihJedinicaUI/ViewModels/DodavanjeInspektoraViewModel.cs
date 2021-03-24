@@ -114,9 +114,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaTelefon = "Telefon mora sadržati od 6 do 14 brojeva!";
                 ispravanUnos = false;
             }
-            else if(inspektorDAO.PronadjiPoBrojuTelefona(Telefon.Trim()) != null)
+            else if (inspektorDAO.PronadjiPoBrojuTelefona(Telefon.Trim()) != null)
             {
-                if (Inspektor == null || ( Inspektor!=null && Inspektor.Broj_Telefona != Telefon))
+                if (Inspektor == null || (Inspektor != null && Inspektor.Broj_Telefona != Telefon))
                 {
                     PorukaGreskeZaTelefon = "Ovaj broj telefona koristi drugi inspektor!";
                     ispravanUnos = false;
