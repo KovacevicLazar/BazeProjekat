@@ -590,10 +590,16 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             try
             {
                 DateTime datumIVreme = DateTime.Parse(datumIVremeString);
+                if (datumIVreme > DateTime.Now)
+                {
+                    porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan DATUM Intervencije!";
+                    UspesanUnos = false;
+                    return false;
+                }
             }
             catch
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan DATUM!";
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan DATUM! Intervencije";
                 UspesanUnos = false;
                 return false;
             }
@@ -625,8 +631,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             try
             {
                 DateTime datumIVreme = DateTime.Parse(datumUvidjaja);
+                if(datumIVreme > DateTime.Now)
+                {
+                    porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan DATUM uvidjaja!";
+                    UspesanUnos = false;
+                    return false;
+                }
             }
-            catch
+            catch 
             {
                 porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan DATUM uvidjaja!";
                 UspesanUnos = false;

@@ -17,14 +17,12 @@ namespace Intervencije_VatrogasnihJedinica
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Intervencija()
         {
-            this.Obrisana = false;
             this.RadniciSaSmenama = new HashSet<RadnikUSmeni>();
         }
     
         public int ID { get; set; }
         public string Adresa { get; set; }
         public System.DateTime Datum_I_Vreme { get; set; }
-        public bool Obrisana { get; set; }
         public TipIntervencijeEnum Tip { get; set; }
         public int Id_Opstine { get; set; }
     
