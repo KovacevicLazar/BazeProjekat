@@ -30,7 +30,7 @@
         <ListBox x:Name="Alati" ItemsSource="{Binding Alati, Mode=TwoWay}"  Margin="350,92,0,0" HorizontalAlignment="Left" Width="239" Height="302" VerticalAlignment="Top">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Name="chkitems" Content="{Binding Alat.Naziv_Alata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
+                    <CheckBox Name="chkitems" Content="{Binding Alat.NazivAlata}" IsChecked="{Binding IsSelected, Mode=TwoWay }"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

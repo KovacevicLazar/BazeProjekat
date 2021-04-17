@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Intervencije_VatrogasnihJedinicaUI.Views"
         mc:Ignorable="d"
          FontWeight="Bold"
-        Title="Promena vatrogasne jedinice i smene za radnika" Height="443" Width="431.896" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Promena vatrogasne jedinice i smene za radnika" Height="410.2" Width="433.496" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Premeštaj radnika:" HorizontalContentAlignment="Center" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Margin="0,10,0,0" />
         <Label x:Name="RadnikInfo" HorizontalContentAlignment="Center" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="426" Margin="0,47,0,0" Height="37" />
@@ -16,10 +16,10 @@
         <ComboBox x:Name="Smene"  VerticalContentAlignment="Center" ToolTip="Prvo izaberite Vatrogasnu jedinicu" DisplayMemberPath="NazivSmene" SelectedItem="{Binding Path=IzabranaSmena , Mode=TwoWay}" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="214,168,0,0" VerticalAlignment="Top" Width="130" Height="28" />
         <DatePicker SelectedDate="{Binding DatumPremestaja, Mode=TwoWay}"  SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="214,230,0,0" VerticalAlignment="Top" Width="130" Height="28" />
         <Label Content="Datum premeštaja...:" HorizontalAlignment="Left" Margin="80,230,0,0" VerticalAlignment="Top" Width="129" Height="28"/>
-        <TextBlock x:Name="PorukaGreskeZaDatumPremestaja" FontSize="12" Foreground="Red" HorizontalAlignment="Left" Margin="22,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="99" Width="380"/>
+        <TextBlock x:Name="PorukaGreskeZaDatumPremestaja" FontSize="12" Foreground="Red" HorizontalAlignment="Left" Margin="22,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="64" Width="380"/>
         <Label x:Name="PorukaGreskeZaVSJ" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="80,131,0,0" VerticalAlignment="Top" Height="32" Width="271" />
         <Label x:Name="PorukaGreskeZaSmenu" FontSize="14" FontWeight="Normal" Foreground="Red" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Height="33" Width="413" />
-        <Button x:Name="SacuvajIzmene" FontSize="18" Content="Sačuvaj" HorizontalAlignment="Left" Margin="22,357,0,0" VerticalAlignment="Top" Width="115" Height="37" />
-        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="287,357,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
+        <Button x:Name="SacuvajIzmene" FontSize="18" Content="Sačuvaj" HorizontalAlignment="Left" Margin="22,327,0,0" VerticalAlignment="Top" Width="115" Height="37" />
+        <Button Content="Vrati se" FontSize="18" HorizontalAlignment="Left" Margin="287,327,0,0" VerticalAlignment="Top" Width="115" IsCancel="True" Height="37" />
     </Grid>
 </Window>

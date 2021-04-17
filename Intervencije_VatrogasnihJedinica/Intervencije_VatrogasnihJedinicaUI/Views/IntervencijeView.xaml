@@ -10,9 +10,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="20" MaxWidth="80" Width="70" Binding="{Binding ID}" Header="ID: " />
                 <DataGridTextColumn MinWidth="20" MaxWidth="180" Width="170" Binding="{Binding Tip}" Header="Tip intervencije: " />
-                <DataGridTextColumn MinWidth="100" MaxWidth="150" Width="140" Binding="{Binding Datum_I_Vreme, StringFormat='d/M/yyyy HH:mm'}" Header="Datum: " />
+                <DataGridTextColumn MinWidth="100" MaxWidth="150" Width="140" Binding="{Binding DatumIVreme, StringFormat='d/M/yyyy HH:mm'}" Header="Datum: " />
                 <DataGridTextColumn MinWidth="100" MaxWidth="190" Width="160" Binding="{Binding Adresa}" Header="Adresa: " />
-                <DataGridTextColumn MinWidth="20" Width="150" MaxWidth="150" Binding="{Binding Opstina.Naziv_Opstine}" Header="Opština: " />
+                <DataGridTextColumn MinWidth="20" Width="150" MaxWidth="150" Binding="{Binding Opstina.NazivOpstine}" Header="Opština: " />
                 <DataGridTemplateColumn MinWidth="100" MaxWidth="200">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -42,7 +42,7 @@
                 <ComboBox IsEditable="True" IsReadOnly="True" ItemsSource="{Binding Opstine, Mode=OneWay}" Text="Izaberite opštine"  HorizontalAlignment="Left" FontSize="12" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="180"  Margin="0,7,0,0" Height="34">
                     <ComboBox.ItemTemplate >
                         <DataTemplate >
-                            <CheckBox  Content="{Binding Opstina.Naziv_Opstine}" VerticalContentAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
+                            <CheckBox  Content="{Binding Opstina.NazivOpstine}" VerticalContentAlignment="Center" IsChecked="{Binding IsSelected, Mode=TwoWay }" Height="30"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>

@@ -20,13 +20,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         public DodavanjeVatrogasneJediniceViewModel(VatrogasnaJedinica vatrogasnaJedinica)
         {
-            Opstine = opstinaDAO.GetList();
+            Opstine = opstinaDAO.GetList().OrderBy(x =>  x.NazivOpstine).ToList();
             VatrogasnaJedinica = vatrogasnaJedinica;
             if (vatrogasnaJedinica != null)
             {
                 Naziv = VatrogasnaJedinica.Naziv;
                 Adresa = VatrogasnaJedinica.Adresa;
-                IzabranaOpstina = Opstine.Find(x => x.ID == VatrogasnaJedinica.Id_Opstine);
+                IzabranaOpstina = Opstine.Find(x => x.ID == VatrogasnaJedinica.OpstinaID);
                 NotifyOfPropertyChange(() => IzabranaOpstina);
             }
         }
@@ -50,7 +50,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         Naziv = Naziv,
                         Adresa = Adresa,
-                        Id_Opstine = IzabranaOpstina.ID
+                        OpstinaID = IzabranaOpstina.ID
                     };
                     vatrogasnaJedinicaDAO.Insert(VatrogasnaJedinica);
                     Smena Smena;
@@ -68,7 +68,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         ID = VatrogasnaJedinica.ID,
                         Naziv = Naziv,
                         Adresa = Adresa,
-                        Id_Opstine = IzabranaOpstina.ID
+                        OpstinaID = IzabranaOpstina.ID
                     };
                     try
                     {
@@ -108,9 +108,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (vatrogasnaJedinicaDAO.PronadjiPoNazivu(Naziv.Trim()) != null)
             {
-                PorukaGreskeZaNaziv = "Ovaj naziv je zauzet!";
-                ispravanUnos = false;
+                if (vatrogasnaJedinica == null || (vatrogasnaJedinica != null && DisplayName != vatrogasnaJedinica.Naziv))
+                {
+                    PorukaGreskeZaNaziv = "Ovaj naziv je zauzet!";
+                    ispravanUnos = false;
+                }
             }
+           
 
             if (string.IsNullOrEmpty(Adresa))
             {

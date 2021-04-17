@@ -23,7 +23,7 @@ namespace Intervencije_VatrogasnihJedinica
         public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public string Broj_Telefona { get; set; }
+        public string BrojTelefona { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uvidjaj> Uvidjaji { get; set; }

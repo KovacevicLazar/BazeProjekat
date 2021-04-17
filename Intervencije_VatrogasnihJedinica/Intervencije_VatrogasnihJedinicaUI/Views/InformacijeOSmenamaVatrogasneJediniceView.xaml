@@ -17,7 +17,7 @@
                         <TextBlock FontWeight="Bold" FontSize="12" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Text  >
                                 <MultiBinding StringFormat=" {0} &#x0d;&#x0a; {1} {2}">
-                                    <Binding Path="Radno_Mesto" />
+                                    <Binding Path="RadnoMesto" />
                                     <Binding Path="Ime" />
                                     <Binding Path="Prezime" />
                                 </MultiBinding>
@@ -34,7 +34,7 @@
                         <TextBlock FontWeight="Bold" FontSize="12" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Text  >
                                 <MultiBinding StringFormat=" {0} &#x0d;&#x0a; {1} {2}">
-                                    <Binding Path="Radno_Mesto" />
+                                    <Binding Path="RadnoMesto" />
                                     <Binding Path="Ime" />
                                     <Binding Path="Prezime" />
                                 </MultiBinding>
@@ -51,7 +51,7 @@
                         <TextBlock FontWeight="Bold" FontSize="12" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Text  >
                                 <MultiBinding StringFormat=" {0} &#x0d;&#x0a; {1} {2}">
-                                    <Binding Path="Radno_Mesto" />
+                                    <Binding Path="RadnoMesto" />
                                     <Binding Path="Ime" />
                                     <Binding Path="Prezime" />
                                 </MultiBinding>
@@ -68,7 +68,7 @@
                         <TextBlock FontWeight="Bold" FontSize="12" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock.Text  >
                                 <MultiBinding StringFormat=" {0} &#x0d;&#x0a; {1} {2}">
-                                    <Binding Path="Radno_Mesto" />
+                                    <Binding Path="RadnoMesto" />
                                     <Binding Path="Ime" />
                                     <Binding Path="Prezime" />
                                 </MultiBinding>

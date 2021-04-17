@@ -5,7 +5,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv_Alata" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NazivAlata" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="Tip" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AlatVozilo">
@@ -23,15 +23,15 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ime" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="Broj_Telefona" Type="nvarchar" MaxLength="35" />
+    <Property Name="BrojTelefona" Type="nvarchar" MaxLength="35" />
   </EntityType>
   <EntityType Name="IntervencijaRadnikUSmeni">
     <Key>
       <PropertyRef Name="Intervencije_ID" />
-      <PropertyRef Name="RadniciSaSmenama_Id" />
+      <PropertyRef Name="RadniciSaSmenama_ID" />
     </Key>
     <Property Name="Intervencije_ID" Type="int" Nullable="false" />
-    <Property Name="RadniciSaSmenama_Id" Type="int" Nullable="false" />
+    <Property Name="RadniciSaSmenama_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije">
     <Key>
@@ -39,10 +39,9 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adresa" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Datum_I_Vreme" Type="datetime" Nullable="false" />
-    <Property Name="Obrisana" Type="bit" Nullable="false" />
+    <Property Name="DatumIVreme" Type="datetime" Nullable="false" />
     <Property Name="Tip" Type="int" Nullable="false" />
-    <Property Name="Id_Opstine" Type="int" Nullable="false" />
+    <Property Name="OpstinaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Intervencije_Pozar">
     <Key>
@@ -70,7 +69,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Naziv_Opstine" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="NazivOpstine" Type="nvarchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <EntityType Name="PozarNavalno_Vozilo">
     <Key>
@@ -88,16 +87,16 @@
     <Property Name="JMBG" Type="nvarchar" MaxLength="13" Nullable="false" />
     <Property Name="Ime" Type="nvarchar" MaxLength="25" Nullable="false" />
     <Property Name="Prezime" Type="nvarchar" MaxLength="25" Nullable="false" />
-    <Property Name="Radno_Mesto" Type="int" Nullable="false" />
+    <Property Name="RadnoMesto" Type="int" Nullable="false" />
     <Property Name="DatumPocetkaRada" Type="datetime" Nullable="false" />
     <Property Name="VatrogasnaJedinicaID" Type="int" Nullable="false" />
     <Property Name="SmenaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RadniciUSmenama">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DatumPocetkaRada" Type="datetime" Nullable="false" />
     <Property Name="DatumKrajaRada" Type="datetime" />
     <Property Name="RadnikID" Type="int" Nullable="false" />
@@ -126,7 +125,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="Datum" Type="datetime" Nullable="false" />
-    <Property Name="Tekst_Zapisnika" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TekstZapisnika" Type="nvarchar(max)" Nullable="false" />
     <Property Name="InspektorID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Vatrogasne_Jedinice">
@@ -136,7 +135,7 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Naziv" Type="nvarchar" MaxLength="40" Nullable="false" />
     <Property Name="Adresa" Type="nvarchar" MaxLength="30" Nullable="false" />
-    <Property Name="Id_Opstine" Type="int" Nullable="false" />
+    <Property Name="OpstinaID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Vozila">
     <Key>
@@ -148,7 +147,7 @@
     <Property Name="Tip" Type="int" Nullable="false" />
     <Property Name="Godiste" Type="int" Nullable="false" />
     <Property Name="Nosivost" Type="float" Nullable="false" />
-    <Property Name="Id_VatrogasneJedinice" Type="int" />
+    <Property Name="VatrogasnaJedinicaID" Type="int" />
     <Property Name="RegistarskaOznaka" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Vozila_Cisterna">
@@ -238,10 +237,10 @@
     <End Role="IntervencijaRadnikUSmeni" Type="Self.IntervencijaRadnikUSmeni" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="RadniciUSmenama">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="IntervencijaRadnikUSmeni">
-        <PropertyRef Name="RadniciSaSmenama_Id" />
+        <PropertyRef Name="RadniciSaSmenama_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -289,7 +288,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Intervencije">
-        <PropertyRef Name="Id_Opstine" />
+        <PropertyRef Name="OpstinaID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -301,7 +300,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Vatrogasne_Jedinice">
-        <PropertyRef Name="Id_Opstine" />
+        <PropertyRef Name="OpstinaID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -457,7 +456,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Vozila">
-        <PropertyRef Name="Id_VatrogasneJedinice" />
+        <PropertyRef Name="VatrogasnaJedinicaID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -14,7 +14,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public DodavanjeOpstineViewModel(Opstina opstina)
         {
             Opstina = opstina;
-            NazivOpstine = opstina?.Naziv_Opstine;
+            NazivOpstine = opstina?.NazivOpstine;
         }
 
         public string NazivOpstine { get; set; }
@@ -29,13 +29,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Opstina = new Opstina
                     {
-                        Naziv_Opstine = NazivOpstine
+                        NazivOpstine = NazivOpstine
                     };
                     opstinaDAO.Insert(Opstina);
                 }
                 else
                 {
-                    Opstina.Naziv_Opstine = NazivOpstine;
+                    Opstina.NazivOpstine = NazivOpstine;
                     opstinaDAO.Update(Opstina);
                 }
                 TryClose();
@@ -63,9 +63,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (opstinaDAO.pronadjiPoNazivu(NazivOpstine.Trim()) != null)
             {
-                PorukaGreskeZaNaziv = "Opština sa istim nazivom je uneta!";
-                return false;
+                if (Opstina == null || (Opstina != null && NazivOpstine != Opstina.NazivOpstine))
+                {
+                    PorukaGreskeZaNaziv = "Opština sa istim nazivom je uneta!";
+                    return false;
+                }
             }
+         
             return true;
         }
     }

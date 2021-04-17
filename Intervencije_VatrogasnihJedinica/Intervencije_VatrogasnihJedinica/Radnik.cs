@@ -24,7 +24,7 @@ namespace Intervencije_VatrogasnihJedinica
         public string JMBG { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public RadnoMesto Radno_Mesto { get; set; }
+        public RadnoMesto RadnoMesto { get; set; }
         public System.DateTime DatumPocetkaRada { get; set; }
         public int VatrogasnaJedinicaID { get; set; }
         public int SmenaID { get; set; }

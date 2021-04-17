@@ -10,16 +10,12 @@
 namespace Intervencije_VatrogasnihJedinica
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Uvidjaj
+    public partial class ListaDezurnihSmenaNaDatum_Result1
     {
         public int ID { get; set; }
-        public System.DateTime Datum { get; set; }
-        public string TekstZapisnika { get; set; }
-        public int InspektorID { get; set; }
-    
-        public virtual Intervencija Intervencija { get; set; }
-        public virtual Inspektor Inspektor { get; set; }
+        public string NazivSmene { get; set; }
+        public int VatrogasnaJedinicaID { get; set; }
+        public System.DateTime DatumPrvogDezurstva { get; set; }
     }
 }

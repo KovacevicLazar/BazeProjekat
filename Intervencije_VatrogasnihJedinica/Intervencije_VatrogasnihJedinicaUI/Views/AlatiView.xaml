@@ -1,19 +1,26 @@
 ﻿<UserControl x:Class="Intervencije_VatrogasnihJedinicaUI.Views.AlatiView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" FontWeight="Bold"  >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="DataGridCell">
+                <Setter Property="FontSize" Value="18"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid Width="1259" Height="675" Background="#FFF9F7F6">
-        <DataGrid FontSize="12" AlternatingRowBackground="#FFD8D6D6" AutoGenerateColumns="False" ItemsSource="{Binding SviAlati, Mode=OneWay}" SelectedItem="{Binding Path=OznacenAlat, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Margin="315,69,0,31" Width="509">
-            <DataGrid.Resources>
+        <DataGrid FontSize="12"  AlternatingRowBackground="#FFD8D6D6" AutoGenerateColumns="False" ItemsSource="{Binding SviAlati, Mode=OneWay}" SelectedItem="{Binding Path=OznacenAlat, Mode=OneWayToSource}" IsReadOnly="True" HorizontalAlignment="Left" Margin="166,69,0,31" Width="738">
+            <DataGrid.Resources >
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#9C918E"/>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="70" />
-                <DataGridTextColumn Binding="{Binding Naziv_Alata}" Header="Naziv alata: " Width="190" />
+                <DataGridTextColumn Binding="{Binding ID}" Header="ID: " Width="70"  />
+                <DataGridTextColumn Binding="{Binding NazivAlata}" Header="Naziv alata: " Width="390" />
                 <DataGridTextColumn Binding="{Binding Tip}" Header="Namena alata: " Width="230" />
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Alati:" FontSize="28" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Width="1259" Height="54" Margin="0,10,0,0" />
-        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="843,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="843,119,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="843,170,0,0" VerticalAlignment="Top" Width="180" Height="35" />
-        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="843,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="209" Width="180"/>
+        <Button x:Name="Obrisi" Content="Obriši" HorizontalAlignment="Left" Margin="919,69,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Izmeni" Content="Izmeni" HorizontalAlignment="Left" Margin="919,119,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <Button x:Name="Dodaj" Content="Dodaj" HorizontalAlignment="Left" Margin="919,170,0,0" VerticalAlignment="Top" Width="180" Height="35" />
+        <TextBlock x:Name="Poruka" FontSize="14" Foreground="Red" HorizontalAlignment="Left" Margin="919,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="209" Width="180"/>
     </Grid>
 </UserControl>

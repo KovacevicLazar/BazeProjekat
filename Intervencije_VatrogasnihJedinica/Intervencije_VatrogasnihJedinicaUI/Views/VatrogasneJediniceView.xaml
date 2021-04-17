@@ -9,8 +9,8 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ID}" Header="ID:" Width="55" />
-                <DataGridTextColumn Binding="{Binding Naziv}" Header="Naziv: " Width="160" />
-                <DataGridTextColumn Binding="{Binding Opstina.Naziv_Opstine}" Header="Opština:" Width="130" />
+                <DataGridTextColumn Binding="{Binding Naziv}" Header="Naziv: " Width="150" />
+                <DataGridTextColumn Binding="{Binding Opstina.NazivOpstine}" Header="Opština:" Width="120" />
                 <DataGridTextColumn Binding="{Binding Adresa}" Header="Adresa:" Width="155" />
                 <DataGridTextColumn Binding="{Binding Komandir.Ime}" Header="Komandir: " Width="100" />
                 <DataGridTextColumn Binding="{Binding Vozila.Count}" Header="Broj &#x0a;vozila: " />

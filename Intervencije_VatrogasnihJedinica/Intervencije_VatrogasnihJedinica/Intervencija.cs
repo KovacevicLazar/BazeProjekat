@@ -22,9 +22,9 @@ namespace Intervencije_VatrogasnihJedinica
     
         public int ID { get; set; }
         public string Adresa { get; set; }
-        public System.DateTime Datum_I_Vreme { get; set; }
+        public System.DateTime DatumIVreme { get; set; }
         public TipIntervencijeEnum Tip { get; set; }
-        public int Id_Opstine { get; set; }
+        public int OpstinaID { get; set; }
     
         public virtual Uvidjaj Uvidjaj { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

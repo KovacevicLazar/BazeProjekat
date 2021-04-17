@@ -8,7 +8,7 @@
         <Label Content="Opština :" HorizontalAlignment="Left" Margin="62,113,0,0" VerticalAlignment="Top" Width="99" Height="26" />
         <Label Content="Adresa :" HorizontalAlignment="Left" Margin="62,163,0,0" VerticalAlignment="Top" Width="99" Height="26" />
         <TextBox x:Name="Naziv" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="26" Margin="161,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" />
-        <ComboBox x:Name="Opstine" VerticalContentAlignment="Center"  SelectedItem="{Binding Path=IzabranaOpstina , Mode=TwoWay}" DisplayMemberPath="Naziv_Opstine" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="161,113,0,0" VerticalAlignment="Top" Width="178" Height="26" />
+        <ComboBox x:Name="Opstine" VerticalContentAlignment="Center"  SelectedItem="{Binding Path=IzabranaOpstina , Mode=TwoWay}" DisplayMemberPath="NazivOpstine" IsSynchronizedWithCurrentItem="True" HorizontalAlignment="Left" Margin="161,113,0,0" VerticalAlignment="Top" Width="178" Height="26" />
         <TextBox x:Name="Adresa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="161,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" />
         <Label x:Name="PorukaGreskeZaNaziv" Foreground="Red" FontWeight="Normal" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="47,84,0,0" VerticalAlignment="Top" Height="29" Width="312" />
         <Label x:Name="PorukaGreskeZaOpstinu" Foreground="Red" FontWeight="Normal" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Margin="47,134,0,0" VerticalAlignment="Top" Height="29" Width="312" />

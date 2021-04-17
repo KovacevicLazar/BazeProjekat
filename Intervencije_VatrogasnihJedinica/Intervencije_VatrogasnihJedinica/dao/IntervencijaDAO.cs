@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Intervencije.Include("Opstina").Include("Uvidjaj").Where(x => (opstineID.Contains(x.Id_Opstine) || opstineID.Count == 0) && (tipovi.Contains(x.Tip) || tipovi.Count == 0)).ToList();
+                return db.Intervencije.Include("Opstina").Include("Uvidjaj.Inspektor").Include("RadniciSaSmenama.Radnik.VatrogasnaJedinica").Include("RadniciSaSmenama.Smena").Where(x => (opstineID.Contains(x.OpstinaID) || opstineID.Count == 0) && (tipovi.Contains(x.Tip) || tipovi.Count == 0)).ToList();
             }
         }
     }

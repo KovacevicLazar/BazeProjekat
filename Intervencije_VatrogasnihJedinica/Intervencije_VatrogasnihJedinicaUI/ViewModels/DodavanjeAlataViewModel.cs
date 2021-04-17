@@ -12,6 +12,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
     {
         private AlatDAO alataDAO = new AlatDAO();
         private string porukaGreskeZaNazivAlata = "";
+        private string porukaGreskeZaTip = "";
 
         public DodavanjeAlataViewModel(Alat alat)
         {
@@ -19,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Alat = alat;
             if (alat != null)
             {
-                NazivAlata = alat.Naziv_Alata;
+                NazivAlata = alat.NazivAlata;
                 TipAlata = alat.Tip;
             }
         }
@@ -29,8 +30,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public Alat Alat { get; set; }
         public string NazivAlata { get; set; }
         public string PorukaGreskeZaNazivAlata { get => porukaGreskeZaNazivAlata; set { porukaGreskeZaNazivAlata = value; NotifyOfPropertyChange(() => PorukaGreskeZaNazivAlata); } }
+        public string PorukaGreskeZaTip { get => porukaGreskeZaTip; set { porukaGreskeZaTip = value; NotifyOfPropertyChange(() => PorukaGreskeZaTip); }
+}
 
-        public void DodajIzmeni()
+public void DodajIzmeni()
         {
             if (Validacija())
             {
@@ -38,21 +41,21 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 {
                     Alat alat = new Alat
                     {
-                        Naziv_Alata = NazivAlata,
+                        NazivAlata = NazivAlata,
                         Tip = TipAlata
                     };
                     alataDAO.Insert(alat);
                 }
                 else
                 {
-                    Alat = new Alat { ID = Alat.ID, Naziv_Alata = NazivAlata, Tip = TipAlata };
+                    Alat = new Alat { ID = Alat.ID, NazivAlata = NazivAlata, Tip = TipAlata };
                     try
                     {
                         alataDAO.Update(Alat);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.InnerException?.InnerException?.Message, "Greška!!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        PorukaGreskeZaTip = ex.InnerException?.InnerException?.Message;
                         return;
                     }
                 }
@@ -63,7 +66,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         private bool Validacija()
         {
             PorukaGreskeZaNazivAlata = "";
-
+            PorukaGreskeZaTip = "";
             bool ispravanUnos = true;
             if (string.IsNullOrEmpty(NazivAlata))
             {

@@ -40,7 +40,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.Id_VatrogasneJedinice == idVatrogasneJedinice).ToList();
+                return db.Vozila.Include("VatrogasnaJedinica").Where(x => x.VatrogasnaJedinicaID == idVatrogasneJedinice).ToList();
             }
         }
 

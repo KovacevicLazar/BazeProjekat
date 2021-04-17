@@ -26,7 +26,7 @@ namespace Intervencije_VatrogasnihJedinica
         public TipVozila Tip { get; set; }
         public int Godiste { get; set; }
         public double Nosivost { get; set; }
-        public Nullable<int> Id_VatrogasneJedinice { get; set; }
+        public Nullable<int> VatrogasnaJedinicaID { get; set; }
         public string RegistarskaOznaka { get; set; }
     
         public virtual VatrogasnaJedinica VatrogasnaJedinica { get; set; }

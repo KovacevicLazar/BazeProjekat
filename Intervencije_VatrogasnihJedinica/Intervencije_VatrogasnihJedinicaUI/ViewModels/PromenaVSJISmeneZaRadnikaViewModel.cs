@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Caliburn.Micro;
 using System.Windows;
+using System.Linq;
 
 namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 {
@@ -27,7 +28,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Radnik = radnik;
             datumPoslednjeIntervencije = radnikSmenaDAO.DatumPoslednjeIntervencijeRadnikaSaSmenom(radnik.ID, radnik.SmenaID);
             RadnikInfo = $"{radnik.Ime} {radnik.Prezime} jmbg:{radnik.JMBG}";
-            VatrogasneJedinice = jedinicaDAO.GetList();
+            VatrogasneJedinice = jedinicaDAO.GetList().OrderBy(x => x.Naziv).ToList();
             Smene = smenaDAO.SmeneUnutarJedneVSJ(radnik.VatrogasnaJedinica.ID);
             IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == radnik.VatrogasnaJedinicaID);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
@@ -66,7 +67,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     Prezime = Radnik.Prezime,
                     DatumPocetkaRada = Radnik.DatumPocetkaRada,
                     JMBG = Radnik.JMBG,
-                    Radno_Mesto = Radnik.Radno_Mesto,
+                    RadnoMesto = Radnik.RadnoMesto,
                     VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
                     SmenaID = IzabranaSmena.ID
                 };

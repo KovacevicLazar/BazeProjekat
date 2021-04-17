@@ -58,7 +58,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 var radnikUSmeni = db.RadniciUSmenama.Include("Intervencije").Where(x => x.RadnikID == radnikID && x.SmenaID == smenaID && x.DatumKrajaRada == null).FirstOrDefault();
                 if (radnikUSmeni.Intervencije.Count != 0)
                 {
-                    return radnikUSmeni.Intervencije.Max(x => x.Datum_I_Vreme);
+                    return radnikUSmeni.Intervencije.Max(x => x.DatumIVreme);
                 }
                 return null; // ako nije imao intervencije sa smenom,
             }

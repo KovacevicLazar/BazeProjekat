@@ -17,7 +17,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                return db.Opstine.Where(x => x.Naziv_Opstine.ToUpper() == naziv.ToUpper()).FirstOrDefault();
+                return db.Opstine.Where(x => x.NazivOpstine.ToUpper() == naziv.ToUpper()).FirstOrDefault();
             }
         }
 

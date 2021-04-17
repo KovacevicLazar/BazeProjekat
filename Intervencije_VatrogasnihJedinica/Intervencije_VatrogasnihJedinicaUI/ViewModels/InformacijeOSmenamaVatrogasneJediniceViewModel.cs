@@ -158,7 +158,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Prezime = radnik.Prezime,
                 DatumPocetkaRada = radnik.DatumPocetkaRada,
                 JMBG = radnik.JMBG,
-                Radno_Mesto = radnik.Radno_Mesto,
+                RadnoMesto = radnik.RadnoMesto,
                 VatrogasnaJedinicaID = radnik.VatrogasnaJedinicaID,
                 SmenaID = novaSmenaID
             };

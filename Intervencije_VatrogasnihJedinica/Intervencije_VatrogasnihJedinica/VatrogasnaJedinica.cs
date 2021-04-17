@@ -25,7 +25,7 @@ namespace Intervencije_VatrogasnihJedinica
         public int ID { get; set; }
         public string Naziv { get; set; }
         public string Adresa { get; set; }
-        public int Id_Opstine { get; set; }
+        public int OpstinaID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vozilo> Vozila { get; set; }

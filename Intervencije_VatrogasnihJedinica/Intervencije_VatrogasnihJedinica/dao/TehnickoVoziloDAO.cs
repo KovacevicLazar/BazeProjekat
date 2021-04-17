@@ -12,7 +12,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
                 var vozilo = db.Set<Tehnicko_Vozilo>().Include("Intervencije").SingleOrDefault(x => x.ID == id);
                 if(vozilo != null && vozilo.Intervencije.Count != 0)
                 {
-                    return vozilo.Intervencije.Min(x => x.Datum_I_Vreme).Year;
+                    return vozilo.Intervencije.Min(x => x.DatumIVreme).Year;
                 }
                 return DateTime.Now.Year;
             }

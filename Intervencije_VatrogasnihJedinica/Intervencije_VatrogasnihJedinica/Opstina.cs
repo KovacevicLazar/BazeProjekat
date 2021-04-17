@@ -22,7 +22,7 @@ namespace Intervencije_VatrogasnihJedinica
         }
     
         public int ID { get; set; }
-        public string Naziv_Opstine { get; set; }
+        public string NazivOpstine { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VatrogasnaJedinica> VatrogasneJedinice { get; set; }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/29/2021 11:00:10
+-- Date Created: 03/29/2021 13:18:22
 -- Generated from EDMX file: C:\Users\HP 650 G2\Documents\GitHub\BazeProjekat\Intervencije_VatrogasnihJedinica\Intervencije_VatrogasnihJedinica\Model_Intervencije_VatrogasnihJedinica.edmx
 -- --------------------------------------------------
 
@@ -17,62 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_AlatVozilo_Alat]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AlatVozilo] DROP CONSTRAINT [FK_AlatVozilo_Alat];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AlatVozilo_Vozilo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AlatVozilo] DROP CONSTRAINT [FK_AlatVozilo_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Cisterna_inherits_Vozilo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Vozila_Cisterna] DROP CONSTRAINT [FK_Cisterna_inherits_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_InspektorUvidjaj]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_InspektorUvidjaj];
-GO
-IF OBJECT_ID(N'[dbo].[FK_IntervencijaRadnikUSmeni_Intervencija]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IntervencijaRadnikUSmeni] DROP CONSTRAINT [FK_IntervencijaRadnikUSmeni_Intervencija];
-GO
-IF OBJECT_ID(N'[dbo].[FK_IntervencijaRadnikUSmeni_RadnikUSmeni]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IntervencijaRadnikUSmeni] DROP CONSTRAINT [FK_IntervencijaRadnikUSmeni_RadnikUSmeni];
-GO
-IF OBJECT_ID(N'[dbo].[FK_IntervencijaUvidjaj]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_IntervencijaUvidjaj];
-GO
-IF OBJECT_ID(N'[dbo].[FK_KomandirVatrogasnaJedinica]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Komandiri] DROP CONSTRAINT [FK_KomandirVatrogasnaJedinica];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Navalno_Vozilo_inherits_Vozilo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Vozila_Navalno_Vozilo] DROP CONSTRAINT [FK_Navalno_Vozilo_inherits_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OpstinaIntervencija]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Intervencije] DROP CONSTRAINT [FK_OpstinaIntervencija];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OpstinaVatrogasnaJedinica]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Vatrogasne_Jedinice] DROP CONSTRAINT [FK_OpstinaVatrogasnaJedinica];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Pozar_inherits_Intervencija]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Intervencije_Pozar] DROP CONSTRAINT [FK_Pozar_inherits_Intervencija];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Navalno_Vozilo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PozarNavalno_Vozilo] DROP CONSTRAINT [FK_PozarNavalno_Vozilo_Navalno_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Pozar]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PozarNavalno_Vozilo] DROP CONSTRAINT [FK_PozarNavalno_Vozilo_Pozar];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RadnikRadnikUSmeni]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RadniciUSmenama] DROP CONSTRAINT [FK_RadnikRadnikUSmeni];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RadnikVatrogasnaJedinica]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Radnici] DROP CONSTRAINT [FK_RadnikVatrogasnaJedinica];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SmenaRadnik]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Radnici] DROP CONSTRAINT [FK_SmenaRadnik];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SmenaRadnikUSmeni]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RadniciUSmenama] DROP CONSTRAINT [FK_SmenaRadnikUSmeni];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Tehnicka_Intervencija_inherits_Intervencija]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Intervencije_Tehnicka_Intervencija] DROP CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija];
+IF OBJECT_ID(N'[dbo].[FK_VoziloVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Vozila] DROP CONSTRAINT [FK_VoziloVatrogasnaJedinica];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicka_Intervencija]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tehnicka_IntervencijaTehnicko_Vozilo] DROP CONSTRAINT [FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicka_Intervencija];
@@ -80,64 +26,76 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicko_Vozilo]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tehnicka_IntervencijaTehnicko_Vozilo] DROP CONSTRAINT [FK_Tehnicka_IntervencijaTehnicko_Vozilo_Tehnicko_Vozilo];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Tehnicko_Vozilo_inherits_Vozilo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Vozila_Tehnicko_Vozilo] DROP CONSTRAINT [FK_Tehnicko_Vozilo_inherits_Vozilo];
+IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Pozar]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PozarNavalno_Vozilo] DROP CONSTRAINT [FK_PozarNavalno_Vozilo_Pozar];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PozarNavalno_Vozilo_Navalno_Vozilo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PozarNavalno_Vozilo] DROP CONSTRAINT [FK_PozarNavalno_Vozilo_Navalno_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RadnikVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Radnici] DROP CONSTRAINT [FK_RadnikVatrogasnaJedinica];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SmenaRadnik]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Radnici] DROP CONSTRAINT [FK_SmenaRadnik];
 GO
 IF OBJECT_ID(N'[dbo].[FK_VatrogasnaJedinicaSmena]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Smene] DROP CONSTRAINT [FK_VatrogasnaJedinicaSmena];
 GO
-IF OBJECT_ID(N'[dbo].[FK_VoziloVatrogasnaJedinica]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Vozila] DROP CONSTRAINT [FK_VoziloVatrogasnaJedinica];
+IF OBJECT_ID(N'[dbo].[FK_IntervencijaUvidjaj]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_IntervencijaUvidjaj];
+GO
+IF OBJECT_ID(N'[dbo].[FK_InspektorUvidjaj]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Uvidjaji] DROP CONSTRAINT [FK_InspektorUvidjaj];
+GO
+IF OBJECT_ID(N'[dbo].[FK_KomandirVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Komandiri] DROP CONSTRAINT [FK_KomandirVatrogasnaJedinica];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AlatVozilo_Alat]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AlatVozilo] DROP CONSTRAINT [FK_AlatVozilo_Alat];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AlatVozilo_Vozilo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AlatVozilo] DROP CONSTRAINT [FK_AlatVozilo_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RadnikRadnikUSmeni]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RadniciUSmenama] DROP CONSTRAINT [FK_RadnikRadnikUSmeni];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SmenaRadnikUSmeni]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RadniciUSmenama] DROP CONSTRAINT [FK_SmenaRadnikUSmeni];
+GO
+IF OBJECT_ID(N'[dbo].[FK_IntervencijaRadnikUSmeni_Intervencija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[IntervencijaRadnikUSmeni] DROP CONSTRAINT [FK_IntervencijaRadnikUSmeni_Intervencija];
+GO
+IF OBJECT_ID(N'[dbo].[FK_IntervencijaRadnikUSmeni_RadnikUSmeni]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[IntervencijaRadnikUSmeni] DROP CONSTRAINT [FK_IntervencijaRadnikUSmeni_RadnikUSmeni];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OpstinaVatrogasnaJedinica]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Vatrogasne_Jedinice] DROP CONSTRAINT [FK_OpstinaVatrogasnaJedinica];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OpstinaIntervencija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Intervencije] DROP CONSTRAINT [FK_OpstinaIntervencija];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Tehnicka_Intervencija_inherits_Intervencija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Intervencije_Tehnicka_Intervencija] DROP CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Tehnicko_Vozilo_inherits_Vozilo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Vozila_Tehnicko_Vozilo] DROP CONSTRAINT [FK_Tehnicko_Vozilo_inherits_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Pozar_inherits_Intervencija]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Intervencije_Pozar] DROP CONSTRAINT [FK_Pozar_inherits_Intervencija];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Navalno_Vozilo_inherits_Vozilo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Vozila_Navalno_Vozilo] DROP CONSTRAINT [FK_Navalno_Vozilo_inherits_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Cisterna_inherits_Vozilo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Vozila_Cisterna] DROP CONSTRAINT [FK_Cisterna_inherits_Vozilo];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Alati]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Alati];
-GO
-IF OBJECT_ID(N'[dbo].[AlatVozilo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AlatVozilo];
-GO
-IF OBJECT_ID(N'[dbo].[Inspektori]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Inspektori];
-GO
-IF OBJECT_ID(N'[dbo].[IntervencijaRadnikUSmeni]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[IntervencijaRadnikUSmeni];
-GO
-IF OBJECT_ID(N'[dbo].[Intervencije]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Intervencije];
-GO
-IF OBJECT_ID(N'[dbo].[Intervencije_Pozar]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Intervencije_Pozar];
-GO
-IF OBJECT_ID(N'[dbo].[Intervencije_Tehnicka_Intervencija]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Intervencije_Tehnicka_Intervencija];
-GO
-IF OBJECT_ID(N'[dbo].[Komandiri]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Komandiri];
-GO
 IF OBJECT_ID(N'[dbo].[Opstine]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Opstine];
-GO
-IF OBJECT_ID(N'[dbo].[PozarNavalno_Vozilo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PozarNavalno_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[Radnici]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Radnici];
-GO
-IF OBJECT_ID(N'[dbo].[RadniciUSmenama]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RadniciUSmenama];
-GO
-IF OBJECT_ID(N'[dbo].[Smene]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Smene];
-GO
-IF OBJECT_ID(N'[dbo].[Tehnicka_IntervencijaTehnicko_Vozilo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tehnicka_IntervencijaTehnicko_Vozilo];
-GO
-IF OBJECT_ID(N'[dbo].[Uvidjaji]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Uvidjaji];
 GO
 IF OBJECT_ID(N'[dbo].[Vatrogasne_Jedinice]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Vatrogasne_Jedinice];
@@ -145,14 +103,56 @@ GO
 IF OBJECT_ID(N'[dbo].[Vozila]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Vozila];
 GO
-IF OBJECT_ID(N'[dbo].[Vozila_Cisterna]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Vozila_Cisterna];
+IF OBJECT_ID(N'[dbo].[Intervencije]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Intervencije];
+GO
+IF OBJECT_ID(N'[dbo].[Inspektori]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Inspektori];
+GO
+IF OBJECT_ID(N'[dbo].[Alati]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Alati];
+GO
+IF OBJECT_ID(N'[dbo].[Smene]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Smene];
+GO
+IF OBJECT_ID(N'[dbo].[Radnici]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Radnici];
+GO
+IF OBJECT_ID(N'[dbo].[Uvidjaji]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Uvidjaji];
+GO
+IF OBJECT_ID(N'[dbo].[Komandiri]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Komandiri];
+GO
+IF OBJECT_ID(N'[dbo].[RadniciUSmenama]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RadniciUSmenama];
+GO
+IF OBJECT_ID(N'[dbo].[Intervencije_Tehnicka_Intervencija]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Intervencije_Tehnicka_Intervencija];
+GO
+IF OBJECT_ID(N'[dbo].[Vozila_Tehnicko_Vozilo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Vozila_Tehnicko_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[Intervencije_Pozar]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Intervencije_Pozar];
 GO
 IF OBJECT_ID(N'[dbo].[Vozila_Navalno_Vozilo]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Vozila_Navalno_Vozilo];
 GO
-IF OBJECT_ID(N'[dbo].[Vozila_Tehnicko_Vozilo]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Vozila_Tehnicko_Vozilo];
+IF OBJECT_ID(N'[dbo].[Vozila_Cisterna]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Vozila_Cisterna];
+GO
+IF OBJECT_ID(N'[dbo].[Tehnicka_IntervencijaTehnicko_Vozilo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tehnicka_IntervencijaTehnicko_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[PozarNavalno_Vozilo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PozarNavalno_Vozilo];
+GO
+IF OBJECT_ID(N'[dbo].[AlatVozilo]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AlatVozilo];
+GO
+IF OBJECT_ID(N'[dbo].[IntervencijaRadnikUSmeni]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[IntervencijaRadnikUSmeni];
 GO
 
 -- --------------------------------------------------
@@ -162,7 +162,7 @@ GO
 -- Creating table 'Opstine'
 CREATE TABLE [dbo].[Opstine] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Naziv_Opstine] nvarchar(25)  NOT NULL
+    [NazivOpstine] nvarchar(25)  NOT NULL
 );
 GO
 
@@ -171,7 +171,7 @@ CREATE TABLE [dbo].[Vatrogasne_Jedinice] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Naziv] nvarchar(40)  NOT NULL,
     [Adresa] nvarchar(30)  NOT NULL,
-    [Id_Opstine] int  NOT NULL
+    [OpstinaID] int  NOT NULL
 );
 GO
 
@@ -183,7 +183,7 @@ CREATE TABLE [dbo].[Vozila] (
     [Tip] int  NOT NULL,
     [Godiste] int  NOT NULL,
     [Nosivost] float  NOT NULL,
-    [Id_VatrogasneJedinice] int  NULL,
+    [VatrogasnaJedinicaID] int  NULL,
     [RegistarskaOznaka] nvarchar(10)  NULL
 );
 GO
@@ -192,9 +192,9 @@ GO
 CREATE TABLE [dbo].[Intervencije] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Adresa] nvarchar(30)  NOT NULL,
-    [Datum_I_Vreme] datetime  NOT NULL,
+    [DatumIVreme] datetime  NOT NULL,
     [Tip] int  NOT NULL,
-    [Id_Opstine] int  NOT NULL
+    [OpstinaID] int  NOT NULL
 );
 GO
 
@@ -203,14 +203,14 @@ CREATE TABLE [dbo].[Inspektori] (
     [ID] int IDENTITY(1,1) NOT NULL,
     [Ime] nvarchar(25)  NOT NULL,
     [Prezime] nvarchar(25)  NOT NULL,
-    [Broj_Telefona] nvarchar(35)  NULL
+    [BrojTelefona] nvarchar(35)  NULL
 );
 GO
 
 -- Creating table 'Alati'
 CREATE TABLE [dbo].[Alati] (
     [ID] int IDENTITY(1,1) NOT NULL,
-    [Naziv_Alata] nvarchar(40)  NOT NULL,
+    [NazivAlata] nvarchar(40)  NOT NULL,
     [Tip] int  NOT NULL
 );
 GO
@@ -230,7 +230,7 @@ CREATE TABLE [dbo].[Radnici] (
     [JMBG] nvarchar(13)  NOT NULL,
     [Ime] nvarchar(25)  NOT NULL,
     [Prezime] nvarchar(25)  NOT NULL,
-    [Radno_Mesto] int  NOT NULL,
+    [RadnoMesto] int  NOT NULL,
     [DatumPocetkaRada] datetime  NOT NULL,
     [VatrogasnaJedinicaID] int  NOT NULL,
     [SmenaID] int  NOT NULL
@@ -241,7 +241,7 @@ GO
 CREATE TABLE [dbo].[Uvidjaji] (
     [ID] int  NOT NULL,
     [Datum] datetime  NOT NULL,
-    [Tekst_Zapisnika] nvarchar(max)  NOT NULL,
+    [TekstZapisnika] nvarchar(max)  NOT NULL,
     [InspektorID] int  NOT NULL
 );
 GO
@@ -257,7 +257,7 @@ GO
 
 -- Creating table 'RadniciUSmenama'
 CREATE TABLE [dbo].[RadniciUSmenama] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [ID] int IDENTITY(1,1) NOT NULL,
     [DatumPocetkaRada] datetime  NOT NULL,
     [DatumKrajaRada] datetime  NULL,
     [RadnikID] int  NOT NULL,
@@ -319,7 +319,7 @@ GO
 -- Creating table 'IntervencijaRadnikUSmeni'
 CREATE TABLE [dbo].[IntervencijaRadnikUSmeni] (
     [Intervencije_ID] int  NOT NULL,
-    [RadniciSaSmenama_Id] int  NOT NULL
+    [RadniciSaSmenama_ID] int  NOT NULL
 );
 GO
 
@@ -387,10 +387,10 @@ ADD CONSTRAINT [PK_Komandiri]
     PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
--- Creating primary key on [Id] in table 'RadniciUSmenama'
+-- Creating primary key on [ID] in table 'RadniciUSmenama'
 ALTER TABLE [dbo].[RadniciUSmenama]
 ADD CONSTRAINT [PK_RadniciUSmenama]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
+    PRIMARY KEY CLUSTERED ([ID] ASC);
 GO
 
 -- Creating primary key on [ID] in table 'Intervencije_Tehnicka_Intervencija'
@@ -441,20 +441,20 @@ ADD CONSTRAINT [PK_AlatVozilo]
     PRIMARY KEY CLUSTERED ([Alati_ID], [Vozila_ID] ASC);
 GO
 
--- Creating primary key on [Intervencije_ID], [RadniciSaSmenama_Id] in table 'IntervencijaRadnikUSmeni'
+-- Creating primary key on [Intervencije_ID], [RadniciSaSmenama_ID] in table 'IntervencijaRadnikUSmeni'
 ALTER TABLE [dbo].[IntervencijaRadnikUSmeni]
 ADD CONSTRAINT [PK_IntervencijaRadnikUSmeni]
-    PRIMARY KEY CLUSTERED ([Intervencije_ID], [RadniciSaSmenama_Id] ASC);
+    PRIMARY KEY CLUSTERED ([Intervencije_ID], [RadniciSaSmenama_ID] ASC);
 GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [Id_VatrogasneJedinice] in table 'Vozila'
+-- Creating foreign key on [VatrogasnaJedinicaID] in table 'Vozila'
 ALTER TABLE [dbo].[Vozila]
 ADD CONSTRAINT [FK_VoziloVatrogasnaJedinica]
-    FOREIGN KEY ([Id_VatrogasneJedinice])
+    FOREIGN KEY ([VatrogasnaJedinicaID])
     REFERENCES [dbo].[Vatrogasne_Jedinice]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -463,7 +463,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_VoziloVatrogasnaJedinica'
 CREATE INDEX [IX_FK_VoziloVatrogasnaJedinica]
 ON [dbo].[Vozila]
-    ([Id_VatrogasneJedinice]);
+    ([VatrogasnaJedinicaID]);
 GO
 
 -- Creating foreign key on [Intervencije_ID] in table 'Tehnicka_IntervencijaTehnicko_Vozilo'
@@ -637,7 +637,7 @@ ADD CONSTRAINT [FK_SmenaRadnikUSmeni]
     FOREIGN KEY ([SmenaID])
     REFERENCES [dbo].[Smene]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE Cascade ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SmenaRadnikUSmeni'
@@ -655,25 +655,25 @@ ADD CONSTRAINT [FK_IntervencijaRadnikUSmeni_Intervencija]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [RadniciSaSmenama_Id] in table 'IntervencijaRadnikUSmeni'
+-- Creating foreign key on [RadniciSaSmenama_ID] in table 'IntervencijaRadnikUSmeni'
 ALTER TABLE [dbo].[IntervencijaRadnikUSmeni]
 ADD CONSTRAINT [FK_IntervencijaRadnikUSmeni_RadnikUSmeni]
-    FOREIGN KEY ([RadniciSaSmenama_Id])
+    FOREIGN KEY ([RadniciSaSmenama_ID])
     REFERENCES [dbo].[RadniciUSmenama]
-        ([Id])
+        ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_IntervencijaRadnikUSmeni_RadnikUSmeni'
 CREATE INDEX [IX_FK_IntervencijaRadnikUSmeni_RadnikUSmeni]
 ON [dbo].[IntervencijaRadnikUSmeni]
-    ([RadniciSaSmenama_Id]);
+    ([RadniciSaSmenama_ID]);
 GO
 
--- Creating foreign key on [Id_Opstine] in table 'Vatrogasne_Jedinice'
+-- Creating foreign key on [OpstinaID] in table 'Vatrogasne_Jedinice'
 ALTER TABLE [dbo].[Vatrogasne_Jedinice]
 ADD CONSTRAINT [FK_OpstinaVatrogasnaJedinica]
-    FOREIGN KEY ([Id_Opstine])
+    FOREIGN KEY ([OpstinaID])
     REFERENCES [dbo].[Opstine]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -682,13 +682,13 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_OpstinaVatrogasnaJedinica'
 CREATE INDEX [IX_FK_OpstinaVatrogasnaJedinica]
 ON [dbo].[Vatrogasne_Jedinice]
-    ([Id_Opstine]);
+    ([OpstinaID]);
 GO
 
--- Creating foreign key on [Id_Opstine] in table 'Intervencije'
+-- Creating foreign key on [OpstinaID] in table 'Intervencije'
 ALTER TABLE [dbo].[Intervencije]
 ADD CONSTRAINT [FK_OpstinaIntervencija]
-    FOREIGN KEY ([Id_Opstine])
+    FOREIGN KEY ([OpstinaID])
     REFERENCES [dbo].[Opstine]
         ([ID])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -697,7 +697,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_OpstinaIntervencija'
 CREATE INDEX [IX_FK_OpstinaIntervencija]
 ON [dbo].[Intervencije]
-    ([Id_Opstine]);
+    ([OpstinaID]);
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Tehnicka_Intervencija'
@@ -706,7 +706,7 @@ ADD CONSTRAINT [FK_Tehnicka_Intervencija_inherits_Intervencija]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Intervencije]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE No ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Tehnicko_Vozilo'
@@ -715,7 +715,7 @@ ADD CONSTRAINT [FK_Tehnicko_Vozilo_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE No ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Intervencije_Pozar'
@@ -724,7 +724,7 @@ ADD CONSTRAINT [FK_Pozar_inherits_Intervencija]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Intervencije]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE No ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Navalno_Vozilo'
@@ -733,7 +733,7 @@ ADD CONSTRAINT [FK_Navalno_Vozilo_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE No ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [ID] in table 'Vozila_Cisterna'
@@ -742,8 +742,10 @@ ADD CONSTRAINT [FK_Cisterna_inherits_Vozilo]
     FOREIGN KEY ([ID])
     REFERENCES [dbo].[Vozila]
         ([ID])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE No ACTION ON UPDATE NO ACTION;
 GO
+
+-- -------------------------------------------------
 
 
 
@@ -760,7 +762,7 @@ CREATE INDEX VSJ_Naziv_Idx ON [dbo].Vatrogasne_Jedinice (Naziv);
 
 CREATE INDEX Vozilo_RegistarskaOznaka_Idx ON [dbo].Vozila (RegistarskaOznaka);
 
-CREATE INDEX Intervencija_Tip_OpstinaID_Idx ON [dbo].Intervencije (Id_Opstine, Tip);
+CREATE INDEX Intervencija_Tip_OpstinaID_Idx ON [dbo].Intervencije (OpstinaID, Tip);
 
 CREATE INDEX RadnikSmena_DatumKrajaRada_Idx ON [dbo].RadniciUSmenama (DatumKrajaRada);
 
@@ -770,7 +772,7 @@ CREATE INDEX RadnikSmena_DatumPocetkaRada_Idx ON [dbo].RadniciUSmenama (DatumPoc
 
 CREATE INDEX Alat_Tip_Idx ON [dbo].Alati (Tip);
 
-CREATE INDEX Opstina_Naziv_Idx ON [dbo].Opstine (Naziv_Opstine);
+CREATE INDEX Opstina_Naziv_Idx ON [dbo].Opstine (NazivOpstine);
 
 
 -- --------------------------------------------------
@@ -811,13 +813,13 @@ BEGIN
 	end
 	else
 	begin
-		Select @VatrogasneJediniceID = CONCAT(@VatrogasneJediniceID, Vatrogasne_Jedinice.ID , '; ') from Vatrogasne_Jedinice where Id_Opstine = @Id
+		Select @VatrogasneJediniceID = CONCAT(@VatrogasneJediniceID, Vatrogasne_Jedinice.ID , '; ') from Vatrogasne_Jedinice where OpstinaID = @Id
         if(@VatrogasneJediniceID != '')
 		    begin
 			    set @Message= CONCAT('Na teritoriji opštine se nalaze vatrogasne jedinice sa ID-em: ', @VatrogasneJediniceID);
 		    end
 
-		Select @IntervencijeID = CONCAT(@IntervencijeID, Intervencije.ID , '; ') from Intervencije where Id_Opstine = @Id
+		Select @IntervencijeID = CONCAT(@IntervencijeID, Intervencije.ID , '; ') from Intervencije where OpstinaID = @Id
 		if(@IntervencijeID != '')
 		    begin
 			    set @Message= CONCAT(@Message,' U ovoj opštini su se dogodile intervencije sa ID-em: ', @IntervencijeID);
@@ -1018,7 +1020,7 @@ BEGIN
 			        set @IdRadnika = Concat('Radnike sa ID-em: ', @IdRadnika);
 		        end
 
-		    Select  @IdVozila = Concat(@IdVozila, ID , '; ') from Vozila where Id_VatrogasneJedinice = @Id
+		    Select  @IdVozila = Concat(@IdVozila, ID , '; ') from Vozila where VatrogasnAJedinicaID = @Id
 		    if(@IdVozila != '')
 		        begin 
 			        set @IdVozila = Concat('Vozila sa ID-em: ', @IdVozila);
@@ -1268,13 +1270,13 @@ AS
 BEGIN
 
 	DECLARE ucursor cursor local for
-    select ID,Tip,Naziv_Alata from deleted;
+    select ID,Tip,NazivAlata from deleted;
     open ucursor;
 
 	 FETCH NEXT FROM ucursor into @Id, @stariTip, @stariNaziv; 
 	 while @@FETCH_STATUS=0 
 	  begin
-		SELECT @noviTip=Tip, @noviNaziv=Naziv_Alata FROM inserted WHERE ID=@Id;
+		SELECT @noviTip=Tip, @noviNaziv=NazivAlata FROM inserted WHERE ID=@Id;
 		if @noviTip != @stariTip and @noviTip != 2   --Ako je novi tip alatopste namene, to moze
 		  begin
 		   if @noviTip = 1 --protivpozarni alat
@@ -1294,7 +1296,7 @@ BEGIN
 				end
 			end
 		  end
-		UPDATE Alati SET Tip=@noviTip, Naziv_Alata=@noviNaziv WHERE ID=@Id;
+		UPDATE Alati SET Tip=@noviTip, NazivAlata=@noviNaziv WHERE ID=@Id;
 		fetch next from ucursor into @Id, @stariTip,  @stariNaziv;
 	  end
 	 close ucursor;
@@ -1323,22 +1325,22 @@ AS
 BEGIN
 
 	DECLARE ucursor cursor local for
-    select ID,Naziv,Adresa,Id_Opstine from deleted;
+    select ID,Naziv,Adresa,OpstinaID from deleted;
     open ucursor;
 
 	 FETCH NEXT FROM ucursor into @Id, @stariNaziv, @staraAdresa, @staraOpstinaID; 
 	 while @@FETCH_STATUS=0 
 	  begin
-		SELECT @noviNaziv=Naziv, @novaAdresa=Adresa, @novaOpstinaID = Id_Opstine FROM inserted WHERE ID=@Id;
+		SELECT @noviNaziv=Naziv, @novaAdresa=Adresa, @novaOpstinaID = OpstinaID FROM inserted WHERE ID=@Id;
 		if @novaOpstinaID != @staraOpstinaID
 		  begin
-		    if exists (Select DISTINCT * from Intervencije Inter inner join IntervencijaRadnikUSmeni IRUS on Inter.ID=IRUS.Intervencije_ID inner join RadniciUSmenama RUS ON IRUS.RadniciSaSmenama_Id = RUS.Id inner join Smene S on S.ID = RUS.SmenaID  where S.VatrogasnaJedinicaID = @Id and Inter.Id_Opstine = @staraOpstinaID) 
+		    if exists (Select DISTINCT * from Intervencije Inter inner join IntervencijaRadnikUSmeni IRUS on Inter.ID=IRUS.Intervencije_ID inner join RadniciUSmenama RUS ON IRUS.RadniciSaSmenama_Id = RUS.Id inner join Smene S on S.ID = RUS.SmenaID  where S.VatrogasnaJedinicaID = @Id and Inter.OpstinaID = @staraOpstinaID) 
 			 begin
 				Raiserror('Promena opštine nije moguća, vatrogasna jedinica je učestvovala na intervencijama u trenutnoj opštini! ',16,1) 
 				return
 			 end
 		  end
-		UPDATE Vatrogasne_Jedinice SET Naziv=@noviNaziv, Adresa= @novaAdresa, Id_Opstine=@novaOpstinaID WHERE ID=@Id;
+		UPDATE Vatrogasne_Jedinice SET Naziv=@noviNaziv, Adresa= @novaAdresa, OpstinaID = @novaOpstinaID WHERE ID=@Id;
 		fetch next from ucursor into  @Id, @stariNaziv, @staraAdresa, @staraOpstinaID; 
 	  end
 	 close ucursor;
@@ -1376,13 +1378,13 @@ AS
 BEGIN
 
 	DECLARE ucursor cursor local for
-    select ID,Marka,Model,Godiste, Nosivost, Id_VatrogasneJedinice, RegistarskaOznaka  from deleted;
+    select ID,Marka,Model,Godiste, Nosivost, VatrogasnaJedinicaID, RegistarskaOznaka  from deleted;
     open ucursor;
 
 	 FETCH NEXT FROM ucursor into @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId, @staraRegistarskaOznaka; 
 	 while @@FETCH_STATUS=0 
 	  begin
-		SELECT @novaMarka = Marka, @noviModel = Model, @novoGodiste = Godiste, @novaNosivost = Nosivost, @novaVSJId = Id_VatrogasneJedinice, @novaRegistarskaOznaka = RegistarskaOznaka FROM inserted WHERE ID=@Id;
+		SELECT @novaMarka = Marka, @noviModel = Model, @novoGodiste = Godiste, @novaNosivost = Nosivost, @novaVSJId = VatrogasnaJedinicaID, @novaRegistarskaOznaka = RegistarskaOznaka FROM inserted WHERE ID=@Id;
 		if @novaVSJId != @staraVSJId
 		  begin
 		    if exists (Select DISTINCT * from PozarNavalno_Vozilo  where Vozila_ID = @Id) 
@@ -1396,7 +1398,7 @@ BEGIN
 				return
 			 end
 		  end
-		UPDATE Vozila SET Marka=@novaMarka, Model= @noviModel, Godiste=@novoGodiste, Nosivost=@novaNosivost, Id_VatrogasneJedinice=@novaVSJId, RegistarskaOznaka = @novaRegistarskaOznaka WHERE ID=@Id;
+		UPDATE Vozila SET Marka=@novaMarka, Model= @noviModel, Godiste=@novoGodiste, Nosivost=@novaNosivost, VatrogasnaJedinicaID=@novaVSJId, RegistarskaOznaka = @novaRegistarskaOznaka WHERE ID=@Id;
 		fetch next from ucursor into  @Id, @staraMarka, @stariModel, @staroGodiste, @staraNosivost, @staraVSJId, @staraRegistarskaOznaka; 
 	  end
 	 close ucursor;

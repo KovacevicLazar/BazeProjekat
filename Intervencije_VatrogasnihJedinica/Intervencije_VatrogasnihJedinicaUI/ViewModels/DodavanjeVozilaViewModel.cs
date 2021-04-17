@@ -28,7 +28,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
         public DodavanjeVozilaViewModel(Vozilo vozilo)
         {
             TipoviVozila = Enum.GetValues(typeof(TipVozila)).Cast<TipVozila>().Where(x => x != TipVozila.CISTERNA).ToList();
-            VatrogasneJedinice = jedinicaDAO.GetList();
+            VatrogasneJedinice = jedinicaDAO.GetList().OrderBy(x => x.Naziv).ToList();
             Vozilo = vozilo;
             Godiste = DateTime.Now.Year;
             if (vozilo != null)
@@ -76,7 +76,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
                                 RegistarskaOznaka = RegistarskaOznaka
                             };
                             vozilo = tehnickoVoziloDAO.Insert(vozilo);
@@ -96,7 +96,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
                                 RegistarskaOznaka = RegistarskaOznaka
                             };
                             navalnoVozilo = navalnovoziloDAO.Insert(navalnoVozilo);
@@ -123,7 +123,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
                                 RegistarskaOznaka = RegistarskaOznaka
                             };
                             try
@@ -153,7 +153,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 Tip = TipVozila,
                                 Godiste = Godiste,
                                 Nosivost = double.Parse(Nosivost),
-                                Id_VatrogasneJedinice = IzabranaVatrogasnaJedinica.ID,
+                                VatrogasnaJedinicaID = IzabranaVatrogasnaJedinica.ID,
                                 RegistarskaOznaka = RegistarskaOznaka
                             };
                             try
@@ -243,7 +243,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Godiste = vozilo.Godiste;
             NotifyOfPropertyChange(() => Godiste);
             Nosivost = vozilo.Nosivost.ToString();
-            IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == vozilo.Id_VatrogasneJedinice);
+            IzabranaVatrogasnaJedinica = VatrogasneJedinice.Find(x => x.ID == vozilo.VatrogasnaJedinicaID);
             NotifyOfPropertyChange(() => IzabranaVatrogasnaJedinica);
         }
 

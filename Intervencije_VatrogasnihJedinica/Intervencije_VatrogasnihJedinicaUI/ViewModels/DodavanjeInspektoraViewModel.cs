@@ -19,7 +19,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 Ime = inspektor.Ime;
                 Prezime = Inspektor.Prezime;
-                Telefon = inspektor.Broj_Telefona.ToString();
+                Telefon = inspektor.BrojTelefona.ToString();
             }
         }
 
@@ -41,7 +41,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         Ime = Ime,
                         Prezime = Prezime,
-                        Broj_Telefona = Telefon
+                        BrojTelefona = Telefon
                     };
                     inspektorDAO.Insert(Inspektor);
                 }
@@ -52,7 +52,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         ID = Inspektor.ID,
                         Ime = Ime,
                         Prezime = Prezime,
-                        Broj_Telefona = Telefon
+                        BrojTelefona = Telefon
                     };
                     inspektorDAO.Update(Inspektor);
                 }
@@ -116,7 +116,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             else if (inspektorDAO.PronadjiPoBrojuTelefona(Telefon.Trim()) != null)
             {
-                if (Inspektor == null || (Inspektor != null && Inspektor.Broj_Telefona != Telefon))
+                if (Inspektor == null || (Inspektor != null && Inspektor.BrojTelefona != Telefon))
                 {
                     PorukaGreskeZaTelefon = "Ovaj broj telefona koristi drugi inspektor!";
                     ispravanUnos = false;

@@ -25,7 +25,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 Sati = intervencija.Uvidjaj.Datum.Hour;
                 Minuti = intervencija.Uvidjaj.Datum.Minute;
                 Datum = intervencija.Uvidjaj.Datum.Date;
-                TextZapisnika = intervencija.Uvidjaj.Tekst_Zapisnika;
+                TextZapisnika = intervencija.Uvidjaj.TekstZapisnika;
                 var Uvidjaj = uvidjajDAO.FindById(intervencija.Uvidjaj.ID);
                 Inspektor = Inspektori.Find(x => x.ID == Uvidjaj.Inspektor.ID);
             }
@@ -59,7 +59,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     ID = Intervencija.ID,
                     Datum = Datum,
                     InspektorID = Inspektor.ID,
-                    Tekst_Zapisnika = TextZapisnika
+                    TekstZapisnika = TextZapisnika
                 };
                 if (Intervencija.Uvidjaj == null)
                 {
@@ -106,9 +106,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                 PorukaGreskeZaVreme = "Neispravan datum i vreme!";
                 ispravanUnos = false;
             }
-            else if (Datum < Intervencija.Datum_I_Vreme)
+            else if (Datum < Intervencija.DatumIVreme)
             {
-                PorukaGreskeZaDatum = $"Uviđaj je moguće vršiti samo nakon intervencije( {Intervencija.Datum_I_Vreme.ToLongDateString()} )!";
+                PorukaGreskeZaDatum = $"Uviđaj je moguće vršiti samo nakon intervencije( {Intervencija.DatumIVreme.ToLongDateString()} )!";
                 ispravanUnos = false;
             }
             return ispravanUnos;

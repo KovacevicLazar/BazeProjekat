@@ -45,7 +45,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 TipoviIntervencije.Add(new TipIntervencijeIsSelected { Tip = (TipIntervencijeEnum)tip, IsSelected = false });
             }
-            opstinaDAO.GetList().ForEach(x => Opstine.Add(new OpstinaIsSelected { Opstina = x, IsSelected = false }));
+            opstinaDAO.GetList().OrderBy(x => x.NazivOpstine).ToList().ForEach(x => Opstine.Add(new OpstinaIsSelected { Opstina = x, IsSelected = false }));
         }
 
         public ObservableCollection<TipIntervencijeIsSelected> TipoviIntervencije { get; }
@@ -152,9 +152,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 DataRow _ravi = dt.NewRow();
                                 _ravi["Tip intervencije"] = intervencija.Tip == TipIntervencijeEnum.POZAR ? "Požar" : "Tehnička intervencija";
-                                _ravi["Opstina"] = intervencija.Opstina.Naziv_Opstine;
+                                _ravi["Opstina"] = intervencija.Opstina.NazivOpstine;
                                 _ravi["Adresa"] = intervencija.Adresa;
-                                _ravi["Datum i vreme"] = intervencija.Datum_I_Vreme;
+                                _ravi["Datum i vreme"] = intervencija.DatumIVreme;
                                 _ravi["Vozila"] = "";
 
                                 VSJVozila = FormatiranjePodatakaOVozilima(intervencija);
@@ -169,7 +169,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                     _ravi["Radnici"] += $"{eee.Key} \r\n     Radnici: {eee.Value} ";
                                 }
 
-                                _ravi["Informacije o uvidjaju"] = intervencija.Uvidjaj != null ? $"Datum uvidjaja: {intervencija.Uvidjaj?.Datum}  \r\nInspektor: {intervencija.Uvidjaj.Inspektor?.Ime} {intervencija.Uvidjaj.Inspektor?.Prezime} {intervencija.Uvidjaj.Inspektor?.Broj_Telefona}  \r\nText zapisnika: {intervencija.Uvidjaj.Tekst_Zapisnika} " : null;
+                                _ravi["Informacije o uvidjaju"] = intervencija.Uvidjaj != null ? $"Datum uvidjaja: {intervencija.Uvidjaj?.Datum}  \r\nInspektor: {intervencija.Uvidjaj.Inspektor?.Ime} {intervencija.Uvidjaj.Inspektor?.Prezime} {intervencija.Uvidjaj.Inspektor?.BrojTelefona}  \r\nText zapisnika: {intervencija.Uvidjaj.TekstZapisnika} " : null;
                                 dt.Rows.Add(_ravi);
                             });
                             workbook.Worksheets.Add(dt, "Intervencije");
@@ -227,10 +227,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (VsjRadnici.ContainsKey($"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"))
                 {
-                    VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] += $"       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()}\r\n";
+                    VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] += $"       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.RadnoMesto.ToString()}\r\n";
                     continue;
                 }
-                VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] = $"\r\n       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.Radno_Mesto.ToString()}\r\n";
+                VsjRadnici[$"VSJ: {radnikSmena.Radnik.VatrogasnaJedinica.Naziv} \r\n  Smena: {radnikSmena.Smena.NazivSmene}"] = $"\r\n       {radnikSmena.Radnik.JMBG} {radnikSmena.Radnik.Ime} {radnikSmena.Radnik.Prezime} {radnikSmena.Radnik.RadnoMesto.ToString()}\r\n";
             }
             return VsjRadnici;
         }
@@ -268,10 +268,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 foreach (var pozar in PozariIzFajla)
                                 {
-                                    var pozarTemp = pozarDAO.Insert(new Pozar { Tip = pozar.Tip, Id_Opstine = pozar.Id_Opstine, Adresa = pozar.Adresa, Datum_I_Vreme = pozar.Datum_I_Vreme, Uvidjaj = pozar.Uvidjaj });
+                                    var pozarTemp = pozarDAO.Insert(new Pozar { Tip = pozar.Tip, OpstinaID = pozar.OpstinaID, Adresa = pozar.Adresa, DatumIVreme = pozar.DatumIVreme, Uvidjaj = pozar.Uvidjaj });
                                     foreach (var radnikSmena in pozar.RadniciSaSmenama)
                                     {
-                                        pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.Id, pozarTemp.ID);
+                                        pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.ID, pozarTemp.ID);
                                     }
                                     foreach (var vozilo in pozar.Vozila)
                                     {
@@ -280,10 +280,10 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 }
                                 foreach (var tehnickaIntervencija in TehnickeIntervencijeIzFajla)
                                 {
-                                    var tehnickaIntervencijaTemp = tehnickaIntervencijaDAO.Insert(new Tehnicka_Intervencija { Tip = tehnickaIntervencija.Tip, Id_Opstine = tehnickaIntervencija.Id_Opstine, Adresa = tehnickaIntervencija.Adresa, Datum_I_Vreme = tehnickaIntervencija.Datum_I_Vreme, Uvidjaj = tehnickaIntervencija.Uvidjaj });
+                                    var tehnickaIntervencijaTemp = tehnickaIntervencijaDAO.Insert(new Tehnicka_Intervencija { Tip = tehnickaIntervencija.Tip, OpstinaID = tehnickaIntervencija.OpstinaID, Adresa = tehnickaIntervencija.Adresa, DatumIVreme = tehnickaIntervencija.DatumIVreme, Uvidjaj = tehnickaIntervencija.Uvidjaj });
                                     foreach (var radnikSmena in tehnickaIntervencija.RadniciSaSmenama)
                                     {
-                                        tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.Id, tehnickaIntervencijaTemp.ID);
+                                        tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikSmena.SmenaID, radnikSmena.RadnikID, radnikSmena.ID, tehnickaIntervencijaTemp.ID);
                                     }
                                     foreach (var vozilo in tehnickaIntervencija.Vozila)
                                     {
@@ -312,7 +312,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Opstina opstinaIntervencije = opstinaDAO.pronadjiPoNazivu(nazivOpstine);
             if (opstinaIntervencije == null)
             {
-                opstinaIntervencije = opstinaDAO.Insert(new Opstina { Naziv_Opstine = nazivOpstine });
+                opstinaIntervencije = opstinaDAO.Insert(new Opstina { NazivOpstine = nazivOpstine });
             }
 
             List<Vozilo> vozilaNaIntervenciji = string.IsNullOrEmpty(vozilaString) ? new List<Vozilo>() : KreirajListuVozilaIzStringa(vozilaString, tipIntervencije, opstinaIntervencije, brojVrste);
@@ -320,11 +320,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             Uvidjaj uvidjaj = string.IsNullOrEmpty(informacijeOUvidjajuString) ? null : KreirajUvidjajIzStringa(informacijeOUvidjajuString, brojVrste);
             if (tipIntervencije == TipIntervencijeEnum.POZAR)
             {
-                PozariIzFajla.Add(new Pozar { Tip = tipIntervencije, Id_Opstine = opstinaIntervencije.ID, Adresa = adresa, Datum_I_Vreme = datum, Uvidjaj = uvidjaj, RadniciSaSmenama = radniciISmene, Vozila = vozilaNaIntervenciji.Cast<Navalno_Vozilo>().ToList() });
+                PozariIzFajla.Add(new Pozar { Tip = tipIntervencije, OpstinaID = opstinaIntervencije.ID, Adresa = adresa, DatumIVreme = datum, Uvidjaj = uvidjaj, RadniciSaSmenama = radniciISmene, Vozila = vozilaNaIntervenciji.Cast<Navalno_Vozilo>().ToList() });
             }
             else
             {
-                TehnickeIntervencijeIzFajla.Add(new Tehnicka_Intervencija { Tip = tipIntervencije, Id_Opstine = opstinaIntervencije.ID, Adresa = adresa, Datum_I_Vreme = datum, Uvidjaj = uvidjaj, RadniciSaSmenama = radniciISmene, Vozila = vozilaNaIntervenciji.Cast<Tehnicko_Vozilo>().ToList() });
+                TehnickeIntervencijeIzFajla.Add(new Tehnicka_Intervencija { Tip = tipIntervencije, OpstinaID = opstinaIntervencije.ID, Adresa = adresa, DatumIVreme = datum, Uvidjaj = uvidjaj, RadniciSaSmenama = radniciISmene, Vozila = vozilaNaIntervenciji.Cast<Tehnicko_Vozilo>().ToList() });
             }
         }
 
@@ -351,14 +351,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     {
                         if (ValidacijaPodatakaOUvidjaju(datumUvidjaja, ime, prezime, brojTelefona, brojVrste))
                         {
-                            inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, Broj_Telefona = brojTelefona });
+                            inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, BrojTelefona = brojTelefona });
                         }
                         else
                         {
                             return null;
                         }
                     }
-                    uvidjaj = new Uvidjaj { Datum = DateTime.Parse(datumUvidjaja), Tekst_Zapisnika = tekstZapisnika, InspektorID = inspektor.ID };
+                    uvidjaj = new Uvidjaj { Datum = DateTime.Parse(datumUvidjaja), TekstZapisnika = tekstZapisnika, InspektorID = inspektor.ID };
                 }
                 catch { }
             }
@@ -391,7 +391,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
                     if (vatrogasnaJedinica == null)
                     {
-                        vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", Id_Opstine = opstinaIntervencije.ID });
+                        vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", OpstinaID = opstinaIntervencije.ID });
                         Smena Smena;
                         List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
                         for (int i = 1; i < 5; i++)
@@ -416,7 +416,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 {
                                     if (ValidacijaPodatakaOVozilu(marka, model, brojVrste))
                                     {
-                                        navalnoVozilo = navalnoVoziloDAO.Insert(new Navalno_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.NAVALNO, Id_VatrogasneJedinice = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
+                                        navalnoVozilo = navalnoVoziloDAO.Insert(new Navalno_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.NAVALNO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
                                     }
                                     else
                                     {
@@ -431,7 +431,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 if (ValidacijaPodatakaOVozilu(marka, model, brojVrste))
                                 {
-                                    tehnickoVozilo = tehnickoVoziloDAO.Insert(new Tehnicko_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.TEHNICKO, Id_VatrogasneJedinice = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
+                                    tehnickoVozilo = tehnickoVoziloDAO.Insert(new Tehnicko_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.TEHNICKO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
                                 }
                                 else
                                 {
@@ -477,7 +477,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                     var vatrogasnaJedinica = vatrogasnaJedinicaDAO.PronadjiPoNazivu(nazivVatrogasnaJedinica);
                     if (vatrogasnaJedinica == null)
                     {
-                        vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", Id_Opstine = opstinaIntervencije.ID });
+                        vatrogasnaJedinica = vatrogasnaJedinicaDAO.Insert(new VatrogasnaJedinica { Naziv = nazivVatrogasnaJedinica, Adresa = "Nije definisana", OpstinaID = opstinaIntervencije.ID });
                         Smena Smena;
                         List<string> naziviSmena = new List<string> { "Smena A", "Smena B", "Smena C", "Smena D" };
                         for (int i = 1; i < 5; i++)
@@ -512,7 +512,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 if (ValidacijaPodatakaORadniku(ime, prezime, jmbg, brojVrste))
                                 {
-                                    radnik = radnikDAO.Insert(new Radnik { JMBG = jmbg, Ime = ime, Prezime = prezime, Radno_Mesto = radno_mesto, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0) });
+                                    radnik = radnikDAO.Insert(new Radnik { JMBG = jmbg, Ime = ime, Prezime = prezime, RadnoMesto = radno_mesto, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0) });
                                     radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0), DatumKrajaRada = null });
                                 }
                                 else

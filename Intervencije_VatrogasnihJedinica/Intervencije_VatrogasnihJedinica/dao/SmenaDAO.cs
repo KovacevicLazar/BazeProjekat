@@ -39,7 +39,7 @@ namespace Intervencije_VatrogasnihJedinica.dao
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
                 //sveSmene = db.Smene.Include("VatrogasnaJedinica").Include("Intervencije").Include("Radnici").Where(x => x.VatrogasnaJedinica.Id_Opstine == idOpstine).ToList();
-                smene = db.ListaDezurnihSmenaNaDatum(datumIntervencije).Where(x => x.VatrogasnaJedinica.Id_Opstine == idOpstine).ToList();
+                smene = db.ListaDezurnihSmenaNaDatum(datumIntervencije).Where(x => x.VatrogasnaJedinica.OpstinaID == idOpstine).ToList();
             }
             //foreach(var smena in sveSmene)
             //{

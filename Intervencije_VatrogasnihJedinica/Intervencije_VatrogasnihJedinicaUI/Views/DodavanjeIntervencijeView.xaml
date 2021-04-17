@@ -9,7 +9,7 @@
         <Label Content="Opština:" HorizontalAlignment="Left" Margin="71,179,0,0" VerticalAlignment="Top" Width="104" />
         <Label Content="Datum:" HorizontalAlignment="Left" Margin="71,299,0,0" VerticalAlignment="Top" Width="109" Height="28" />
         <TextBox x:Name="Adresa" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="180,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="154" />
-        <ComboBox x:Name="Opstine" SelectedItem="{Binding IzabranaOpstina, Mode=TwoWay}" VerticalContentAlignment="Center" DisplayMemberPath="Naziv_Opstine" HorizontalAlignment="Left" Margin="180,179,0,0" VerticalAlignment="Top" Width="154" Height="26" />
+        <ComboBox x:Name="Opstine" SelectedItem="{Binding IzabranaOpstina, Mode=TwoWay}" VerticalContentAlignment="Center" DisplayMemberPath="NazivOpstine" HorizontalAlignment="Left" Margin="180,179,0,0" VerticalAlignment="Top" Width="154" Height="26" />
         <DatePicker SelectedDate="{Binding Datum, Mode=TwoWay}" SelectedDateFormat="Short" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="180,299,0,0" VerticalAlignment="Top" Width="154" Height="28" />
         <Label Content="Vreme:" HorizontalAlignment="Left" Margin="71,361,0,0" VerticalAlignment="Top" Width="104" Height="28" />
         <Label Content=":" FontSize="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="23" Height="35" Margin="247,354,0,0" />
@@ -89,7 +89,7 @@
                                         <Binding Path="RadnikUSmeni.Radnik.ID" />
                                     </MultiBinding>
                                 </TextBlock.Text></TextBlock>
-                            <TextBlock Text="{Binding RadnikUSmeni.Radnik.Radno_Mesto}" />
+                            <TextBlock Text="{Binding RadnikUSmeni.Radnik.RadnoMesto}" />
                             <TextBlock FontWeight="Normal">
                                 <TextBlock.Text >
                                     <MultiBinding StringFormat="VSJ ID:{2} - {0} ID:{1} ">

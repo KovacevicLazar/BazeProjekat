@@ -37,7 +37,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             TehnickaIntervencija = new Tehnicka_Intervencija();
             Intervencija = intervencija;
             TipoviIntervencije = Enum.GetValues(typeof(TipIntervencijeEnum)).Cast<TipIntervencijeEnum>().ToList();
-            Opstine = opstinaDAO.GetList();
+            Opstine = opstinaDAO.GetList().OrderBy(x => x.NazivOpstine).ToList();
             if (Opstine.Count != 0)
             {
                 izabranaOpstina = Opstine[0];
@@ -45,11 +45,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
             if (intervencija != null)
             {
-                Sati = intervencija.Datum_I_Vreme.Hour;
-                Minuti = intervencija.Datum_I_Vreme.Minute;
-                Datum = intervencija.Datum_I_Vreme.Date;
+                Sati = intervencija.DatumIVreme.Hour;
+                Minuti = intervencija.DatumIVreme.Minute;
+                Datum = intervencija.DatumIVreme.Date;
                 Adresa = intervencija.Adresa;
-                IzabranaOpstina = Opstine.Find(x => x.ID == intervencija.Id_Opstine);
+                IzabranaOpstina = Opstine.Find(x => x.ID == intervencija.OpstinaID);
                 NotifyOfPropertyChange(() => IzabranaOpstina);
                 TipIntervencije = intervencija.Tip;
                 if (TipIntervencije == TipIntervencijeEnum.POZAR)
@@ -99,8 +99,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 Tip = TipIntervencije,
                                 Adresa = Adresa,
-                                Datum_I_Vreme = Datum,
-                                Id_Opstine = IzabranaOpstina.ID
+                                DatumIVreme = Datum,
+                                OpstinaID = IzabranaOpstina.ID
                             };
                             pozarDAO.Insert(Pozar);
                             DodajVozilaISmeneZaPozarUBazuPodataka();
@@ -110,8 +110,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             {
                                 Tip = TipIntervencije,
                                 Adresa = Adresa,
-                                Datum_I_Vreme = Datum,
-                                Id_Opstine = IzabranaOpstina.ID
+                                DatumIVreme = Datum,
+                                OpstinaID = IzabranaOpstina.ID
                             };
                             tehnickaIntervencijaDAO.Insert(TehnickaIntervencija);
                             DodajVozilaISmeneZaTehnickuIntervencijuUBazuPodataka();
@@ -128,8 +128,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 ID = Intervencija.ID,
                                 Tip = TipIntervencije,
                                 Adresa = Adresa,
-                                Datum_I_Vreme = Datum,
-                                Id_Opstine = IzabranaOpstina.ID
+                                DatumIVreme = Datum,
+                                OpstinaID = IzabranaOpstina.ID
                             };
                             pozarDAO.Update(Pozar);
                             pozarDAO.UkloniVozilaSaIntervencije(Pozar.ID);
@@ -142,8 +142,8 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 ID = Intervencija.ID,
                                 Tip = TipIntervencije,
                                 Adresa = Adresa,
-                                Datum_I_Vreme = Datum,
-                                Id_Opstine = IzabranaOpstina.ID
+                                DatumIVreme = Datum,
+                                OpstinaID = IzabranaOpstina.ID
                             };
                             tehnickaIntervencijaDAO.Update(TehnickaIntervencija);
                             tehnickaIntervencijaDAO.UkloniVozilaSaIntervencije(TehnickaIntervencija.ID);
@@ -169,7 +169,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (radnikISmena.IsSelected)
                 {
-                    pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.Id, Pozar.ID);
+                    pozarDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.ID, Pozar.ID);
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (radnikISmena.IsSelected)
                 {
-                    tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.Id, TehnickaIntervencija.ID);
+                    tehnickaIntervencijaDAO.DodajSmenuIRadnikaNaIntervenciju(radnikISmena.RadnikUSmeni.SmenaID, radnikISmena.RadnikUSmeni.RadnikID, radnikISmena.RadnikUSmeni.ID, TehnickaIntervencija.ID);
                 }
             }
         }
@@ -340,7 +340,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (smena.IsSelected)
                 {
-                    if (!Vozila.Any(x => x.Vozilo.Id_VatrogasneJedinice == smena.Smena.VatrogasnaJedinicaID && x.IsSelected))
+                    if (!Vozila.Any(x => x.Vozilo.VatrogasnaJedinicaID == smena.Smena.VatrogasnaJedinicaID && x.IsSelected))
                     {
                         PorukaGreskeZaSmeneIVozila = "Morate izabrati bar jedno vozilo iz iste vatrogasne jedinice iz koje je izabrana neka smena!";
                         return false;
@@ -352,7 +352,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (vozilo.IsSelected)
                 {
-                    if (!Smene.Any(x => x.Smena.VatrogasnaJedinicaID == vozilo.Vozilo.Id_VatrogasneJedinice && x.IsSelected))
+                    if (!Smene.Any(x => x.Smena.VatrogasnaJedinicaID == vozilo.Vozilo.VatrogasnaJedinicaID && x.IsSelected))
                     {
                         PorukaGreskeZaSmeneIVozila = "Morate izabrati smenu iz vatrogasne jedinice iz koje je izabrano i vozilo!";
                         return false;
@@ -368,9 +368,9 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             {
                 if (smena.IsSelected)
                 {
-                    int brojSelektovanihVatrogasaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vatrogasac).Count();
-                    int brojSelektovanihVozaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.Radno_Mesto == RadnoMesto.Vozac).Count();
-                    int brojSelektovanihVozila = Vozila.Where(x => x.IsSelected == true && x.Vozilo.Id_VatrogasneJedinice == smena.Smena.VatrogasnaJedinicaID).Count();
+                    int brojSelektovanihVatrogasaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.RadnoMesto == RadnoMesto.Vatrogasac).Count();
+                    int brojSelektovanihVozaca = radnici.Where(x => x.IsSelected == true && x.RadnikUSmeni.SmenaID == smena.Smena.ID && x.RadnikUSmeni.Radnik.RadnoMesto == RadnoMesto.Vozac).Count();
+                    int brojSelektovanihVozila = Vozila.Where(x => x.IsSelected == true && x.Vozilo.VatrogasnaJedinicaID == smena.Smena.VatrogasnaJedinicaID).Count();
                     if (brojSelektovanihVatrogasaca < 1 || brojSelektovanihVozaca < 1)
                     {
                         PorukaGreskeZaSmeneIVozila = "Za svaku označenu smenu morate označiti bar jednog vozača i bar jednog vatrogasca iz te smene!";

@@ -36,11 +36,10 @@ namespace Intervencije_VatrogasnihJedinica.dao
             }
         }
 
-        public void Delete(object id)
+        public void Delete(params object[] id)
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                DbSet<TEntity> dbSet = db.Set<TEntity>();
                 TEntity entity = db.Set<TEntity>().Find(id);
                 db.Entry(entity).State = EntityState.Deleted;
                 db.SaveChanges();
@@ -51,7 +50,6 @@ namespace Intervencije_VatrogasnihJedinica.dao
         {
             using (var db = new Model_Intervencije_VatrogasnihJedinicaContainer())
             {
-                db.Set<TEntity>().Attach(entity);
                 db.Entry(entity).State = EntityState.Modified;
                 db.SaveChanges();
             }

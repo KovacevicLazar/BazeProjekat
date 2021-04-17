@@ -20,7 +20,7 @@ namespace Intervencije_VatrogasnihJedinica
             this.Intervencije = new HashSet<Intervencija>();
         }
     
-        public int Id { get; set; }
+        public int ID { get; set; }
         public System.DateTime DatumPocetkaRada { get; set; }
         public Nullable<System.DateTime> DatumKrajaRada { get; set; }
         public int RadnikID { get; set; }
