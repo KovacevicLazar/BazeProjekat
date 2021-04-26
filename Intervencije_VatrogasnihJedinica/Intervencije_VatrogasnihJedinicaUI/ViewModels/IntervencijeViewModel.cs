@@ -33,6 +33,11 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
 
         private List<Pozar> PozariIzFajla = new List<Pozar>();
         private List<Tehnicka_Intervencija> TehnickeIntervencijeIzFajla = new List<Tehnicka_Intervencija>();
+        private List<Opstina> UvezeneOpstine = new List<Opstina>();
+        private List<VatrogasnaJedinica> UvezeneVatrogasnaJedinice = new List<VatrogasnaJedinica>();
+        private List<Vozilo> UvezenaVozila = new List<Vozilo>();
+        private List<Radnik> UvezeniRadnici = new List<Radnik>();
+        private List<Inspektor> UvezeniInspektori = new List<Inspektor>();
         private bool UspesanUnos = true;
 
         public IntervencijeViewModel()
@@ -294,7 +299,14 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             }
                             else
                             {
+                                UvezeniInspektori.ForEach(x => inspektorDAO.Delete(x.ID));
+                                UvezeniRadnici.ForEach(x => radnikDAO.Delete(x.ID));
+                                UvezenaVozila.Where(x => x.Tip == TipVozila.NAVALNO).ToList().ForEach(x => navalnoVoziloDAO.Delete(x.ID));
+                                UvezenaVozila.Where(x => x.Tip == TipVozila.TEHNICKO).ToList().ForEach(x => tehnickoVoziloDAO.Delete(x.ID));
+                                UvezeneVatrogasnaJedinice.ForEach(x => vatrogasnaJedinicaDAO.Delete(x.ID));
+                                UvezeneOpstine.ForEach(x => opstinaDAO.Delete(x.ID));
                                 MessageBox.Show(porukaGreskePriUvozu, "Neuspešan unos podataka!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                porukaGreskePriUvozu = "Podaci o intervencijama nisu dodati! Greške u fajlu su sledeće: \n";
                             }
                         }
                     }
@@ -313,6 +325,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (opstinaIntervencije == null)
             {
                 opstinaIntervencije = opstinaDAO.Insert(new Opstina { NazivOpstine = nazivOpstine });
+                UvezeneOpstine.Add(opstinaIntervencije);
             }
 
             List<Vozilo> vozilaNaIntervenciji = string.IsNullOrEmpty(vozilaString) ? new List<Vozilo>() : KreirajListuVozilaIzStringa(vozilaString, tipIntervencije, opstinaIntervencije, brojVrste);
@@ -352,6 +365,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                         if (ValidacijaPodatakaOUvidjaju(datumUvidjaja, ime, prezime, brojTelefona, brojVrste))
                         {
                             inspektor = inspektorDAO.Insert(new Inspektor { Ime = ime, Prezime = prezime, BrojTelefona = brojTelefona });
+                            UvezeniInspektori.Add(inspektor);
                         }
                         else
                         {
@@ -399,6 +413,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             Smena = new Smena { NazivSmene = naziviSmena[i - 1], VatrogasnaJedinicaID = vatrogasnaJedinica.ID, DatumPrvogDezurstva = new System.DateTime(2009, 1, i, 8, 0, 0) };
                             smenaDAO.Insert(Smena);
                         }
+                        UvezeneVatrogasnaJedinice.Add(vatrogasnaJedinica);
                     }
                     string[] podaciOVozilu;
                     for (int i = 2; i < vatrogasnaJedinicaIVozila.Length; i++)
@@ -412,31 +427,27 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             if (tipIntervencije == TipIntervencijeEnum.POZAR)
                             {
                                 Navalno_Vozilo navalnoVozilo = navalnoVoziloDAO.PronadjiPoRegistarskojOznaci(regirtarsaOznaka);
-                                if (navalnoVozilo == null)
+                                if ( ValidacijaPodatakaOVozilu(marka, model, regirtarsaOznaka, brojVrste) && navalnoVozilo == null)
                                 {
-                                    if (ValidacijaPodatakaOVozilu(marka, model, brojVrste))
-                                    {
-                                        navalnoVozilo = navalnoVoziloDAO.Insert(new Navalno_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.NAVALNO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
-                                    }
-                                    else
-                                    {
-                                        continue;
-                                    }
-                                }
-                                vozilaNaIntervenciji.Add(navalnoVozilo);
-                                continue;
-                            }
-                            Tehnicko_Vozilo tehnickoVozilo = tehnickoVoziloDAO.PronadjiPoRegistarskojOznaci(regirtarsaOznaka);
-                            if (tehnickoVozilo == null)
-                            {
-                                if (ValidacijaPodatakaOVozilu(marka, model, brojVrste))
-                                {
-                                    tehnickoVozilo = tehnickoVoziloDAO.Insert(new Tehnicko_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.TEHNICKO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
+                                    navalnoVozilo = navalnoVoziloDAO.Insert(new Navalno_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.NAVALNO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
+                                    UvezenaVozila.Add(navalnoVozilo);
                                 }
                                 else
                                 {
                                     continue;
                                 }
+                                vozilaNaIntervenciji.Add(navalnoVozilo);
+                                continue;
+                            }
+                            Tehnicko_Vozilo tehnickoVozilo = tehnickoVoziloDAO.PronadjiPoRegistarskojOznaci(regirtarsaOznaka);
+                            if (ValidacijaPodatakaOVozilu(marka, model, regirtarsaOznaka, brojVrste) && tehnickoVozilo == null)
+                            {
+                                tehnickoVozilo = tehnickoVoziloDAO.Insert(new Tehnicko_Vozilo { Marka = marka, Model = model, RegistarskaOznaka = regirtarsaOznaka, Tip = TipVozila.TEHNICKO, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, Godiste = 2000, Nosivost = 3000 });
+                                UvezenaVozila.Add(tehnickoVozilo);
+                            }
+                            else
+                            {
+                                continue;
                             }
                             vozilaNaIntervenciji.Add(tehnickoVozilo);
                         }
@@ -485,6 +496,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                             Smena = new Smena { NazivSmene = naziviSmena[i - 1], VatrogasnaJedinicaID = vatrogasnaJedinica.ID, DatumPrvogDezurstva = new System.DateTime(2009, 1, i, 8, 0, 0) };
                             smenaDAO.Insert(Smena);
                         }
+                        UvezeneVatrogasnaJedinice.Add(vatrogasnaJedinica);
                     }
 
                     var nazivSmene = vatrogasnaJedinicaSaRadnicima[1].Trim().Split(new string[] { "Smena:" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
@@ -514,6 +526,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
                                 {
                                     radnik = radnikDAO.Insert(new Radnik { JMBG = jmbg, Ime = ime, Prezime = prezime, RadnoMesto = radno_mesto, VatrogasnaJedinicaID = vatrogasnaJedinica.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0) });
                                     radnikSmenaDAO.Insert(new RadnikUSmeni { RadnikID = radnik.ID, SmenaID = smena.ID, DatumPocetkaRada = new DateTime(2009, 1, 1, 8, 0, 0), DatumKrajaRada = null });
+                                    UvezeniRadnici.Add(radnik);
                                 }
                                 else
                                 {
@@ -577,13 +590,13 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             List<string> tipovi = new List<string> { "pozar", "požar", "tehnička intervencija", "tehnicka intervencija", "tehnička", "tehnicka" };
             if (string.IsNullOrEmpty(tipIntervencije) || !tipovi.Contains(tipIntervencije.Trim().ToLower()))
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan TIP intervencije!";
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan TIP intervencije!";
                 UspesanUnos = false;
                 return false;
             }
             if (string.IsNullOrEmpty(opstina.Trim()) || !opstina.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)))
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan NAZIV opstine!";
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan NAZIV opstine!";
                 UspesanUnos = false;
                 return false;
             }
@@ -599,7 +612,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             catch
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} unutar izabranog dokumenta nije dobro definisan DATUM! Intervencije";
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan DATUM Intervencije";
                 UspesanUnos = false;
                 return false;
             }
@@ -624,7 +637,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             }
             if (string.IsNullOrEmpty(Telefon) || !Telefon.Trim().All(c => char.IsNumber(c)) || Telefon.Trim().Length < 6 || Telefon.Trim().Length > 14)
             {
-                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisano broj TELEFON inspektora!";
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan BROJ TELEFONA inspektora!";
                 UspesanUnos = false;
                 ispravanUnos = false;
             }
@@ -676,7 +689,7 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             return ispravanUnos;
         }
 
-        private bool ValidacijaPodatakaOVozilu(string Marka, string Model, int brojVrste)
+        private bool ValidacijaPodatakaOVozilu(string Marka, string Model, string RegistarskaOznaka, int brojVrste)
         {
             bool ispravanUnos = true;
             if (string.IsNullOrEmpty(Marka) || !Marka.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetter(c)) || Marka.Trim().Length < 3 || Marka.Trim().Length > 20)
@@ -689,6 +702,19 @@ namespace Intervencije_VatrogasnihJedinicaUI.ViewModels
             if (string.IsNullOrEmpty(Model) || !Model.Trim().All(c => char.IsWhiteSpace(c) || char.IsLetterOrDigit(c)) || Model.Trim().Length < 3 || Model.Trim().Length > 20)
             {
                 porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisan MODEL vozila!";
+                UspesanUnos = false;
+                ispravanUnos = false;
+            }
+
+            if (string.IsNullOrEmpty(RegistarskaOznaka))
+            {
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije definisana REGISTARSKA OZNAKA vozila!";
+                UspesanUnos = false;
+                ispravanUnos = false;
+            }
+            else if (!RegistarskaOznaka.Trim().All(c => char.IsLetterOrDigit(c)))
+            {
+                porukaGreskePriUvozu += $"\n U vrsti {brojVrste} nije dobro definisana REGISTARSKA OZNAKA vozila!";
                 UspesanUnos = false;
                 ispravanUnos = false;
             }
